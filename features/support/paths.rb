@@ -14,6 +14,8 @@ module NavigationHelpers
       countries_path
     when /the new country page/
       new_country_path
+    when /the new user page/
+      new_user_path
     # Add more mappings here.
     # Here is a more fancy example:
     #
