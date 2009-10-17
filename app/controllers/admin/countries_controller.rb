@@ -1,7 +1,7 @@
 class Admin::CountriesController < ApplicationController
 
   def index
-    @countries = Country.all
+    @countries = Country.ordered
   end
 
   def new

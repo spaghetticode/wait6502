@@ -22,4 +22,14 @@ describe Country do
       Country.new(:name => 'Italy').should be_valid
     end
   end
+  
+  describe 'named scope ORDERED' do
+    before do
+      5.times {Factory(:country)}
+    end
+    
+    it 'should sort countries by name' do
+      Country.ordered.should == Country.all.sort_by(&:name)
+    end
+  end
 end
