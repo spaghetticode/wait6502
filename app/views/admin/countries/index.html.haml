@@ -1,0 +1,12 @@
+%h1 Listing Countries
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @countries.each do |country|
+    %tr
+      %td= h country.name
+      %td= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New country', new_country_path
