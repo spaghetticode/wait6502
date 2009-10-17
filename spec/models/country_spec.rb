@@ -11,7 +11,7 @@ describe Country do
     end
     
     it 'should require a unique name' do
-      country = Country.create!(:name => 'USA')
+      country = Factory(:country)
       invalid = Country.new(:name => country.name)
       invalid.should have(1).error_on(:name)
     end
