@@ -19,3 +19,11 @@ end
 Then /^a new user with email "([^\"]*)" should not exist$/ do |email|
   User.find_by_email(email).should be_nil
 end
+
+Given /^a user exist with email "([^\"]*)" and password "([^\"]*)"$/ do |email, password|
+  User.create!(
+    :email => email,
+    :password => password,
+    :password_confirmation => password
+  )
+end
