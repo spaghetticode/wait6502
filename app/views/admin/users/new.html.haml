@@ -1,0 +1,16 @@
+%h1 New User
+
+- form_for @user do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th= f.label :email
+      %td= f.text_field :email
+    %tr
+      %th= f.label :password
+      %td= f.text_field :password
+    %tr
+      %th= f.label :password_confirmation
+      %td= f.text_field :password_confirmation
+    %tr
+      %td.center{:colspan => 2}= f.submit 'create'

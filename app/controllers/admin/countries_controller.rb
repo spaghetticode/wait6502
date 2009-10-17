@@ -1,5 +1,6 @@
 class Admin::CountriesController < ApplicationController
-
+  layout 'admin'
+  
   def index
     @countries = Country.ordered
   end

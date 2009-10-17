@@ -1,0 +1,12 @@
+%h1 User Login
+- form_for @user_session, :url => user_session_path do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th= f.label :email
+      %td= f.text_field :email
+    %tr
+      %th= f.label :password
+      %td= f.password_field :password
+    %tr
+      %td.center{:colspan => 2}= f.submit 'log in'

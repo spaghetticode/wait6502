@@ -1,0 +1,18 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "it", :lang => "it"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
+    %title= @title || 'default page title'
+    = stylesheet_link_tag 'admin'
+    = yield :head
+  %body
+    %navigation
+      %ul
+        -if current_user
+          %li= link_to 'logout', logout_path
+          %li= link_to 'countries', countries_path
+        - else
+          %li= link_to 'login', login_path        
+    - flash.each_pair do |type, message|
+      %p{:class => type}= message
+    = yield
