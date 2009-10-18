@@ -1,0 +1,15 @@
+%h1 Listing Manufacturers
+
+%table
+  %tr
+    %th Name
+    %th Country
+    %th{:colspan => '2'} Actions
+  - @manufacturers.each do |manufacturer|
+    %tr
+      %td= h manufacturer.name
+      %td= h manufacturer.country_id
+      %td= link_to 'Edit', edit_manufacturer_path(manufacturer)
+      %td= link_to 'Destroy', manufacturer, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New manufacturer', new_manufacturer_path
