@@ -6,19 +6,20 @@ describe "/admin/manufacturers/index.html.haml" do
   before(:each) do
     assigns[:manufacturers] = [
       stub_model(Manufacturer,
-        :name => "value for name",
-        :country_id => "value for country_id"
+        :name => "Apple",
+        :country_id => "USA"
       ),
       stub_model(Manufacturer,
-        :name => "value for name",
-        :country_id => "value for country_id"
+        :name => "Olivetti",
+        :country_id => "Italy"
       )
     ]
+    assigns[:manufacturers].stub!(:total_pages).and_return(0)
   end
 
   it "renders a list of admin_manufacturers" do
     render
-    response.should have_tag("tr>td", "value for name".to_s, 2)
-    response.should have_tag("tr>td", "value for country_id".to_s, 2)
+    response.should have_tag("tr>td", "Apple".to_s, 2)
+    response.should have_tag("tr>td", "USA".to_s, 2)
   end
 end

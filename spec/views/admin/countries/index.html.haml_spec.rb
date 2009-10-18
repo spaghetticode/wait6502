@@ -6,16 +6,17 @@ describe "/admin/countries/index.html.haml" do
   before(:each) do
     assigns[:countries] = [
       stub_model(Country,
-        :name => "value for name"
+        :name => "Italy"
       ),
       stub_model(Country,
-        :name => "value for name"
+        :name => "USA"
       )
     ]
+    assigns[:countries].stub!(:total_pages).and_return(0)
   end
 
   it "renders a list of countries" do
     render
-    response.should have_tag("tr>td", "value for name".to_s, 2)
+    response.should have_tag("tr>td", "Italy".to_s, 2)
   end
 end
