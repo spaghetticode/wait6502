@@ -21,6 +21,11 @@ describe Country do
     it 'should be valid' do
       Country.new(:name => 'Italy').should be_valid
     end
+    
+    it 'should have id same as name (name is primary key)' do
+      country = Factory(:country)
+      country.id.should == country.name
+    end
   end
   
   describe 'named scope ORDERED' do

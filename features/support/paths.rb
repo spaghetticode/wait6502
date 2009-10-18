@@ -18,6 +18,10 @@ module NavigationHelpers
       new_user_path
     when /the user login page/
       new_user_session_path
+    when /the currencies page/
+      currencies_path
+    when /the new currency path/
+      new_currency_path
     # Add more mappings here.
     # Here is a more fancy example:
     #
