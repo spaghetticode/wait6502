@@ -5,10 +5,6 @@ module CountriesControllerHelper
     post :create, :country => {}
   end
   
-  def delete_destroy
-    delete :destroy, :id => '1'
-  end
-  
   def mock_country(options={})
     mock_model(Country, options)
   end
@@ -95,7 +91,7 @@ describe Admin::CountriesController do
   describe 'DELETE DESTROY' do
     before do
       Country.should_receive(:find).and_return(mock_country(:destroy => nil))
-      delete_destroy
+      delete :destroy, :id => '1'
     end
     
     it 'should flash' do

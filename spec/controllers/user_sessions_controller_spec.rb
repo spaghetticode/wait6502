@@ -1,18 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-module UserSessionsHelpers
-  def get_new
-    get :new
-  end
-  
-  def post_create
-    post :create, :user_session => {}
-  end
-  
-  def get_destroy
-    get :destroy
-  end
-  
+module UserSessionsHelpers  
   def mock_session(options={})
     mock_model(UserSession,
       :save => options[:save],
@@ -43,7 +31,7 @@ describe UserSessionsController do
     
     describe 'GET DESTROY' do
       before do
-        get_destroy
+        get :destroy
       end
 
       it 'should flash and redirect on destroy' do
@@ -56,7 +44,7 @@ describe UserSessionsController do
   describe 'NOT BEING LOGGED IN as user' do
     describe 'GET DESTROY' do
       before do
-        get_destroy
+        get :destroy
       end
       
       it 'should flash and redirect' do
@@ -67,7 +55,7 @@ describe UserSessionsController do
     
     describe 'GET NEW' do
       before do
-        get_new
+        get :new
       end
   
       it 'should be success' do
@@ -89,7 +77,7 @@ describe UserSessionsController do
         before do
           UserSession.should_receive(:new).
             at_least(1).times.and_return(mock_session(:save => true))
-          post_create
+          post :create, :user_session => {}
         end
     
         it 'should flash' do
@@ -109,7 +97,7 @@ describe UserSessionsController do
         before do
           UserSession.should_receive(:new).
             at_least(1).times.and_return(mock_session(:save => false))
-          post_create
+          post :create, :user_session => {}
         end
     
         it 'should not flash' do

@@ -10,14 +10,10 @@ describe Admin::UsersController do
   include UsersControllerHelpers
   
   describe 'NOT BEING LOGGED IN as user' do
-    actions = {:new => :get, :create => :post}
-    actions.each_pair do |action, method|
-      it "should flash and redirect to user login path on #{method.to_s.upcase} #{action.to_s.upcase}" do
-        send(method, action, :id => '1')
-        flash[:notice].should =~ /You must be logged in/
-        response.should redirect_to(new_user_session_path)
-      end
-    end
+    should_flash_and_redirect_for(
+      :new => :get,
+      :create => :post
+    )
   end
   
   describe 'BEING LOGGED IN as user' do
