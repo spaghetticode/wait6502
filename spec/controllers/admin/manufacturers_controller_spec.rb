@@ -1,131 +1,143 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
+module ManufacturersControllerHelper
+  def mock_manufacturer(options={})
+    mock_model(Manufacturer, options)
+  end
+end
+
 describe Admin::ManufacturersController do
-=begin
-  def mock_manufacturer(stubs={})
-    @mock_manufacturer ||= mock_model(Admin::Manufacturer, stubs)
+  include ManufacturersControllerHelper
+  
+  describe 'WITHOUT BEING AUTHENTICATED' do
+    should_flash_and_redirect_for(
+      :new => :get,
+      :show => :get,
+      :index => :get,
+      :create => :post,
+      :update => :put,
+      :destroy => :delete
+    )
   end
-
-  describe "GET index" do
-    it "assigns all admin_manufacturers as @admin_manufacturers" do
-      Admin::Manufacturer.stub!(:find).with(:all).and_return([mock_manufacturer])
-      get :index
-      assigns[:admin_manufacturers].should == [mock_manufacturer]
+  
+  describe 'BEING AUTHENTICATED' do
+    before do
+      activate_authlogic
+      UserSession.create!(Factory(:user))
+    end
+    
+    describe 'GET INDEX' do
+      before do
+        get :index
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render index template' do
+        response.should render_template(:index)
+      end
+      
+      it 'should assign @currencies' do
+        assigns[:manufacturers].should_not be_nil
+      end
+    end
+    
+    describe 'GET NEW' do
+      before do
+        get :new
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render new template' do
+        response.should render_template(:new)
+      end
+      
+      it 'should assign @manufacturer' do
+        assigns[:manufacturer].should_not be_nil
+      end
+      
+      it '@manufacturer should be new record' do
+        assigns[:manufacturer].should be_new_record
+      end
+    end
+    
+    describe 'GET EDIT' do
+      before do
+        Manufacturer.should_receive(:find).and_return(mock_manufacturer)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+      
+      it 'should assign @manufacturer' do
+        assigns[:manufacturer].should_not be_nil
+      end
+    end
+    
+    describe 'POST CREATE' do
+      describe 'with valid parameters' do        
+        before do
+          Manufacturer.should_receive(:new).and_return(mock_manufacturer(:save => true))
+          post :create, :manufacturer => {}
+        end
+      
+        it 'should flash' do
+          flash[:notice].should == 'Manufacturer was successfully created.'
+        end
+      
+        it 'should redirect to currencies_path' do
+          response.should redirect_to(manufacturers_path)
+        end
+      
+        it 'should assign @Manufacturer' do
+          assigns[:manufacturer].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid parameters' do
+        before do
+          Manufacturer.should_receive(:new).and_return(mock_manufacturer(:save => false))
+          post :create, :manufacturer => {}
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+        
+        it 'should render new template' do
+          response.should render_template(:new)
+        end
+        
+        it 'should assign @Manufacturer' do
+          assigns[:manufacturer].should_not be_nil
+        end
+      end
+    end
+    
+    describe 'DELETE DESTROY' do
+      before do
+        Manufacturer.should_receive(:find).and_return(mock_manufacturer(:destroy => nil))
+        delete :destroy, :id => '1'
+      end
+      
+      it 'should flash' do
+        flash[:notice].should == 'Manufacturer was successfully destroyed.'
+      end
+      
+      it 'should redirect to manufacturers_path' do
+        response.should redirect_to(manufacturers_path)
+      end
     end
   end
-
-  describe "GET show" do
-    it "assigns the requested manufacturer as @manufacturer" do
-      Admin::Manufacturer.stub!(:find).with("37").and_return(mock_manufacturer)
-      get :show, :id => "37"
-      assigns[:manufacturer].should equal(mock_manufacturer)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new manufacturer as @manufacturer" do
-      Admin::Manufacturer.stub!(:new).and_return(mock_manufacturer)
-      get :new
-      assigns[:manufacturer].should equal(mock_manufacturer)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested manufacturer as @manufacturer" do
-      Admin::Manufacturer.stub!(:find).with("37").and_return(mock_manufacturer)
-      get :edit, :id => "37"
-      assigns[:manufacturer].should equal(mock_manufacturer)
-    end
-  end
-
-  describe "POST create" do
-
-    describe "with valid params" do
-      it "assigns a newly created manufacturer as @manufacturer" do
-        Admin::Manufacturer.stub!(:new).with({'these' => 'params'}).and_return(mock_manufacturer(:save => true))
-        post :create, :manufacturer => {:these => 'params'}
-        assigns[:manufacturer].should equal(mock_manufacturer)
-      end
-
-      it "redirects to the created manufacturer" do
-        Admin::Manufacturer.stub!(:new).and_return(mock_manufacturer(:save => true))
-        post :create, :manufacturer => {}
-        response.should redirect_to(admin_manufacturer_url(mock_manufacturer))
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved manufacturer as @manufacturer" do
-        Admin::Manufacturer.stub!(:new).with({'these' => 'params'}).and_return(mock_manufacturer(:save => false))
-        post :create, :manufacturer => {:these => 'params'}
-        assigns[:manufacturer].should equal(mock_manufacturer)
-      end
-
-      it "re-renders the 'new' template" do
-        Admin::Manufacturer.stub!(:new).and_return(mock_manufacturer(:save => false))
-        post :create, :manufacturer => {}
-        response.should render_template('new')
-      end
-    end
-
-  end
-
-  describe "PUT update" do
-
-    describe "with valid params" do
-      it "updates the requested manufacturer" do
-        Admin::Manufacturer.should_receive(:find).with("37").and_return(mock_manufacturer)
-        mock_manufacturer.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :manufacturer => {:these => 'params'}
-      end
-
-      it "assigns the requested manufacturer as @manufacturer" do
-        Admin::Manufacturer.stub!(:find).and_return(mock_manufacturer(:update_attributes => true))
-        put :update, :id => "1"
-        assigns[:manufacturer].should equal(mock_manufacturer)
-      end
-
-      it "redirects to the manufacturer" do
-        Admin::Manufacturer.stub!(:find).and_return(mock_manufacturer(:update_attributes => true))
-        put :update, :id => "1"
-        response.should redirect_to(admin_manufacturer_url(mock_manufacturer))
-      end
-    end
-
-    describe "with invalid params" do
-      it "updates the requested manufacturer" do
-        Admin::Manufacturer.should_receive(:find).with("37").and_return(mock_manufacturer)
-        mock_manufacturer.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :manufacturer => {:these => 'params'}
-      end
-
-      it "assigns the manufacturer as @manufacturer" do
-        Admin::Manufacturer.stub!(:find).and_return(mock_manufacturer(:update_attributes => false))
-        put :update, :id => "1"
-        assigns[:manufacturer].should equal(mock_manufacturer)
-      end
-
-      it "re-renders the 'edit' template" do
-        Admin::Manufacturer.stub!(:find).and_return(mock_manufacturer(:update_attributes => false))
-        put :update, :id => "1"
-        response.should render_template('edit')
-      end
-    end
-
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested manufacturer" do
-      Admin::Manufacturer.should_receive(:find).with("37").and_return(mock_manufacturer)
-      mock_manufacturer.should_receive(:destroy)
-      delete :destroy, :id => "37"
-    end
-
-    it "redirects to the admin_manufacturers list" do
-      Admin::Manufacturer.stub!(:find).and_return(mock_manufacturer(:destroy => true))
-      delete :destroy, :id => "1"
-      response.should redirect_to(admin_manufacturers_url)
-    end
-  end
-=end
 end

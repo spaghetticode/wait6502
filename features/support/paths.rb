@@ -22,6 +22,10 @@ module NavigationHelpers
       currencies_path
     when /the new currency page/
       new_currency_path
+    when /the manufacturers page/
+      manufacturers_path
+    when /the new manufacturer page/
+      new_manufacturer_path
     # Add more mappings here.
     # Here is a more fancy example:
     #
