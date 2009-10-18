@@ -19,10 +19,11 @@ Feature: Manage Manufacturers
 		
 	Scenario: Creating New Manufacturer
 		Given I am on the manufacturers page
+		And   a country named "USA" exists
 		And   I cache the manufacturers count
 		And   I follow "new manufacturer"
 		When  I fill in "name" with "Apple"
-		And   I fill in "country" with "USA"
+		And   I select "USA" from "country"
 		And   I press "create"
 		Then  I should see "Manufacturer was successfully created"
 		And   I should be on the manufacturers page
@@ -31,9 +32,11 @@ Feature: Manage Manufacturers
 		
 	Scenario: Failed New Manufacturer Creation
 		Given a manufacturer named "Commodore" exists
+		And   a country named "USA" exists
 		And   I cache the manufacturers count
 		And   I am on the new manufacturer page
 		When  I fill in "name" with "Commodore"
+		And   I select "USA" from "country"
 		And   I press "create"
 		Then  I should see "Name has already been taken"
 		And   a new manufacturer should not exist

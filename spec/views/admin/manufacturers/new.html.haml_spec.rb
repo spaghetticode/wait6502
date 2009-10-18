@@ -16,7 +16,7 @@ describe "/admin/manufacturers/new.html.haml" do
 
     response.should have_tag("form[action=?][method=post]", manufacturers_path) do
       with_tag("input#manufacturer_name[name=?]", "manufacturer[name]")
-      with_tag("input#manufacturer_country_id[name=?]", "manufacturer[country_id]")
+      with_tag("select#manufacturer_country_id[name=?]", "manufacturer[country_id]")
     end
   end
 end

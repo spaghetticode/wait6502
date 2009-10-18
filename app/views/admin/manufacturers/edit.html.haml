@@ -2,8 +2,9 @@
 
 - form_for @manufacturer do |f|
   = f.error_messages
-  = render :partial => 'form_fields', :locals => {:f => f}
-  %tr
-    %td.center{:colspan => 2}= f.submit 'Update'
+  %table
+    = render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Update'
 
 %p= link_to 'Back', manufacturers_path
