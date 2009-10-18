@@ -15,5 +15,5 @@ end
 
 Factory.define :manufacturer do |m|
   m.sequence(:name) {|n| "name#{n}"}
-  m.country_id 'USA'
+  m.association :country
 end

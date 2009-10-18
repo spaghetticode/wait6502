@@ -20,6 +20,10 @@ describe Manufacturer do
     it 'should be valid' do
       Factory(:manufacturer).should be_valid
     end
+    
+    it 'should have an associated country' do
+      Factory(:manufacturer).country.should be_a(Country)
+    end
   end
   
   describe 'named scope ORDERED' do
