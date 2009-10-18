@@ -28,7 +28,7 @@ Feature: Manage Manufacturers
 		Then  I should see "Manufacturer was successfully created"
 		And   I should be on the manufacturers page
 		And   I should see "Apple"
-		And   a new manufacturer should exist
+		And   a new manufacturer has been created
 		
 	Scenario: Failed New Manufacturer Creation
 		Given a manufacturer named "Commodore" exists
@@ -39,11 +39,12 @@ Feature: Manage Manufacturers
 		And   I select "USA" from "country"
 		And   I press "create"
 		Then  I should see "Name has already been taken"
-		And   a new manufacturer should not exist
+		And   a new manufacturer has not been created
 		
 	Scenario: Updating Manufacturer
 		Given a manufacturer named "Apple" exists
 		And   I am on the manufacturers page
+		And   I cache the manufacturers count
 		When  I follow "edit"
 		And   I fill in "Name" with "Olivetti"
 		And   I press "update"
@@ -51,6 +52,7 @@ Feature: Manage Manufacturers
 		And   I should be on the manufacturers page
 		And   I should see "Olivetti"
 		But   I should not see "Apple"
+		And   a new manufacturer has not been created
 	
 	Scenario: Destroying Manufacturer
 		Given a manufacturer named "Atari" exists

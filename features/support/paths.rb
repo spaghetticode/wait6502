@@ -10,22 +10,12 @@ module NavigationHelpers
     
     when /the homepage/
       '/'
-    when /the countries page/
-      countries_path
-    when /the new country page/
-      new_country_path
-    when /the new user page/
-      new_user_path
     when /the user login page/
       new_user_session_path
-    when /the currencies page/
-      currencies_path
-    when /the new currency page/
-      new_currency_path
-    when /the manufacturers page/
-      manufacturers_path
-    when /the new manufacturer page/
-      new_manufacturer_path
+    when /the new (\w+) page/
+      send("new_#{$1}_path")
+    when /the (currencies|countries|computer types|manufacturers) page/
+      send ("#{$1.gsub(' ', '_')}_path")
     # Add more mappings here.
     # Here is a more fancy example:
     #

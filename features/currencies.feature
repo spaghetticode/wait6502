@@ -19,13 +19,15 @@ Feature: Manage Currencies
 
 	Scenario: Creating New Currency
 		Given I am on the currencies page
+		And   I cache the currencies count
 		And   I follow "new currency"
 		When  I fill in "Code" with "Euro"
 		And   I fill in "symbol" with "EURO"
 		And   I press "create"
 		Then  I should see "Currency was successfully created"
 		And   I should be on the currencies page
-	
+		And   a new currency has been created	
+		
 	Scenario: Failed New Currency Creation
 		Given currency with code "EURO" and symbol "€" exists
 		And   I am on the new currency page
