@@ -3,7 +3,7 @@ class Admin::ManufacturersController < ApplicationController
   layout 'admin'
   
   def index
-    @manufacturers = Manufacturer.ordered
+    @manufacturers = Manufacturer.ordered.paginate(:page => params[:page])
   end
 
   def new

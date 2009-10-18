@@ -11,5 +11,6 @@
       %td= h manufacturer.country_id
       %td= link_to 'Edit', edit_manufacturer_path(manufacturer)
       %td= link_to 'Destroy', manufacturer, :confirm => 'Are you sure?', :method => :delete
+%p= will_paginate @manufacturers
 
 %p= link_to 'New manufacturer', new_manufacturer_path

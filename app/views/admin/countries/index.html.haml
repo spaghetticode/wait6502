@@ -8,5 +8,6 @@
     %tr
       %td= h country.name
       %td= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete
+%p= will_paginate @countries
 
 %p= link_to 'New country', new_country_path

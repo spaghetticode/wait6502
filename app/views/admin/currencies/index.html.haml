@@ -11,6 +11,7 @@
       %td= h currency.symbol
       %td= link_to 'Edit', edit_currency_path(currency) 
       %td= link_to 'Destroy', currency, :confirm => 'Are you sure?', :method => :delete
-      
+%p= will_paginate @currencies
+    
 %p= link_to 'New currency', new_currency_path
       

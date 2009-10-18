@@ -3,7 +3,7 @@ class Admin::CurrenciesController < ApplicationController
   layout 'admin'
   
   def index
-    @currencies = Currency.ordered
+    @currencies = Currency.ordered.paginate(:page => params[:page])
   end
 
   def show
