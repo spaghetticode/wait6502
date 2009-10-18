@@ -1,0 +1,16 @@
+%h1 Listing Currencies
+
+%table
+  %tr
+    %th Code
+    %th Symbol
+    %th{:colspan => 2} Actions
+  - @currencies.each do |currency|
+    %tr
+      %td= h currency.code
+      %td= h currency.symbol
+      %td= link_to 'Edit', edit_currency_path(currency) 
+      %td= link_to 'Destroy', currency, :confirm => 'Are you sure?', :method => :delete
+      
+%p= link_to 'New currency', new_currency_path
+      

@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
-describe "/admin/currencies/new.html.erb" do
+describe "/admin/currencies/new.html.haml" do
   include Admin::CurrenciesHelper
 
   before(:each) do
