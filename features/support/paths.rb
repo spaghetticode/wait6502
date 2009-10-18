@@ -20,7 +20,7 @@ module NavigationHelpers
       new_user_session_path
     when /the currencies page/
       currencies_path
-    when /the new currency path/
+    when /the new currency page/
       new_currency_path
     # Add more mappings here.
     # Here is a more fancy example:
