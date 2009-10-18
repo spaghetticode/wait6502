@@ -3,7 +3,7 @@ class Admin::CurrenciesController < ApplicationController
   layout 'admin'
   
   def index
-    @currencies = Currency.all
+    @currencies = Currency.ordered
   end
 
   def show

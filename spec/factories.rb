@@ -7,3 +7,8 @@ Factory.define :user do |u|
   u.password 'secret'
   u.password_confirmation 'secret'
 end
+
+Factory.define :currency do |c|
+  c.sequence(:code) {|n| "code#{n}"}
+  c.symbol '$'
+end
