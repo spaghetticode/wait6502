@@ -1,0 +1,10 @@
+%h1 New IO Port
+
+- form_for(@io_port) do |f|
+  = f.error_messages
+  %table
+    = render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+
+%p= link_to 'Back', io_ports_path

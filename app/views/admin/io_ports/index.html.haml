@@ -1,0 +1,15 @@
+%h1 Listing IO Ports
+
+%table
+  %tr
+    %th Name
+    %th Connector
+    %th{:colspan => 2} Actions
+  - @io_ports.each do |port|
+    %tr
+      %td= h port.name
+      %td= h port.connector
+      %td= link_to 'Edit', edit_io_port_path(port)
+      %td= link_to 'Destroy', port, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New io port', new_io_port_path

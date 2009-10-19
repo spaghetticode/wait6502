@@ -19,16 +19,17 @@ Feature: Manage I/O Ports
 
 	Scenario: Creating New IO Port
 		Given I am on the io ports page
+		And   a io port with name "RS232" and connector "DB-25" exists
 		And   I cache the io ports count
 		And   I follow "new io port"
-		When  I fill in "name" with "parallel"
-		And   I fill in "connector" with "centronics"
+		When  I fill in "name" with "RS232"
+		And   I fill in "connector" with "DB-9"
 		And   I press "create"
 		Then  I should see "IO Port was successfully created"
 		And   I should be on the io ports page
 		And   a new io port has been created	
 		
-	Scenario: Failed New IO Port Creation
+	Scenario: Failed New IO Port Creation (name/connector combination taken)
 		Given a io port with name "parallel" and connector "centronics" exists
 		And   I am on the new io port page
 		And   I cache the io port count
