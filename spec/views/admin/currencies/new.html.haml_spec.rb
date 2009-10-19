@@ -14,7 +14,7 @@ describe "/admin/currencies/new.html.haml" do
   it "renders new currency form" do
     render
 
-    response.should have_tag("form[action=?][method=post]", currencies_path) do
+    response.should have_tag("form[action=?][method=post]", admin_currencies_path) do
       with_tag("input#currency_code[name=?]", "currency[code]")
       with_tag("input#currency_symbol[name=?]", "currency[symbol]")
     end

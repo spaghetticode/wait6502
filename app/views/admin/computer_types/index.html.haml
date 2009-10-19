@@ -7,6 +7,6 @@
   - @computer_types.each do |computer_type|
     %tr
       %td= h computer_type.name
-      %td= link_to 'Destroy', computer_type, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', admin_computer_type_path(computer_type), :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to 'New computer type', new_computer_type_path
+%p= link_to 'New computer type', new_admin_computer_type_path

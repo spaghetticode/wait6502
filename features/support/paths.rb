@@ -13,9 +13,9 @@ module NavigationHelpers
     when /the user login page/
       new_user_session_path
     when /the new (currency|country|computer type|manufacturer|user|io port) page/
-      send("new_#{$1.gsub(' ', '_')}_path")
+      send("new_admin_#{$1.gsub(' ', '_')}_path")
     when /the (currencies|countries|computer types|manufacturers|io ports) page/
-      send ("#{$1.gsub(' ', '_')}_path")
+      send ("admin_#{$1.gsub(' ', '_')}_path")
     # Add more mappings here.
     # Here is a more fancy example:
     #

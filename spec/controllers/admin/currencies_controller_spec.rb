@@ -97,8 +97,8 @@ describe Admin::CurrenciesController do
           flash[:notice].should == 'Currency was successfully created.'
         end
       
-        it 'should redirect to currencies_path' do
-          response.should redirect_to(currencies_path)
+        it 'should redirect to admin_currencies_path' do
+          response.should redirect_to(admin_currencies_path)
         end
       
         it 'should assign @currency' do
@@ -136,8 +136,8 @@ describe Admin::CurrenciesController do
         flash[:notice].should == 'Currency was successfully destroyed.'
       end
       
-      it 'should redirect to currencies_path' do
-        response.should redirect_to(currencies_path)
+      it 'should redirect to admin_currencies_path' do
+        response.should redirect_to(admin_currencies_path)
       end
     end
   end  

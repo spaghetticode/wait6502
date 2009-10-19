@@ -10,11 +10,11 @@
       %ul
         -if current_user
           %li= link_to 'logout', logout_path
-          %li= link_to 'countries', countries_path
-          %li= link_to 'currencies', currencies_path
-          %li= link_to 'manufacturers', manufacturers_path
-          %li= link_to 'computer types', computer_types_path
-          %li= link_to 'io ports', io_ports_path
+          %li= link_to 'countries', admin_countries_path
+          %li= link_to 'currencies', admin_currencies_path
+          %li= link_to 'manufacturers', admin_manufacturers_path
+          %li= link_to 'computer types', admin_computer_types_path
+          %li= link_to 'io ports', admin_io_ports_path
         - else
           %li= link_to 'login', login_path        
     - flash.each_pair do |type, message|

@@ -1,4 +1,5 @@
 class Admin::CountriesController < ApplicationController
+  before_filter :require_logged_in
   layout 'admin'
   
   def index
@@ -13,7 +14,7 @@ class Admin::CountriesController < ApplicationController
     @country = Country.new(params[:country])
     if @country.save
       flash[:notice] = 'Country was successfully created.'
-      redirect_to countries_path
+      redirect_to admin_countries_path
     else
       render :action => "new"
     end
@@ -22,6 +23,6 @@ class Admin::CountriesController < ApplicationController
   def destroy
     Country.find(params[:id]).destroy
     flash[:notice] = 'Country was successfully destroyed.'
-    redirect_to countries_path
+    redirect_to admin_countries_path
   end
 end

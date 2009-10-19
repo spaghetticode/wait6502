@@ -47,7 +47,7 @@ describe Admin::IoPortsController do
         it "redirects to the created io_port" do
           IoPort.stub!(:new).and_return(mock_io_port(:save => true))
           post :create, :io_port => {}
-          response.should redirect_to(io_ports_path)
+          response.should redirect_to(admin_io_ports_path)
         end
       end
 
@@ -85,7 +85,7 @@ describe Admin::IoPortsController do
         it "redirects to the io_port" do
           IoPort.stub!(:find).and_return(mock_io_port(:update_attributes => true))
           put :update, :id => "1"
-          response.should redirect_to(io_ports_path)
+          response.should redirect_to(admin_io_ports_path)
         end
       end
 
@@ -121,7 +121,7 @@ describe Admin::IoPortsController do
       it "redirects to the admin_io_ports list" do
         IoPort.stub!(:find).and_return(mock_io_port(:destroy => true))
         delete :destroy, :id => "1"
-        response.should redirect_to(io_ports_path)
+        response.should redirect_to(admin_io_ports_path)
       end
     end
   end

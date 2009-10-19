@@ -14,7 +14,7 @@ describe "/admin/io_ports/edit.html.haml" do
   it "renders the edit io_port form" do
     render
 
-    response.should have_tag("form[action=#{io_port_path(@io_port)}][method=post]") do
+    response.should have_tag("form[action=#{admin_io_port_path(@io_port)}][method=post]") do
       with_tag('input#io_port_name[name=?]', "io_port[name]")
       with_tag('input#io_port_connector[name=?]', "io_port[connector]")
     end

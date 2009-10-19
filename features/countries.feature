@@ -1,8 +1,11 @@
 Feature: Manage Countries
 	In order to mantain correct geographical data
-	As a user
+	As a logged user
 	I want to manage countries
 	
+	Background:
+		Given I am logged in as user
+		
 	Scenario: Listing Countries
 		Given a country named "Italy" exists
 		When  I go to the countries page

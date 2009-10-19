@@ -79,8 +79,8 @@ describe Admin::ComputerTypesController do
           flash[:notice].should == 'Computer type was successfully created.'
         end
       
-        it 'should redirect to computer_types_path' do
-          response.should redirect_to(computer_types_path)
+        it 'should redirect to admin_computer_types_path' do
+          response.should redirect_to(admin_computer_types_path)
         end
       
         it 'should assign @computer_type' do
@@ -113,8 +113,8 @@ describe Admin::ComputerTypesController do
         flash[:notice].should == 'Computer type was successfully destroyed.'
       end
     
-      it 'should redirect to computer_types_path' do
-        response.should redirect_to(computer_types_path)
+      it 'should redirect to admin_computer_types_path' do
+        response.should redirect_to(admin_computer_types_path)
       end
     end
   end

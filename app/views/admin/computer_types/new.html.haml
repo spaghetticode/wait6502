@@ -1,6 +1,6 @@
 %h1 New Computer Type
 
-- form_for(@computer_type) do |f|
+- form_for(@computer_type, :url => admin_computer_types_path) do |f|
   = f.error_messages
   %table
     %tr
@@ -9,4 +9,4 @@
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'
       
-%p= link_to 'Back', computer_types_path
+%p= link_to 'Back', admin_computer_types_path

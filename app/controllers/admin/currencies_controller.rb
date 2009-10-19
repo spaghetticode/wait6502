@@ -22,7 +22,7 @@ class Admin::CurrenciesController < ApplicationController
     @currency = Currency.new(params[:currency])
     if @currency.save
       flash[:notice] = 'Currency was successfully created.'
-      redirect_to currencies_path
+      redirect_to admin_currencies_path
     else
       render :action => "new"
     end
@@ -32,7 +32,7 @@ class Admin::CurrenciesController < ApplicationController
     @currency = Currency.find(params[:id])
     if @currency.update_attributes(params[:currency])
       flash[:notice] = 'Currency was successfully updated.'
-      redirect_to currencies_path
+      redirect_to admin_currencies_path
     else
       render :action => "edit"
     end
@@ -41,6 +41,6 @@ class Admin::CurrenciesController < ApplicationController
   def destroy
     Currency.find(params[:id]).destroy
     flash[:notice] = 'Currency was successfully destroyed.'
-    redirect_to currencies_path
+    redirect_to admin_currencies_path
   end
 end

@@ -9,7 +9,7 @@
     %tr
       %td= h port.name
       %td= h port.connector
-      %td= link_to 'Edit', edit_io_port_path(port)
-      %td= link_to 'Destroy', port, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Edit', edit_admin_io_port_path(port)
+      %td= link_to 'Destroy', admin_io_port_path(port), :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to 'New io port', new_io_port_path
+%p= link_to 'New io port', new_admin_io_port_path

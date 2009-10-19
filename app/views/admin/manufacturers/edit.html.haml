@@ -1,10 +1,10 @@
 %h1 Editing Manufacturer
 
-- form_for @manufacturer do |f|
+- form_for @manufacturer, :url => admin_manufacturer_path(@manufacturer) do |f|
   = f.error_messages
   %table
     = render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Update'
 
-%p= link_to 'Back', manufacturers_path
+%p= link_to 'Back', admin_manufacturers_path

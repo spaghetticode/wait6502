@@ -9,8 +9,8 @@
     %tr
       %td= h manufacturer.name
       %td= h manufacturer.country_id
-      %td= link_to 'Edit', edit_manufacturer_path(manufacturer)
-      %td= link_to 'Destroy', manufacturer, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Edit', edit_admin_manufacturer_path(manufacturer)
+      %td= link_to 'Destroy', admin_manufacturer_path(manufacturer), :confirm => 'Are you sure?', :method => :delete
 %p= will_paginate @manufacturers
 
-%p= link_to 'New manufacturer', new_manufacturer_path
+%p= link_to 'New manufacturer', new_admin_manufacturer_path

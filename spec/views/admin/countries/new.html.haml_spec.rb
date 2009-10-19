@@ -13,7 +13,7 @@ describe "/admin/countries/new.html.haml" do
   it "renders new country form" do
     render
 
-    response.should have_tag("form[action=?][method=post]", countries_path) do
+    response.should have_tag("form[action=?][method=post]", admin_countries_path) do
       with_tag("input#country_name[name=?]", "country[name]")
     end
   end

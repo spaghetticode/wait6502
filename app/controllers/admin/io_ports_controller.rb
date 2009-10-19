@@ -20,7 +20,7 @@ class Admin::IoPortsController < ApplicationController
     respond_to do |format|
       if @io_port.save
         flash[:notice] = 'IO Port was successfully created.'
-        format.html { redirect_to(io_ports_path) }
+        format.html { redirect_to(admin_io_ports_path) }
       else
         format.html { render :action => "new" }
       end
@@ -33,7 +33,7 @@ class Admin::IoPortsController < ApplicationController
     respond_to do |format|
       if @io_port.update_attributes(params[:io_port])
         flash[:notice] = 'IO Port was successfully updated.'
-        format.html { redirect_to(io_ports_path) }
+        format.html { redirect_to(admin_io_ports_path) }
       else
         format.html { render :action => "edit" }
       end
@@ -43,7 +43,7 @@ class Admin::IoPortsController < ApplicationController
   def destroy
     IoPort.find(params[:id]).destroy
     flash[:notice] = 'IO Port was successfully destroyed.'
-    redirect_to io_ports_path
+    redirect_to admin_io_ports_path
 
   end
 end

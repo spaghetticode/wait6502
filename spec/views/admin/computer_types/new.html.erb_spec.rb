@@ -13,7 +13,7 @@ describe "/admin/computer_types/new.html.haml" do
   it "renders new computer_type form" do
     render
 
-    response.should have_tag("form[action=?][method=post]", computer_types_path) do
+    response.should have_tag("form[action=?][method=post]", admin_computer_types_path) do
       with_tag("input#computer_type_name[name=?]", "computer_type[name]")
     end
   end

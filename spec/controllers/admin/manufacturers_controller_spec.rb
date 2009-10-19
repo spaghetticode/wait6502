@@ -97,7 +97,7 @@ describe Admin::ManufacturersController do
         end
       
         it 'should redirect to currencies_path' do
-          response.should redirect_to(manufacturers_path)
+          response.should redirect_to(admin_manufacturers_path)
         end
       
         it 'should assign @Manufacturer' do
@@ -135,8 +135,8 @@ describe Admin::ManufacturersController do
         flash[:notice].should == 'Manufacturer was successfully destroyed.'
       end
       
-      it 'should redirect to manufacturers_path' do
-        response.should redirect_to(manufacturers_path)
+      it 'should redirect to admin_manufacturers_path' do
+        response.should redirect_to(admin_manufacturers_path)
       end
     end
   end

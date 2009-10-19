@@ -14,7 +14,7 @@ describe "/admin/manufacturers/new.html.haml" do
   it "renders new manufacturer form" do
     render
 
-    response.should have_tag("form[action=?][method=post]", manufacturers_path) do
+    response.should have_tag("form[action=?][method=post]", admin_manufacturers_path) do
       with_tag("input#manufacturer_name[name=?]", "manufacturer[name]")
       with_tag("select#manufacturer_country_id[name=?]", "manufacturer[country_id]")
     end
