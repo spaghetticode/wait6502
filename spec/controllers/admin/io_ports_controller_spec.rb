@@ -1,10 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe Admin::IoPortsController do
-
-  def mock_io_port(stubs={})
-    @mock_io_port ||= mock_model(IoPort, stubs)
+module IoPortsControllerHelper
+  def mock_io_port(options={})
+    mock_model(IoPort, options)
   end
+end
+
+describe Admin::IoPortsController do
+  include IoPortsControllerHelper
+  
   describe 'BEING AUTHENTICATED' do
     before do
       activate_authlogic
@@ -12,115 +16,94 @@ describe Admin::IoPortsController do
     end
     
     describe "GET index" do
-      it "assigns all admin_io_ports as @admin_io_ports" do
-        IoPort.stub!(:find).with(:all).and_return([mock_io_port])
+      before do
         get :index
-        assigns[:io_ports].should == [mock_io_port]
       end
-    end
-
-    describe "GET new" do
-      it "assigns a new io_port as @io_port" do
-        IoPort.stub!(:new).and_return(mock_io_port)
-        get :new
-        assigns[:io_port].should equal(mock_io_port)
+      
+      it 'should be success' do
+        response.should be_success
       end
+      
+      it 'should render index template' do
+        response.should render_template(:index)
+      end
+      
+      it 'should assign @io_ports' do
+        assigns[:io_ports].should_not be_nil
+      end      
     end
 
     describe "GET edit" do
-      it "assigns the requested io_port as @io_port" do
-        IoPort.stub!(:find).with("37").and_return(mock_io_port)
-        get :edit, :id => "37"
-        assigns[:io_port].should equal(mock_io_port)
+      before do
+        IoPort.should_receive(:find).and_return(mock_io_port)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+      
+      it 'should assign @io_port' do
+        assigns[:io_port].should_not be_nil
       end
     end
 
     describe "POST create" do
+      describe 'with valid parameters' do
+          before do
+            IoPort.should_receive(:new).and_return(mock_io_port(:save => true))
+            post :create, :io_port => {}
+          end
 
-      describe "with valid params" do
-        it "assigns a newly created io_port as @io_port" do
-          IoPort.stub!(:new).with({'these' => 'params'}).and_return(mock_io_port(:save => true))
-          post :create, :io_port => {:these => 'params'}
-          assigns[:io_port].should equal(mock_io_port)
+          it 'should flash' do
+            flash[:notice].should == 'IO Port was successfully created.'
+          end
+
+          it 'should redirect to currencies_path' do
+            response.should redirect_to(io_ports_path)
+          end
+
+          it 'should assign @io_port' do
+            assigns[:io_port].should_not be_nil
+          end
         end
 
-        it "redirects to the created io_port" do
-          IoPort.stub!(:new).and_return(mock_io_port(:save => true))
-          post :create, :io_port => {}
-          response.should redirect_to(io_ports_path)
-        end
-      end
+      describe 'with invalid parameters' do
+          before do
+            IoPort.should_receive(:new).and_return(mock_io_port(:save => false))
+            post :create, :io_port => {}
+          end
 
-      describe "with invalid params" do
-        it "assigns a newly created but unsaved io_port as @io_port" do
-          IoPort.stub!(:new).with({'these' => 'params'}).and_return(mock_io_port(:save => false))
-          post :create, :io_port => {:these => 'params'}
-          assigns[:io_port].should equal(mock_io_port)
-        end
+          it 'should not flash' do
+            flash[:notice].should be_nil
+          end
 
-        it "re-renders the 'new' template" do
-          IoPort.stub!(:new).and_return(mock_io_port(:save => false))
-          post :create, :io_port => {}
-          response.should render_template('new')
-        end
-      end
+          it 'should render new template' do
+            response.should render_template(:new)
+          end
 
+          it 'should assign @io_port' do
+            assigns[:io_port].should_not be_nil
+          end
+        end
     end
 
-    describe "PUT update" do
-
-      describe "with valid params" do
-        it "updates the requested io_port" do
-          IoPort.should_receive(:find).with("37").and_return(mock_io_port)
-          mock_io_port.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => "37", :io_port => {:these => 'params'}
-        end
-
-        it "assigns the requested io_port as @io_port" do
-          IoPort.stub!(:find).and_return(mock_io_port(:update_attributes => true))
-          put :update, :id => "1"
-          assigns[:io_port].should equal(mock_io_port)
-        end
-
-        it "redirects to the io_port" do
-          IoPort.stub!(:find).and_return(mock_io_port(:update_attributes => true))
-          put :update, :id => "1"
-          response.should redirect_to(io_ports_path)
-        end
+    describe 'DELETE DESTROY' do
+      before do
+        @mock = mock_io_port(:destroy => nil)
+        IoPort.should_receive(:find).and_return(@mock)
+        delete :destroy, :id => '1'
       end
-
-      describe "with invalid params" do
-        it "updates the requested io_port" do
-          IoPort.should_receive(:find).with("37").and_return(mock_io_port)
-          mock_io_port.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => "37", :io_port => {:these => 'params'}
-        end
-
-        it "assigns the io_port as @io_port" do
-          IoPort.stub!(:find).and_return(mock_io_port(:update_attributes => false))
-          put :update, :id => "1"
-          assigns[:io_port].should equal(mock_io_port)
-        end
-
-        it "re-renders the 'edit' template" do
-          IoPort.stub!(:find).and_return(mock_io_port(:update_attributes => false))
-          put :update, :id => "1"
-          response.should render_template('edit')
-        end
+    
+      it 'should flash' do
+        flash[:notice].should == 'IO Port was successfully destroyed.'
       end
-
-    end
-
-    describe "DELETE destroy" do
-      it "destroys the requested io_port" do
-        IoPort.should_receive(:find).with("37").and_return(mock_io_port)
-        mock_io_port.should_receive(:destroy)
-        delete :destroy, :id => "37"
-      end
-
-      it "redirects to the admin_io_ports list" do
-        IoPort.stub!(:find).and_return(mock_io_port(:destroy => true))
-        delete :destroy, :id => "1"
+    
+      it 'should redirect to io_ports_path' do
         response.should redirect_to(io_ports_path)
       end
     end

@@ -3,7 +3,7 @@ class Admin::IoPortsController < ApplicationController
   layout 'admin'
   
   def index
-    @io_ports = IoPort.all
+    @io_ports = IoPort.ordered.paginate(:page => params[:page])
   end
 
   def new
