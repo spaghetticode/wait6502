@@ -22,5 +22,7 @@ def class_for(model)
     ComputerType
   when /io port/
     IoPort
+  when /storage name/
+    StorageName
   end
 end

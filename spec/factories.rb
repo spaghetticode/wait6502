@@ -26,3 +26,7 @@ Factory.define :io_port do |io|
   io.sequence(:name) {|n| "port name#{n}"}
   io.connector 'centronics'
 end
+
+Factory.define :storage_name do |s|
+  s.sequence(:name) {|n| "storage #{n}"}
+end

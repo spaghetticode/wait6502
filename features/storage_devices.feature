@@ -4,7 +4,7 @@ Feature: Storage Devices Management
 	I want to manage storage devices
 	
 	Background:
-		Given I am logged in
+		Given I am logged in as user
 		And   I have entered some data for storage names, formats and sizes
 		
 		Scenario: Access is forbidden unless logged in
@@ -32,7 +32,7 @@ Feature: Storage Devices Management
 			Given I am on the storage devices page
 			And   a storage device "floppy-5.25 inches-360k" exists
 			And   I am on the storage devices page
-			When  I follow destroy
+			When  I follow "destroy"
 			Then  I should see "Storage device was successfully destroyed"
 			And   I should be on the storage devices page
 			And   I should not see "floppy"

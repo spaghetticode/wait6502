@@ -15,6 +15,7 @@
           %li= link_to 'manufacturers', admin_manufacturers_path
           %li= link_to 'computer types', admin_computer_types_path
           %li= link_to 'io ports', admin_io_ports_path
+          %li= link_to 'storage names', admin_storage_names_path
         - else
           %li= link_to 'login', login_path        
     - flash.each_pair do |type, message|

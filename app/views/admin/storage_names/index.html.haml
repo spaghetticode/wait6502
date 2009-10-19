@@ -1,0 +1,11 @@
+%h1 Listing Storage Names
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @storage_names.each do |storage_name|
+    %tr
+      %td= h storage_name.name
+      %td= link_to 'Destroy', admin_storage_name_path(storage_name), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New storage name', new_admin_storage_name_path
