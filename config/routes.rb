@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.with_options(:namespace => 'admin/') do |admin|
-    admin.resources :countries, :users, :currencies, :manufacturers
+    admin.resources :countries, :users, :currencies, :manufacturers, :computer_types
   end
   
   map.resources :user_sessions

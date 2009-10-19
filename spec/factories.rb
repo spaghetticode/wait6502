@@ -17,3 +17,7 @@ Factory.define :manufacturer do |m|
   m.sequence(:name) {|n| "name#{n}"}
   m.association :country
 end
+
+Factory.define :computer_type do |c|
+  c.sequence(:name) {|n| "comp_type#{n}"}
+end

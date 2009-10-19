@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#   
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Major.create(:name => 'Daley', :city => cities.first)
+password = 'secret'
+User.create!(:email => 'admin@test.com', :password => password, :password_confirmation => password)
+
+['Home', 'Personal', 'Portable', 'Pocket'].each do |name|
+  ComputerType.create!(:name => name)
+end
+
+%w{Italy USA France Germany Japan}.each do |country|
+  Country.create!(:name => country)
+end
+
+[%w{EUR EURO}, %w{USD $}, %w{JPY ¥}].each do |currency|
+  Currency.create!(:code => currency[0], :symbol => currency[1])
+end

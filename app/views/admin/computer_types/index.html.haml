@@ -1,0 +1,12 @@
+%h1 Listing Computer Types
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @computer_types.each do |computer_type|
+    %tr
+      %td= h computer_type.name
+      %td= link_to 'Destroy', computer_type, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New computer type', new_computer_type_path
