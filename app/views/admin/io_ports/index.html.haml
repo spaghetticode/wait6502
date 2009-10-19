@@ -12,4 +12,5 @@
       %td= link_to 'Edit', edit_admin_io_port_path(port)
       %td= link_to 'Destroy', admin_io_port_path(port), :confirm => 'Are you sure?', :method => :delete
 
+%p= will_paginate @io_ports
 %p= link_to 'New io port', new_admin_io_port_path

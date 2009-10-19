@@ -14,6 +14,7 @@ describe "/admin/io_ports/index.html.haml" do
         :connector => "value for connector"
       )
     ]
+    assigns[:io_ports].stub!(:total_pages).and_return(0)
   end
 
   it "renders a list of io_ports" do
