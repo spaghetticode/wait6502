@@ -14,8 +14,8 @@ Feature: Manage I/O Ports
 	Scenario: Listing IO Ports
 		When  I go to the io ports page
 		Then  I should see "Listing IO Ports"
-		And   I should see "name"
-		And   I should see "connector"
+		And   I should see "Name"
+		And   I should see "Connector"
 
 	Scenario: Creating New IO Port
 		Given I am on the io ports page
@@ -24,7 +24,7 @@ Feature: Manage I/O Ports
 		When  I fill in "name" with "parallel"
 		And   I fill in "connector" with "centronics"
 		And   I press "create"
-		Then  I should see "IO port was successfully created"
+		Then  I should see "IO Port was successfully created"
 		And   I should be on the io ports page
 		And   a new io port has been created	
 		
@@ -35,7 +35,7 @@ Feature: Manage I/O Ports
 		When  I fill in "name" with "parallel"
 		And   I fill in "connector" with "centronics"
 		And   I press "create"
-		Then  I should see "Connector has already been taken"
+		Then  I should see "Name has already been taken"
 		And   a new io port has not been created
 		
 	Scenario: Updating IO Port

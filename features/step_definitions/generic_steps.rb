@@ -20,5 +20,7 @@ def class_for(model)
     Manufacturer
   when /computer type/
     ComputerType
+  when /io port/
+    IoPort
   end
 end

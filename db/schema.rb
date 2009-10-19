@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091018215523) do
+ActiveRecord::Schema.define(:version => 20091019101028) do
 
   create_table "computer_types", :id => false, :force => true do |t|
     t.string   "name",       :null => false
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(:version => 20091018215523) do
   create_table "currencies", :force => true do |t|
     t.string   "code"
     t.string   "symbol"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "io_ports", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "connector"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

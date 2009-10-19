@@ -21,3 +21,8 @@ end
 Factory.define :computer_type do |c|
   c.sequence(:name) {|n| "comp_type#{n}"}
 end
+
+Factory.define :io_port do |io|
+  io.sequence(:name) {|n| "port name#{n}"}
+  io.connector 'centronics'
+end
