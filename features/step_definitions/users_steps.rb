@@ -12,6 +12,10 @@ Given /^I am logged in as user$/ do
   click_button "log in"
 end
 
+Given /^I am logged out$/ do
+  visit logout_path
+end
+
 Then /^a new user with email "([^\"]*)" should exist$/ do |email|
   User.find_by_email(email).should_not be_nil
 end
