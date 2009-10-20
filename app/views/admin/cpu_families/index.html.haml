@@ -1,0 +1,16 @@
+%h1 Listing CPU Families
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @cpu_families.each do |cpu_family|
+    %tr
+      %td= h cpu_family.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_cpu_families_path, :method => :delete do
+          = hidden_field_tag 'id', cpu_family.name
+          = submit_tag 'destroy'
+
+%p= link_to 'New cpu family', new_admin_cpu_family_path

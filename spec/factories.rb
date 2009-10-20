@@ -44,3 +44,7 @@ Factory.define :builtin_storage do |bs|
   bs.association :storage_format
   bs.association :storage_size
 end
+
+Factory.define :cpu_family do |cf|
+  cf.sequence(:name) {|n| "name #{n}"}
+end

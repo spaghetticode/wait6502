@@ -35,5 +35,7 @@ def class_for(model)
     StorageFormat
   when /storage size/
     StorageSize
+  when /cpu famil/
+    CpuFamily
   end
 end
