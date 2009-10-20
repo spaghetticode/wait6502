@@ -13,20 +13,23 @@ Feature: Builtin Storages Management
 			Then  I should see "You must be logged in to access this page"
 			
 		Scenario: Builtin Storages List Page
-			When I go to the storage devices page
+			When I go to the builtin storages page
 			Then I should see "Listing Builtin Storages"
-			And  I should see "Name"
-			And  I should see "Format"
-			And  I should see "Size"
+			And  I should see "Storage name"
+			And  I should see "Storage format"
+			And  I should see "Storage size"
 			
 		Scenario: Creating Builtin Storages
 			Given I am on the builtin storages page
 			And   I follow "new builtin storage"
-			When  I select "floppy disk drive" from "Name"
-			And   I select "5.25 inches" from "Format"
-			And   I select "1.2Mb" from "size"
+			When  I select "floppy disk" from "Storage name"
+			And   I select "5.25 inches" from "Storage format"
+			And   I select "1.2Mb" from "Storage size"
 			And   I press "create"
-			Then  I should see "Builtin Storage was successfully created"
+			Then  I should see "Builtin storage was successfully created"
+			
+		Scenario: Failed Builtin Storage Creation
+			
 			
 		Scenario: Destroying Builtin Storage
 			Given a builtin storage "floppy-5.25 inches-360k" exists
@@ -38,14 +41,14 @@ Feature: Builtin Storages Management
 			
 		Scenario: Editing Builtin Storage
 			Given a builtin storage "floppy-5.25 inches-360Kb" exists
-			And   I am on the builtin storage page
+			And   I am on the builtin storages page
 			When  I follow "edit"
-			And   I select "3.5 inches" from "format"
-			And   I select "1.44Mb" from "size"
+			And   I select "3.5 inches" from "Storage format"
+			And   I select "1.44Mb" from "Storage size"
 			And   I press "Update"
 			Then  I should see "Builtin storage was successfully updated"
-			And   I should be on the storage devices page
+			And   I should be on the builtin storages page
 			And   I should not see "5.25 inches"
 			But   I should see "3.5 inches"
 			And   I should see "1.44Mb"
-			
+				

@@ -34,3 +34,13 @@ end
 Factory.define :storage_format do |s|
   s.sequence(:name) {|n| "format #{n}"}
 end
+
+Factory.define :storage_size do |s|
+  s.sequence(:name) {|n| "size #{n}"}
+end
+
+Factory.define :builtin_storage do |bs|
+  bs.association :storage_name
+  bs.association :storage_format
+  bs.association :storage_size
+end
