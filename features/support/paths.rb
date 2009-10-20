@@ -6,15 +6,17 @@ module NavigationHelpers
   # step definition in webrat_steps.rb
   #
   def path_to(page_name)
+    new_record_models = 'currency|country|computer type|manufacturer|user|io port|builtin storage|storage name|storage format|storage size|cpu family'
+    list_models = 'currencies|countries|computer types|manufacturers|io ports|builtin storages|storage names|storage formats|storage sizes|cpu families'
     case page_name
     
     when /the homepage/
       '/'
     when /the user login page/
       new_user_session_path
-    when /the new (currency|country|computer type|manufacturer|user|io port|builtin storage|storage name|storage format|storage size|cpu family) page/
+    when /the new (#{new_record_models}) page/
       send("new_admin_#{$1.gsub(' ', '_')}_path")
-    when /the (currencies|countries|computer types|manufacturers|io ports|builtin storages|storage names|storage formats|storage sizes|cpu families) page/
+    when /the (#{list_models}) page/
       send ("admin_#{$1.gsub(' ', '_')}_path")
     # Add more mappings here.
     # Here is a more fancy example:

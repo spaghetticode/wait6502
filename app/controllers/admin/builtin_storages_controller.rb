@@ -6,10 +6,6 @@ class Admin::BuiltinStoragesController < ApplicationController
     @builtin_storages = BuiltinStorage.ordered
   end
 
-  def show
-    @builtin_storage = BuiltinStorage.find(params[:id])
-  end
-
   def new
     @builtin_storage = BuiltinStorage.new
   end
