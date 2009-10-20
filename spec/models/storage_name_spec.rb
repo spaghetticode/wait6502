@@ -16,4 +16,28 @@ describe StorageName do
       invalid.should have(1).error_on(:name)
     end
   end
+  
+  describe 'an instance with valid attributes' do
+    def storage_name
+      @storage ||= Factory(:storage_name)
+    end
+    
+    it 'should be valid' do
+      storage_name.should be_valid
+    end
+    
+    it 'should have name same as id' do
+      storage_name.id.should == storage_name.name
+    end
+  end
+  
+  describe 'ORDERED named scope' do
+    before do
+      5.times {Factory(:storage_name)}
+    end
+    
+    it 'should sort storage names by name' do
+      StorageName.ordered.should == StorageName.all.sort_by(&:name)
+    end
+  end
 end

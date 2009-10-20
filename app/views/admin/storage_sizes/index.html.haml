@@ -1,0 +1,11 @@
+%h1 Listing Storage Sizes
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @storage_sizes.each do |s_size|
+    %tr
+      %td= h s_size.name
+      %td= link_to 'Destroy', admin_storage_size_path(s_size), :confirm => 'Are you sure?', :method => :delete
+  
+%p= link_to 'New storage size', new_admin_storage_size_path
