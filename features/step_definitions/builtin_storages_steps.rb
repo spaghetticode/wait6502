@@ -11,7 +11,7 @@ Given /^I have entered some data for storage names, formats and sizes$/ do
 end
 
 Given /^a builtin storage "([^\"]*)" exists$/ do |fields|
-  name, format, size = fields.split('-')
+  name, format, size = fields.split(/\s*\-\s*/)
   BuiltinStorage.create!(
     :storage_name_id => name,
     :storage_format_id => format,

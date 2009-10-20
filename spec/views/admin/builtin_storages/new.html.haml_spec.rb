@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "/admin/builtin_storages/new.html.erb" do
+describe "/admin/builtin_storages/new.html.haml" do
   include Admin::BuiltinStoragesHelper
 
   before(:each) do

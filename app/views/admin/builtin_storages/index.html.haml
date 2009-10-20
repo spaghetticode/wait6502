@@ -1,0 +1,17 @@
+%h1 Listing Builtin Storages
+
+%table
+  %tr
+    %th Storage name
+    %th Storage format
+    %th Storage size
+  
+  - @builtin_storages.each do |bs|
+    %tr
+      %td= h bs.storage_name_id
+      %td= h bs.storage_format_id
+      %td= h bs.storage_size_id
+      %td= link_to 'Edit', edit_admin_builtin_storage_path(bs)
+      %td= link_to 'Destroy', admin_builtin_storage_path(bs), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New builtin storage', new_admin_builtin_storage_path

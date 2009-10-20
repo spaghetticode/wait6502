@@ -1,0 +1,9 @@
+%tr
+  %th= f.label :storage_name_id
+  %td= f.select :storage_name_id, StorageName.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :storage_format_id
+  %td= f.select :storage_format_id, StorageFormat.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :storage_size_id
+  %td= f.select :storage_size_id, StorageSize.ordered.map(&:name), :include_blank => true
