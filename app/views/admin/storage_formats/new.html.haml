@@ -1,6 +1,6 @@
-%h1 New Storage Name
+%h1 New Storage Format
 
-- form_for(@storage_name, :url => admin_storage_names_path) do |f|
+- form_for(@storage_format, :url => admin_storage_formats_path) do |f|
   = f.error_messages
   %table
     %tr
@@ -8,5 +8,5 @@
       %td= f.text_field :name
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'
-      
-%p= link_to 'Back', admin_storage_names_path
+
+%p= link_to 'Back', admin_storage_formats_path

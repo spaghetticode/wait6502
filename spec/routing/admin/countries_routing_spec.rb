@@ -10,10 +10,6 @@ describe Admin::CountriesController do
       route_for(:controller => "admin/countries", :action => "new").should == "/admin/countries/new"
     end
 
-    it "maps #show" do
-      route_for(:controller => "admin/countries", :action => "show", :id => "1").should == "/admin/countries/1"
-    end
-
     it "maps #destroy" do
       route_for(:controller => "admin/countries", :action => "destroy", :id => "1").should == {:path =>"/admin/countries/1", :method => :delete}
     end

@@ -28,5 +28,9 @@ Factory.define :io_port do |io|
 end
 
 Factory.define :storage_name do |s|
-  s.sequence(:name) {|n| "storage #{n}"}
+  s.sequence(:name) {|n| "name #{n}"}
+end
+
+Factory.define :storage_format do |s|
+  s.sequence(:name) {|n| "format #{n}"}
 end

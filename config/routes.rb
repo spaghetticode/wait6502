@@ -1,7 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
-    admin.resources :countries, :users, :currencies, :manufacturers, :computer_types, :io_ports, :storage_names
+    admin.resources :users, :currencies, :manufacturers, :io_ports
+    admin.resources :storage_names, :except => [:show, :update, :edit]
+    admin.resources :storage_formats, :except => [:show, :update, :edit, :destroy], :collection => {:delete => :delete }
+    admin.resources :countries, :except => [:show, :update, :edit]
+    admin.resources :computer_types, :except => [:show, :update, :edit]
   end
   
   map.resources :user_sessions

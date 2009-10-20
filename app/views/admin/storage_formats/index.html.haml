@@ -1,0 +1,15 @@
+%h1 Listing Storage Formats
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @storage_formats.each do |format|
+    %tr
+      %td= h format.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_storage_formats_path, :method => :delete do
+          = hidden_field_tag 'id', format.name
+          = submit_tag 'destroy'
+
+%p= link_to 'New storage format', new_admin_storage_format_path
