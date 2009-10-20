@@ -21,8 +21,8 @@ class Admin::StorageSizesController < ApplicationController
     end
   end
 
-  def destroy
-    StorageSize.find(params[:id]).destroy
+  def delete
+    @storage_format = StorageSize.find(params[:id]).destroy
     flash[:notice] = 'Storage size was successfully destroyed.'
     redirect_to admin_storage_sizes_path
   end

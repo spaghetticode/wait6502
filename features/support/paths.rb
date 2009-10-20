@@ -12,9 +12,9 @@ module NavigationHelpers
       '/'
     when /the user login page/
       new_user_session_path
-    when /the new (currency|country|computer type|manufacturer|user|io port|storage device|storage name|storage format) page/
+    when /the new (currency|country|computer type|manufacturer|user|io port|storage device|storage name|storage format|storage size) page/
       send("new_admin_#{$1.gsub(' ', '_')}_path")
-    when /the (currencies|countries|computer types|manufacturers|io ports|storage devices|storage names|storage formats) page/
+    when /the (currencies|countries|computer types|manufacturers|io ports|storage devices|storage names|storage formats|storage sizes) page/
       send ("admin_#{$1.gsub(' ', '_')}_path")
     # Add more mappings here.
     # Here is a more fancy example:

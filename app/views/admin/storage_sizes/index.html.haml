@@ -6,6 +6,10 @@
   - @storage_sizes.each do |s_size|
     %tr
       %td= h s_size.name
-      %td= link_to 'Destroy', admin_storage_size_path(s_size), :confirm => 'Are you sure?', :method => :delete
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_storage_sizes_path, :method => :delete do
+          = hidden_field_tag 'id', s_size.name
+          = submit_tag 'destroy'
   
 %p= link_to 'New storage size', new_admin_storage_size_path

@@ -33,5 +33,7 @@ def class_for(model)
     StorageName
   when /storage format/
     StorageFormat
+  when /storage size/
+    StorageSize
   end
 end

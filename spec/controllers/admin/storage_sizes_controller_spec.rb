@@ -93,10 +93,14 @@ describe Admin::StorageSizesController do
       end
     end
 
-    describe 'DELETE DESTROY' do
+    describe 'DELETE DELETE' do
+    # il classico metodo destroy è stato sostituito da questo delete che opera
+    # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
+    # l'id con il punto, visto che rails lo interpreta come separatore per format
+    
       before do
-        StorageSize.should_receive(:find).and_return(mock_storage_size(:destroy => nil))
-        delete :destroy, :id => '1'
+        StorageSize.should_receive(:find).with('1.2Mb').and_return(mock_storage_size(:destroy => nil))
+        delete :delete, :id => '1.2Mb'
       end
 
       it 'should flash' do

@@ -14,8 +14,8 @@ describe Admin::StorageSizesController do
       { :post => "/admin/storage_sizes" }.should route_to(:controller => "admin/storage_sizes", :action => "create") 
     end
 
-    it "recognizes and generates #destroy" do
-      { :delete => "/admin/storage_sizes/1" }.should route_to(:controller => "admin/storage_sizes", :action => "destroy", :id => "1") 
+    it "recognizes and generates #delete" do
+      { :delete => "/admin/storage_sizes/delete" }.should route_to(:controller => "admin/storage_sizes", :action => "delete") 
     end
   end
 end
