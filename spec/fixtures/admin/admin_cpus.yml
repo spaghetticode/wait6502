@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cpu_bit_id: MyString
+  cpu_family_id: MyString
+  manufacturer_id: 1
+  cpu_name_id: MyString
+  clock: MyString
+
+two:
+  cpu_bit_id: MyString
+  cpu_family_id: MyString
+  manufacturer_id: 1
+  cpu_name_id: MyString
+  clock: MyString

@@ -37,5 +37,7 @@ def class_for(model)
     StorageSize
   when /cpu famil/
     CpuFamily
+  when /cpu/
+    Cpu
   end
 end

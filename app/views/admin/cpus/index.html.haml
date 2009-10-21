@@ -1,0 +1,23 @@
+%h1 Listing CPUs
+
+%table
+  %tr
+    %th Bit
+    %th Family
+    %th Manufacturer
+    %th Name
+    %th Clock
+    %th{:colspan => 2} Actions
+    
+  - @cpus.each do |cpu|
+    %tr
+      %td= h cpu.cpu_bit_id
+      %td= h cpu.cpu_family_id
+      %td= h cpu.manufacturer.name
+      %td= h cpu.cpu_name_id
+      %td= h cpu.clock
+      %td= link_to 'Edit', edit_admin_cpu_path(cpu)
+      %td= link_to 'Destroy', admin_cpu_path(cpu), :confirm => 'Are you sure?', :method => :delete
+
+%p= will_paginate @cpus
+%p= link_to 'New CPU', new_admin_cpu_path

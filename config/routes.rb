@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
-    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages
+    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus
+    
     admin.resources :countries, :except => [:show, :update, :edit]
     admin.resources :computer_types, :except => [:show, :update, :edit]
     

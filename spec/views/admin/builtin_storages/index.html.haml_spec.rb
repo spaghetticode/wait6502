@@ -16,6 +16,7 @@ describe "/admin/builtin_storages/index.html.haml" do
         :storage_size_id => "value for storage_size_id"
       )
     ]
+    assigns[:builtin_storages].stub!(:total_pages).and_return(0)
   end
 
   it "renders a list of admin_builtin_storages" do

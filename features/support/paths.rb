@@ -6,8 +6,8 @@ module NavigationHelpers
   # step definition in webrat_steps.rb
   #
   def path_to(page_name)
-    new_record_models = 'currency|country|computer type|manufacturer|user|io port|builtin storage|storage name|storage format|storage size|cpu family'
-    list_models = 'currencies|countries|computer types|manufacturers|io ports|builtin storages|storage names|storage formats|storage sizes|cpu families'
+    new_record_models = 'currency|country|computer type|manufacturer|user|io port|builtin storage|storage name|storage format|storage size|cpu family|cpu'
+    list_models = 'currencies|countries|computer types|manufacturers|io ports|builtin storages|storage names|storage formats|storage sizes|cpu families|cpus'
     case page_name
     
     when /the homepage/

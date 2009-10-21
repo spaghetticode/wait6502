@@ -3,7 +3,7 @@ class Admin::CpuNamesController < ApplicationController
   layout 'admin'
   
   def index
-    @cpu_names = CpuName.all
+    @cpu_names = CpuName.ordered.paginate(:page => params[:page])
   end
 
   def new

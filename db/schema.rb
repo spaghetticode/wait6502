@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091021084622) do
+ActiveRecord::Schema.define(:version => 20091021090753) do
 
   create_table "builtin_storages", :force => true do |t|
     t.string   "storage_name_id",   :null => false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20091021084622) do
   end
 
   create_table "cpu_bits", :id => false, :force => true do |t|
-    t.integer "name", :null => false
+    t.string "name", :null => false
   end
 
   create_table "cpu_families", :id => false, :force => true do |t|
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(:version => 20091021084622) do
 
   create_table "cpu_names", :id => false, :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpus", :force => true do |t|
+    t.string   "cpu_bit_id",      :null => false
+    t.string   "cpu_family_id"
+    t.integer  "manufacturer_id", :null => false
+    t.string   "cpu_name_id",     :null => false
+    t.string   "clock"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

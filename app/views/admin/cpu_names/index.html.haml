@@ -11,5 +11,6 @@
         -form_tag delete_admin_cpu_names_path, :method => :delete do
           = hidden_field_tag 'id', cpu_name.name
           = submit_tag 'destroy'
-
+          
+%p= will_paginate @cpu_names
 %p= link_to 'New cpu_name', new_admin_cpu_name_path

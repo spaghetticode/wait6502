@@ -3,7 +3,7 @@ class Admin::BuiltinStoragesController < ApplicationController
   layout 'admin'
   
   def index
-    @builtin_storages = BuiltinStorage.ordered
+    @builtin_storages = BuiltinStorage.ordered.paginate(:page => params[:page])
   end
 
   def new

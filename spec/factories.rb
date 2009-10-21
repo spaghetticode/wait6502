@@ -56,3 +56,11 @@ end
 Factory.define :cpu_bit do |cn|
   cn.sequence(:name) {|n| "#{n} bit"}
 end
+
+Factory.define :cpu do |c|
+  c.association :cpu_bit
+  c.association :cpu_name
+  c.association :manufacturer
+  c.association :cpu_family
+  c.sequence(:clock){|n| "#{n}Mhz"}
+end

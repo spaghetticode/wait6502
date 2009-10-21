@@ -14,4 +14,5 @@
       %td= link_to 'Edit', edit_admin_builtin_storage_path(bs)
       %td= link_to 'Destroy', admin_builtin_storage_path(bs), :confirm => 'Are you sure?', :method => :delete
 
+%p= will_paginate @builtin_storages
 %p= link_to 'New builtin storage', new_admin_builtin_storage_path
