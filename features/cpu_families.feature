@@ -33,7 +33,7 @@ Feature: Manage CPU Families
 		Then  I should see "Name can't be blank"
 		And   a new cpu family has not been created
 	
-	Scenario: Failing Storage Name Creation (name taken)
+	Scenario: Failing CPU Family Creation (name taken)
 		And   a cpu family named "X86" exists
 		And   I cache the cpu families count
 		When  I go to the new cpu family page
@@ -42,7 +42,7 @@ Feature: Manage CPU Families
 		Then  I should see "Name has already been taken"
 		And   a new cpu family has not been created
 		
-	Scenario: Destroying Storage Name
+	Scenario: Destroying CPU Family
 		And   a cpu family named "65XX" exists
 		And   I am on the cpu families page
 		And   I should see "65XX"
