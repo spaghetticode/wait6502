@@ -3,15 +3,17 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace(:admin) do |admin|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus
     
-    admin.resources :countries, :except => [:show, :update, :edit]
+    admin.resources :countries,      :except => [:show, :update, :edit]
     admin.resources :computer_types, :except => [:show, :update, :edit]
     
-    admin.resources :storage_names, :except => [:show, :update, :edit]
-    admin.resources :storage_sizes, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
+    admin.resources :storage_names,   :except => [:show, :update, :edit]
+    admin.resources :storage_sizes,   :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     admin.resources :storage_formats, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
-    admin.resources :cpu_families, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
-    admin.resources :cpu_names, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
+    admin.resources :cpu_families,  :except => [:show, :update, :edit, :destroy],    :collection => { :delete => :delete }
+    admin.resources :cpu_names,     :except => [:show, :update, :edit, :destroy],    :collection => { :delete => :delete }
+    
+    admin.resources :operative_systems, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
   end
   

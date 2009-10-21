@@ -1,0 +1,16 @@
+%h1 Listing Operative Systems
+
+%table
+  %tr
+    %th Name
+  - @operative_systems.each do |os|
+    %tr
+      %td= h os.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_operative_systems_path, :method => :delete do
+          = hidden_field_tag 'id', os.name
+          = submit_tag 'destroy'
+          
+%p= will_paginate @operative_systems
+%p= link_to 'New operative system', new_admin_operative_system_path

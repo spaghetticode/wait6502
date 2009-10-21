@@ -64,3 +64,7 @@ Factory.define :cpu do |c|
   c.association :cpu_family
   c.sequence(:clock){|n| "#{n}Mhz"}
 end
+
+Factory.define :operative_system do |os|
+  os.sequence(:name) {|n| "os #{n}"}
+end

@@ -39,5 +39,7 @@ def class_for(model)
     CpuFamily
   when /cpu/
     Cpu
+  when /operative system/
+    OperativeSystem
   end
 end

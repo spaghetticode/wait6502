@@ -2,7 +2,7 @@ Feature: Manage Opertive Systems
 	In order to add OS info to computers
 	As a logged user
 	I want to manage operative systems
-	
+
 	Background:
 		Given I am logged in as user
 	
@@ -22,7 +22,7 @@ Feature: Manage Opertive Systems
 		And   I follow "new operative system"
 		When  I fill in "name" with "AmigaDOS"
 		And   I press "Create"
-		Then  I should see "Operative System was successfully created"
+		Then  I should see "Operative system was successfully created"
 		And   I should be on the operative systems page
 		And   I should see "AmigaDOS"
 		
