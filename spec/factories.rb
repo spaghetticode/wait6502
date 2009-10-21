@@ -52,3 +52,7 @@ end
 Factory.define :cpu_name do |cn|
   cn.sequence(:name) {|n| "name #{n}"}
 end
+
+Factory.define :cpu_bit do |cn|
+  cn.sequence(:name) {|n| "#{n} bit"}
+end
