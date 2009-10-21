@@ -14,7 +14,7 @@ describe Admin::CpuFamiliesController do
       { :post => "/admin/cpu_families" }.should route_to(:controller => "admin/cpu_families", :action => "create") 
     end
 
-    it "recognizes and generates #destroy" do
+    it "recognizes and generates #delete" do
       { :delete => "/admin/cpu_families/delete" }.should route_to(:controller => "admin/cpu_families", :action => "delete") 
     end
   end

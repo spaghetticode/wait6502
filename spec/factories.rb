@@ -46,5 +46,9 @@ Factory.define :builtin_storage do |bs|
 end
 
 Factory.define :cpu_family do |cf|
-  cf.sequence(:name) {|n| "name #{n}"}
+  cf.sequence(:name) {|n| "family #{n}"}
+end
+
+Factory.define :cpu_name do |cn|
+  cn.sequence(:name) {|n| "name #{n}"}
 end

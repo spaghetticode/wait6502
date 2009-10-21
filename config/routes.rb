@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :storage_formats, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
     admin.resources :cpu_families, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
+    admin.resources :cpu_names, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
   end
   

@@ -21,7 +21,7 @@ class Admin::CpuFamiliesController < ApplicationController
   end
 
   def delete
-    @storage_format = CpuFamily.find(params[:id]).destroy
+    CpuFamily.find(params[:id]).destroy
     flash[:notice] = 'CPU family was successfully destroyed.'
     redirect_to admin_cpu_families_path
   end
