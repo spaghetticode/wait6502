@@ -1,0 +1,11 @@
+%h1 Editing co-CPU
+
+- form_for(@co_cpu, :url => admin_co_cpu_path(@co_cpu)) do |f|
+  = f.error_messages
+  %table
+    %tr
+    = render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Update'
+
+%p= link_to 'Back', admin_co_cpus_path

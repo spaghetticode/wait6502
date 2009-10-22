@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091022135458) do
+ActiveRecord::Schema.define(:version => 20091022142130) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20091022135458) do
 
   create_table "co_cpu_types", :id => false, :force => true do |t|
     t.string "name", :null => false
+  end
+
+  create_table "co_cpus", :force => true do |t|
+    t.string   "co_cpu_name_id"
+    t.string   "co_cpu_type_id"
+    t.integer  "manufacturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "computer_types", :id => false, :force => true do |t|

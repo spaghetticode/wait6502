@@ -12,6 +12,16 @@ end
 
 describe Admin::CountriesController do
   include CountriesControllerHelper
+  
+  describe 'WITHOUT BEING AUTHENTICATED' do
+    should_flash_and_redirect_for(
+      :new => :get,
+      :index => :get,
+      :create => :post,
+      :destroy => :delete
+    )
+  end
+  
   describe 'BEING LOGGED IN' do
     before do
       activate_authlogic
