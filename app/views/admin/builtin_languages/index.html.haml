@@ -1,0 +1,16 @@
+%h1 Listing Builtin Languages
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @builtin_languages.each do |language|
+    %tr
+      %td= h language.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_builtin_languages_path, :method => :delete do
+          = hidden_field_tag 'id', language.name
+          = submit_tag 'destroy'
+
+%p= link_to 'New builtin language', new_admin_builtin_language_path

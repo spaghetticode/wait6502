@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :cpu_names,     :except => [:show, :update, :edit, :destroy],    :collection => { :delete => :delete }
     
     admin.resources :operative_systems, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
+    admin.resources :builtin_languages, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
   end
   

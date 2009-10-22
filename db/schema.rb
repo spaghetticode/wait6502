@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091021164045) do
+ActiveRecord::Schema.define(:version => 20091022085452) do
+
+  create_table "builtin_languages", :id => false, :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "builtin_storages", :force => true do |t|
     t.string   "storage_name_id",   :null => false

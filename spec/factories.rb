@@ -68,3 +68,7 @@ end
 Factory.define :operative_system do |os|
   os.sequence(:name) {|n| "os #{n}"}
 end
+
+Factory.define :builtin_language do |l|
+  l.sequence(:name) {|n| "language #{n}"}
+end

@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-module CpuFamiliesControllerHelper
+module BuiltinLanguagesControllerHelper
   def post_create
-    post :create, :cpu_family => {}
+    post :create, :builtin_language => {}
   end
 
-  def mock_cpu_family(options={})
-    mock_model(CpuFamily, options)
+  def mock_builtin_language(options={})
+    mock_model(BuiltinLanguage, options)
   end
 end
 
-describe Admin::CpuFamiliesController do
-  include CpuFamiliesControllerHelper
+describe Admin::BuiltinLanguagesController do
+  include BuiltinLanguagesControllerHelper
   
   describe 'BEING LOGGED IN' do
     before do
@@ -32,8 +32,8 @@ describe Admin::CpuFamiliesController do
         response.should render_template(:index)
       end
 
-      it 'should assign @cpu_families' do
-        assigns[:cpu_families].should_not be_nil
+      it 'should assign @builtin_languages' do
+        assigns[:builtin_languages].should_not be_nil
       end
     end
 
@@ -50,46 +50,46 @@ describe Admin::CpuFamiliesController do
         response.should render_template(:new)
       end
 
-      it 'should assign @cpu_family' do
-        assigns[:cpu_family].should_not be_nil
+      it 'should assign @builtin_language' do
+        assigns[:builtin_language].should_not be_nil
       end
 
-      it 'should assign a new record to @cpu_family' do
-        assigns[:cpu_family].should be_new_record
+      it 'should assign a new record to @builtin_language' do
+        assigns[:builtin_language].should be_new_record
       end
     end
 
     describe 'POST CREATE' do
       describe 'with valid attributes' do
         before do
-          CpuFamily.should_receive(:new).and_return(mock_cpu_family(:save => true))
+          BuiltinLanguage.should_receive(:new).and_return(mock_builtin_language(:save => true))
           post_create
         end
 
         it 'should flash' do
-          flash[:notice].should == 'CPU family was successfully created.'
+          flash[:notice].should == 'Builtin language was successfully created.'
         end
 
-        it 'should redirect to admin_cpu_families_path' do
-          response.should redirect_to(admin_cpu_families_path)
+        it 'should redirect to admin_builtin_languages_path' do
+          response.should redirect_to(admin_builtin_languages_path)
         end
 
-        it 'should assign @cpu_family' do
-          assigns[:cpu_family].should_not be_nil
+        it 'should assign @builtin_language' do
+          assigns[:builtin_language].should_not be_nil
         end
       end
 
       describe 'with invalid attributes' do
         before do
-          CpuFamily.should_receive(:new).and_return(mock_cpu_family(:save => false))
+          BuiltinLanguage.should_receive(:new).and_return(mock_builtin_language(:save => false))
           post_create
         end
         it 'should render new template' do
           response.should render_template(:new)
         end
 
-        it 'should assign @cpu_family' do
-          assigns[:cpu_family].should_not be_nil
+        it 'should assign @builtin_language' do
+          assigns[:builtin_language].should_not be_nil
         end
       end
     end
@@ -100,16 +100,16 @@ describe Admin::CpuFamiliesController do
     # l'id con il punto, visto che rails lo interpreta come separatore per format
     
       before do
-        CpuFamily.should_receive(:find).with('68XX').and_return(mock_cpu_family(:destroy => nil))
-        delete :delete, :id => '68XX'
+        BuiltinLanguage.should_receive(:find).with('BASIC').and_return(mock_builtin_language(:destroy => nil))
+        delete :delete, :id => 'BASIC'
       end
 
       it 'should flash' do
-        flash[:notice].should == 'CPU family was successfully destroyed.'
+        flash[:notice].should == 'Builtin language was successfully destroyed.'
       end
 
-      it 'should redirect to admin_cpu_families_path' do
-        response.should redirect_to(admin_cpu_families_path)
+      it 'should redirect to admin_builtin_languages_path' do
+        response.should redirect_to(admin_builtin_languages_path)
       end
     end
   end
