@@ -1,0 +1,16 @@
+%h1 Listing Co-CPU Names
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @co_cpu_names.each do |name|
+    %tr
+      %td= h name.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_co_cpu_names_path, :method => :delete do
+          = hidden_field_tag 'id', name.name
+          = submit_tag 'destroy'
+
+%p= link_to 'New co cpu name', new_admin_co_cpu_name_path

@@ -74,5 +74,9 @@ Factory.define :builtin_language do |l|
 end
 
 Factory.define :co_cpu_type do |cc|
+  cc.sequence(:name) {|n| "math #{n}"}
+end
+
+Factory.define :co_cpu_name do |cc|
   cc.sequence(:name) {|n| "co cpu #{n}"}
 end
