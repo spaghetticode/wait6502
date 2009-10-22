@@ -41,5 +41,7 @@ def class_for(model)
     Cpu
   when /operative system/
     OperativeSystem
+  when /builtin language/
+    BuiltinLanguage
   end
 end
