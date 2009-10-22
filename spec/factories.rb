@@ -80,3 +80,9 @@ end
 Factory.define :co_cpu_name do |cc|
   cc.sequence(:name) {|n| "co cpu #{n}"}
 end
+
+Factory.define :co_cpu do |cc|
+  cc.association :co_cpu_name
+  cc.association :co_cpu_type
+  cc.association :manufacturer
+end

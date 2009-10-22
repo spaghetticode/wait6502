@@ -13,6 +13,15 @@ end
 describe Admin::StorageFormatsController do
   include StorageFormatsControllerHelper
   
+  describe 'WITHOUT BEING AUTHENTICATED' do
+    should_flash_and_redirect_for(
+      :new => :get,
+      :index => :get,
+      :create => :post,
+      :delete => :delete
+    )
+  end
+  
   describe 'BEING LOGGED IN' do
     before do
       activate_authlogic

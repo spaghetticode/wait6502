@@ -1,0 +1,17 @@
+%h1 Listing co-CPUs
+
+%table
+  %tr
+    %th Name
+    %th Type
+    %th Manufacturer
+    %th{:colspan => 2} Actions
+  - @co_cpus.each do |co_cpu|
+    %tr
+      %td= h co_cpu.co_cpu_name_id
+      %td= h co_cpu.co_cpu_type_id
+      %td= h co_cpu.manufacturer.name
+      %td= link_to 'Edit', edit_admin_co_cpu_path(co_cpu)
+      %td= link_to 'Destroy', admin_co_cpu_path(co_cpu), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New co cpu', new_admin_co_cpu_path

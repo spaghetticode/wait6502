@@ -1,6 +1,6 @@
 class CreateStorageNames < ActiveRecord::Migration
   def self.up
-    create_table :storage_names do |t|
+    create_table :storage_names, :id => false do |t|
       t.string :name, :null => false
 
       t.timestamps

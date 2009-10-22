@@ -1,0 +1,9 @@
+%tr
+  %th= f.label :co_cpu_name_id, 'Name'
+  %td= f.select :co_cpu_name_id, CoCpuName.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :co_cpu_type_id, 'Type'
+  %td= f.select :co_cpu_type_id, CoCpuType.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :manufacturer_id
+  %td= f.select :manufacturer_id, Manufacturer.ordered.map{|m| [m.name, m.id]}, :include_blank => true

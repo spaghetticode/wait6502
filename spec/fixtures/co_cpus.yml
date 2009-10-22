@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  co_cpu_name_id: MyString
+  co_cpu_type_id: MyString
+  manufacturer_id: 1
+
+two:
+  co_cpu_name_id: MyString
+  co_cpu_type_id: MyString
+  manufacturer_id: 1
