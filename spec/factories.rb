@@ -72,3 +72,7 @@ end
 Factory.define :builtin_language do |l|
   l.sequence(:name) {|n| "language #{n}"}
 end
+
+Factory.define :co_cpu_type do |cc|
+  cc.sequence(:name) {|n| "co cpu #{n}"}
+end
