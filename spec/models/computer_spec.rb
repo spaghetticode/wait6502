@@ -26,6 +26,10 @@ describe Computer do
       Computer.new.operative_systems.should_not be_nil
     end
     
+    it 'should have a co_cpus association' do
+      Computer.new.co_cpus.should_not be_nil
+    end
+    
     it 'should require a unique name for given manufacturer and code' do
       code = '12345'
       valid = Factory(:computer, :code => code)

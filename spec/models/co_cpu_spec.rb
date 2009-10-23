@@ -23,11 +23,19 @@ describe CoCpu do
       invalid = CoCpu.new(:co_cpu_name => co_cpu.co_cpu_name, :manufacturer => co_cpu.manufacturer)
       invalid.should have(1).error_on(:co_cpu_name_id)
     end
+    
+    it 'should have computers association' do
+      CoCpu.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do
     it 'should be valid' do
       Factory(:co_cpu).should be_valid
+    end
+    
+    it 'should have a full_name' do
+      Factory(:co_cpu).full_name.should_not be_nil
     end
   end
   

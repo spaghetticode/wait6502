@@ -2,7 +2,7 @@ class Admin::ComputersController < ApplicationController
   before_filter :require_logged_in
   layout 'admin'
   
-  %w{cpu builtin_storage operative_system}.each do |model|
+  %w{cpu builtin_storage operative_system co_cpu}.each do |model|
     model_name = model.capitalize.gsub('_', ' ')
     
     define_method "add_#{model}" do
