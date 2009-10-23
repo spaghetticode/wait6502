@@ -2,16 +2,18 @@ class Admin::ComputersController < ApplicationController
   before_filter :require_logged_in
   layout 'admin'
   
-  %w{cpu builtin_storage}.each do |model|
+  %w{cpu builtin_storage operative_system}.each do |model|
+    model_name = model.capitalize.gsub('_', ' ')
+    
     define_method "add_#{model}" do
       model_id = params["#{model}_id"]
       @computer = Computer.find(params[:id])
       unless @computer.send(model.pluralize).find_by_id(model_id)
         @model = model.classify.constantize.find(model_id)
         @computer.send(model.pluralize) << @model
-        flash[:notice] = "#{model.capitalize} was successfully added."
+        flash[:notice] = "#{model_name} was successfully added."
       else
-        flash[:notice] = "#{model.capitalize} is already associated."
+        flash[:notice] = "#{model_name} is already associated."
       end
       redirect_to edit_admin_computer_path(@computer)
     end
@@ -20,7 +22,7 @@ class Admin::ComputersController < ApplicationController
       @computer = Computer.find(params[:id])
       @model = model.classify.constantize.find(params["#{model}_id"])
       @computer.send(model.pluralize).delete(@model)
-      flash[:notice] = "#{model.capitalize} was successfully removed."
+      flash[:notice] = "#{model_name} was successfully removed."
       redirect_to edit_admin_computer_path(@computer)
     end
   end

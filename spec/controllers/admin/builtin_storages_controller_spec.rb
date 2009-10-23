@@ -17,7 +17,9 @@ describe Admin::BuiltinStoragesController do
     should_flash_and_redirect_for(
       :new => :get,
       :index => :get,
+      :edit => :get,
       :create => :post,
+      :update => :put,
       :destroy => :delete
     )
   end
@@ -67,7 +69,26 @@ describe Admin::BuiltinStoragesController do
         assigns[:builtin_storage].should be_new_record
       end
     end
-  
+    
+    describe 'GET EDIT' do
+      before do
+        BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+      
+      it 'should assign @builtin_storage' do
+        assigns[:builtin_storage].should_not be_nil
+      end
+    end
+    
     describe 'POST CREATE' do
       describe 'with valid attributes' do
         before do

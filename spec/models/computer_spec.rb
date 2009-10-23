@@ -22,6 +22,10 @@ describe Computer do
       Computer.new.builtin_storages.should_not be_nil
     end
     
+    it 'should have a operative_systems association' do
+      Computer.new.operative_systems.should_not be_nil
+    end
+    
     it 'should require a unique name for given manufacturer and code' do
       code = '12345'
       valid = Factory(:computer, :code => code)

@@ -22,6 +22,7 @@ describe "/admin/computers/edit.html.haml" do
       :graphic_modes => "value for graphic_modes",
       :sound => "value for sound"
     )
+    assigns[:computer].stub!(:cpus => [], :operative_systems => [], :builtin_storages => [])
   end
 
   it "renders the edit computer form" do

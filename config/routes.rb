@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.namespace(:admin) do |admin|
-    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus
-    admin.resources :computers, :member => { :add_cpu => :put, :remove_cpu => :delete, :add_builtin_storage => :put, :remove_builtin_storage => :delete}
+    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
+    admin.resources :computers, :member => { :add_cpu => :put, :remove_cpu => :delete, :add_builtin_storage => :put, :remove_builtin_storage => :delete, :add_operative_system => :put, :remove_operative_system => :delete}
     
     admin.resources :countries,      :except => [:show, :update, :edit]
     admin.resources :computer_types, :except => [:show, :update, :edit]
@@ -14,7 +14,6 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :cpu_families,  :except => [:show, :update, :edit, :destroy],    :collection => { :delete => :delete }
     admin.resources :cpu_names,     :except => [:show, :update, :edit, :destroy],    :collection => { :delete => :delete }
     
-    admin.resources :operative_systems, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     admin.resources :builtin_languages, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
     admin.resources :co_cpu_names, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
