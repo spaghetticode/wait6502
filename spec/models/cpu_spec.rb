@@ -34,6 +34,10 @@ describe Cpu do
         :manufacturer => valid_cpu.manufacturer
       ).should have(1).error_on(:cpu_name_id)
     end
+    
+    it 'should have a computers association' do
+      Cpu.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do

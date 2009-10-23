@@ -13,6 +13,24 @@ describe Computer do
     it 'should require a computer type' do
       Computer.new.should have(1).error_on(:computer_type)
     end
+    
+    it 'should have a cpus association' do
+      Computer.new.cpus.should_not be_nil
+    end
+    
+    it 'should have a builtin_storages association' do
+      Computer.new.builtin_storages.should_not be_nil
+    end
+    
+    it 'should require a unique name for given manufacturer and code' do
+      code = '12345'
+      valid = Factory(:computer, :code => code)
+      Computer.new(
+        :name => valid.name,
+        :code => code,
+        :manufacturer => valid.manufacturer
+      ).should_not be_valid
+    end
   end
   
   describe 'an instance with valid attributes' do

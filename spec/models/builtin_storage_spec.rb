@@ -26,6 +26,10 @@ describe BuiltinStorage do
       )
       invalid.should have(1).error_on(:storage_name_id)
     end
+    
+    it 'should have a computers association' do
+      BuiltinStorage.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do
