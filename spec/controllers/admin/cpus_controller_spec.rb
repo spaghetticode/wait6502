@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 module CpusControllerHelper
-  def mock_cpu(options)
-    mock_model(Cpu, options)
+  def mock_cpu(options={})
+    @mock ||= mock_model(Cpu, options)
   end
   
   def post_create
     post :create, :cpu => {}
+  end
+  
+  def put_update
+    put :update, :id => '1', :cpu => {}
   end
 end
 
@@ -102,7 +106,51 @@ describe Admin::CpusController do
         end
       end
     end
-  
+
+    describe 'PUT UPDATE' do
+      describe 'with valid attributes' do
+        before do
+          Cpu.should_receive(:find).and_return(mock_cpu(:update_attributes => true))
+          put_update
+        end
+        
+        it 'should redirect to cpus page' do
+          response.should redirect_to(admin_cpus_path)
+        end
+        
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should assign @cpu' do
+          assigns[:cpu].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid attributes' do
+        before do
+          Cpu.should_receive(:find).and_return(mock_cpu(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+        
+        it 'should assign @cpu' do
+          assigns[:cpu].should_not be_nil
+        end
+      end
+    end
+      
     describe 'DELETE DESTROY' do
       before do
         Cpu.should_receive(:find).and_return(mock_cpu(:destroy => nil))

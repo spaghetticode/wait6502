@@ -25,6 +25,7 @@ describe Admin::CoCpusController do
     should_flash_and_redirect_for(
       :new => :get,
       :index => :get,
+      :edit => :get,
       :create => :post,
       :update => :put,
       :destroy => :delete
@@ -74,6 +75,25 @@ describe Admin::CoCpusController do
       
       it 'assigns[:co_cpu] should be new_record' do
         assigns[:co_cpu].should be_new_record
+      end
+    end
+    
+    describe 'GET EDIT' do
+      before do
+        CoCpu.should_receive(:find).and_return(mock_co_cpu)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+      
+      it 'should assign @co_cpu' do
+        assigns[:co_cpu].should_not be_nil
       end
     end
    

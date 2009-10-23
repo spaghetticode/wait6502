@@ -2,7 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 module IoPortsControllerHelper
   def mock_io_port(options={})
-    mock_model(IoPort, options)
+    @mock ||= mock_model(IoPort, options)
+  end
+  
+  def put_update
+    put :update, :id => '1', :io_port => {}
   end
 end
 
@@ -104,10 +108,54 @@ describe Admin::IoPortsController do
         end
     end
 
+    describe 'PUT UPDATE' do
+      describe 'with valid attributes' do
+        before do
+          IoPort.should_receive(:find).and_return(mock_io_port(:update_attributes => true))
+          put_update
+        end
+        
+        it 'should redirect to io_ports page' do
+          response.should redirect_to(admin_io_ports_path)
+        end
+        
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should assign @io_port' do
+          assigns[:io_port].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid attributes' do
+        before do
+          IoPort.should_receive(:find).and_return(mock_io_port(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+        
+        it 'should assign @io_port' do
+          assigns[:io_port].should_not be_nil
+        end
+      end
+    end
+    
     describe 'DELETE DESTROY' do
       before do
-        @mock = mock_io_port(:destroy => nil)
-        IoPort.should_receive(:find).and_return(@mock)
+        mock_io_port.should_receive(:destroy)
+        IoPort.should_receive(:find).and_return(mock_io_port)
         delete :destroy, :id => '1'
       end
     
