@@ -1,15 +1,18 @@
 %h1 Editing Computer
 
+
 - form_for(@computer, :url => admin_computer_path(@computer)) do |f|
   = f.error_messages
   %table
     = render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Update'
+    
+#associations
+  = render :partial => 'associator', :locals => {:model => 'cpu'}
+  = render :partial => 'associator', :locals => {:model => 'builtin_storage'}
+  = render :partial => 'associator', :locals => {:model => 'operative_system'}
+  = render :partial => 'associator', :locals => {:model => 'co_cpu'}
+  = render :partial => 'associator', :locals => {:model => 'io_port'}
 
-= render :partial => 'associator', :locals => {:model => 'cpu'}
-= render :partial => 'associator', :locals => {:model => 'builtin_storage'}
-= render :partial => 'associator', :locals => {:model => 'operative_system'}
-= render :partial => 'associator', :locals => {:model => 'co_cpu'}
-
-%p= link_to 'Back', admin_computers_path
+%p{:style => 'clear:both'}= link_to 'Back', admin_computers_path

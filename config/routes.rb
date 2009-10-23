@@ -1,8 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
-
+  routes = {}
+  %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
+    routes["add_#{model}"] = :put
+    routes["remove_#{model}"] = :delete
+  end
+  
   map.namespace(:admin) do |admin|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
-    admin.resources :computers, :member => { :add_cpu => :put, :remove_cpu => :delete, :add_builtin_storage => :put, :remove_builtin_storage => :delete, :add_operative_system => :put, :remove_operative_system => :delete, :add_co_cpu => :put, :remove_co_cpu => :delete}
+    admin.resources :computers, :member => routes
     
     admin.resources :countries,      :except => [:show, :update, :edit]
     admin.resources :computer_types, :except => [:show, :update, :edit]

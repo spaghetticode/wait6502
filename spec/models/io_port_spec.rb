@@ -15,11 +15,19 @@ describe IoPort do
       invalid = IoPort.new(:name => port.name, :connector => port.connector)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have computers association' do
+      IoPort.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do
     it 'should be valid' do
       Factory(:io_port).should be_valid
+    end
+    
+    it 'should have a full_name' do
+      Factory(:io_port).full_name.should_not be_nil
     end
   end
   

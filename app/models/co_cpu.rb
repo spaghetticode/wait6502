@@ -10,6 +10,6 @@ class CoCpu < ActiveRecord::Base
   named_scope :ordered, :order => 'co_cpu_name_id'
   
   def full_name
-    "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id}"
+    "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id} co-processor"
   end
 end

@@ -1,15 +1,13 @@
-%h1= "Add #{model.gsub('_', ' ').capitalize}"
+- model_name = model.gsub('_', ' ').capitalize.pluralize
+%h2= model_name
 %table
-  %tr
-    %th= "Associated #{model.gsub('_', ' ').capitalize}"
-    %th Actions
-    - @computer.send(model.pluralize).each do |record|
-      %tr
-        %td= record.full_name
-        %td
-          - form_tag send("remove_#{model}_admin_computer_path", @computer), :method => :delete do
-            = hidden_field_tag "#{model}_id", record.id
-            = submit_tag 'remove'
+  - @computer.send(model.pluralize).each do |record|
+    %tr
+      %td= record.full_name
+      %td
+        - form_tag send("remove_#{model}_admin_computer_path", @computer), :method => :delete do
+          = hidden_field_tag "#{model}_id", record.id
+          = submit_tag 'remove'
 
 - form_tag send("add_#{model}_admin_computer_path", @computer), :method => :put do
   %table

@@ -14,20 +14,24 @@ describe Computer do
       Computer.new.should have(1).error_on(:computer_type)
     end
     
-    it 'should have a cpus association' do
+    it 'should have cpus association' do
       Computer.new.cpus.should_not be_nil
     end
     
-    it 'should have a builtin_storages association' do
+    it 'should have builtin_storages association' do
       Computer.new.builtin_storages.should_not be_nil
     end
     
-    it 'should have a operative_systems association' do
+    it 'should have operative_systems association' do
       Computer.new.operative_systems.should_not be_nil
     end
     
-    it 'should have a co_cpus association' do
+    it 'should have co_cpus association' do
       Computer.new.co_cpus.should_not be_nil
+    end
+    
+    it 'should have io_ports association' do
+      Computer.new.io_ports.should_not be_nil
     end
     
     it 'should require a unique name for given manufacturer and code' do

@@ -11,6 +11,7 @@ class Cpu < ActiveRecord::Base
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
   
   def full_name
-    "#{manufacturer.name} #{cpu_name_id} #{cpu_family_id} #{cpu_bit_id}"
+    clock = self.clock.blank? ? '' : "@#{self.clock}"
+    "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
   end
 end
