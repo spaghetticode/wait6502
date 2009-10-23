@@ -1,26 +1,105 @@
+puts 'Creating user admin@test.com'
 password = 'secret'
 User.create!(:email => 'admin@test.com', :password => password, :password_confirmation => password)
 
+puts 'Creating computer types'
 ['Home', 'Personal', 'Portable', 'Pocket'].each do |name|
   ComputerType.create!(:name => name)
 end
 
-%w{Italy USA France Germany Japan}.each do |country|
+puts 'Creating countries'
+['Italy', 'USA', 'France', 'Germany', 'Japan', 'Great Britain'].each do |country|
   Country.create!(:name => country)
 end
 
-[%w{EUR EURO}, %w{USD $}, %w{JPY ¥}].each do |currency|
+puts 'Creating currencies'
+[%w{EUR EURO}, %w{USD $}, %w{JPY ¥}, %w{BPD £}].each do |currency|
   Currency.create!(:code => currency[0], :symbol => currency[1])
 end
 
-%w{Motorola Atari Apple Commodore Zilog Sinclair}.each do |brand|
-  Manufacturer.create!(:name => brand)
+puts 'Creating manufacturers'
+[['Intel', 'USA'], ['Motorola', 'USA'],['Atari', 'USA'], ['Apple Computers', 'USA'],
+['Commodore', 'USA'], ['Sinclair', 'Great Britain'], ['Zilog', 'USA']].each do |brand|
+  country = Country.find_by_name(brand[1])
+  Manufacturer.create!(:name => brand[0], :country => country)
 end
 
-%w{ X86 65XX Z80}.each do |family|
+puts 'Creating CPU families'
+%w{Z80 X86 65XX}.each do |family|
   CpuFamily.create!(:name => family)
 end
-  
+
+puts 'Creating CPU names'
 %w{ Z80 6502 68000}.each do |cpu|
   CpuName.create!(:name => cpu)
 end
+
+puts 'Creating CPU bits'
+['8 bit', '4 bit', '16 bit', '32 bit', '4/8 bit', '8/16 bit', '16/32 bit'].each do |bit|
+  CpuBit.create!(:name => bit)
+end
+
+puts 'Creating CPU'
+Cpu.create!(
+  :cpu_name => CpuName.first,
+  :cpu_family => CpuFamily.first,
+  :cpu_bit => CpuBit.first,
+  :manufacturer => Manufacturer.last,
+  :clock => '2Mhz'
+)
+
+puts 'Creating builtin languages'
+['Amiga Basic', 'Applesoft Basic', 'Microsoft Basic', 'Basic'].each do |name|
+  BuiltinLanguage.create!(:name => name)
+end
+
+puts 'Creating co-cpu types'
+['math', 'I/O', 'sound', 'video', 'generic'].each do |name|
+  CoCpuType.create!(:name => name)
+end
+
+puts 'Creating co-cpu names'
+%w{8087 Paula Gary 68881}.each do |name|
+  CoCpuName.create!(:name => name)
+end
+
+puts 'Creating Co-CPU'
+CoCpu.create!(
+  :co_cpu_type => CoCpuType.first,
+  :co_cpu_name => CoCpuName.first,
+  :manufacturer => Manufacturer.first
+)
+
+puts 'Creating OSes'
+%w{MS-DOS AmigaDOS Pro-DOS GEOS GEM}.each do |name|
+  OperativeSystem.create!(:name => name)
+end
+
+puts 'Creating storage names'
+['floppy disk drive', 'tape drive', 'hard disk drive'].each do |name|
+  StorageName.create!(:name => name)
+end
+
+puts 'Creating storage formats'
+['5.25"','3.5"', '3"', '8"'].each do |name|
+  StorageFormat.create!(:name => name)
+end
+
+puts 'Creating storage sizes'
+%w{360Kb 880Kb 720Kb 180Kb 140Kb 1.2Mb 1.44Mb 5Mb 10Mb 20Mb}.each do |format|
+  StorageSize.create!(:name => format)
+end
+
+puts 'Creating builtin storage'
+BuiltinStorage.create!(
+  :storage_name => StorageName.first,
+  :storage_format => StorageFormat.first,
+  :storage_size => StorageSize.first
+)
+
+puts 'Creating IO ports'
+[['audio in', 'mini-jack'], ['audio out', 'mini-jack'], ['video out', 'DIN 6 pins'],
+ ['disk drive', 'DIN 8 pins'], ['parallel port', 'centronics'], ['serial port', 'DB-9']].each do |port|
+  IoPort.create!(:name => port[0], :connector => port[1])
+end
+  

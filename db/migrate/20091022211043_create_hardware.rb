@@ -5,15 +5,17 @@ class CreateHardware < ActiveRecord::Migration
       t.string :type, :null => false
       # common fields:
       t.string :name, :null => false
-      t.string :code, :notes
+      t.string :code
+      t.text :notes
       t.integer :manufacturer_id, :null => false
       t.integer :production_start, :production_stop
       # computer fields:
-      t.string :comp_type_id, :codename
-      t.string :text_modes, :graphics_modes, :sound
+      t.string :computer_type_id, :codename
+      t.text :text_modes, :graphic_modes, :sound
       t.string :builtin_language_id
+      t.string :ram, :vram, :rom
       # peripheral fields:
-      t.string :per_type
+      t.string :peripheral_type
     end
   end
 
