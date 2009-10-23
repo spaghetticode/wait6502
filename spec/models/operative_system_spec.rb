@@ -15,16 +15,20 @@ describe OperativeSystem do
       invalid = OperativeSystem.new(:name => operative_system.name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have a computers association' do
+      OperativeSystem.new.computers.should_not be_nil
+    end
+    
   end
   
   describe 'an instance with valid attributes' do
     it 'should be valid' do
-      OperativeSystem.new(:name => 'X86').should be_valid
+      Factory(:operative_system).should be_valid
     end
     
-    it 'should have id same as name (name is primary key)' do
-      operative_system = Factory(:operative_system)
-      operative_system.id.should == operative_system.name
+    it 'should have a full name' do
+      Factory(:operative_system).full_name.should_not be_nil
     end
   end
   

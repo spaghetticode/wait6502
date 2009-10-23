@@ -42,11 +42,30 @@ Feature: Manage Opertive Systems
 		Then  I should see "Name has already been taken"
 		And   a new operative system has not been created
 		
+	Scenario: Updating OS
+		Given a operative system named "AmigaDOS" exists
+		And   I am on the operative systems page
+		When  I follow "edit"
+		And   I fill in "name" with "ProDOS"
+		And   I press "Update"
+		Then  I should see "Operative system was successfully updated."
+		And   I should be on the operative systems page
+		And   I should see "ProDOS"
+		
+	Scenario: Failed OS Update
+		Given a operative system named "ProDOS" exists
+		And   a operative system named "AmigaDOS" exists
+		And   I am on the operative systems page
+		When  I follow "edit"
+		And   I fill in "name" with "ProDos"
+		And   I press "Update"
+		Then  I should see "Name has already been taken"
+		
 	Scenario: Destroying OS
 		And   a operative system named "OSX" exists
 		And   I am on the operative systems page
 		And   I should see "OSX"
-		When  I press "destroy"
+		When  I follow "destroy"
 		Then  I should see "Operative system was successfully destroyed"
 		And   I should be on the operative systems page
 		And   I should not see "OSX"

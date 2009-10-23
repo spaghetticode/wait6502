@@ -1,0 +1,12 @@
+%h1 Edit Operative System
+
+- form_for(@operative_system, :url => admin_operative_system_path(@operative_system)) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th= f.label :name
+      %td= f.text_field :name
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Update'
+  
+%p= link_to 'Back', admin_operative_systems_path

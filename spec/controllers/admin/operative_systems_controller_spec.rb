@@ -6,7 +6,15 @@ module OperativeSystemsControllerHelper
   end
 
   def mock_operative_system(options={})
-    mock_model(OperativeSystem, options)
+    @mock ||= mock_model(OperativeSystem, options)
+  end
+  
+  def put_update
+    put :update, :id => '1', :operative_system => {}
+  end
+  
+  def delete_destroy
+    delete :destroy, :id => '1'
   end
 end
 
@@ -17,8 +25,9 @@ describe Admin::OperativeSystemsController do
     should_flash_and_redirect_for(
       :new => :get,
       :index => :get,
+      :edit  => :get,
       :create => :post,
-      :delete => :delete
+      :destroy => :delete
     )
   end
   
@@ -103,22 +112,59 @@ describe Admin::OperativeSystemsController do
       end
     end
 
-    describe 'DELETE DELETE' do
-    # il classico metodo destroy è stato sostituito da questo delete che opera
-    # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
-    # l'id con il punto, visto che rails lo interpreta come separatore per format
+    describe 'PUT UPDATE' do
+      describe 'with valid parameters' do
+        before do
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:update_attributes => true))
+          put_update
+        end
+      
+        it 'should redirect to admin_operative_systems_path' do
+          response.should redirect_to(admin_operative_systems_path)
+        end
+      
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+      
+        it 'should assign @operative_system' do
+          assigns[:operative_system].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid parameters' do
+        before do
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+      end
+    end
     
+    describe 'DELETE DESTROY' do
       before do
-        OperativeSystem.should_receive(:find).with('3.5 inches').and_return(mock_operative_system(:destroy => nil))
-        delete :delete, :id => '3.5 inches'
+        mock_operative_system.should_receive(:destroy)
+        OperativeSystem.should_receive(:find).and_return(mock_operative_system)
+        delete_destroy
       end
-
-      it 'should flash' do
-        flash[:notice].should == 'Operative system was successfully destroyed.'
-      end
-
+      
       it 'should redirect to admin_operative_systems_path' do
         response.should redirect_to(admin_operative_systems_path)
+      end
+      
+      it 'should flash' do
+        flash[:notice].should_not be_nil
       end
     end
   end

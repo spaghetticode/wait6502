@@ -1,7 +1,7 @@
 class CreateOperativeSystems < ActiveRecord::Migration
   def self.up
-    create_table :operative_systems, :id => false do |t|
-      t.string :name
+    create_table :operative_systems do |t|
+      t.string :name, :null => false, :unique => true
 
       t.timestamps
     end

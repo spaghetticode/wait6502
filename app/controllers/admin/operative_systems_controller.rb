@@ -10,6 +10,10 @@ class Admin::OperativeSystemsController < ApplicationController
     @operative_system = OperativeSystem.new
   end
   
+  def edit
+    @operative_system = OperativeSystem.find(params[:id])
+  end
+  
   def create
     @operative_system = OperativeSystem.new(params[:operative_system])
     if @operative_system.save
@@ -20,7 +24,17 @@ class Admin::OperativeSystemsController < ApplicationController
     end
   end
   
-  def delete
+  def update
+    @operative_system = OperativeSystem.find(params[:id])
+    if @operative_system.update_attributes(params[:operative_system])
+      flash[:notice] = 'Operative system was successfully updated.'
+      redirect_to admin_operative_systems_path
+    else
+      render :action => "edit"
+    end
+  end
+  
+  def destroy
     OperativeSystem.find(params[:id]).destroy
     flash[:notice] = 'Operative system was successfully destroyed.'
     redirect_to admin_operative_systems_path
