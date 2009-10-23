@@ -7,4 +7,6 @@
     %tr
       %td.center{:colspan => 2}= f.submit 'Update'
 
+= render :partial => 'associator', :locals => {:model => 'cpu'}
+
 %p= link_to 'Back', admin_computers_path

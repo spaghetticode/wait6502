@@ -9,4 +9,8 @@ class Cpu < ActiveRecord::Base
   validates_uniqueness_of :cpu_name_id, :scope => [:manufacturer_id, :clock]
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
+  
+  def full_name
+    "#{manufacturer.name} #{cpu_name_id} #{cpu_family_id} #{cpu_bit_id}"
+  end
 end

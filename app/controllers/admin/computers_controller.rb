@@ -2,6 +2,29 @@ class Admin::ComputersController < ApplicationController
   before_filter :require_logged_in
   layout 'admin'
   
+  %w{cpu}.each do |model|
+    define_method "add_#{model}" do
+      model_id = params["#{model}_id"]
+      @computer = Computer.find(params[:id])
+      unless @computer.send(model.pluralize).find_by_id(model_id)
+        @model = model.classify.constantize.find(model_id)
+        @computer.send(model.pluralize) << @model
+        flash[:notice] = "#{model.capitalize} was successfully added."
+      else
+        flash[:notice] = "#{model.capitalize} is already associated."
+      end
+      redirect_to edit_admin_computer_path(@computer)
+    end
+    
+    define_method "remove_#{model}" do
+      @computer = Computer.find(params[:id])
+      @model = model.classify.constantize.find(params["#{model}_id"])
+      @computer.send(model.pluralize).delete(@model)
+      flash[:notice] = "#{model.capitalize} was successfully removed."
+      redirect_to edit_admin_computer_path(@computer)
+    end
+  end
+  
   def index
     @computers = Computer.ordered.paginate(:page => params[:page])
   end
@@ -33,8 +56,8 @@ class Admin::ComputersController < ApplicationController
     else
       render :action => "edit"
     end
-  end
-
+  end  
+  
   def destroy
     Computer.find(params[:id]).destroy
     flash[:notice] = 'Computer was successfully destroyed.'
