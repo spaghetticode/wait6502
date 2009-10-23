@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091023093251) do
+ActiveRecord::Schema.define(:version => 20091023143812) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(:version => 20091023093251) do
     t.string   "storage_size_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "builtin_storages_computers", :id => false, :force => true do |t|
+    t.integer "computer_id"
+    t.integer "builtin_storage_id"
   end
 
   create_table "co_cpu_names", :id => false, :force => true do |t|

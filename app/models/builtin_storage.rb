@@ -8,4 +8,8 @@ class BuiltinStorage < ActiveRecord::Base
   validates_uniqueness_of :storage_name_id, :scope => [:storage_format_id, :storage_size_id]
   
   named_scope :ordered, :order => 'storage_name_id'
+  
+  def full_name
+    "#{storage_name_id} #{storage_format_id} #{storage_size_id}"
+  end
 end

@@ -49,6 +49,10 @@ describe BuiltinStorage do
     it 'should have associated storage size' do
       builtin_storage.storage_size.should_not be_nil
     end
+    
+    it 'should have a full_name' do
+      builtin_storage.full_name.should_not be_nil
+    end
   end
   
   describe 'ORDERED named scope' do

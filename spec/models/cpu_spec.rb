@@ -44,6 +44,10 @@ describe Cpu do
     it 'should be valid' do
       valid_cpu.should be_valid
     end
+    
+    it 'should have a full_name' do
+      valid_cpu.full_name.should_not be_nil
+    end
   end
   
   describe 'ORDERED named scope' do

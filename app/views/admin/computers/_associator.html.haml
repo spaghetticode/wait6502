@@ -1,7 +1,7 @@
-%h1= "Add #{model.capitalize}"
+%h1= "Add #{model.gsub('_', ' ').capitalize}"
 %table
   %tr
-    %th= "Associated #{model.capitalize}"
+    %th= "Associated #{model.gsub('_', ' ').capitalize}"
     %th Actions
     - @computer.send(model.pluralize).each do |record|
       %tr

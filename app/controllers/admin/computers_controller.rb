@@ -2,7 +2,7 @@ class Admin::ComputersController < ApplicationController
   before_filter :require_logged_in
   layout 'admin'
   
-  %w{cpu}.each do |model|
+  %w{cpu builtin_storage}.each do |model|
     define_method "add_#{model}" do
       model_id = params["#{model}_id"]
       @computer = Computer.find(params[:id])
