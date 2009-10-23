@@ -86,3 +86,9 @@ Factory.define :co_cpu do |cc|
   cc.association :co_cpu_type
   cc.association :manufacturer
 end
+
+Factory.define :computer do |c|
+  c.sequence(:name) {|n| "computer #{n}"}
+  c.association :manufacturer
+  c.association :computer_type
+end

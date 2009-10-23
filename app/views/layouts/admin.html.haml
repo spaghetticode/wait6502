@@ -15,16 +15,18 @@
           %li= link_to 'manufacturers', admin_manufacturers_path
           %li= link_to 'computer types', admin_computer_types_path
           %li= link_to 'io ports', admin_io_ports_path
-          %li= link_to 'storage names', admin_storage_names_path
-          %li= link_to 'storage formats', admin_storage_formats_path
-          %li= link_to 'storage sizes', admin_storage_sizes_path
-          %li= link_to 'builtin storages', admin_builtin_storages_path
-          %li= link_to 'cpu families', admin_cpu_families_path
-          %li= link_to 'cpu names', admin_cpu_names_path
-          %li= link_to 'cpus', admin_cpus_path
-          %li= link_to 'operative systems', admin_operative_systems_path
-          %li= link_to 'co cpu names', admin_co_cpu_names_path
-          %li= link_to 'co cpus', admin_co_cpus_path
+          %li= link_to 'storage names', admin_storage_names_path, :class => 'storage'
+          %li= link_to 'storage formats', admin_storage_formats_path, :class => 'storage'
+          %li= link_to 'storage sizes', admin_storage_sizes_path, :class => 'storage'
+          %li= link_to 'builtin storages', admin_builtin_storages_path, :class => 'storage'
+          %li= link_to 'cpu families', admin_cpu_families_path, :class => 'cpu'
+          %li= link_to 'cpu names', admin_cpu_names_path, :class => 'cpu'
+          %li= link_to 'cpus', admin_cpus_path, :class => 'cpu'
+          %li= link_to 'operative systems', admin_operative_systems_path, :class => 'software'
+          %li= link_to 'builtin languages', admin_builtin_languages_path, :class => 'software'
+          %li= link_to 'co cpu names', admin_co_cpu_names_path, :class => 'co-cpu'
+          %li= link_to 'co cpus', admin_co_cpus_path, :class => 'co-cpu'
+          %li= link_to 'computers', admin_computers_path
         - else
           %li= link_to 'login', login_path        
     - flash.each_pair do |type, message|

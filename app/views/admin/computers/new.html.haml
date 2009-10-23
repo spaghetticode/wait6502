@@ -1,0 +1,10 @@
+%h1 New Computer
+
+- form_for(@computer, :url => admin_computers_path) do |f|
+  = f.error_messages
+  %table
+    = render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+
+%p= link_to 'Back', admin_computers_path

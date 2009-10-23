@@ -1,4 +1,6 @@
 class Country < ActiveRecord::Base
+  has_many :manufacturers
+  
   set_primary_key :name
   
   validates_presence_of :name

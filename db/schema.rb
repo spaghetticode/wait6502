@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091022142130) do
+ActiveRecord::Schema.define(:version => 20091022211043) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -88,6 +88,26 @@ ActiveRecord::Schema.define(:version => 20091022142130) do
     t.datetime "updated_at"
   end
 
+  create_table "hardware", :force => true do |t|
+    t.string  "type",                :null => false
+    t.string  "name",                :null => false
+    t.string  "code"
+    t.text    "notes"
+    t.integer "manufacturer_id",     :null => false
+    t.integer "production_start"
+    t.integer "production_stop"
+    t.string  "computer_type_id"
+    t.string  "codename"
+    t.text    "text_modes"
+    t.text    "graphic_modes"
+    t.text    "sound"
+    t.string  "builtin_language_id"
+    t.string  "ram"
+    t.string  "vram"
+    t.string  "rom"
+    t.string  "peripheral_type"
+  end
+
   create_table "io_ports", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "connector"
@@ -114,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20091022142130) do
     t.datetime "updated_at"
   end
 
-  create_table "storage_names", :force => true do |t|
+  create_table "storage_names", :id => false, :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

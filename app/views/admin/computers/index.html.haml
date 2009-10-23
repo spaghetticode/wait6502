@@ -1,0 +1,42 @@
+%h1 Listing Computers
+
+%table
+  %tr
+    %th Name
+    %th Manufacturer
+    %th Type
+    %th Prod. Start
+    %th Prod. Stop
+    %th Code
+    %th Codename
+    %th Builtin Language
+    %th Ram
+    %th Vram
+    %th Rom
+    %th Text
+    %th Graphics
+    %th Sound
+    %th Notes
+    %th{:colspan => 2} Actions
+
+- @computers.each do |computer|
+  %tr
+    %td= h computer.name
+    %td= h computer.manufacturer.name
+    %td= h computer.computer_type_id
+    %td= h computer.code
+    %td= h computer.codename
+    %td= truncate h(computer.ram)
+    %td= truncate h(computer.vram)
+    %td= truncate h(computer.rom)
+    %td= h computer.production_start
+    %td= h computer.production_stop
+    %td= h computer.builtin_language_id
+    %td= truncate h(computer.text_modes)
+    %td= truncate h(computer.graphic_modes)
+    %td= truncate h(computer.sound)
+    %td=  link_to 'Edit', edit_admin_computer_path(computer)
+    %td=  link_to 'Destroy', admin_computer_path(computer), :confirm => 'Are you sure?', :method => :delete
+
+%p= will_paginate @computers
+%p= link_to 'New computer', new_admin_computer_path

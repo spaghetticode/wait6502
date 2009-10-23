@@ -1,4 +1,3 @@
-@focus
 Feature: Manage co-CPU
 	In order to add correct co-cpu information
 	As a logged user

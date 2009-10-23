@@ -26,6 +26,10 @@ describe Country do
       country = Factory(:country)
       country.id.should == country.name
     end
+    
+    it 'should have manufacturers association' do
+      Country.new.manufacturers.should == []
+    end
   end
   
   describe 'named scope ORDERED' do
