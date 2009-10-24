@@ -5,8 +5,12 @@ module BuiltinLanguagesControllerHelper
     post :create, :builtin_language => {}
   end
 
+  def delete_delete
+    delete :delete, :id => 'BASIC'
+  end
+  
   def mock_builtin_language(options={})
-    mock_model(BuiltinLanguage, options)
+    @mock ||= mock_model(BuiltinLanguage, options)
   end
 end
 
@@ -103,22 +107,45 @@ describe Admin::BuiltinLanguagesController do
       end
     end
 
-    describe 'DELETE DELETE' do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
-    # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        BuiltinLanguage.should_receive(:find).with('BASIC').and_return(mock_builtin_language(:destroy => nil))
-        delete :delete, :id => 'BASIC'
-      end
+    # l'id con il punto, visto che rails lo interpreta come separatore per format'
+    describe 'DELETE DELETE' do
+      describe 'when builtin language has no computer associated' do
+        before do
+          BuiltinLanguage.should_receive(:find).with('BASIC').
+            and_return(mock_builtin_language(:destroy => nil, :computers => []))
+          # the following expectation should not be in a before block, as it tests
+          # the real guts of the method but this makes specs code more readable
+          # and in my opinion doesn't hurt that much
+          mock_builtin_language.should_receive(:destroy)
+          delete_delete
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'Builtin language was successfully destroyed.'
-      end
+        it 'should flash a success message' do
+          flash[:notice].should == 'Builtin language was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_builtin_languages_path' do
-        response.should redirect_to(admin_builtin_languages_path)
+        it 'should redirect to admin_builtin_languages_path' do
+          response.should redirect_to(admin_builtin_languages_path)
+        end
+      end
+      
+      describe 'when builtin language has computers associated' do
+        before do
+          BuiltinLanguage.should_receive(:find).with('BASIC').
+            and_return(mock_builtin_language(:computers => [mock_model(Computer)]))
+          mock_builtin_language.should_not_receive(:destroy)
+          delete_delete
+        end
+        
+        it 'should redirect to admin_builtin_languages_path' do
+          response.should redirect_to(admin_builtin_languages_path)
+        end
+        
+        it 'should flash a failure message' do
+          flash[:error] = 'Can\'t destroy: language still has associated computers'
+        end
       end
     end
   end

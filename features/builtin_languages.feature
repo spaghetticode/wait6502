@@ -18,7 +18,7 @@ Feature: Manage Builtin Languages
 		And   I should see "BASIC"
 		
 	Scenario: Successfull Builtin Language Creation
-		And   I am on the builtin languages page
+		Given I am on the builtin languages page
 		And   I follow "new builtin language"
 		When  I fill in "name" with "Basic"
 		And   I press "Create"
@@ -27,14 +27,14 @@ Feature: Manage Builtin Languages
 		And   I should see "Basic"
 		
 	Scenario: Failing Builtin Language Creation (no name)
-		And   I cache the builtin languages count
+		Given I cache the builtin languages count
 		And   I am on the new builtin language page
 		When  I press "Create"
 		Then  I should see "Name can't be blank"
 		And   a new builtin language has not been created
 	
 	Scenario: Failing Builtin Language Creation (name taken)
-		And   a builtin language named "BASIC" exists
+		Given a builtin language named "BASIC" exists
 		And   I cache the builtin languages count
 		When  I go to the new builtin language page
 		And   I fill in "name" with "BASIC"
@@ -43,10 +43,18 @@ Feature: Manage Builtin Languages
 		And   a new builtin language has not been created
 		
 	Scenario: Destroying Builtin Language
-		And   a builtin language named "BASIC" exists
+		Given a builtin language named "BASIC" exists
 		And   I am on the builtin languages page
 		And   I should see "BASIC"
 		When  I press "destroy"
 		Then  I should see "Builtin language was successfully destroyed"
 		And   I should be on the builtin languages page
 		And   I should not see "BASIC"
+
+	Scenario: Failed Builtin Language Destroy
+		Given a builtin language named "BASIC" is associated to a computer
+		And   I am on the builtin languages page
+		When  I press "destroy"
+		Then  I should see "Can't destroy: language still has associated computers"
+		And   I should be on the builtin languages page
+		And   I should see "BASIC"

@@ -1,8 +1,9 @@
 Given /^a ([\w\s]+) named "([^\"]*)" exists$/ do |model, name|
   klass = class_for(model)
   lambda do
-    klass.create!(:name => name)
+    @model = klass.create!(:name => name)
   end.should change(klass, :count).by(1)
+  @model
 end
 
 Given /^I cache the ([\w\s]+) count$/ do |model|
@@ -13,6 +14,13 @@ end
 Given /^a new ([\w\s]+) has (.*)been created$/ do |model, switch|
   klass = class_for(model)
   klass.count.should == @count + (switch =~ /not/ ? 0 : 1)
+end
+
+Given /^a ([\w\s]+) named "([^\"]*)" is associated to a computer$/ do |model, name|
+  record = Given "a #{model} named \"#{name}\" exists"
+  computer = Factory(:computer)
+  record.computers << computer
+  record.computers.should include(computer)
 end
 
 def class_for(model)
