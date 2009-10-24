@@ -1,6 +1,8 @@
 class ComputerType < ActiveRecord::Base
   set_primary_key :name
   
+  has_many :computers
+  
   validates_presence_of :name
   validates_uniqueness_of :name
   

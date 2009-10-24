@@ -15,6 +15,10 @@ describe BuiltinLanguage do
       invalid = BuiltinLanguage.new(:name => builtin_language.name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have computers association' do
+      BuiltinLanguage.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do

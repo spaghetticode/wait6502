@@ -46,8 +46,8 @@ describe Computer do
   end
   
   describe 'an instance with valid attributes' do
-    def valid_computer
-      @valid = Factory(:computer)
+    def valid_computer(options = {})
+      @valid = Factory(:computer, options)
     end
     
     it 'should be valid' do
@@ -60,6 +60,11 @@ describe Computer do
     
     it 'should have a computer type association' do
       valid_computer.computer_type.should_not be_nil
+    end
+    
+    it 'should have a builtin_language association' do
+      computer = Factory(:computer, :builtin_language => Factory(:builtin_language))
+      computer.builtin_language.should_not be_nil
     end
   end
   

@@ -14,6 +14,10 @@ describe Manufacturer do
       invalid = Manufacturer.new(:name => Factory(:manufacturer).name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have computers association' do
+      Manufacturer.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do

@@ -15,6 +15,10 @@ describe ComputerType do
       invalid = ComputerType.new(:name => computer_type.name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have computers association' do
+      ComputerType.new.computers.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do

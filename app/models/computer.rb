@@ -1,5 +1,6 @@
 class Computer < Hardware
   belongs_to :computer_type
+  belongs_to :builtin_language
   has_and_belongs_to_many :cpus
   has_and_belongs_to_many :builtin_storages
   has_and_belongs_to_many :operative_systems
