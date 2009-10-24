@@ -41,15 +41,7 @@ Feature: Builtin Storages Management
 			And   I select "720Kb" from "Size"
 			And   I press "create"
 			Then  I should see "Storage name has already been taken"
-			
-		Scenario: Destroying Builtin Storage
-			Given a builtin storage "floppy-5.25 inches-360k" exists
-			And   I am on the builtin storages page
-			When  I follow "destroy"
-			Then  I should see "Builtin storage was successfully destroyed"
-			And   I should be on the builtin storages page
-			And   I should not see "floppy"
-			
+
 		Scenario: Editing Builtin Storage
 			Given a builtin storage "floppy disk - 5.25 inches - 360Kb" exists
 			And   I am on the builtin storages page
@@ -62,4 +54,19 @@ Feature: Builtin Storages Management
 			And   I should not see "5.25 inches"
 			But   I should see "3.5 inches"
 			And   I should see "1.44Mb"
-				
+		
+		Scenario: Destroying Builtin Storage
+			Given a builtin storage "floppy-5.25 inches-360k" exists
+			And   I am on the builtin storages page
+			When  I follow "destroy"
+			Then  I should see "Builtin storage was successfully destroyed"
+			And   I should be on the builtin storages page
+			And   I should not see "floppy"
+		
+		Scenario: Failed Builtin Storage Destroy
+			Given a builtin storage "floppy-5.25 inches-360k" is associated to a computer
+			And   I am on the builtin storages page
+			When  I follow "destroy"
+			Then  I should see "Can't destroy: storage still has associated computers"
+			And   I should be on the builtin storages page
+			And   I should see "floppy"

@@ -5,8 +5,12 @@ module BuiltinStoragesControllerHelper
     post :create, :builtin_storage => {}
   end
   
+  def delete_destroy
+    delete :destroy, :id => '1'
+  end
+  
   def mock_builtin_storage(options={})
-    mock_model(BuiltinStorage, options)
+    @mock ||= mock_model(BuiltinStorage, options)
   end
 end
 
@@ -125,17 +129,36 @@ describe Admin::BuiltinStoragesController do
     end
   
     describe 'DELETE DESTROY' do
-      before do
-        BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:destroy => nil))
-        delete :destroy, :id => '1'
-      end
+      describe 'when builtin storage has no computer associated' do
+        before do
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:computers => []))
+          mock_builtin_storage.should_receive(:destroy)
+          delete_destroy
+        end
     
-      it 'should flash' do
-        flash[:notice].should == 'Builtin storage was successfully destroyed.'
-      end
+        it 'should flash with a success message' do
+          flash[:notice].should == 'Builtin storage was successfully destroyed.'
+        end
     
-      it 'should redirect to admin_builtin_storages_path' do
-        response.should redirect_to(admin_builtin_storages_path)
+        it 'should redirect to admin_builtin_storages_path' do
+          response.should redirect_to(admin_builtin_storages_path)
+        end
+      end
+      
+      describe 'when builtin storage has at least one computer associated' do
+        before do
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:computers => [mock_model(Computer)]))
+          mock_builtin_storage.should_not_receive(:destroy)
+          delete_destroy
+        end
+        
+        it 'should redirect to admin_builtin_storages_path' do
+          response.should redirect_to(admin_builtin_storages_path)
+        end
+        
+        it 'should flash with a error message' do
+          flash[:error].should_not be_nil
+        end
       end
     end
   end

@@ -18,3 +18,9 @@ Given /^a builtin storage "([^\"]*)" exists$/ do |fields|
     :storage_size_id => size
   )
 end
+
+Given /^a builtin storage "([^\"]*)" is associated to a computer$/ do |fields|
+  storage = Given "a builtin storage \"#{fields}\" exists"
+  computer = Factory(:computer)
+  storage.computers << computer
+end

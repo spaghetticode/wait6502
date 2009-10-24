@@ -35,8 +35,13 @@ class Admin::BuiltinStoragesController < ApplicationController
   end
 
   def destroy
-    BuiltinStorage.find(params[:id]).destroy
-    flash[:notice] = 'Builtin storage was successfully destroyed.'
+    @builtin_storage = BuiltinStorage.find(params[:id])
+    if @builtin_storage.computers.empty?
+      @builtin_storage.destroy
+      flash[:notice] = 'Builtin storage was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: storage still has associated computers'
+    end
     redirect_to admin_builtin_storages_path
   end
 end
