@@ -18,7 +18,7 @@ Feature: Manage CPU Families
 		And   I should see "68K"
 		
 	Scenario: Successfull CPU Family Creation
-		And   I am on the cpu families page
+		Given I am on the cpu families page
 		And   I follow "new cpu family"
 		When  I fill in "name" with "X86"
 		And   I press "Create"
@@ -27,14 +27,14 @@ Feature: Manage CPU Families
 		And   I should see "X86"
 		
 	Scenario: Failing CPU Family Creation (no name)
-		And   I cache the cpu families count
+		Given I cache the cpu families count
 		And   I am on the new cpu family page
 		When  I press "Create"
 		Then  I should see "Name can't be blank"
 		And   a new cpu family has not been created
 	
 	Scenario: Failing CPU Family Creation (name taken)
-		And   a cpu family named "X86" exists
+		Given a cpu family named "X86" exists
 		And   I cache the cpu families count
 		When  I go to the new cpu family page
 		And   I fill in "name" with "X86"
@@ -43,10 +43,20 @@ Feature: Manage CPU Families
 		And   a new cpu family has not been created
 		
 	Scenario: Destroying CPU Family
-		And   a cpu family named "65XX" exists
+		Given a cpu family named "65XX" exists
 		And   I am on the cpu families page
 		And   I should see "65XX"
 		When  I press "destroy"
 		Then  I should see "CPU family was successfully destroyed"
 		And   I should be on the cpu families page
 		And   I should not see "65XX"
+		
+	Scenario: Failed CPU Family Destroy
+		Given a cpu family named "68K" is part of a CPU
+		And   I am on the cpu families page
+		And   I should see "68K"
+		When  I press "destroy"
+		Then  I should see "Can't destroy: CPU family is part of CPU"
+		And   I should be on the cpu families page
+		And  I should see "68K"
+		

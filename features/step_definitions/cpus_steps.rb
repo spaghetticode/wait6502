@@ -33,3 +33,9 @@ Given /^existing cpu is associated to a computer$/ do
   cpu.computers << computer
   computer.cpus.should include(cpu)
 end
+
+Given /^a cpu family named "(.*)" is part of a CPU$/ do |name|
+  cpu_family = CpuFamily.create!(:name => name)
+  cpu = Factory(:cpu, :cpu_family => cpu_family)
+  cpu.cpu_family.should == cpu_family
+end

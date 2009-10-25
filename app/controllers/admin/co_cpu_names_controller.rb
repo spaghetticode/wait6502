@@ -21,8 +21,12 @@ class Admin::CoCpuNamesController < ApplicationController
   end
 
   def delete
-    CoCpuName.find(params[:id]).destroy
-    flash[:notice] = 'Co-CPU name was successfully destroyed.'
+    if CoCpu.find_by_co_cpu_name_id(params[:id]).nil?
+      CoCpuName.find(params[:id]).destroy
+      flash[:notice] = 'Co-CPU name was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: co-CPU name is part of a co-CPU'
+    end
     redirect_to admin_co_cpu_names_path
   end
 end

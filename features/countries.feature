@@ -13,7 +13,7 @@ Feature: Manage Countries
 		And   I should see "Italy"
 		
 	Scenario: Successfull Country Creation
-		And   I cache the countries count
+		Given I cache the countries count
 		And   I am on the countries page
 		And   I follow "new country"
 		When  I fill in "name" with "Italy"
@@ -24,14 +24,14 @@ Feature: Manage Countries
 		And   I should see "Italy"
 		
 	Scenario: Failing Country Creation (no name)
-		And   I cache the countries count
+		Given I cache the countries count
 		And   I am on the new country page
 		When  I press "Create"
 		Then  I should see "Name can't be blank"
 		And   a new country has not been created
 	
 	Scenario: Failing Country Creation (name taken)
-		And   a country named "Italy" exists
+		Given a country named "Italy" exists
 		And   I cache the countries count
 		When  I go to the new country page
 		And   I fill in "name" with "Italy"
@@ -40,10 +40,20 @@ Feature: Manage Countries
 		And   a new country has not been created
 		
 	Scenario: Destroying Country
-		And   a country named "Italy" exists
+		Given a country named "Italy" exists
 		And   I am on the countries page
 		And   I should see "Italy"
 		When  I follow "destroy"
 		Then  I should see "Country was successfully destroyed"
 		And   I should be on the countries page
 		And   I should not see "Italy"
+	
+	Scenario: Failed Country Destroy
+		Given a country named "Italy" belongs to a manufacturer
+		And   I am on the countries page
+		And   I should see "Italy"
+		When  I follow "destroy"
+		Then  I should see "Can't destroy:"
+		And   I should be on the countries page
+		And   I should see "Italy"
+		

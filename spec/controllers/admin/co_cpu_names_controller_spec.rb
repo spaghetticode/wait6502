@@ -6,7 +6,7 @@ module CoCpuNamesControllerHelper
   end
 
   def mock_co_cpu_name(options={})
-    mock_model(CoCpuName, options)
+    @mock ||= mock_model(CoCpuName, options)
   end
 end
 
@@ -107,18 +107,37 @@ describe Admin::CoCpuNamesController do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        CoCpuName.should_receive(:find).with('Fat Agnus').and_return(mock_co_cpu_name(:destroy => nil))
-        delete :delete, :id => 'Fat Agnus'
-      end
+      describe 'when co cpu name is not used by any co-cpu' do
+        before do
+          CoCpu.should_receive(:find_by_co_cpu_name_id).and_return(nil)
+          CoCpuName.should_receive(:find).with('Fat Agnus').and_return(mock_co_cpu_name(:cpus => []))
+          mock_co_cpu_name.should_receive(:destroy)
+          delete :delete, :id => 'Fat Agnus'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'Co-CPU name was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Co-CPU name was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_co_cpu_names_path' do
-        response.should redirect_to(admin_co_cpu_names_path)
+        it 'should redirect to admin_co_cpu_names_path' do
+          response.should redirect_to(admin_co_cpu_names_path)
+        end
+      end
+      
+      describe 'when co cpu name is used by at least one co-cpu' do
+        before do
+          CoCpu.should_receive(:find_by_co_cpu_name_id).and_return(mock_model(CoCpu))
+          CoCpuName.should_not_receive(:destroy)
+          delete :delete, :id => 'Fat Agnus'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_co_cpu_names_path' do
+          response.should redirect_to(admin_co_cpu_names_path)
+        end
       end
     end
   end

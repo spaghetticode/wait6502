@@ -6,7 +6,7 @@ module CountriesControllerHelper
   end
   
   def mock_country(options={})
-    mock_model(Country, options)
+    @mock ||= mock_model(Country, options)
   end
 end
 
@@ -104,17 +104,36 @@ describe Admin::CountriesController do
     end
   
     describe 'DELETE DESTROY' do
-      before do
-        Country.should_receive(:find).and_return(mock_country(:destroy => nil))
-        delete :destroy, :id => '1'
-      end
+      describe 'when country has no manufacturer associated' do
+        before do
+          Country.should_receive(:find).and_return(mock_country)
+          mock_country.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
     
-      it 'should flash' do
-        flash[:notice].should == 'Country was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Country was successfully destroyed.'
+        end
     
-      it 'should redirect to admin_countries_path' do
-        response.should redirect_to(admin_countries_path)
+        it 'should redirect to admin_countries_path' do
+          response.should redirect_to(admin_countries_path)
+        end
+      end
+      
+      describe 'when country has at least one manufacturer associated' do
+        before do
+          Manufacturer.should_receive(:find_by_country_id).and_return(mock_model(Manufacturer))
+          Country.should_not_receive(:find)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+    
+        it 'should redirect to admin_countries_path' do
+          response.should redirect_to(admin_countries_path)
+        end
       end
     end
   end

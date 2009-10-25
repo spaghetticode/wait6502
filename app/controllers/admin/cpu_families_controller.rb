@@ -21,8 +21,12 @@ class Admin::CpuFamiliesController < ApplicationController
   end
 
   def delete
-    CpuFamily.find(params[:id]).destroy
-    flash[:notice] = 'CPU family was successfully destroyed.'
+    if Cpu.find_by_cpu_family_id(params[:id]).nil?
+      CpuFamily.find(params[:id]).destroy
+      flash[:notice] = 'CPU family was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: CPU family is part of CPU'
+    end
     redirect_to admin_cpu_families_path
   end
 end

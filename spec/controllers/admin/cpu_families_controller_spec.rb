@@ -107,18 +107,35 @@ describe Admin::CpuFamiliesController do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        CpuFamily.should_receive(:find).with('68XX').and_return(mock_cpu_family(:destroy => nil))
-        delete :delete, :id => '68XX'
-      end
+      describe 'when cpu family is not used by any CPU' do        
+        before do
+          CpuFamily.should_receive(:find).with('68XX').and_return(mock_cpu_family(:destroy => nil))
+          delete :delete, :id => '68XX'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'CPU family was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'CPU family was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_cpu_families_path' do
-        response.should redirect_to(admin_cpu_families_path)
+        it 'should redirect to admin_cpu_families_path' do
+          response.should redirect_to(admin_cpu_families_path)
+        end
+      end
+      
+      describe 'when cpu family is used by at least one CPU' do
+        before do
+          Cpu.should_receive(:find_by_cpu_family_id).and_return(mock_model(Cpu))
+          CpuFamily.should_not_receive(:find)
+          delete :delete, :id => '68XX'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+
+        it 'should redirect to admin_cpu_families_path' do
+          response.should redirect_to(admin_cpu_families_path)
+        end
       end
     end
   end
