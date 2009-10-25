@@ -1,3 +1,4 @@
+@focus
 Feature: Manage Opertive Systems
 	In order to add OS info to computers
 	As a logged user
@@ -69,3 +70,12 @@ Feature: Manage Opertive Systems
 		Then  I should see "Operative system was successfully destroyed"
 		And   I should be on the operative systems page
 		And   I should not see "OSX"
+
+	Scenario: Failed IO Port Destroy
+		Given a operative system named "MS-DOS" is associated to a computer
+		And   I am on the operative systems page
+		When  I follow "destroy"
+		Then  I should see "Can't destroy: operative system still has associated computers"
+		And   I should be on the operative systems page
+		And   I should see "MS-DOS"
+		

@@ -153,18 +153,36 @@ describe Admin::OperativeSystemsController do
     end
     
     describe 'DELETE DESTROY' do
-      before do
-        mock_operative_system.should_receive(:destroy)
-        OperativeSystem.should_receive(:find).and_return(mock_operative_system)
-        delete_destroy
+      describe 'when operative system has no computer associated' do
+        before do
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:computers => []))
+          mock_operative_system.should_receive(:destroy)
+          delete_destroy
+        end
+      
+        it 'should redirect to admin_operative_systems_path' do
+          response.should redirect_to(admin_operative_systems_path)
+        end
+      
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
       end
       
-      it 'should redirect to admin_operative_systems_path' do
-        response.should redirect_to(admin_operative_systems_path)
-      end
-      
-      it 'should flash' do
-        flash[:notice].should_not be_nil
+      describe 'when operative system has at least one computer associated' do
+        before do
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:computers => [mock_model(Computer)]))
+          mock_operative_system.should_not_receive(:destroy)
+          delete_destroy
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_operative_systems_path' do
+          response.should redirect_to(admin_operative_systems_path)
+        end
       end
     end
   end

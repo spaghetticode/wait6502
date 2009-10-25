@@ -19,8 +19,11 @@ end
 Given /^a ([\w\s]+) named "([^\"]*)" is associated to a computer$/ do |model, name|
   record = Given "a #{model} named \"#{name}\" exists"
   computer = Factory(:computer)
-  if record.is_a?(ComputerType)
+  case record
+  when ComputerType
     computer.update_attribute(:computer_type, record)
+  when Manufacturer
+    computer.update_attribute(:manufacturer, record)
   else
     record.computers << computer
   end

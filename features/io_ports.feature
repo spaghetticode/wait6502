@@ -1,4 +1,3 @@
-@focus
 Feature: Manage I/O Ports
 	In order to add computer io ports information
 	As a logged in user

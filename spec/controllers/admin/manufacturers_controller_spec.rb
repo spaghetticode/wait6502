@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 module ManufacturersControllerHelper
   def mock_manufacturer(options={})
-    mock_model(Manufacturer, options)
+    @mock ||= mock_model(Manufacturer, options)
   end
 end
 
@@ -126,17 +126,36 @@ describe Admin::ManufacturersController do
     end
     
     describe 'DELETE DESTROY' do
-      before do
-        Manufacturer.should_receive(:find).and_return(mock_manufacturer(:destroy => nil))
-        delete :destroy, :id => '1'
+      describe 'when manufacturer has no associated computer' do
+        before do
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:computers => []))
+          mock_manufacturer.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+      
+        it 'should flash' do
+          flash[:notice].should == 'Manufacturer was successfully destroyed.'
+        end
+      
+        it 'should redirect to admin_manufacturers_path' do
+          response.should redirect_to(admin_manufacturers_path)
+        end
       end
       
-      it 'should flash' do
-        flash[:notice].should == 'Manufacturer was successfully destroyed.'
-      end
-      
-      it 'should redirect to admin_manufacturers_path' do
-        response.should redirect_to(admin_manufacturers_path)
+      describe 'when manufacturer has at least one associated computer' do
+        before do
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:computers => [mock_model(Computer)]))
+          mock_manufacturer.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_manufacturers_path' do
+          response.should redirect_to(admin_manufacturers_path)
+        end
       end
     end
   end

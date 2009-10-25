@@ -1,3 +1,4 @@
+@focus
 Feature: Manage Manufacturers
 	In order to add computers and CPUs manufacturer info
 	As a logged in user
@@ -61,4 +62,13 @@ Feature: Manage Manufacturers
 		Then  I should see "Manufacturer was successfully destroyed"
 		And   I should be on the manufacturers page
 		And   I should not see "Atari"
+		
+	Scenario: Failed Manufacturer Destroy
+		Given a manufacturer named "Atari" is associated to a computer
+		And   I am on the manufacturers page
+		When  I follow "destroy"
+		Then  I should see "Can't destroy: manufacturer still has associated computers"
+		And   I should be on the manufacturers page
+		And   I should see "Atari"
+		
 		
