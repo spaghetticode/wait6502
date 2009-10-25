@@ -152,17 +152,36 @@ describe Admin::CpusController do
     end
       
     describe 'DELETE DESTROY' do
-      before do
-        Cpu.should_receive(:find).and_return(mock_cpu(:destroy => nil))
-        delete :destroy, :id => '1'
+      describe 'when cpu has no associated computer' do
+        before do
+          Cpu.should_receive(:find).and_return(mock_cpu(:computers => []))
+          mock_cpu.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+    
+        it 'should flash' do
+          flash[:notice].should == 'CPU was successfully destroyed.'
+        end
+    
+        it 'should redirect to admin_cpus_path' do
+          response.should redirect_to(admin_cpus_path)
+        end
       end
     
-      it 'should flash' do
-        flash[:notice].should == 'CPU was successfully destroyed.'
-      end
-    
-      it 'should redirect to admin_cpus_path' do
-        response.should redirect_to(admin_cpus_path)
+      describe 'when cpu has at least one associated computer' do
+        before do
+          Cpu.should_receive(:find).and_return(mock_cpu(:computers => [mock_model(Computer)]))
+          mock_cpu.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_cpus_path' do
+          response.should redirect_to(admin_cpus_path)
+        end
       end
     end
   end

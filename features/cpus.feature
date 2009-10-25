@@ -1,3 +1,4 @@
+@focus
 Feature: CPUs Management
 	In order to have correct computer CPUs information
 	As a logged user
@@ -77,4 +78,13 @@ Feature: CPUs Management
 			Then  I should see "CPU was successfully destroyed"
 			And   I should be on the cpus page
 			And   I should not see "68000"
+		
+		Scenario: Failed CPU Destroy
+			Given existing cpu is associated to a computer
+			And   I am on the cpus page
+			When  I follow "destroy"
+			Then  I should see "Can't destroy: CPU still has associated computers"
+			And   I should be on the cpus page
+			And   I should see "68000"
+			
 			

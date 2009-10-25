@@ -24,7 +24,6 @@ Given /^a ([\w\s]+) named "([^\"]*)" is associated to a computer$/ do |model, na
   else
     record.computers << computer
   end
-  require 'ruby-debug';debugger
   record.computers.should include(computer)
 end
 
@@ -61,4 +60,9 @@ def class_for(model)
   when /builtin language/
     BuiltinLanguage
   end
+end
+
+Then /^checker$/ do
+  require 'ruby-debug'
+  debugger
 end

@@ -153,18 +153,36 @@ describe Admin::IoPortsController do
     end
     
     describe 'DELETE DESTROY' do
-      before do
-        mock_io_port.should_receive(:destroy)
-        IoPort.should_receive(:find).and_return(mock_io_port)
-        delete :destroy, :id => '1'
-      end
+      describe 'when io port has no computer associated' do
+        before do
+          mock_io_port(:computers => []).should_receive(:destroy)
+          IoPort.should_receive(:find).and_return(mock_io_port)
+          delete :destroy, :id => '1'
+        end
     
-      it 'should flash' do
-        flash[:notice].should == 'IO Port was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'IO Port was successfully destroyed.'
+        end
     
-      it 'should redirect to io_ports_path' do
-        response.should redirect_to(admin_io_ports_path)
+        it 'should redirect to io_ports_path' do
+          response.should redirect_to(admin_io_ports_path)
+        end
+      end
+      
+      describe 'when io port has at least one computer associated' do
+        before do
+          IoPort.should_receive(:find).and_return(mock_io_port(:computers => [mock_model(Computer)]))
+          mock_io_port.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_io_ports_path' do
+          response.should redirect_to(admin_io_ports_path)
+        end
       end
     end
   end

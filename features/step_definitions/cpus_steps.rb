@@ -26,3 +26,10 @@ Given /^a cpu "([^\"]*)" exists$/ do |description|
     :cpu_bit => bit,
     :clock => clock)
 end
+
+Given /^existing cpu is associated to a computer$/ do
+  cpu = Cpu.first
+  computer = Factory(:computer)
+  cpu.computers << computer
+  computer.cpus.should include(cpu)
+end
