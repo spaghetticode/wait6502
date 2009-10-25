@@ -19,7 +19,12 @@ end
 Given /^a ([\w\s]+) named "([^\"]*)" is associated to a computer$/ do |model, name|
   record = Given "a #{model} named \"#{name}\" exists"
   computer = Factory(:computer)
-  record.computers << computer
+  if record.is_a?(ComputerType)
+    computer.update_attribute(:computer_type, record)
+  else
+    record.computers << computer
+  end
+  require 'ruby-debug';debugger
   record.computers.should include(computer)
 end
 

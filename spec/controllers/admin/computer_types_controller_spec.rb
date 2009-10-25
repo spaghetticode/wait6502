@@ -6,7 +6,7 @@ module ComputerTypesControllerHelper
   end
   
   def mock_computer_type(options={})
-    mock_model(ComputerType, options)
+    @mock ||= mock_model(ComputerType, options)
   end
 end
 
@@ -104,17 +104,36 @@ describe Admin::ComputerTypesController do
     end
   
     describe 'DELETE DESTROY' do
-      before do
-        ComputerType.should_receive(:find).and_return(mock_computer_type(:destroy => nil))
-        delete :destroy, :id => '1'
-      end
+      describe 'when computer type has no associated computer' do
+        before do
+          ComputerType.should_receive(:find).and_return(mock_computer_type(:computers => []))
+          mock_computer_type.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
     
-      it 'should flash' do
-        flash[:notice].should == 'Computer type was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Computer type was successfully destroyed.'
+        end
     
-      it 'should redirect to admin_computer_types_path' do
-        response.should redirect_to(admin_computer_types_path)
+        it 'should redirect to admin_computer_types_path' do
+          response.should redirect_to(admin_computer_types_path)
+        end
+      end
+      
+      describe 'when computer type has at least one computer associated' do
+        before do
+          ComputerType.should_receive(:find).and_return(mock_computer_type(:computers => [mock_model(Computer)]))
+          mock_computer_type.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_computer_types_path' do
+          response.should redirect_to(admin_computer_types_path)
+        end
       end
     end
   end

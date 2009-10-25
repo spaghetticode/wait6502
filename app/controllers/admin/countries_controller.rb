@@ -21,6 +21,7 @@ class Admin::CountriesController < ApplicationController
   end
 
   def destroy
+    # TODO: secure destroy
     Country.find(params[:id]).destroy
     flash[:notice] = 'Country was successfully destroyed.'
     redirect_to admin_countries_path

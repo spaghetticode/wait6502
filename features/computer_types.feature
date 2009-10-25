@@ -18,7 +18,7 @@ Feature: Manage Computer Types
 		And   I should see "Portable"
 		
 	Scenario: Successfull Computer Type Creation
-		And   I cache the computer types count
+		Given I cache the computer types count
 		And   I am on the computer types page
 		And   I follow "new computer type"
 		When  I fill in "name" with "Home Computer"
@@ -29,14 +29,14 @@ Feature: Manage Computer Types
 		And   I should see "Home Computer"
 		
 	Scenario: Failing Computer Type Creation (no name)
-		And   I cache the computer types count
+		Given I cache the computer types count
 		And   I am on the new computer type page
 		When  I press "Create"
 		Then  I should see "Name can't be blank"
 		And   a new computer type has not been created
 	
 	Scenario: Failing Computer Type Creation (name taken)
-		And   a computer type named "Personal" exists
+		Given a computer type named "Personal" exists
 		And   I cache the computer types count
 		When  I go to the new computer type page
 		And   I fill in "name" with "Personal"
@@ -45,10 +45,19 @@ Feature: Manage Computer Types
 		And   a new computer type has not been created
 		
 	Scenario: Destroying Computer Type
-		And   a computer type named "Portable" exists
+		Given a computer type named "Portable" exists
 		And   I am on the computer types page
 		And   I should see "Portable"
 		When  I follow "destroy"
 		Then  I should see "Computer type was successfully destroyed"
 		And   I should be on the computer types page
 		And   I should not see "Portable"
+	
+	Scenario: Failed Computer Type Destroy (associated computer)
+		Given a computer type named "Portable" is associated to a computer
+		And   I am on the computer types page
+		When  I follow "destroy"
+		Then  I should see "Can't destroy: computer type still has associated computers"
+		And   I should be on the computer types page
+		And   I should see "Portable"
+		

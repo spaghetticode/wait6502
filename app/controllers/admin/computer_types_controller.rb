@@ -39,8 +39,13 @@ class Admin::ComputerTypesController < ApplicationController
   end
 
   def destroy
-    ComputerType.find(params[:id]).destroy
-    flash[:notice] = 'Computer type was successfully destroyed.'
+    computer_type = ComputerType.find(params[:id])
+    if computer_type.computers.empty?
+      computer_type.destroy
+      flash[:notice] = 'Computer type was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: computer type still has associated computers'
+    end
     redirect_to admin_computer_types_path
   end
 end

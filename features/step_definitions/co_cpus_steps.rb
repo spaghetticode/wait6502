@@ -16,6 +16,14 @@ Given /^a co cpu "([^\"]*)" exists$/ do |values|
   name = CoCpuName.find_by_name(c_name)
   type = CoCpuType.find_by_name(c_type)
   lambda do
-    CoCpu.create!(:co_cpu_name => name, :co_cpu_type => type, :manufacturer => manufacturer)
+    @co_cpu = CoCpu.create!(:co_cpu_name => name, :co_cpu_type => type, :manufacturer => manufacturer)
   end.should change(CoCpu, :count).by(1)
+  @co_cpu
+end
+
+Given /^a co cpu "([^\"]*)" is associated to a computer$/ do |fields|
+  co_cpu = Given "a co cpu \"#{fields}\" exists"
+  computer = Factory(:computer)
+  co_cpu.computers << computer
+  computer.co_cpus.should include(co_cpu)
 end

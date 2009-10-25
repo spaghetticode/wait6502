@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module CoCpusControllerHelper
   def mock_co_cpu(options={})
-    mock_model(CoCpu, options)
+   @mock ||= mock_model(CoCpu, options)
   end
   
   def delete_destroy
@@ -182,17 +182,36 @@ describe Admin::CoCpusController do
     end
     
     describe 'DELETE DESTROY' do
-      before do
-        CoCpu.should_receive(:find).and_return(mock_co_cpu(:destroy => nil))
-        delete_destroy
+      describe 'when co-cpu has no computer associated' do
+        before do
+          CoCpu.should_receive(:find).and_return(mock_co_cpu(:computers => []))
+          mock_co_cpu.should_receive(:destroy)
+          delete_destroy
+        end
+      
+        it 'should redirect to admin_co_cpus_path' do
+          response.should redirect_to(admin_co_cpus_path)
+        end
+      
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
       end
       
-      it 'should redirect to admin_co_cpus_path' do
-        response.should redirect_to(admin_co_cpus_path)
-      end
-      
-      it 'should flash' do
-        flash[:notice].should_not be_nil
+      describe 'when co-cpu has at least one associated computer' do
+        before do
+          CoCpu.should_receive(:find).and_return(mock_co_cpu(:computers => [mock_model(Computer)]))
+          mock_co_cpu.should_not_receive(:destroy)
+          delete_destroy
+        end
+          
+        it 'should redirect to admin_co_cpus_path' do
+          response.should redirect_to(admin_co_cpus_path)
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
       end
     end
   end 

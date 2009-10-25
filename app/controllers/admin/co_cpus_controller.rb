@@ -35,8 +35,13 @@ class Admin::CoCpusController < ApplicationController
   end
 
   def destroy
-    CoCpu.find(params[:id]).destroy
-    flash[:notice] = 'Co-CPU was successfully destroyed.'
+    co_cpu = CoCpu.find(params[:id])
+    if co_cpu.computers.empty?
+      co_cpu.destroy
+      flash[:notice] = 'Co-CPU was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: co-CPU still has associated computers'
+    end
     redirect_to(admin_co_cpus_path)
   end
 end
