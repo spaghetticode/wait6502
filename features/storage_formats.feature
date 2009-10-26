@@ -49,3 +49,12 @@ Feature: Manage Storage Formats
 		Then  I should see "Storage format was successfully destroyed"
 		And   I should be on the storage formats page
 		And   I should not see "3.5 inches"
+	
+	Scenario: Failed Storage Format Destroy
+		Given a storage format named "3.5 inches" is part of a builtin storage
+		And   I am on the storage formats page
+		When  I press "destroy"
+		Then  I should see "Can't destroy: storage format is part of a builtin storage"
+		And   I should be on the storage formats page
+		And   I should see "3.5 inches"
+		

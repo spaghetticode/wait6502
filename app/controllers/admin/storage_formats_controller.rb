@@ -21,8 +21,12 @@ class Admin::StorageFormatsController < ApplicationController
   end
 
   def delete
-    @storage_format = StorageFormat.find(params[:id]).destroy
-    flash[:notice] = 'Storage format was successfully destroyed.'
+    if BuiltinStorage.find_by_storage_format_id(params[:id]).nil?
+      StorageFormat.find(params[:id]).destroy
+      flash[:notice] = 'Storage format was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: storage format is part of a builtin storage'
+    end
     redirect_to admin_storage_formats_path
   end
 end

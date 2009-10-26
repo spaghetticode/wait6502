@@ -52,6 +52,8 @@ def class_for(model)
     StorageSize
   when /cpu famil/
     CpuFamily
+  when /cpu name/
+    CpuName
   when /co cpu name/
     CoCpuName
   when /co cpu/
@@ -63,9 +65,4 @@ def class_for(model)
   when /builtin language/
     BuiltinLanguage
   end
-end
-
-Then /^checker$/ do
-  require 'ruby-debug'
-  debugger
 end

@@ -6,7 +6,7 @@ module StorageSizesControllerHelper
   end
 
   def mock_storage_size(options={})
-    mock_model(StorageSize, options)
+    @mock ||= mock_model(StorageSize, options)
   end
 end
 
@@ -97,19 +97,36 @@ describe Admin::StorageSizesController do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        StorageSize.should_receive(:find).with('1.2Mb').and_return(mock_storage_size(:destroy => nil))
-        delete :delete, :id => '1.2Mb'
-      end
+      describe 'when storage size is not part of any builtin storage' do
+        before do
+          StorageSize.should_receive(:find).with('1.2Mb').and_return(mock_storage_size)
+          mock_storage_size.should_receive(:destroy)
+          delete :delete, :id => '1.2Mb'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'Storage size was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Storage size was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_storage_sizes_path' do
-        response.should redirect_to(admin_storage_sizes_path)
+        it 'should redirect to admin_storage_sizes_path' do
+          response.should redirect_to(admin_storage_sizes_path)
+        end
       end
-    end
+      describe 'when storage size is part of at least one builtin storage' do
+        before do
+          BuiltinStorage.should_receive(:find_by_storage_size_id).and_return(mock_model(StorageSize))
+          StorageSize.should_not_receive(:find)
+          delete :delete, :id => '1.2Mb'
+        end
+      
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+
+        it 'should redirect to admin_storage_sizes_path' do
+          response.should redirect_to(admin_storage_sizes_path)
+        end
+      end
+    end     
   end
 end

@@ -34,8 +34,9 @@ Given /^existing cpu is associated to a computer$/ do
   computer.cpus.should include(cpu)
 end
 
-Given /^a cpu family named "(.*)" is part of a CPU$/ do |name|
-  cpu_family = CpuFamily.create!(:name => name)
-  cpu = Factory(:cpu, :cpu_family => cpu_family)
-  cpu.cpu_family.should == cpu_family
+Given /^a cpu (\w+) named "(.*)" is part of a CPU$/ do |type, name|
+  field = "cpu_#{type}"
+  record = Factory(field, :name => name)
+  cpu = Factory(:cpu, field => record)
+  cpu.send(field).should == record
 end

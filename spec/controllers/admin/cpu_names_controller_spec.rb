@@ -6,7 +6,7 @@ module CpuNamesControllerHelper
   end
 
   def mock_cpu_name(options={})
-    mock_model(CpuName, options)
+    @mock ||= mock_model(CpuName, options)
   end
 end
 
@@ -107,18 +107,36 @@ describe Admin::CpuNamesController do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        CpuName.should_receive(:find).with('6502').and_return(mock_cpu_name(:destroy => nil))
-        delete :delete, :id => '6502'
-      end
+      describe 'when cpu name is not part of any CPU' do
+        before do
+          CpuName.should_receive(:find).with('6502').and_return(mock_cpu_name)
+          mock_cpu_name.should_receive(:destroy)
+          delete :delete, :id => '6502'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'CPU name was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'CPU name was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_cpu_names_path' do
-        response.should redirect_to(admin_cpu_names_path)
+        it 'should redirect to admin_cpu_names_path' do
+          response.should redirect_to(admin_cpu_names_path)
+        end
+      end
+      
+      describe 'when cpu name is part of at least one CPU' do
+        before do
+          Cpu.should_receive(:find_by_cpu_name_id).and_return(mock_model(Cpu))
+          CpuName.should_not_receive(:find)
+          delete :delete, :id => '6502'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+
+        it 'should redirect to admin_cpu_names_path' do
+          response.should redirect_to(admin_cpu_names_path)
+        end
       end
     end
   end

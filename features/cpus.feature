@@ -1,4 +1,3 @@
-@focus
 Feature: CPUs Management
 	In order to have correct computer CPUs information
 	As a logged user

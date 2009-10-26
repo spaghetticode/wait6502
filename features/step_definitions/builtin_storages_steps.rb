@@ -24,3 +24,10 @@ Given /^a builtin storage "([^\"]*)" is associated to a computer$/ do |fields|
   computer = Factory(:computer)
   storage.computers << computer
 end
+
+Given /^a storage (.*) named "([^\"]*)" is part of a builtin storage$/ do |type, name|
+  field = "storage_#{type}"
+  record = Factory(field, :name => name)
+  storage = Factory(:builtin_storage, field => record)
+  storage.send(field).should == record
+end

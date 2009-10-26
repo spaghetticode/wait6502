@@ -6,7 +6,7 @@ module StorageFormatsControllerHelper
   end
 
   def mock_storage_format(options={})
-    mock_model(StorageFormat, options)
+    @mock ||= mock_model(StorageFormat, options)
   end
 end
 
@@ -107,18 +107,36 @@ describe Admin::StorageFormatsController do
     # il classico metodo destroy è stato sostituito da questo delete che opera
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format
-    
-      before do
-        StorageFormat.should_receive(:find).with('3.5 inches').and_return(mock_storage_format(:destroy => nil))
-        delete :delete, :id => '3.5 inches'
-      end
+      describe 'when storage format is not part of any builtin storage' do
+        before do
+          StorageFormat.should_receive(:find).with('3.5 inches').and_return(mock_storage_format)
+          mock_storage_format.should_receive(:destroy)
+          delete :delete, :id => '3.5 inches'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'Storage format was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Storage format was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_storage_formats_path' do
-        response.should redirect_to(admin_storage_formats_path)
+        it 'should redirect to admin_storage_formats_path' do
+          response.should redirect_to(admin_storage_formats_path)
+        end
+      end
+      
+      describe 'when storage format is part of at least one builtin storage' do
+        before do
+          BuiltinStorage.should_receive(:find_by_storage_format_id).and_return(mock_model(BuiltinStorage))
+          StorageFormat.should_not_receive(:find)
+          delete :delete, :id => '3.5 inches'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_storage_formats_path' do
+          response.should redirect_to(admin_storage_formats_path)
+        end
       end
     end
   end

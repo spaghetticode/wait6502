@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Manufacturers
 	In order to add computers and CPUs manufacturer info
 	As a logged in user

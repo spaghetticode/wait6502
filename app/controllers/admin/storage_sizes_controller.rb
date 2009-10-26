@@ -22,8 +22,12 @@ class Admin::StorageSizesController < ApplicationController
   end
 
   def delete
-    @storage_format = StorageSize.find(params[:id]).destroy
-    flash[:notice] = 'Storage size was successfully destroyed.'
+    if BuiltinStorage.find_by_storage_size_id(params[:id]).nil?
+      StorageSize.find(params[:id]).destroy
+      flash[:notice] = 'Storage size was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: storage size is part of a builtin storage'
+    end
     redirect_to admin_storage_sizes_path
   end
 end

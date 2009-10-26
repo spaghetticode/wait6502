@@ -50,3 +50,12 @@ Feature: Manage Storage Sizes
 		Then  I should see "Storage size was successfully destroyed"
 		And   I should be on the storage sizes page
 		And   I should not see "880k"
+
+	Scenario: Failed Storage Name destroy
+		Given a storage size named "880K" is part of a builtin storage
+		And   I am on the storage sizes page
+		When  I press "destroy"
+		Then  I should see "Can't destroy: storage size is part of a builtin storage"
+		And   I should be on the storage sizes page
+		And   I should see "880K"
+	

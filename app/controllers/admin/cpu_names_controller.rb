@@ -21,8 +21,12 @@ class Admin::CpuNamesController < ApplicationController
   end
   
   def delete
-    CpuName.find(params[:id]).destroy
-    flash[:notice] = 'CPU name was successfully destroyed.'
+    if Cpu.find_by_cpu_name_id(params[:id]).nil?
+      CpuName.find(params[:id]).destroy
+      flash[:notice] = 'CPU name was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: CPU name is part of CPU'
+    end
     redirect_to admin_cpu_names_path
   end
 end

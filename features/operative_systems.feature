@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Opertive Systems
 	In order to add OS info to computers
 	As a logged user

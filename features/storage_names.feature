@@ -50,3 +50,12 @@ Feature: Manage Storage Names
 		Then  I should see "Storage name was successfully destroyed"
 		And   I should be on the storage names page
 		And   I should not see "tape"
+
+	Scenario: Failed Storage Name Destroy
+		Given a storage name named "floppy" is part of a builtin storage
+		And   I am on the storage names page
+		And   I follow "destroy"
+		Then  I should see "Can't destroy: storage name is part of a builtin storage"
+		And   I should be on the storage names page
+		And   I should see "floppy"
+		

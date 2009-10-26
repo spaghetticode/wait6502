@@ -21,8 +21,12 @@ class Admin::StorageNamesController < ApplicationController
   end
 
   def destroy
-    StorageName.find(params[:id]).destroy
-    flash[:notice] = 'Storage name was successfully destroyed.'
+    if BuiltinStorage.find_by_storage_name_id(params[:id]).nil?
+      StorageName.find(params[:id]).destroy
+      flash[:notice] = 'Storage name was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: storage name is part of a builtin storage'
+    end
     redirect_to admin_storage_names_path
   end
 end

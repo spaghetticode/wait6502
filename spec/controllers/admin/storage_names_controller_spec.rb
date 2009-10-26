@@ -6,7 +6,7 @@ module StorageNamesControllerHelper
   end
 
   def mock_storage_name(options={})
-    mock_model(StorageName, options)
+    @mock ||= mock_model(StorageName, options)
   end
 end
 
@@ -104,17 +104,37 @@ describe Admin::StorageNamesController do
     end
 
     describe 'DELETE DESTROY' do
-      before do
-        StorageName.should_receive(:find).and_return(mock_storage_name(:destroy => nil))
-        delete :destroy, :id => '1'
-      end
+      describe 'when storage name is not part of any builtin storage' do
+        before do
+          BuiltinStorage.should_receive(:find_by_storage_name_id).and_return(nil)
+          StorageName.should_receive(:find).and_return(mock_storage_name)
+          mock_storage_name.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
 
-      it 'should flash' do
-        flash[:notice].should == 'Storage name was successfully destroyed.'
-      end
+        it 'should flash' do
+          flash[:notice].should == 'Storage name was successfully destroyed.'
+        end
 
-      it 'should redirect to admin_storage_names_path' do
-        response.should redirect_to(admin_storage_names_path)
+        it 'should redirect to admin_storage_names_path' do
+          response.should redirect_to(admin_storage_names_path)
+        end
+      end
+      
+      describe 'when storage name is part of at least one builtin storage' do
+        before do
+          BuiltinStorage.should_receive(:find_by_storage_name_id).and_return(mock_model(BuiltinStorage))
+          StorageName.should_not_receive(:find)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_storage_names_path' do
+          response.should redirect_to(admin_storage_names_path)
+        end      
       end
     end
   end
