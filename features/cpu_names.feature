@@ -1,4 +1,3 @@
-@focus
 Feature: Manage CPU Names
 	In order to enter complete CPU info
 	As a logged user
