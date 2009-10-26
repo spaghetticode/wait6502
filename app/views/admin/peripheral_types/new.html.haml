@@ -1,0 +1,12 @@
+%h1 New Peripheral Type
+
+- form_for(@peripheral_type, :url => admin_peripheral_types_path) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th= f.label :name
+      %td= f.text_field :name
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+      
+%p= link_to 'Back', admin_peripheral_types_path

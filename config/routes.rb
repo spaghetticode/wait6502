@@ -9,8 +9,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
     admin.resources :computers, :member => routes
     
-    admin.resources :countries,      :except => [:show, :update, :edit]
-    admin.resources :computer_types, :except => [:show, :update, :edit]
+    admin.resources :countries,         :except => [:show, :update, :edit]
+    admin.resources :computer_types,    :except => [:show, :update, :edit]
+    admin.resources :peripheral_types,  :except => [:show, :update, :edit]
     
     admin.resources :storage_names,   :except => [:show, :update, :edit]
     admin.resources :storage_sizes,   :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }

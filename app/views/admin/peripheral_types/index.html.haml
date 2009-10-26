@@ -1,0 +1,12 @@
+%h1 Listing Peripheral Types
+
+%table
+  %tr
+    %th Name
+    %th Actions
+  - @peripheral_types.each do |pt|
+    %tr
+      %td= h pt.name
+      %td= link_to 'Destroy', admin_peripheral_type_path(pt), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New peripheral type', new_admin_peripheral_type_path

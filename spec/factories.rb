@@ -92,3 +92,7 @@ Factory.define :computer do |c|
   c.association :manufacturer
   c.association :computer_type
 end
+
+Factory.define :peripheral_type do |pt|
+  pt.sequence(:name) {|n| "peripheral type #{n}"}
+end

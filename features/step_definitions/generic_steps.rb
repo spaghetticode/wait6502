@@ -64,5 +64,7 @@ def class_for(model)
     OperativeSystem
   when /builtin language/
     BuiltinLanguage
+  when /peripheral type/
+    PeripheralType
   end
 end
