@@ -52,10 +52,10 @@ def class_for(model)
     StorageSize
   when /cpu famil/
     CpuFamily
-  when /cpu name/
-    CpuName
   when /co cpu name/
     CoCpuName
+  when /cpu name/
+    CpuName
   when /co cpu/
     CoCpu
   when /cpu/

@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Computers
 	In order to show computers information
 	As a logged user
