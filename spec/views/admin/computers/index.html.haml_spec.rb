@@ -24,7 +24,8 @@ describe "/admin/computers/index.html.haml" do
         :cpu_names => 'cpu names',
         :co_cpu_names => 'co cpu names',
         :io_port_names => 'io port names',
-        :storage_names => 'storage names'
+        :storage_names => 'storage names',
+        :os_names => 'os names'
       ),
       stub_model(Computer,
         :name => "value for name",
@@ -44,7 +45,8 @@ describe "/admin/computers/index.html.haml" do
         :cpu_names => 'cpu names',
         :co_cpu_names => 'co cpu names',
         :io_port_names => 'io port names',
-        :storage_names => 'storage names'
+        :storage_names => 'storage names',
+        :os_names => 'os names'
       )
     ]
     assigns[:computers].stub!(:total_pages).and_return(0)

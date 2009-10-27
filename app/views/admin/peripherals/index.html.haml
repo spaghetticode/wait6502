@@ -10,6 +10,9 @@
     %th Ram
     %th Rom
     %th Notes
+    %th CPUs
+    %th I/O Ports
+    %th Storage
     %th{:colspan => 2} Actions
 
   - @peripherals.each do |peripheral|
@@ -23,6 +26,9 @@
       %td= h peripheral.ram
       %td= h peripheral.rom
       %td= h peripheral.notes
+      %td= h peripheral.cpu_names
+      %td= h peripheral.io_port_names
+      %td= h peripheral.storage_names
       %td= link_to 'Edit', edit_admin_peripheral_path(peripheral)
       %td= link_to 'Destroy', admin_peripheral_path(peripheral), :confirm => 'Are you sure?', :method => :delete
 

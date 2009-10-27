@@ -15,7 +15,10 @@ describe "/admin/peripherals/index.html.haml" do
         :code => "value for code",
         :ram => "value for ram",
         :rom => "value for rom",
-        :notes => "value for notes"
+        :notes => "value for notes",
+        :cpu_names => 'Cpu names',
+        :io_port_names => 'IO port names',
+        :storage_names => 'Storage Names'
       ),
       stub_model(Peripheral,
         :name => "value for name",
@@ -26,7 +29,10 @@ describe "/admin/peripherals/index.html.haml" do
         :code => "value for code",
         :ram => "value for ram",
         :rom => "value for rom",
-        :notes => "value for notes"
+        :notes => "value for notes",
+        :cpu_names => 'Cpu names',
+        :io_port_names => 'IO port names',
+        :storage_names => 'Storage Names'
       )
     ]
   end
