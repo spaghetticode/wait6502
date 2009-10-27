@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091027090209) do
+ActiveRecord::Schema.define(:version => 20091027155025) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -164,6 +164,17 @@ ActiveRecord::Schema.define(:version => 20091027090209) do
 
   create_table "operative_systems", :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "original_prices", :force => true do |t|
+    t.integer  "currency_id"
+    t.string   "country_id"
+    t.datetime "date"
+    t.string   "amount"
+    t.integer  "purchasable_id"
+    t.string   "purchasable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

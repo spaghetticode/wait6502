@@ -2,6 +2,7 @@ class Peripheral < Hardware
   include HardwareCommonAssociations
 
   belongs_to :peripheral_type
+  has_many :original_prices, :as => :purchasable
   
   validates_presence_of :peripheral_type
   
