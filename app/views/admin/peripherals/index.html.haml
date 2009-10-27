@@ -1,0 +1,29 @@
+%h1 Listing Peripherals
+%table
+  %tr
+    %th Name
+    %th Manufacturer
+    %th Peripheral type
+    %th Production start
+    %th Production stop
+    %th Code
+    %th Ram
+    %th Rom
+    %th Notes
+    %th{:colspan => 2} Actions
+
+  - @peripherals.each do |peripheral|
+    %tr
+      %td= h peripheral.name
+      %td= h peripheral.manufacturer.name
+      %td= h peripheral.peripheral_type_id
+      %td= h peripheral.production_start
+      %td= h peripheral.production_stop
+      %td= h peripheral.code
+      %td= h peripheral.ram
+      %td= h peripheral.rom
+      %td= h peripheral.notes
+      %td= link_to 'Edit', edit_admin_peripheral_path(peripheral)
+      %td= link_to 'Destroy', admin_peripheral_path(peripheral), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New peripheral', new_admin_peripheral_path

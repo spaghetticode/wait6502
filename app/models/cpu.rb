@@ -4,6 +4,7 @@ class Cpu < ActiveRecord::Base
   belongs_to :cpu_bit
   belongs_to :manufacturer
   has_and_belongs_to_many :computers
+  has_and_belongs_to_many :peripherals
   
   validates_presence_of :cpu_name, :cpu_bit, :manufacturer
   validates_uniqueness_of :cpu_name_id, :scope => [:manufacturer_id, :clock]

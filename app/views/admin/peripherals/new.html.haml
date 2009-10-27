@@ -1,0 +1,10 @@
+%h1 New Peripheral
+
+- form_for(@peripheral, :url => admin_peripherals_path) do |f| 
+  = f.error_messages
+  %table
+    = render :partial => 'form_fields', :locals => {:f => f} 
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+
+%p= link_to 'Back', admin_peripherals_path 

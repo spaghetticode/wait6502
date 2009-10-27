@@ -1,0 +1,27 @@
+%tr
+  %th= f.label :name
+  %td= f.text_field :name 
+%tr
+  %th= f.label :manufacturer_id
+  %td= manufacturer_selector(f) 
+%tr
+  %th= f.label :peripheral_type_id
+  %td= peripheral_type_selector(f) 
+%tr
+  %th= f.label :production_start
+  %td= year_selector :production_start, f 
+%tr
+  %th= f.label :production_stop
+  %td= year_selector :production_stop, f 
+%tr
+  %th= f.label :code
+  %td= f.text_field :code 
+%tr
+  %th= f.label :ram
+  %td= f.text_field :ram 
+%tr
+  %th= f.label :rom
+  %td= f.text_field :rom 
+%tr
+  %th= f.label :notes
+  %td= f.text_area :notes, :cols => 35, :rows => 3

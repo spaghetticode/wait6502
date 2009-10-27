@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091026170905) do
+ActiveRecord::Schema.define(:version => 20091027090209) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(:version => 20091026170905) do
 
   create_table "builtin_storages_computers", :id => false, :force => true do |t|
     t.integer "computer_id"
+    t.integer "builtin_storage_id"
+  end
+
+  create_table "builtin_storages_peripherals", :id => false, :force => true do |t|
+    t.integer "peripheral_id"
     t.integer "builtin_storage_id"
   end
 
@@ -106,6 +111,11 @@ ActiveRecord::Schema.define(:version => 20091026170905) do
     t.datetime "updated_at"
   end
 
+  create_table "cpus_peripherals", :id => false, :force => true do |t|
+    t.integer "peripheral_id"
+    t.integer "cpu_id"
+  end
+
   create_table "currencies", :force => true do |t|
     t.string   "code"
     t.string   "symbol"
@@ -130,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20091026170905) do
     t.string  "ram"
     t.string  "vram"
     t.string  "rom"
-    t.string  "peripheral_type"
+    t.string  "peripheral_type_id"
   end
 
   create_table "io_ports", :force => true do |t|
@@ -138,6 +148,11 @@ ActiveRecord::Schema.define(:version => 20091026170905) do
     t.string   "connector"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "io_ports_peripherals", :id => false, :force => true do |t|
+    t.integer "peripheral_id"
+    t.integer "io_port_id"
   end
 
   create_table "manufacturers", :force => true do |t|

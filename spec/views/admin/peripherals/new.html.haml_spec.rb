@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "/admin/peripherals/new.html.erb" do
+describe "/admin/peripherals/new.html.haml" do
   include Admin::PeripheralsHelper
 
   before(:each) do

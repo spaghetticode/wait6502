@@ -22,6 +22,18 @@ describe Peripheral do
       Peripheral.new.should have(1).error_on(:name)
     end
     
+    it 'should have io ports association' do
+      Peripheral.new.io_ports.should_not be_nil
+    end
+    
+    it 'should have a cpus association' do
+      Peripheral.new.cpus.should_not be_nil
+    end
+    
+    it 'should have a builtin_storages association' do
+      Peripheral.new.builtin_storages.should_not be_nil
+    end 
+    
     it 'should require a unique name for given manufacturer and code' do
       invalid = Peripheral.new(
         :name => peripheral.name,

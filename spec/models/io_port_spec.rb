@@ -19,6 +19,10 @@ describe IoPort do
     it 'should have computers association' do
       IoPort.new.computers.should_not be_nil
     end
+    
+    it 'should have peripherals association' do
+      IoPort.new.peripherals.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do

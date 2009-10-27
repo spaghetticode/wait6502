@@ -30,6 +30,10 @@ describe BuiltinStorage do
     it 'should have a computers association' do
       BuiltinStorage.new.computers.should_not be_nil
     end
+    
+    it 'should have a peripherals association' do
+      BuiltinStorage.new.peripherals.should_not be_nil
+    end
   end
   
   describe 'an instance with valid attributes' do
