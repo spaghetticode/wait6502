@@ -102,4 +102,9 @@ puts 'Creating IO ports'
  ['disk drive', 'DIN 8 pins'], ['parallel port', 'centronics'], ['serial port', 'DB-9']].each do |port|
   IoPort.create!(:name => port[0], :connector => port[1])
 end
+
+puts 'Creating Peripheral types'
+%w{Monitor Printer Modem Keyboard Mouse}.each do |name|
+  PeripheralType.create!(:name => name)
+end
   

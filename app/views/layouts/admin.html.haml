@@ -26,7 +26,10 @@
           %li= link_to 'builtin languages', admin_builtin_languages_path, :class => 'software'
           %li= link_to 'co cpu names', admin_co_cpu_names_path, :class => 'co-cpu'
           %li= link_to 'co cpus', admin_co_cpus_path, :class => 'co-cpu'
+          %li= link_to 'computer types', admin_computer_types_path
+          %li= link_to 'peripheral types', admin_peripheral_types_path
           %li= link_to 'computers', admin_computers_path
+          %li= link_to 'peripherals', admin_peripherals_path
         - else
           %li= link_to 'login', login_path        
     - flash.each_pair do |type, message|

@@ -5,6 +5,10 @@ module ApplicationHelper
     f.select :computer_type_id, ComputerType.ordered.map(&:name), :include_blank => true
   end
   
+  def peripheral_type_selector(f)
+    f.select :peripheral_type_id, PeripheralType.ordered.map(&:name), :include_blank => true
+  end
+  
   def manufacturer_selector(f)
     f.select :manufacturer_id, Manufacturer.ordered.map{|m| [m.name,  m.id]}, :include_blank => true
   end

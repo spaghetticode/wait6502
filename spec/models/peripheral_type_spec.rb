@@ -19,6 +19,10 @@ describe PeripheralType do
       invalid = PeripheralType.new(:name => per_type.name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'should have peripherals association' do
+      PeripheralType.new.peripherals.should == []
+    end
   end
   
   describe 'an instance with valid attributes' do

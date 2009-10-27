@@ -15,7 +15,7 @@ class CreateHardware < ActiveRecord::Migration
       t.string :builtin_language_id
       t.string :ram, :vram, :rom
       # peripheral fields:
-      t.string :peripheral_type
+      t.string :peripheral_type_id
     end
   end
 

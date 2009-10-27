@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  manufacturer: MyString
+  peripheral_type: MyString
+  production_start: MyString
+  production_stop: MyString
+  code: MyString
+  ram: MyString
+  rom: MyString
+  notes: MyText
+
+two:
+  name: MyString
+  manufacturer: MyString
+  peripheral_type: MyString
+  production_start: MyString
+  production_stop: MyString
+  code: MyString
+  ram: MyString
+  rom: MyString
+  notes: MyText

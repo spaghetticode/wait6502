@@ -96,3 +96,9 @@ end
 Factory.define :peripheral_type do |pt|
   pt.sequence(:name) {|n| "peripheral type #{n}"}
 end
+
+Factory.define :peripheral do |p|
+  p.sequence(:name) {|n| "peripheral #{n}"}
+  p.association :manufacturer
+  p.association :peripheral_type
+end

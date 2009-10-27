@@ -1,0 +1,12 @@
+<h1>Editing peripheral</h1>
+
+<% form_for(@peripheral, :url => admin_peripheral_path(@peripheral)) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => 'form_fields', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', admin_peripherals_path %>
