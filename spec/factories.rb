@@ -102,3 +102,11 @@ Factory.define :peripheral do |p|
   p.association :manufacturer
   p.association :peripheral_type
 end
+
+Factory.define :original_price do |op|
+  op.association :currency
+  op.association :country
+  op.date Date.today
+  op.amount '1000'
+  op.association :purchasable, :factory => :computer
+end
