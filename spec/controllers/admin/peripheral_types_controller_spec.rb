@@ -121,9 +121,8 @@ describe Admin::PeripheralTypesController do
       end
       
       describe 'when peripheral type has at least one peripheral associated' do
-=begin
         before do
-          PeripheralType.should_receive(:find).and_return(mock_peripheral_type(:peripherals => [mock_model(Peripheral)]))
+          Peripheral.should_receive(:find).and_return(mock_model(Peripheral))
           mock_peripheral_type.should_not_receive(:destroy)
           delete :destroy, :id => '1'
         end
@@ -135,7 +134,6 @@ describe Admin::PeripheralTypesController do
         it 'should redirect to admin_peripheral_types_path' do
           response.should redirect_to(admin_peripheral_types_path)
         end
-=end
       end
     end
   end

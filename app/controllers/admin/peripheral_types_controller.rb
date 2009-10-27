@@ -21,8 +21,12 @@ class Admin::PeripheralTypesController < ApplicationController
   end
   
   def destroy
-    PeripheralType.find(params[:id]).destroy
-    flash[:notice] = 'Peripheral type was successfully destroyed.'
+    if Peripheral.find_by_peripheral_type_id(params[:id]).nil?
+      PeripheralType.find(params[:id]).destroy
+      flash[:notice] = 'Peripheral type was successfully destroyed.'
+    else
+      flash[:error] = 'Can\'t destroy: peripheral type still has associated peripherals.'
+    end
     redirect_to admin_peripheral_types_path
   end
 end

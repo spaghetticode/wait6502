@@ -54,11 +54,10 @@ Feature: Manage Peripheral Types
 		And   I should be on the peripheral types page
 		And   I should not see "Monitor"
 
-# later, when peripherals will be available:
-#	Scenario: Failed Peripheral Type Destroy (associated peripheral)
-#		Given a peripheral type named "modem" is associated to a computer
-#		And   I am on the peripheral types page
-#		When  I follow "destroy"
-#		Then  I should see "Can't destroy: peripheral type still has associated computers"
-#		And   I should be on the peripheral types page
-#		And   I should see "modem"
+	Scenario: Failed Peripheral Type Destroy (associated peripheral)
+		Given a peripheral type named "modem" is associated to a peripheral
+		And   I am on the peripheral types page
+		When  I follow "destroy"
+		Then  I should see "Can't destroy: peripheral type still has associated peripherals"
+		And   I should be on the peripheral types page
+		And   I should see "modem"
