@@ -62,4 +62,13 @@ Feature: Manage Peripherals
 		When  I select "floppy disk 5.25 inches 360Kb" from "builtin_storage_id"
 		And   I press "Add BUILTIN STORAGE"
 		Then  I should see "Builtin storage was successfully added"
-		
+
+	Scenario: Add Original Sale Price to Existing Peripheral
+		Given  I have a peripheral named "DuoDisk"
+		And    some currencies and countries exist
+		And    I am on the "DuoDisk" peripheral editor page
+		When   I select "Italy" from "original_price_country_id"
+		And    I select "£" from "original_price_currency_id"
+		And    I fill in "original_price_amount" with "990'000"
+		And    I press "Add Price"
+		Then   I should see "Original Price was successfully created"

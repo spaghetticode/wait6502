@@ -89,4 +89,12 @@ Feature: Manage Computers
 		And    I press "Add IO PORT"
 		Then   I should see "Io port was successfully added"
 		
-		
+	Scenario: Add Original Sale Price to Existing Computer
+		Given  I have a computer named "Amiga 2000"
+		And    some currencies and countries exist
+		And    I am on the "Amiga 2000" computer editor page
+		When   I select "Italy" from "original_price_country_id"
+		And    I select "£" from "original_price_currency_id"
+		And    I fill in "original_price_amount" with "2'500'000"
+		And    I press "Add Price"
+		Then   I should see "Original Price was successfully created"

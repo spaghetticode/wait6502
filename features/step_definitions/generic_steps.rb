@@ -1,3 +1,13 @@
+Given /^some currencies and countries exist$/ do
+  [%w{EUR EURO}, %w{£ ITL}, %w{$ USD}].each do |currency|
+    symbol, code = *currency
+    Currency.create!(:symbol => symbol, :code => code)
+  end
+  %w{Italy Spain USA Canada France}.each do |country|
+    Country.create!(:name => country)
+  end
+end
+
 Given /^a ([\w\s]+) named "([^\"]*)" exists$/ do |model, name|
   klass = class_for(model)
   lambda do

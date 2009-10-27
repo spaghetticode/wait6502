@@ -18,7 +18,7 @@ Feature: Manage Opertive Systems
 		And   I should see "CP/M"
 		
 	Scenario: Successfull OS Creation
-		And   I am on the operative systems page
+		Given I am on the operative systems page
 		And   I follow "new operative system"
 		When  I fill in "name" with "AmigaDOS"
 		And   I press "Create"
@@ -27,14 +27,14 @@ Feature: Manage Opertive Systems
 		And   I should see "AmigaDOS"
 		
 	Scenario: Failing OS Creation (no name)
-		And   I cache the operative systems count
+		Given I cache the operative systems count
 		And   I am on the new operative system page
 		When  I press "Create"
 		Then  I should see "Name can't be blank"
 		And   a new operative system has not been created
 	
 	Scenario: Failing OS Creation (name taken)
-		And   a operative system named "MS-DOS" exists
+		Given a operative system named "MS-DOS" exists
 		And   I cache the operative systems count
 		When  I go to the new operative system page
 		And   I fill in "name" with "MS-DOS"
@@ -62,7 +62,7 @@ Feature: Manage Opertive Systems
 		Then  I should see "Name has already been taken"
 		
 	Scenario: Destroying OS
-		And   a operative system named "OSX" exists
+		Given a operative system named "OSX" exists
 		And   I am on the operative systems page
 		And   I should see "OSX"
 		When  I follow "destroy"
