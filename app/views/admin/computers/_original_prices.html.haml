@@ -1,0 +1,18 @@
+- model = purchasable.class.name.downcase
+
+%h2 Original Sale Prices
+%table
+  - purchasable.original_prices.sort_by(&:date).each do |price|
+    %tr
+      %td= price.country_id
+      %td= price.currency.symbol
+      %td= price.amount
+      %td= price.date
+      %td= link_to 'destroy', send("admin_#{model}_original_price_path", price.purchasable.id, price), :method => :delete, :confirm => 'Are you sure?'
+
+- form_for OriginalPrice.new, :url => send("admin_#{model}_original_prices_path", purchasable) do |f|
+  = country_selector(f)
+  = currency_selector(f)
+  = f.text_field :amount, :size => 10
+  = f.date_select :date, :start_year => 1975, :discard_day => true
+  = f.submit 'Add Price'

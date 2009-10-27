@@ -8,8 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace(:admin) do |admin|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
-    admin.resources :computers, :member => routes
-    admin.resources :peripherals, :member => routes
+    admin.resources :computers, :member   => routes, :has_many => :original_prices
+    admin.resources :peripherals, :member => routes, :has_many => :original_prices
     admin.resources :countries,         :except => [:show, :update, :edit]
     admin.resources :computer_types,    :except => [:show, :update, :edit]
     admin.resources :peripheral_types,  :except => [:show, :update, :edit]

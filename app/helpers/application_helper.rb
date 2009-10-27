@@ -9,12 +9,20 @@ module ApplicationHelper
     f.select :peripheral_type_id, PeripheralType.ordered.map(&:name), :include_blank => true
   end
   
+  def builtin_language_selector(f)
+    f.select :builtin_language_id, BuiltinLanguage.ordered.map(&:name), :include_blank => true
+  end
+  
+  def country_selector(f)
+    f.select :country_id, Country.ordered.map(&:name), :include_blank => true
+  end
+  
   def manufacturer_selector(f)
     f.select :manufacturer_id, Manufacturer.ordered.map{|m| [m.name,  m.id]}, :include_blank => true
   end
   
-  def builtin_language_selector(f)
-    f.select :builtin_language_id, BuiltinLanguage.ordered.map(&:name), :include_blank => true
+  def currency_selector(f)
+    f.select :currency_id, Currency.ordered.map{|c| [c.symbol, c.id]}, :include_blank => true
   end
   
   def year_selector(field, f)

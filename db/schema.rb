@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(:version => 20091027155025) do
   create_table "original_prices", :force => true do |t|
     t.integer  "currency_id"
     t.string   "country_id"
-    t.datetime "date"
+    t.date     "date"
     t.string   "amount"
     t.integer  "purchasable_id"
     t.string   "purchasable_type"

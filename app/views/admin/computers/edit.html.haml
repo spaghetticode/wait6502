@@ -15,4 +15,7 @@
   = render :partial => 'associator', :locals => {:model => 'co_cpu'}
   = render :partial => 'associator', :locals => {:model => 'io_port'}
 
+#original_prices
+  = render :partial => 'original_prices', :locals => {:purchasable => @computer}
+  
 %p{:style => 'clear:both'}= link_to 'Back', admin_computers_path
