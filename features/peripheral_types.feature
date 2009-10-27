@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Peripheral Types
 	In order to enter complete computer info
 	As a logged user

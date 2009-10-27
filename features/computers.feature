@@ -34,7 +34,7 @@ Feature: Manage Computers
 		And   I fill in "name" with "Amiga 2000"
 		And   I press "Update"
 		Then  I should see "Computer was successfully updated"
-		And   I should be on the "Amiga 2000" editor page
+		And   I should be on the "Amiga 2000" computer editor page
 		And   I should not see "Amiga 1000"
 	
 	Scenario: Destroy Computer
