@@ -18,7 +18,7 @@ Given /^a cpu "([^\"]*)" exists$/ do |description|
   manufacturer = Manufacturer.find_by_name(manufacturer)
   name = CpuName.find_by_name(name)
   bit = CpuBit.find_by_name(bit)
-  family = CpuFamily.find_by_name(family)
+  family = CpuFamily.find_by_name(family) if family
   Cpu.create!(
     :cpu_name=> name,
     :cpu_family => family,

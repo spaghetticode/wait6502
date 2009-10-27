@@ -30,10 +30,6 @@ describe Peripheral do
       Peripheral.new.cpus.should_not be_nil
     end
     
-    it 'should have a builtin_storages association' do
-      Peripheral.new.builtin_storages.should_not be_nil
-    end 
-    
     it 'should require a unique name for given manufacturer and code' do
       invalid = Peripheral.new(
         :name => peripheral.name,
@@ -54,6 +50,56 @@ describe Peripheral do
     it 'should sort peripherals by name' do
       5.times {Factory(:peripheral)}
       Peripheral.ordered.should == Peripheral.all.sort_by(&:name)
+    end
+  end
+  
+  describe 'testing many-to-many associations' do
+    describe 'an instance with associated CPUs' do
+      before do
+        peripheral.cpus << Factory(:cpu)
+      end
+    
+      it 'should respondo to :cpu_names' do
+        peripheral.should respond_to(:cpu_names)
+      end
+    
+      it 'cpu_names should return a string with cpu names' do
+        peripheral.cpus.each do |cpu|
+          peripheral.cpu_names.should =~ %r{#{cpu.cpu_name_id}}
+        end
+      end
+    end
+        
+    describe 'an instance with associated IO_PORTS' do
+      before do
+        peripheral.io_ports << Factory(:io_port)
+      end
+    
+      it 'should respond to :io_port_names' do
+        peripheral.should respond_to(:io_port_names)
+      end
+    
+      it 'co_cpu_names should return a string with io port names' do
+        peripheral.io_ports.each do |io_port|
+          peripheral.io_port_names.should =~ /#{io_port.name}/
+        end
+      end
+    end
+    
+    describe 'an instance with associated BUILTIN_STORAGES' do
+      before do
+        peripheral.builtin_storages << Factory(:builtin_storage)
+      end
+    
+      it 'should respond to :storage_names' do
+        peripheral.should respond_to(:storage_names)
+      end
+    
+      it 'co_cpu_names should return a string with builtin storage names' do
+        peripheral.builtin_storages.each do |storage|
+          peripheral.storage_names.should =~ /#{storage.full_name}/
+        end
+      end
     end
   end
 end

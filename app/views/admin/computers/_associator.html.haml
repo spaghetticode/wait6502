@@ -13,6 +13,6 @@
   %table
     %tr
       %td= select_tag "#{model}_id", options_from_collection_for_select(model.classify.constantize.ordered, :id, :full_name)
-      %td= submit_tag 'Add'
+      %td= submit_tag "Add #{model.gsub('_', ' ').upcase}"
   
   

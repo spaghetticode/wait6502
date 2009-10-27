@@ -20,7 +20,11 @@ describe "/admin/computers/index.html.haml" do
         :builtin_language_id => "value for builtin_language_id",
         :text_modes => "value for text_modes",
         :graphic_modes => "value for graphic_modes",
-        :sound => "value for sound"
+        :sound => "value for sound",
+        :cpu_names => 'cpu names',
+        :co_cpu_names => 'co cpu names',
+        :io_port_names => 'io port names',
+        :storage_names => 'storage names'
       ),
       stub_model(Computer,
         :name => "value for name",
@@ -36,7 +40,11 @@ describe "/admin/computers/index.html.haml" do
         :builtin_language_id => "value for builtin_language_id",
         :text_modes => "value for text_modes",
         :graphic_modes => "value for graphic_modes",
-        :sound => "value for sound"
+        :sound => "value for sound",
+        :cpu_names => 'cpu names',
+        :co_cpu_names => 'co cpu names',
+        :io_port_names => 'io port names',
+        :storage_names => 'storage names'
       )
     ]
     assigns[:computers].stub!(:total_pages).and_return(0)

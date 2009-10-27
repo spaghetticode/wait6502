@@ -74,4 +74,92 @@ describe Computer do
       Computer.ordered.should == Computer.all.sort_by{|c| [c.manufacturer.name, c.name]}
     end
   end
+  
+  describe 'testing many-to-many associations' do
+    describe 'an instance with associated CPUs' do
+      before do
+        @computer = Factory(:computer)
+        @computer.cpus << Factory(:cpu)
+      end
+    
+      it 'should respondo to :cpu_names' do
+        @computer.should respond_to(:cpu_names)
+      end
+    
+      it 'cpu_names should return a string with cpu names' do
+        @computer.cpus.each do |cpu|
+          @computer.cpu_names.should =~ %r{#{cpu.cpu_name_id}}
+        end
+      end
+    
+      describe 'an instance with associated Co-CPUs' do
+        before do
+          @computer = Factory(:computer)
+          @computer.co_cpus << Factory(:co_cpu)
+        end
+      
+        it 'should respond to :co_cpu_names' do
+          @computer.should respond_to(:co_cpu_names)
+        end
+      
+        it 'co_cpu_names should return a string with co_cpu names' do
+          @computer.co_cpus.each do |co_cpu|
+            @computer.co_cpu_names.should =~ /#{co_cpu.co_cpu_name_id}/
+          end
+        end
+      end
+    
+      describe 'an instance with associated IO_PORTS' do
+        before do
+          @computer = Factory(:computer)
+          @computer.io_ports << Factory(:io_port)
+        end
+      
+        it 'should respond to :io_port_names' do
+          @computer.should respond_to(:io_port_names)
+        end
+      
+        it 'co_cpu_names should return a string with io port names' do
+          @computer.io_ports.each do |io_port|
+            @computer.io_port_names.should =~ /#{io_port.name}/
+          end
+        end
+      end
+
+      describe 'an instance with associated BUILTIN_STORAGES' do
+        before do
+          @computer = Factory(:computer)
+          @computer.builtin_storages << Factory(:builtin_storage)
+        end
+      
+        it 'should respond to :storage_names' do
+          @computer.should respond_to(:storage_names)
+        end
+      
+        it 'co_cpu_names should return a string with builtin storage names' do
+          @computer.builtin_storages.each do |storage|
+            @computer.storage_names.should =~ /#{storage.full_name}/
+          end
+        end
+      end
+  
+      describe 'an instance with associated OPERATIVE_SYSTEMS' do
+        before do
+          @computer = Factory(:computer)
+          @computer.operative_systems << Factory(:operative_system)
+        end
+      
+        it 'should respond to :os_names' do
+          @computer.should respond_to(:os_names)
+        end
+      
+        it 'co_cpu_names should return a string with operative systems names' do
+          @computer.operative_systems.each do |os|
+            @computer.os_names.should =~ /#{os.name}/
+          end
+        end
+      end  
+    end
+  end
 end
+

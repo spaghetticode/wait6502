@@ -45,3 +45,21 @@ Feature: Manage Peripherals
 		Then  I should see "Peripheral was successfully destroyed"
 		And   I should be on the peripherals page
 		And   I should not see "Printer"
+
+	Scenario: Add I/O Port to Existing Peripheral
+		Given  I have a peripheral named "Silent Type"
+		And    a io port named "serial" exists
+		And    I am on the "Silent Type" peripheral editor page
+		When   I select "serial ( connector)" from "io_port_id"
+		And    I press "Add IO PORT"
+		Then   I should see "Io port was successfully added"
+
+	Scenario: Add Builtin Storage to Existing Peripheral
+		Given I have a peripheral named "DuoDisk"
+		And   I have entered some data for storage names, formats and sizes
+		And   a builtin storage "floppy disk - 5.25 inches - 360Kb" exists
+		And   I am on the "DuoDisk" peripheral editor page
+		When  I select "floppy disk 5.25 inches 360Kb" from "builtin_storage_id"
+		And   I press "Add BUILTIN STORAGE"
+		Then  I should see "Builtin storage was successfully added"
+		
