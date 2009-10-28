@@ -1,0 +1,32 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: oc_development
+  pool: 5
+  username: 
+  password: 
+  socket: 
+
+test: &TEST
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: oc_test
+  pool: 5
+  username: 
+  password: 
+  socket:
+
+production:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: oc_production
+  pool: 5
+  username: 
+  password: 
+  socket:
+
+cucumber:
+  <<: *TEST
