@@ -3,5 +3,5 @@ class Hardware < ActiveRecord::Base
   
   belongs_to :manufacturer
   validates_presence_of :name, :manufacturer
-  validates_uniqueness_of :name, :scope => [:manufacturer_id, :code]
+  validates_uniqueness_of :name, :scope => [:manufacturer_id, :code], :case_sensitive => false
 end
