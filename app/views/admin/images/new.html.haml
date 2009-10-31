@@ -1,11 +1,11 @@
 %h1= "New Image for #{@imageable.name}"
 
-- form_for(@image, :url => admin_imageable_images_path(@imageable)) do |f|
+- form_for(@image, :url => admin_imageable_images_path(@imageable), :html => {:multipart => true}) do |f|
   = f.error_messages
   %table
     %tr
-      %th= f.label :uploaded_file
-      %td= f.text_field :uploaded_file
+      %th= f.label :uploaded_file, 'Image File'
+      %td= f.file_field :uploaded_file
     =render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'

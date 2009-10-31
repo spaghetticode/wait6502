@@ -7,3 +7,5 @@ public/images/**/*
 !public/images/original/.gitignore
 !public/images/normal/.gitignore
 !public/images/thumb/.gitignore
+spec/fixtures/images/*
+!spec/fixtures/images/.gitignore
