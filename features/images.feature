@@ -20,15 +20,16 @@ Images Feature
 		When  I follow "Images"
 		Then  I should see "Amiga 1000 Images"
 		And   I should see "Inner view"
-		And   I should see "Add image"
+		And   I should see "New image"
 	
 	Scenario: Adding Images
 		Given I am on the "Amiga 1000" computer editor page
 		And   I follow "Images"
-		And   I follow "Add Image"
-		And   I fill in "Title" with "Amiga 1000 image"
+		And   I follow "New image"
+		When  I fill in "Title" with "Amiga 1000 image"
 		And   I fill in "Caption" with "Something about the Amiga 1000"
-		And   I upload a valid image
+		And   I attach a valid image
+		And   I press "Create"
 		Then  I should see "Image was successfully created"
 		And   I should see "Amiga 1000 image"
 		And   I should see "Something about the Amiga 1000"

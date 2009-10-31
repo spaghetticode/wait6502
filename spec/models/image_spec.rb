@@ -14,7 +14,7 @@ module ImageUploadedFileHelper
       content_type = options[:valid] ? 'image/jpg' : 'text/txt'
       file.stub!(
         :content_type => content_type,
-        :original_filename => 'image_file.png'
+        :original_filename => 'image file.png'
       )
     end
   end

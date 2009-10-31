@@ -9,7 +9,8 @@ describe "/admin/images/index.html.haml" do
         :uploaded_file => 'file',
         :original_filename => 'filename',
         :title => 'title',
-        :caption => 'caption'
+        :caption => 'caption',
+        :filename => 'image.png'
       )
     ]
     assigns[:imageable] = mock_model(Computer, :name => 'Computer name')
@@ -17,7 +18,7 @@ describe "/admin/images/index.html.haml" do
   
   it 'render a list of images' do
     render
-    response.should have_tag('h1', 'Listing Images for Computer name')
+    response.should have_tag('h1', 'Computer name Images')
     response.should have_tag('tr>td', 'title')
     response.should have_tag('tr>td', 'caption')
   end

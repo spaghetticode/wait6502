@@ -17,5 +17,7 @@
 
 #original_prices
   = render :partial => 'original_prices', :locals => {:purchaseable => @computer}
-  
+
+%p= link_to 'Images', admin_computer_images_path(@computer)
+
 %p{:style => 'clear:both'}= link_to 'Back', admin_computers_path

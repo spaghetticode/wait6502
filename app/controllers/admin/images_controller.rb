@@ -1,5 +1,6 @@
 class Admin::ImagesController < ApplicationController
   before_filter :require_logged_in, :find_imageable
+  layout 'admin'
   
   def index
     @images = @imageable.images
@@ -50,7 +51,7 @@ class Admin::ImagesController < ApplicationController
   end
   
   def admin_imageable_images_path(imageable)
-    model = imageable.class_name.downcase
+    model = imageable.class.to_s.downcase
     send("admin_#{model}_images_path", imageable)
   end
 end

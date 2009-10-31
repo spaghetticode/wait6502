@@ -1,16 +1,16 @@
-%h1= "Listing Images for #{@imageable.name}"
+%h1= "#{@imageable.name} Images"
 
 %table
   %tr
-    %th Uploaded File
+    %th Image
     %th  Title
     %th Caption
 
   - @images.each do |image|
     %tr
-      %td= h image.uploaded_file
+      %td= image_tag(image.filename(:thumb))
       %td= h image.title
-      %td= h image.caption
+      %td= h truncate(image.caption)
       %td= link_to 'Edit', edit_admin_imageable_image_path(@imageable, image)
       %td= link_to 'Destroy', admin_imageable_image_path(@imageable, image), :confirm => 'Are you sure?', :method => :delete
 

@@ -35,7 +35,7 @@ class Image < ActiveRecord::Base
     set_original_filename
     save_original_file
     FORMATS.each do |format, size|
-      system "convert -resize #{size} #{original_file} #{filename(format, :fs)}"
+      system "convert -resize #{size} '#{original_file}' '#{filename(format, :fs)}'"
     end
   end
   
