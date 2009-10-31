@@ -5,8 +5,8 @@ class CreateOriginalPrices < ActiveRecord::Migration
       t.string :country_id
       t.date :date
       t.string :amount
-      t.integer :purchasable_id
-      t.string :purchasable_type
+      t.integer :purchaseable_id
+      t.string :purchaseable_type
 
       t.timestamps
     end

@@ -108,5 +108,12 @@ Factory.define :original_price do |op|
   op.association :country
   op.date Date.today
   op.amount '1000'
-  op.association :purchasable, :factory => :computer
+  op.association :purchaseable, :factory => :computer
+end
+
+Factory.define :image do |i|
+  i.sequence(:original_filename) {"original_file_#{Time.now.to_s(:number)}"}
+  i.association :imageable, :factory => :computer
+  i.title 'Image Title'
+  i.caption 'Image Caption'
 end

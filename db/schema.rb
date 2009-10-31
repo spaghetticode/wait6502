@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091027155025) do
+ActiveRecord::Schema.define(:version => 20091031102156) do
+
+  create_table "admin_images", :force => true do |t|
+    t.string   "file"
+    t.string   "title"
+    t.text     "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -143,6 +151,16 @@ ActiveRecord::Schema.define(:version => 20091027155025) do
     t.string  "peripheral_type_id"
   end
 
+  create_table "images", :force => true do |t|
+    t.string   "original_filename"
+    t.string   "title"
+    t.text     "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "imageable_id",      :null => false
+    t.string   "imageable_type"
+  end
+
   create_table "io_ports", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "connector"
@@ -173,8 +191,8 @@ ActiveRecord::Schema.define(:version => 20091027155025) do
     t.string   "country_id"
     t.date     "date"
     t.string   "amount"
-    t.integer  "purchasable_id"
-    t.string   "purchasable_type"
+    t.integer  "purchaseable_id"
+    t.string   "purchaseable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

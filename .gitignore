@@ -2,3 +2,8 @@
 log/*.log
 tmp/**/*
 config/database.yml
+public/images/**/*
+!public/images/small/.gitignore
+!public/images/original/.gitignore
+!public/images/normal/.gitignore
+!public/images/thumb/.gitignore

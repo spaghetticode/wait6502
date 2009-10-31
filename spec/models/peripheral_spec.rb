@@ -30,6 +30,10 @@ describe Peripheral do
       Peripheral.new.cpus.should_not be_nil
     end
     
+    it 'should have an original_prices association' do
+      Peripheral.new.original_prices.should_not be_nil
+    end
+        
     it 'should require a unique name for given manufacturer and code' do
       invalid = Peripheral.new(
         :name => peripheral.name,

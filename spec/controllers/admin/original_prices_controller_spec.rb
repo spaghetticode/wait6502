@@ -6,11 +6,10 @@ describe Admin::OriginalPricesController do
   end
   
   describe 'not being logged in' do
-    {:post => :create, :delete => :destroy}.each do |method, action|
-      it "should flash and redirect on #{method} #{action}" do
-        send(method, action, :id => 1, :computer_id => '1')
-      end
-    end
+    should_flash_and_redirect_for(
+      {:create => :post, :destroy => :delete},
+      :computer_id => '1'
+    )
   end
   
   describe 'being logged in' do
@@ -39,8 +38,8 @@ describe Admin::OriginalPricesController do
           assigns[:original_price].should_not be_nil
         end
         
-        it 'should assign @purchasable' do
-          assigns[:purchasable].should_not be_nil
+        it 'should assign @purchaseable' do
+          assigns[:purchaseable].should_not be_nil
         end
         
         it 'should flash[:notice]' do
@@ -64,8 +63,8 @@ describe Admin::OriginalPricesController do
           assigns[:original_price].should_not be_nil
         end
         
-        it 'should assign @purchasable' do
-          assigns[:purchasable].should_not be_nil
+        it 'should assign @purchaseable' do
+          assigns[:purchaseable].should_not be_nil
         end
         
         it 'should flash[:error]' do
