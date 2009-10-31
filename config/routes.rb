@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :images
+
 
   routes = {}
   %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
@@ -8,8 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace(:admin) do |admin|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
-    admin.resources :computers, :member   => routes, :has_many => :original_prices
-    admin.resources :peripherals, :member => routes, :has_many => :original_prices
+    admin.resources :computers, :member   => routes, :has_many => [:original_prices, :images]
+    admin.resources :peripherals, :member => routes, :has_many => [:original_prices, :images]
     admin.resources :countries,         :except => [:show, :update, :edit]
     admin.resources :computer_types,    :except => [:show, :update, :edit]
     admin.resources :peripheral_types,  :except => [:show, :update, :edit]

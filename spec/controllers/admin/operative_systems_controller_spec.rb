@@ -23,11 +23,12 @@ describe Admin::OperativeSystemsController do
   
   describe 'WITHOUT BEING AUTHENTICATED' do
     should_flash_and_redirect_for(
-      :new => :get,
+      {:new => :get,
       :index => :get,
       :edit  => :get,
       :create => :post,
-      :destroy => :delete
+      :destroy => :delete},
+      :computer_id => '1'
     )
   end
   

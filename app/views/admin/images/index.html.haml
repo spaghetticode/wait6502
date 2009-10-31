@@ -1,0 +1,17 @@
+%h1= "Listing Images for #{@imageable.name}"
+
+%table
+  %tr
+    %th Uploaded File
+    %th  Title
+    %th Caption
+
+  - @images.each do |image|
+    %tr
+      %td= h image.uploaded_file
+      %td= h image.title
+      %td= h image.caption
+      %td= link_to 'Edit', edit_admin_imageable_image_path(@imageable, image)
+      %td= link_to 'Destroy', admin_imageable_image_path(@imageable, image), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New image', new_admin_imageable_image_path(@imageable)

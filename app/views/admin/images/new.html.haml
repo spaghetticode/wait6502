@@ -1,0 +1,13 @@
+%h1= "New Image for #{@imageable.name}"
+
+- form_for(@image, :url => admin_imageable_images_path(@imageable)) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th= f.label :uploaded_file
+      %td= f.text_field :uploaded_file
+    =render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+
+%p= link_to 'Back', admin_imageable_images_path(@imageable)
