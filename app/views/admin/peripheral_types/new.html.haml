@@ -2,7 +2,7 @@
 
 - form_for(@peripheral_type, :url => admin_peripheral_types_path) do |f|
   = f.error_messages
-  %table
+  %table.record
     %tr
       %th= f.label :name
       %td= f.text_field :name

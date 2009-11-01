@@ -1,0 +1,11 @@
+%ul.tabs 
+  %li= link_to 'Main', '#main', :class => 'tab'
+  %li= link_to 'Associations', '#associations', :class => 'tab'
+  %li= link_to 'Original Prices', '#original_prices', :class => 'tab'
+  - case controller_name
+  - when 'computers'
+    %li= link_to 'Images', admin_computer_images_path(@computer)
+  - when 'peripherals'
+    %li= link_to 'Images', admin_peripheral_images_path(@peripheral)
+  - else
+    %li= link_to 'Images', admin_imageable_images_path(@imageable)

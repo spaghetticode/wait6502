@@ -1,8 +1,9 @@
 %h1 Listing CPU Names
 
-%table
+%table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
+    %th Actions
   - @cpu_names.each do |cpu_name|
     %tr
       %td= h cpu_name.name

@@ -1,11 +1,11 @@
 %h1 Listing Builtin Storages
 
-%table
+%table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
     %th Format
     %th Size
-  
+    %th{:colspan => 2} Actions
   - @builtin_storages.each do |bs|
     %tr
       %td= h bs.storage_name_id

@@ -1,8 +1,10 @@
 %h1= "New Image for #{@imageable.name}"
 
+= render :partial => 'tabs_navigation'
+
 - form_for(@image, :url => admin_imageable_images_path(@imageable), :html => {:multipart => true}) do |f|
   = f.error_messages
-  %table
+  %table.record
     %tr
       %th= f.label :uploaded_file, 'Image File'
       %td= f.file_field :uploaded_file

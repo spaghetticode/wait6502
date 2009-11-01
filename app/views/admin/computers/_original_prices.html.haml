@@ -5,9 +5,10 @@
   - purchaseable.original_prices.sort_by(&:date).each do |price|
     %tr
       %td= price.country_id
-      %td= price.currency.symbol
-      %td= price.amount
-      %td= price.date
+      %td
+        = price.currency.symbol
+        = price.amount
+      %td= price.date.strftime('%Y, %B')
       %td= link_to 'destroy', send("admin_#{model}_original_price_path", price.purchaseable.id, price), :method => :delete, :confirm => 'Are you sure?'
 
 - form_for OriginalPrice.new, :url => send("admin_#{model}_original_prices_path", purchaseable) do |f|

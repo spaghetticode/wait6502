@@ -19,4 +19,9 @@ module Admin::ImagesHelper
     model = imageable.class.to_s.downcase
     send("new_admin_#{model}_image_path", imageable)
   end
+  
+  def edit_admin_imageable_path(imageable)
+    model = imageable.class.to_s.downcase
+    send("edit_admin_#{model}_path", imageable)
+  end
 end
