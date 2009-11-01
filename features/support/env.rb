@@ -24,3 +24,5 @@ end
 require 'cucumber/rails/rspec'
 require 'webrat/core/matchers'
 require 'spec/factories'
+
+Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures/images')
