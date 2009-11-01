@@ -2,7 +2,7 @@
 
 - form_for @currency, :url => admin_currency_path(@currency) do |f|
   = f.error_messages
-  %table
+  %table.record
     = render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Update'

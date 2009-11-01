@@ -1,15 +1,15 @@
 %tr
-  %th= f.label :cpu_bit_id, 'Bit'
-  %td= f.select :cpu_bit_id, CpuBit.ordered.map(&:name), :include_blank => true
-%tr
-  %th= f.label :cpu_family_id, 'Family'
-  %td= f.select :cpu_family_id, CpuFamily.ordered.map(&:name), :include_blank => true
-%tr
   %th= f.label :manufacturer_id, 'Manufacturer'
   %td= f.select :manufacturer_id, Manufacturer.ordered.map{|m| [m.name, m.id]}, :include_blank => true
 %tr
+  %th= f.label :cpu_bit_id, 'Bit'
+  %td= f.select :cpu_bit_id, CpuBit.ordered.map(&:name), :include_blank => true
+%tr
   %th= f.label :cpu_name_id, 'Name'
   %td= f.select :cpu_name_id, CpuName.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :cpu_family_id, 'Family'
+  %td= f.select :cpu_family_id, CpuFamily.ordered.map(&:name), :include_blank => true
 %tr
   %th= f.label :clock
   %td= f.text_field :clock, :size => 8

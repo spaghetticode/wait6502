@@ -2,7 +2,7 @@
 
 - form_for(@image, :url => admin_imageable_image_path(@imageable, @image)) do |f|
   = f.error_messages
-  %table
+  %table.record
     = render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Update'

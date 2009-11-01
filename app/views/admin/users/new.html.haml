@@ -2,7 +2,7 @@
 
 - form_for @user, :url => admin_users_path do |f|
   = f.error_messages
-  %table
+  %table.record
     %tr
       %th= f.label :email
       %td= f.text_field :email

@@ -1,0 +1,155 @@
+body {
+	font-family: Tahoma,'lucida grande', sans-serif;
+	font-size: 12px;
+	margin:10px;
+	width:1000px;
+}
+
+table.list {
+	background:gray;
+}
+
+th, td {
+	padding:10px 15px;
+}
+
+table.list th {
+	background: #ddd;
+	text-transform:uppercase;
+	font-weight:normal;
+}
+
+table.list td {
+	background:white;
+}
+
+h1 {
+	font-weight:normal;
+}
+
+a {
+	color: blue;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+.center {
+	text-align:center;
+}
+
+.right {
+	text-align:right;
+}
+
+.notice {
+	color:green;
+}
+
+.error {
+	color:red;
+}
+table.record {
+	background:#ddd;
+	border:2px solid gray;
+	width:400px;
+	padding:15px;
+}
+
+table.record th {
+	font-weight:normal;
+	text-transform:uppercase;
+	text-align:right;
+}
+
+table.record th, table.record td {
+	padding:10px 5px;
+}
+
+#navigation {
+	overflow:auto;
+	background: #ccc;
+}
+
+#navigation>ul>li {
+	display:block;
+	float:left;
+	width:7em;
+	padding:10px 5px;
+}
+
+#navigation ul {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+
+#navigation>ul ul {
+	display:none;
+	position:absolute;
+	background:white;
+	border:1px solid gray;
+	border-bottom:none;
+}
+
+#navigation>ul ul>li {
+	border-bottom:1px solid gray;
+}
+
+#navigation>ul ul>li a{
+	display:block;
+	width:7em;
+	padding:7px;
+}
+
+#navigation>ul ul a:hover {
+	background:#ddd;
+}
+
+#navigation li:hover ul {
+	display:block;
+}
+
+.errorExplanation h2 {
+	font-weight:normal;
+	color:red;
+}
+
+.errorExplanation ul {
+	list-style: none;
+	padding:0px;
+}
+
+#associations, #original_prices {
+	padding:15px;
+	border:2px solid gray;
+	background:#ddd;
+}
+
+#associations h2, #original_prices h2 {
+	font-weight:normal;
+}
+
+#associations th, #associations td, #original_prices th, #original_prices td {
+	padding:5px;
+}
+
+#associations {
+	width:400px;
+}
+
+#original_prices {
+	width:520px;
+}
+
+ul.tabs {
+	margin:10px;
+	padding:0px;
+}
+
+ul.tabs li {
+	display:inline;
+	padding:5px;
+}

@@ -2,7 +2,7 @@
 
 - form_for(@builtin_storage, :url => admin_builtin_storages_path) do |f|
   = f.error_messages
-  %table
+  %table.record
     = render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'

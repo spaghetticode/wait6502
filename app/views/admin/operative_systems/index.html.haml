@@ -1,8 +1,9 @@
 %h1 Listing Operative Systems
 
-%table
+%table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
+    %th{:colspan => 2} Actions
   - @operative_systems.each do |os|
     %tr
       %td= h os.name

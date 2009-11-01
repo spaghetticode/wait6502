@@ -2,7 +2,7 @@
 
 - form_for(@operative_system, :url => admin_operative_system_path(@operative_system)) do |f|
   = f.error_messages
-  %table
+  %table.record
     %tr
       %th= f.label :name
       %td= f.text_field :name

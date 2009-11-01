@@ -2,7 +2,7 @@
 
 - form_for(@co_cpu_name, :url => admin_co_cpu_names_path) do |f|
   = f.error_messages
-  %table
+  %table.record
     %tr
       %th= f.label :name
       %td= f.text_field :name
