@@ -5,9 +5,7 @@ class Computer < Hardware
   belongs_to :builtin_language
   has_and_belongs_to_many :operative_systems
   has_and_belongs_to_many :co_cpus
-  has_many :original_prices, :as => :purchaseable
-  has_many :images, :as => :imageable
-  
+    
   validates_presence_of :computer_type
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, hardware.name'
