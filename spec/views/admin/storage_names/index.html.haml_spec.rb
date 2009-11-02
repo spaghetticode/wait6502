@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/storage_names/index.html.haml" do
-  include Admin::StorageNamesHelper
 
   before(:each) do
     assigns[:storage_names] = [

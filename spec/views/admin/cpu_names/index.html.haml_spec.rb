@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/cpu_names/index.html.haml" do
-  include Admin::CpuNamesHelper
 
   before(:each) do
     assigns[:cpu_names] = [

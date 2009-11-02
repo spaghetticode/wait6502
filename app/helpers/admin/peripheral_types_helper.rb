@@ -1,2 +1,0 @@
-module Admin::PeripheralTypesHelper
-end

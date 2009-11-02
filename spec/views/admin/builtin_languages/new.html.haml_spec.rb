@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/builtin_languages/new.html.haml" do
-  include Admin::BuiltinLanguagesHelper
 
   before(:each) do
     assigns[:builtin_language] = stub_model(BuiltinLanguage,

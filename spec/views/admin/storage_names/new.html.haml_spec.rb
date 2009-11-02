@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/storage_names/new.html.haml" do
-  include Admin::StorageNamesHelper
 
   before(:each) do
     assigns[:storage_name] = stub_model(StorageName,

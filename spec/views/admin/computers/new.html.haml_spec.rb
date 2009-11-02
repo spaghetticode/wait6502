@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/computers/new.html.haml" do
-  include Admin::ComputersHelper
 
   before(:each) do
     assigns[:computer] = stub_model(Computer,

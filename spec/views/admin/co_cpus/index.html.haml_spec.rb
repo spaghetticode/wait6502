@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "admin/co_cpus/index.html.haml" do
-  include Admin::CoCpusHelper
 
   before(:each) do
     manufacturer = stub_model(Manufacturer, :name => 'Manufacturer')

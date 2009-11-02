@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/storage_sizes/new.html.haml" do
-  include Admin::StorageSizesHelper
 
   before(:each) do
     assigns[:storage_size] = stub_model(StorageSize,

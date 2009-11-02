@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/storage_formats/new.html.haml" do
-  include Admin::StorageFormatsHelper
 
   before(:each) do
     assigns[:storage_format] = stub_model(StorageFormat,

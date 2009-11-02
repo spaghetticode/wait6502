@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
 describe "/admin/manufacturers/new.html.haml" do
-  include Admin::ManufacturersHelper
 
   before(:each) do
     assigns[:manufacturer] = stub_model(Manufacturer,

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/computers/index.html.haml" do
-  include Admin::ComputersHelper
 
   before(:each) do
     manufacturer = stub_model(Manufacturer, :name => 'Apple')

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/cpus/edit.html.haml" do
-  include Admin::CpusHelper
 
   before(:each) do
     assigns[:cpu] = @cpu = stub_model(Cpu,

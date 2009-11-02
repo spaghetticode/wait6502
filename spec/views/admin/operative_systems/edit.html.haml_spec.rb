@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
 describe "/admin/operative_systems/edit.html.haml" do
-  include Admin::OperativeSystemsHelper
 
   before(:each) do
     assigns[:operative_system] = @os = stub_model(OperativeSystem,

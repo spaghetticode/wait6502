@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/peripheral_types/index.html.haml" do
-  include Admin::PeripheralTypesHelper
 
   before(:each) do
     assigns[:peripheral_types] = [

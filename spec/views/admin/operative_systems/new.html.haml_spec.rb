@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/operative_systems/new.html.haml" do
-  include Admin::OperativeSystemsHelper
 
   before(:each) do
     assigns[:operative_system] = stub_model(OperativeSystem,

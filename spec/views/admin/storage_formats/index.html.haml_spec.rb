@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/storage_formats/index.html.haml" do
-  include Admin::StorageFormatsHelper
 
   before(:each) do
     assigns[:storage_formats] = [

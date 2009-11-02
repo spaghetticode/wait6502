@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/builtin_storages/index.html.haml" do
-  include Admin::BuiltinStoragesHelper
 
   before(:each) do
     assigns[:builtin_storages] = [

@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../spec_helper')
 
 describe "/admin/computer_types/index.html.haml" do
-  include Admin::ComputerTypesHelper
 
   before(:each) do
     assigns[:computer_types] = [

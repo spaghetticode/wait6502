@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/peripherals/index.html.haml" do
-  include Admin::PeripheralsHelper
 
   before(:each) do
     manufacturer = mock_model(Manufacturer, :name => 'Apple')

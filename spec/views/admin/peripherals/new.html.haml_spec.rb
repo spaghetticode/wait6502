@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/peripherals/new.html.haml" do
-  include Admin::PeripheralsHelper
 
   before(:each) do
     assigns[:peripheral] = stub_model(Peripheral,

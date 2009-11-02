@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "/admin/builtin_languages/index.html.haml" do
-  include Admin::BuiltinLanguagesHelper
 
   before(:each) do
     assigns[:builtin_languages] = [
