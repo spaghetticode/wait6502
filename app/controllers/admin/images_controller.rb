@@ -1,4 +1,5 @@
 class Admin::ImagesController < ApplicationController
+  include Admin::ImagesHelper
   before_filter :require_logged_in, :find_imageable
   layout 'admin'
   
@@ -48,11 +49,6 @@ class Admin::ImagesController < ApplicationController
         @imageable = $1.classify.constantize.find(value)
       end
     end
-  end
-  
-  def admin_imageable_images_path(imageable)
-    model = imageable.class.to_s.downcase
-    send("admin_#{model}_images_path", imageable)
   end
 end
 

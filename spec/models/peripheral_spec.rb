@@ -37,7 +37,11 @@ describe Peripheral do
     it 'should have an images association' do
       Peripheral.new.images.should_not be_nil
     end
-        
+    
+    it 'should have a ebay_keywords association' do
+      Peripheral.new.ebay_keywords.should_not be_nil
+    end
+    
     it 'should require a unique name for given manufacturer and code' do
       invalid = Peripheral.new(
         :name => peripheral.name,

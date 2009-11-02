@@ -1,0 +1,16 @@
+%h1
+  Ebay Keywords for
+  = @searchable.name
+
+= render :partial => 'tabs_navigation'
+
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Name
+    %th Actions
+  - @ebay_keywords.each do |kw|
+    %tr
+      %td= kw.name
+      %td= link_to 'destroy', admin_searchable_ebay_keyword_path(@searchable, kw), :confirm => 'Are you sure?', :method => :delete
+      
+%p= link_to 'new ebay keyword', new_admin_searchable_ebay_keyword_path(@searchable)

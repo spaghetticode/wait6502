@@ -3,7 +3,7 @@ class Hardware < ActiveRecord::Base
   
   has_many :original_prices, :as => :purchaseable
   has_many :images, :as => :imageable
-  
+  has_many :ebay_keywords, :as => :searchable
   belongs_to :manufacturer
   
   validates_presence_of :name, :manufacturer

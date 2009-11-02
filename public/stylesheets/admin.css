@@ -23,7 +23,7 @@ table.list td {
 	background:white;
 }
 
-h1 {
+h1, h2, h3 {
 	font-weight:normal;
 }
 
@@ -126,10 +126,6 @@ table.record th, table.record td {
 	padding:15px;
 	border:2px solid gray;
 	background:#ddd;
-}
-
-#associations h2, #original_prices h2 {
-	font-weight:normal;
 }
 
 #associations th, #associations td, #original_prices th, #original_prices td {

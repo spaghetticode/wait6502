@@ -1,5 +1,4 @@
-@focus
-Images Feature
+Feature: Manage Images
 	In order to pubish images for computers and peripherals
 	As a logged user
 	I want to manage computers and peripherals images

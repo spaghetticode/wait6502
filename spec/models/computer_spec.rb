@@ -42,6 +42,10 @@ describe Computer do
       Computer.new.images.should_not be_nil
     end
     
+    it 'should have an ebay_keywords association' do
+      Computer.new.ebay_keywords.should_not be_nil
+    end
+    
     it 'should require a unique name for given manufacturer and code' do
       code = '12345'
       valid = Factory(:computer, :code => code)

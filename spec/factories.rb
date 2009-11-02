@@ -117,3 +117,8 @@ Factory.define :image do |i|
   i.caption 'Image Caption'
   # missing uploaded_file attribute which must be stubbed
 end
+
+Factory.define :ebay_keyword do |kw|
+  kw.sequence(:name) {|n| "keyword #{n}"}
+  kw.association :searchable, :factory => :computer
+end
