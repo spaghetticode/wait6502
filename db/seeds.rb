@@ -107,4 +107,8 @@ puts 'Creating Peripheral types'
 %w{Monitor Printer Modem Keyboard Mouse}.each do |name|
   PeripheralType.create!(:name => name)
 end
-  
+
+puts 'Creating ebay sites'
+%w{DE IT US FR ES UK}.each do |name|
+  EbaySite.create!(:name => name)
+end

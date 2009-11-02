@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102103451) do
+ActiveRecord::Schema.define(:version => 20091102163501) do
 
   create_table "admin_images", :force => true do |t|
     t.string   "file"
@@ -135,6 +135,12 @@ ActiveRecord::Schema.define(:version => 20091102103451) do
     t.string   "name"
     t.integer  "searchable_id"
     t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ebay_sites", :id => false, :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
