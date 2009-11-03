@@ -1,7 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :images
-
-
   routes = {}
   %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
     routes["add_#{model}"] = :put
@@ -27,7 +24,7 @@ ActionController::Routing::Routes.draw do |map|
     
     admin.resources :builtin_languages, :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }
     
-    
+    admin.resource :resultset
   end
   
   map.resources :user_sessions

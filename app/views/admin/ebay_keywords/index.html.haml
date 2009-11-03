@@ -7,10 +7,16 @@
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
-    %th Actions
+    %th{:colspan => 2} Actions
   - @ebay_keywords.each do |kw|
     %tr
       %td= kw.name
       %td= link_to 'destroy', admin_searchable_ebay_keyword_path(@searchable, kw), :confirm => 'Are you sure?', :method => :delete
+      %td
+        - form_tag admin_resultset_path do
+          = hidden_field_tag :keyword, kw.name
+          = select_tag :ebay_site, options_from_collection_for_select(EbaySite.ordered, :name, :name)
+          = submit_tag 'search ebay'
+      
       
 %p= link_to 'new ebay keyword', new_admin_searchable_ebay_keyword_path(@searchable)
