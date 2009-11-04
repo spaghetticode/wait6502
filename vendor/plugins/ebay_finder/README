@@ -1,0 +1,31 @@
+EbayFinder
+==========
+Uses RESTful ebay find APIs to retrieve auctions information for given keywords and parameters.
+
+Tipical set of url parameters accepted by ebay:
+	keywords=commodore%20pet
+	paginationInput.entriesPerPage=20
+	sortOrder=EndTimeSoonest
+	paginationInput.pageNumber=1
+	
+Those parameters can be handled by this parameter hash:
+	{
+	:keywords => 'commodore pet',
+	:sort_order => 'EndTimeSoonest'
+	:pagination_input => {:entries_per_page => 20, :page_number => 1}
+	}
+
+Example
+=======
+Instantiate a request object (this will build the request url):
+	request = EbayFind.Request(:keyword => 'Commodore Amiga', :website => 'EBAY-DE')
+Request a response from ebay:
+	response = request.response
+Navigate through response items and info:
+	response.total_items
+	response.total_pages
+	response.total_items.first.title
+	response.total_items.first.view_item_url
+See code for more methods
+
+Copyright (c) 2009 Andrea Longhi, released under the MIT license

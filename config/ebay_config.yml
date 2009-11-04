@@ -1,0 +1,8 @@
+:development:
+  :app_id: none3d924-0bd7-400e-957b-90b8a7fee5a
+
+:test:
+  :app_id: test_ebay_app_id
+
+:production:
+  :app_id: none3d924-0bd7-400e-957b-90b8a7fee5a
