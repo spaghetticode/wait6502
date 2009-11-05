@@ -64,9 +64,9 @@ Feature: Builtin Storages Management
 			And   I should not see "floppy"
 		
 		Scenario: Failed Builtin Storage Destroy
-			Given a builtin storage "floppy-5.25 inches-360k" is associated to a computer
+			Given a builtin storage "floppy-5.25 inches-360k" is associated to a hardware
 			And   I am on the builtin storages page
 			When  I follow "destroy"
-			Then  I should see "Can't destroy: storage still has associated computers"
+			Then  I should see "Can't destroy: storage still has some hardware associated"
 			And   I should be on the builtin storages page
 			And   I should see "floppy"

@@ -27,12 +27,8 @@ describe BuiltinStorage do
       invalid.should have(1).error_on(:storage_name_id)
     end
     
-    it 'should have a computers association' do
-      BuiltinStorage.new.computers.should_not be_nil
-    end
-    
-    it 'should have a peripherals association' do
-      BuiltinStorage.new.peripherals.should_not be_nil
+    it 'should have a hardware association' do
+      BuiltinStorage.new.hardware.should_not be_nil
     end
   end
   

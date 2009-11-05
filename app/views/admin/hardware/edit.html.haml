@@ -1,0 +1,25 @@
+= render :partial => 'tabs_js'    
+
+%h1 Editing Hardware
+
+= render :partial => 'tabs_navigation'
+
+#main.section
+  - form_for(@hardware, :url => admin_hardware_path(@hardware)) do |f|
+    = f.error_messages
+    %table.record
+      = render :partial => 'form_fields', :locals => {:f => f}
+      %tr
+        %td.center{:colspan => 2}= f.submit 'Update'
+    
+#associations.section
+  = render :partial => 'associator', :locals => {:model => 'cpu'}
+  = render :partial => 'associator', :locals => {:model => 'builtin_storage'}
+  = render :partial => 'associator', :locals => {:model => 'operative_system'}
+  = render :partial => 'associator', :locals => {:model => 'co_cpu'}
+  = render :partial => 'associator', :locals => {:model => 'io_port'}
+
+#original_prices.section
+  = render :partial => 'original_prices', :locals => {:purchaseable => @hardware}
+
+%p= link_to 'Back', admin_hardware_index_path

@@ -36,11 +36,11 @@ class Admin::ManufacturersController < ApplicationController
 
   def destroy
     manufacturer = Manufacturer.find(params[:id])
-    if manufacturer.computers.empty?
+    if manufacturer.cpus.empty? && manufacturer.co_cpus.empty? && manufacturer.hardware.empty?
       manufacturer.destroy
       flash[:notice] = 'Manufacturer was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: manufacturer still has associated computers'
+      flash[:error] = 'Can\'t destroy: manufacturer still has some record associated.'
     end
     redirect_to admin_manufacturers_path
   end

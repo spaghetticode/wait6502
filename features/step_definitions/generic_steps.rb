@@ -26,18 +26,16 @@ Given /^a new ([\w\s]+) has (.*)been created$/ do |model, switch|
   klass.count.should == @count + (switch =~ /not/ ? 0 : 1)
 end
 
-Given /^a ([\w\s]+) named "([^\"]*)" is associated to a computer$/ do |model, name|
-  record = Given "a #{model} named \"#{name}\" exists"
-  computer = Factory(:computer)
-  case record
-  when ComputerType
-    computer.update_attribute(:computer_type, record)
-  when Manufacturer
-    computer.update_attribute(:manufacturer, record)
-  else
-    record.computers << computer
-  end
-  record.computers.should include(computer)
+Given /^a operative system named "(.+)" has a hardware associated$/ do |name|
+  hardware = Factory(:hardware)
+  operative_system = Factory(:operative_system, :name => name)
+  hardware.operative_systems << operative_system
+  operative_system.hardware.should include(hardware)
+end
+
+Given /^a ([\w\s]+) named "([^\"]*)" is associated to a hardware$/ do |model, name|
+  attribute = model.gsub(' ', '_')
+  Factory(:hardware, attribute => Factory(attribute, :name => name))
 end
 
 def class_for(model)
@@ -50,8 +48,6 @@ def class_for(model)
     Currency
   when /manufacturer/
     Manufacturer
-  when /computer type/
-    ComputerType
   when /io port/
     IoPort
   when /storage name/
@@ -74,7 +70,7 @@ def class_for(model)
     OperativeSystem
   when /builtin language/
     BuiltinLanguage
-  when /peripheral type/
-    PeripheralType
+  when /hardware type/
+    HardwareType
   end
 end

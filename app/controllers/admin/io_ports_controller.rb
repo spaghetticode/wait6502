@@ -42,11 +42,11 @@ class Admin::IoPortsController < ApplicationController
 
   def destroy
     io_port = IoPort.find(params[:id])
-    if io_port.computers.empty?
+    if io_port.hardware.empty?
       io_port.destroy
       flash[:notice] = 'IO Port was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: IO port still has associated computers'
+      flash[:error] = 'Can\'t destroy: IO port still has some hardware associated'
     end
     redirect_to admin_io_ports_path
   end

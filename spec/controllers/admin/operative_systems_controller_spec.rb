@@ -28,7 +28,7 @@ describe Admin::OperativeSystemsController do
       :edit  => :get,
       :create => :post,
       :destroy => :delete},
-      :computer_id => '1'
+      :hardware_id => '1'
     )
   end
   
@@ -154,9 +154,9 @@ describe Admin::OperativeSystemsController do
     end
     
     describe 'DELETE DESTROY' do
-      describe 'when operative system has no computer associated' do
+      describe 'when operative system has no hardware associated' do
         before do
-          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:computers => []))
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:hardware => []))
           mock_operative_system.should_receive(:destroy)
           delete_destroy
         end
@@ -170,9 +170,9 @@ describe Admin::OperativeSystemsController do
         end
       end
       
-      describe 'when operative system has at least one computer associated' do
+      describe 'when operative system has at least one hardware associated' do
         before do
-          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:computers => [mock_model(Computer)]))
+          OperativeSystem.should_receive(:find).and_return(mock_operative_system(:hardware => [mock_model(Hardware)]))
           mock_operative_system.should_not_receive(:destroy)
           delete_destroy
         end

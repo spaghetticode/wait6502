@@ -4,7 +4,7 @@ describe "/admin/ebay_keywords/new" do
   include Admin::EbayKeywordsHelper
   
   before(:each) do
-    assigns[:searchable] = mock_model(Peripheral, :name => 'Peripheral Name')
+    assigns[:searchable] = mock_model(Hardware, :name => 'Hardware Name')
     assigns[:ebay_keyword] = mock_model(EbayKeyword,
       :name => '',
       :searchable => assigns[:searchable])

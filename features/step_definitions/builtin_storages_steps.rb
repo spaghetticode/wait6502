@@ -19,10 +19,10 @@ Given /^a builtin storage "([^\"]*)" exists$/ do |fields|
   )
 end
 
-Given /^a builtin storage "([^\"]*)" is associated to a computer$/ do |fields|
+Given /^a builtin storage "([^\"]*)" is associated to a hardware$/ do |fields|
   storage = Given "a builtin storage \"#{fields}\" exists"
-  computer = Factory(:computer)
-  storage.computers << computer
+  hardware = Factory(:hardware)
+  storage.hardware << hardware
 end
 
 Given /^a storage (.*) named "([^\"]*)" is part of a builtin storage$/ do |type, name|

@@ -1,5 +1,5 @@
 Feature: CPUs Management
-	In order to have correct computer CPUs information
+	In order to have correct hardware CPUs information
 	As a logged user
 	I want to manage CPU information
 	
@@ -79,10 +79,10 @@ Feature: CPUs Management
 			And   I should not see "68000"
 		
 		Scenario: Failed CPU Destroy
-			Given existing cpu is associated to a computer
+			Given existing cpu is associated to a hardware
 			And   I am on the cpus page
 			When  I follow "destroy"
-			Then  I should see "Can't destroy: CPU still has associated computers"
+			Then  I should see "Can't destroy: CPU still has some hardware associated"
 			And   I should be on the cpus page
 			And   I should see "68000"
 			

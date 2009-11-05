@@ -1,3 +1,4 @@
+@focus
 Feature: Manage Builtin Languages
 	In order to enter complete computer language info
 	As a logged user
@@ -52,9 +53,9 @@ Feature: Manage Builtin Languages
 		And   I should not see "BASIC"
 
 	Scenario: Failed Builtin Language Destroy
-		Given a builtin language named "BASIC" is associated to a computer
+		Given a builtin language named "BASIC" is associated to a hardware
 		And   I am on the builtin languages page
 		When  I press "destroy"
-		Then  I should see "Can't destroy: language still has associated computers"
+		Then  I should see "Can't destroy: language still has some hardware associated"
 		And   I should be on the builtin languages page
 		And   I should see "BASIC"

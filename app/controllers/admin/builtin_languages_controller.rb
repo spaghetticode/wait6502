@@ -23,11 +23,11 @@ class Admin::BuiltinLanguagesController < ApplicationController
 
   def delete
     @builtin_language = BuiltinLanguage.find(params[:id])
-    if @builtin_language.computers.empty?
+    if @builtin_language.hardware.empty?
       @builtin_language.destroy
       flash[:notice] = 'Builtin language was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: language still has associated computers'
+      flash[:error] = 'Can\'t destroy: language still has some hardware associated.'
     end
     redirect_to admin_builtin_languages_path
   end

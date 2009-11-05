@@ -1,5 +1,5 @@
 Feature: Manage Opertive Systems
-	In order to add OS info to computers
+	In order to add OS info to hardwares
 	As a logged user
 	I want to manage operative systems
 
@@ -71,10 +71,10 @@ Feature: Manage Opertive Systems
 		And   I should not see "OSX"
 
 	Scenario: Failed IO Port Destroy
-		Given a operative system named "MS-DOS" is associated to a computer
+		Given a operative system named "MS-DOS" has a hardware associated
 		And   I am on the operative systems page
 		When  I follow "destroy"
-		Then  I should see "Can't destroy: operative system still has associated computers"
+		Then  I should see "Can't destroy: operative system still has some hardware associated"
 		And   I should be on the operative systems page
 		And   I should see "MS-DOS"
 		

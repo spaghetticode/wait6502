@@ -1,18 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
-  routes = {}
+  associations = {}
   %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
-    routes["add_#{model}"] = :put
-    routes["remove_#{model}"] = :delete
+    associations["add_#{model}"] = :put
+    associations["remove_#{model}"] = :delete
   end
   
   map.namespace(:admin) do |admin|
     admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
-    admin.resources :computers, :member   => routes, :has_many => [:original_prices, :images, :ebay_keywords]
-    admin.resources :peripherals, :member => routes, :has_many => [:original_prices, :images, :ebay_keywords]
+    admin.resources :hardware, :member => associations, :has_many => [:original_prices, :images, :ebay_keywords]
     
     admin.resources :countries,         :except => [:show, :update, :edit]
-    admin.resources :computer_types,    :except => [:show, :update, :edit]
-    admin.resources :peripheral_types,  :except => [:show, :update, :edit]
+    admin.resources :hardware_types,    :except => [:show, :update, :edit]
     
     admin.resources :storage_names,   :except => [:show, :update, :edit]
     admin.resources :storage_sizes,   :except => [:show, :update, :edit, :destroy], :collection => { :delete => :delete }

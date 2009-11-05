@@ -153,9 +153,9 @@ describe Admin::IoPortsController do
     end
     
     describe 'DELETE DESTROY' do
-      describe 'when io port has no computer associated' do
+      describe 'when io port has no hardware associated' do
         before do
-          mock_io_port(:computers => []).should_receive(:destroy)
+          mock_io_port(:hardware => []).should_receive(:destroy)
           IoPort.should_receive(:find).and_return(mock_io_port)
           delete :destroy, :id => '1'
         end
@@ -169,9 +169,9 @@ describe Admin::IoPortsController do
         end
       end
       
-      describe 'when io port has at least one computer associated' do
+      describe 'when io port has at least one hardware associated' do
         before do
-          IoPort.should_receive(:find).and_return(mock_io_port(:computers => [mock_model(Computer)]))
+          IoPort.should_receive(:find).and_return(mock_io_port(:hardware => [mock_model(Hardware)]))
           mock_io_port.should_not_receive(:destroy)
           delete :destroy, :id => '1'
         end

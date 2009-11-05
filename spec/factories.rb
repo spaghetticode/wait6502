@@ -18,10 +18,6 @@ Factory.define :manufacturer do |m|
   m.association :country
 end
 
-Factory.define :computer_type do |c|
-  c.sequence(:name) {|n| "comp_type#{n}"}
-end
-
 Factory.define :io_port do |io|
   io.sequence(:name) {|n| "port name#{n}"}
   io.connector 'centronics'
@@ -87,20 +83,12 @@ Factory.define :co_cpu do |cc|
   cc.association :manufacturer
 end
 
-Factory.define :computer do |c|
-  c.sequence(:name) {|n| "computer #{n}"}
-  c.association :manufacturer
-  c.association :computer_type
-end
-
-Factory.define :peripheral_type do |pt|
-  pt.sequence(:name) {|n| "peripheral type #{n}"}
-end
-
-Factory.define :peripheral do |p|
-  p.sequence(:name) {|n| "peripheral #{n}"}
-  p.association :manufacturer
-  p.association :peripheral_type
+Factory.define :hardware do |h|
+  h.sequence(:name) {|n| "hardware #{n}"}
+  h.association :hardware_type
+  h.association :manufacturer
+  h.association :hardware_type
+  h.hardware_category Hardware::CATEGORIES.first
 end
 
 Factory.define :original_price do |op|
@@ -108,11 +96,11 @@ Factory.define :original_price do |op|
   op.association :country
   op.date Date.today
   op.amount '1000'
-  op.association :purchaseable, :factory => :computer
+  op.association :purchaseable, :factory => :hardware
 end
 
 Factory.define :image do |i|
-  i.association :imageable, :factory => :computer
+  i.association :imageable, :factory => :hardware
   i.title 'Image Title'
   i.caption 'Image Caption'
   # missing uploaded_file attribute which must be stubbed
@@ -120,5 +108,9 @@ end
 
 Factory.define :ebay_keyword do |kw|
   kw.sequence(:name) {|n| "keyword #{n}"}
-  kw.association :searchable, :factory => :computer
+  kw.association :searchable, :factory => :hardware
+end
+
+Factory.define :hardware_type do |ht|
+  ht.sequence(:name) {|n| "hardware_type #{n}"}
 end

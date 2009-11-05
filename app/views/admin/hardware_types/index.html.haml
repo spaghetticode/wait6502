@@ -1,0 +1,12 @@
+%h1 Listing Hardware Types
+
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Name
+    %th Actions
+  - @hardware_types.each do |hardware_type|
+    %tr
+      %td= h hardware_type.name
+      %td= link_to 'Destroy', admin_hardware_type_path(hardware_type), :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New hardware type', new_admin_hardware_type_path

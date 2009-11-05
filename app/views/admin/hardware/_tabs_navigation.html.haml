@@ -1,0 +1,10 @@
+%ul.tabs 
+  %li= link_to 'Main', '#main', :class => 'tab'
+  %li= link_to 'Associations', '#associations', :class => 'tab'
+  %li= link_to 'Original Prices', '#original_prices', :class => 'tab'
+  - if controller_name == 'hardware'
+    %li= link_to 'Images', admin_hardware_images_path(@hardware)
+    %li= link_to 'Ebay Keywords', admin_hardware_ebay_keywords_path(@hardware)
+  - else
+    %li= link_to 'Images', admin_imageable_images_path(@imageable)
+    %li= link_to 'Ebay Keywords', admin_searchable_ebay_keywords_path(@searchable)

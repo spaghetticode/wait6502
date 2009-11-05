@@ -5,9 +5,9 @@ Given /^a io port with name "([^\"]*)" and connector "([^\"]*)" exists$/ do |nam
   )
 end
 
-Given /^a io port with name "([^\"]*)" has a computer associated$/ do |name|
+Given /^a io port with name "([^\"]*)" has a hardware associated$/ do |name|
   io_port = Given "a io port with name \"#{name}\" and connector \"\" exists"
-  computer = Factory(:computer)
-  io_port.computers << computer
-  computer.io_ports.should include(io_port)
+  hardware = Factory(:hardware)
+  io_port.hardware << hardware
+  hardware.io_ports.should include(io_port)
 end

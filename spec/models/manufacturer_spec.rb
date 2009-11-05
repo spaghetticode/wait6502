@@ -15,8 +15,16 @@ describe Manufacturer do
       invalid.should have(1).error_on(:name)
     end
     
-    it 'should have computers association' do
-      Manufacturer.new.computers.should_not be_nil
+    it 'should have hardware association' do
+      Manufacturer.new.hardware.should_not be_nil
+    end
+    
+    it 'should have cpus association' do
+      Manufacturer.new.cpus.should_not be_nil
+    end
+    
+    it 'should have co_cpus association' do
+      Manufacturer.new.co_cpus.should_not be_nil
     end
   end
   

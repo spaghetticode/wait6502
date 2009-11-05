@@ -36,11 +36,11 @@ class Admin::CpusController < ApplicationController
 
   def destroy
     cpu = Cpu.find(params[:id])
-    if cpu.computers.empty?
+    if cpu.hardware.empty?
       cpu.destroy
       flash[:notice] = 'CPU was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: CPU still has associated computers'
+      flash[:error] = 'Can\'t destroy: CPU still has some hardware associated.'
     end
     redirect_to admin_cpus_path    
   end

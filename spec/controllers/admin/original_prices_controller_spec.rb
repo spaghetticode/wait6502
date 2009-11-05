@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Admin::OriginalPricesController do
   def post_create
-    post :create, :computer_id => '1', :original_price => {}
+    post :create, :hardware_id => '1', :original_price => {}
   end
   
   describe 'not being logged in' do
     should_flash_and_redirect_for(
       {:create => :post, :destroy => :delete},
-      :computer_id => '1'
+      :hardware_id => '1'
     )
   end
   
@@ -21,8 +21,8 @@ describe Admin::OriginalPricesController do
     describe 'POST CREATE' do
       before do
         @original_prices = []
-        computer = mock_model(Computer, :original_prices => @original_prices)
-        Computer.should_receive(:find).and_return(computer)
+        hardware = mock_model(Hardware, :original_prices => @original_prices)
+        Hardware.should_receive(:find).and_return(hardware)
       end
       describe 'with valid attributes' do
         before do
@@ -79,9 +79,9 @@ describe Admin::OriginalPricesController do
         original_price.should_receive(:destroy)
         original_prices = [original_price]
         original_prices.should_receive(:find).with('1').and_return(original_price)
-        mock_computer = mock_model(Computer, :original_prices => original_prices)
-        Computer.should_receive(:find).with('2').and_return(mock_computer)
-        delete :destroy, :id => '1', :computer_id => '2'
+        mock_hardware = mock_model(Hardware, :original_prices => original_prices)
+        Hardware.should_receive(:find).with('2').and_return(mock_hardware)
+        delete :destroy, :id => '1', :hardware_id => '2'
       end
       
       it 'should redirect' do

@@ -24,8 +24,8 @@ describe CoCpu do
       invalid.should have(1).error_on(:co_cpu_name_id)
     end
     
-    it 'should have computers association' do
-      CoCpu.new.computers.should_not be_nil
+    it 'should have hardware association' do
+      CoCpu.new.hardware.should_not be_nil
     end
   end
   

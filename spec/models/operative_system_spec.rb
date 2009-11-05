@@ -16,8 +16,8 @@ describe OperativeSystem do
       invalid.should have(1).error_on(:name)
     end
     
-    it 'should have a computers association' do
-      OperativeSystem.new.computers.should_not be_nil
+    it 'should have a hardware association' do
+      OperativeSystem.new.hardware.should_not be_nil
     end
     
   end

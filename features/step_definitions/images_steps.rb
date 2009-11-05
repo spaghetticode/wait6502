@@ -1,4 +1,4 @@
-Given /^I uploaded an image titled "([^\"]*)" for "([^\"]*)" (computer|peripheral)$/ do |title, name, model|
+Given /^I uploaded an image titled "([^\"]*)" for "([^\"]*)" (hardware)$/ do |title, name, model|
   imageable = model.classify.constantize.find_by_name(name)
   visit send("admin_#{model}_images_path", imageable)
   click_link "New image"

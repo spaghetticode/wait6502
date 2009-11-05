@@ -126,9 +126,10 @@ describe Admin::ManufacturersController do
     end
     
     describe 'DELETE DESTROY' do
-      describe 'when manufacturer has no associated computer' do
+      describe 'when manufacturer has no associated hardware' do
         before do
-          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:computers => []))
+          mock_manufacturer(:hardware => [], :cpus => [], :co_cpus => [])
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer)
           mock_manufacturer.should_receive(:destroy)
           delete :destroy, :id => '1'
         end
@@ -142,9 +143,44 @@ describe Admin::ManufacturersController do
         end
       end
       
-      describe 'when manufacturer has at least one associated computer' do
+      describe 'when manufacturer has at least one associated hardware' do
         before do
-          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:computers => [mock_model(Computer)]))
+          mock_manufacturer(:hardware => [mock_model(Hardware)], :cpus => [], :co_cpus => [])
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer)
+          mock_manufacturer.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_manufacturers_path' do
+          response.should redirect_to(admin_manufacturers_path)
+        end
+      end
+      
+      describe 'when manufacturer has at least one associated CPU' do
+        before do
+          mock_manufacturer(:hardware => [], :cpus => [mock_model(Cpu)], :co_cpus => [])
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer)
+          mock_manufacturer.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to admin_manufacturers_path' do
+          response.should redirect_to(admin_manufacturers_path)
+        end
+      end
+      
+      describe 'when manufacturer has at least one associated co-CPU' do
+        before do
+          mock_manufacturer(:hardware => [], :co_cpus => [mock_model(CoCpu)], :cpus => [])
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer)
           mock_manufacturer.should_not_receive(:destroy)
           delete :destroy, :id => '1'
         end

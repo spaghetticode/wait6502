@@ -9,15 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102163501) do
-
-  create_table "admin_images", :force => true do |t|
-    t.string   "file"
-    t.string   "title"
-    t.text     "caption"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20091105151158) do
 
   create_table "builtin_languages", :id => false, :force => true do |t|
     t.string   "name"
@@ -33,13 +25,8 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.datetime "updated_at"
   end
 
-  create_table "builtin_storages_computers", :id => false, :force => true do |t|
-    t.integer "computer_id"
-    t.integer "builtin_storage_id"
-  end
-
-  create_table "builtin_storages_peripherals", :id => false, :force => true do |t|
-    t.integer "peripheral_id"
+  create_table "builtin_storages_hardware", :id => false, :force => true do |t|
+    t.integer "hardware_id"
     t.integer "builtin_storage_id"
   end
 
@@ -61,30 +48,9 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.datetime "updated_at"
   end
 
-  create_table "co_cpus_computers", :id => false, :force => true do |t|
-    t.integer "computer_id"
+  create_table "co_cpus_hardware", :id => false, :force => true do |t|
+    t.integer "hardware_id"
     t.integer "co_cpu_id"
-  end
-
-  create_table "computer_types", :id => false, :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "computers_cpus", :id => false, :force => true do |t|
-    t.integer "computer_id"
-    t.integer "cpu_id"
-  end
-
-  create_table "computers_io_ports", :id => false, :force => true do |t|
-    t.integer "computer_id"
-    t.integer "io_port_id"
-  end
-
-  create_table "computers_operative_systems", :id => false, :force => true do |t|
-    t.integer "computer_id"
-    t.integer "operative_system_id"
   end
 
   create_table "countries", :id => false, :force => true do |t|
@@ -119,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.datetime "updated_at"
   end
 
-  create_table "cpus_peripherals", :id => false, :force => true do |t|
-    t.integer "peripheral_id"
+  create_table "cpus_hardware", :id => false, :force => true do |t|
+    t.integer "hardware_id"
     t.integer "cpu_id"
   end
 
@@ -146,14 +112,12 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
   end
 
   create_table "hardware", :force => true do |t|
-    t.string  "type",                :null => false
     t.string  "name",                :null => false
     t.string  "code"
     t.text    "notes"
     t.integer "manufacturer_id",     :null => false
     t.integer "production_start"
     t.integer "production_stop"
-    t.string  "computer_type_id"
     t.string  "codename"
     t.text    "text_modes"
     t.text    "graphic_modes"
@@ -162,7 +126,22 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.string  "ram"
     t.string  "vram"
     t.string  "rom"
-    t.string  "peripheral_type_id"
+    t.string  "hardware_category"
+    t.string  "hardware_type_id",    :null => false
+  end
+
+  create_table "hardware_io_ports", :id => false, :force => true do |t|
+    t.integer "hardware_id"
+    t.integer "io_port_id"
+  end
+
+  create_table "hardware_operative_systems", :id => false, :force => true do |t|
+    t.integer "hardware_id"
+    t.integer "operative_system_id"
+  end
+
+  create_table "hardware_types", :id => false, :force => true do |t|
+    t.string "name"
   end
 
   create_table "images", :force => true do |t|
@@ -180,11 +159,6 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.string   "connector"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "io_ports_peripherals", :id => false, :force => true do |t|
-    t.integer "peripheral_id"
-    t.integer "io_port_id"
   end
 
   create_table "manufacturers", :force => true do |t|
@@ -209,10 +183,6 @@ ActiveRecord::Schema.define(:version => 20091102163501) do
     t.string   "purchaseable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "peripheral_types", :id => false, :force => true do |t|
-    t.string "name", :null => false
   end
 
   create_table "storage_formats", :id => false, :force => true do |t|

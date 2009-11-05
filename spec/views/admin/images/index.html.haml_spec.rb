@@ -13,7 +13,7 @@ describe "/admin/images/index.html.haml" do
         :filename => 'image.png'
       )
     ]
-    assigns[:imageable] = mock_model(Computer, :name => 'Computer name')
+    assigns[:imageable] = mock_model(Hardware, :name => 'Computer name')
   end
   
   it 'render a list of images' do

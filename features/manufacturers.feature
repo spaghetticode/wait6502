@@ -1,5 +1,5 @@
 Feature: Manage Manufacturers
-	In order to add computers and CPUs manufacturer info
+	In order to add hardwares and CPUs manufacturer info
 	As a logged in user
 	I want to manage manufacturers
 	
@@ -63,10 +63,10 @@ Feature: Manage Manufacturers
 		And   I should not see "Atari"
 		
 	Scenario: Failed Manufacturer Destroy
-		Given a manufacturer named "Atari" is associated to a computer
+		Given a manufacturer named "Atari" is associated to a hardware
 		And   I am on the manufacturers page
 		When  I follow "destroy"
-		Then  I should see "Can't destroy: manufacturer still has associated computers"
+		Then  I should see "Can't destroy: manufacturer still has some record associated"
 		And   I should be on the manufacturers page
 		And   I should see "Atari"
 		

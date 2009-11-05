@@ -36,11 +36,11 @@ class Admin::OperativeSystemsController < ApplicationController
   
   def destroy
     operative_system = OperativeSystem.find(params[:id])
-    if operative_system.computers.empty?
+    if operative_system.hardware.empty?
       operative_system.destroy
       flash[:notice] = 'Operative system was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: operative system still has associated computers'
+      flash[:error] = 'Can\'t destroy: operative system still has some hardware associated.'
     end
     redirect_to admin_operative_systems_path
   end

@@ -16,8 +16,8 @@ describe BuiltinLanguage do
       invalid.should have(1).error_on(:name)
     end
     
-    it 'should have computers association' do
-      BuiltinLanguage.new.computers.should_not be_nil
+    it 'should have hardware association' do
+      BuiltinLanguage.new.hardware.should_not be_nil
     end
   end
   

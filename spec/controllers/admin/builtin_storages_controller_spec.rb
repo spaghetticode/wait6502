@@ -129,9 +129,9 @@ describe Admin::BuiltinStoragesController do
     end
   
     describe 'DELETE DESTROY' do
-      describe 'when builtin storage has no computer associated' do
+      describe 'when builtin storage has no hardware associated' do
         before do
-          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:computers => []))
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:hardware => []))
           mock_builtin_storage.should_receive(:destroy)
           delete_destroy
         end
@@ -145,9 +145,9 @@ describe Admin::BuiltinStoragesController do
         end
       end
       
-      describe 'when builtin storage has at least one computer associated' do
+      describe 'when builtin storage has at least one hardware associated' do
         before do
-          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:computers => [mock_model(Computer)]))
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:hardware => [mock_model(Hardware)]))
           mock_builtin_storage.should_not_receive(:destroy)
           delete_destroy
         end

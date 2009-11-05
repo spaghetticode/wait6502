@@ -1,12 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
-  def computer_type_selector(f)
-    f.select :computer_type_id, ComputerType.ordered.map(&:name), :include_blank => true
-  end
-  
-  def peripheral_type_selector(f)
-    f.select :peripheral_type_id, PeripheralType.ordered.map(&:name), :include_blank => true
+  def hardware_type_selector(f)
+    f.select :hardware_type_id, HardwareType.ordered.map(&:name), :include_blank => true
   end
   
   def builtin_language_selector(f)

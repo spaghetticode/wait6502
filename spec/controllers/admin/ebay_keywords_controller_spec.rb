@@ -8,7 +8,7 @@ describe Admin::EbayKeywordsController do
   def searchable(options={})
     ebay_keywords = []
     ebay_keywords.stub!(:build => mock_ebay_keyword, :ordered => [])
-    @searchable ||= mock_model(Computer, options.merge(:ebay_keywords => ebay_keywords, :class_name => 'Computer', :name => 'Computer Name'))
+    @searchable ||= mock_model(Hardware, options.merge(:ebay_keywords => ebay_keywords, :class_name => 'Hardware', :name => 'Hardware Name'))
   end
   
   describe 'without being authenticated' do
@@ -19,7 +19,7 @@ describe Admin::EbayKeywordsController do
       :create => :post,
       :destroy => :delete
       },
-      :computer_id => '1'
+      :hardware_id => '1'
     )
   end
   
@@ -27,12 +27,12 @@ describe Admin::EbayKeywordsController do
     before do
       activate_authlogic
       UserSession.create!(Factory(:user))
-      Computer.should_receive(:find).and_return(searchable)
+      Hardware.should_receive(:find).and_return(searchable)
     end
     
     describe 'GET INDEX' do
       before do
-        get :index, :computer_id => '1'
+        get :index, :hardware_id => '1'
       end
       
       it 'should be success' do
@@ -50,7 +50,7 @@ describe Admin::EbayKeywordsController do
     
     describe 'GET NEW' do
       before do
-        get :new, :computer_id => '1'
+        get :new, :hardware_id => '1'
       end
       
       it 'should be success' do
@@ -70,11 +70,11 @@ describe Admin::EbayKeywordsController do
       describe 'with valid attributes' do
         before do
           mock_ebay_keyword.should_receive(:save).and_return(:true)
-          post :create, :computer_id => '1', :ebay_keyword => {}
+          post :create, :hardware_id => '1', :ebay_keyword => {}
         end
         
         it 'should redirect to associated searchable ebay_keywords page' do
-          response.should redirect_to(admin_computer_ebay_keywords_path(searchable))
+          response.should redirect_to(admin_hardware_ebay_keywords_path(searchable))
         end
         
         it 'should flash' do
@@ -89,7 +89,7 @@ describe Admin::EbayKeywordsController do
       describe 'with invalid attributes' do
         before do
           mock_ebay_keyword.should_receive(:save).and_return(false)
-          post :create, :computer_id => '1', :ebay_keyword => {}
+          post :create, :hardware_id => '1', :ebay_keyword => {}
         end
         
         it 'should be success' do
@@ -112,11 +112,11 @@ describe Admin::EbayKeywordsController do
       describe 'DELETE DESTROY' do
         before do
           searchable.ebay_keywords.should_receive(:destroy)
-          delete :destroy, :id => '1', :computer_id => '1'
+          delete :destroy, :id => '1', :hardware_id => '1'
         end
         
         it 'should redirect to associated searchable ebay_keywords page' do
-          response.should redirect_to(admin_computer_ebay_keywords_path(searchable))
+          response.should redirect_to(admin_hardware_ebay_keywords_path(searchable))
         end
         
         it 'should flash' do

@@ -1,0 +1,10 @@
+%h1 New Hardware
+
+- form_for(@hardware, :url => admin_hardware_index_path) do |f|
+  = f.error_messages
+  %table.record
+    = render :partial => 'form_fields', :locals => {:f => f}
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Create'
+
+%p= link_to 'Back', admin_hardware_index_path

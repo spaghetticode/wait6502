@@ -152,9 +152,9 @@ describe Admin::CpusController do
     end
       
     describe 'DELETE DESTROY' do
-      describe 'when cpu has no associated computer' do
+      describe 'when cpu has no associated hardware' do
         before do
-          Cpu.should_receive(:find).and_return(mock_cpu(:computers => []))
+          Cpu.should_receive(:find).and_return(mock_cpu(:hardware => []))
           mock_cpu.should_receive(:destroy)
           delete :destroy, :id => '1'
         end
@@ -168,9 +168,9 @@ describe Admin::CpusController do
         end
       end
     
-      describe 'when cpu has at least one associated computer' do
+      describe 'when cpu has at least one associated hardware' do
         before do
-          Cpu.should_receive(:find).and_return(mock_cpu(:computers => [mock_model(Computer)]))
+          Cpu.should_receive(:find).and_return(mock_cpu(:hardware => [mock_model(Hardware)]))
           mock_cpu.should_not_receive(:destroy)
           delete :destroy, :id => '1'
         end

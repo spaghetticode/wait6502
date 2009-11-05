@@ -92,10 +92,10 @@ Feature: Manage co-CPU
 			And   I should not see "8087"
 			
 		Scenario: Failed Co-CPU Destroy
-			Given a co cpu "Intel 8087 Math" is associated to a computer
+			Given a co cpu "Intel 8087 Math" is associated to a hardware
 			And   I am on the co cpus page
 			When  I follow "destroy"
-			Then  I should see "Can't destroy: co-CPU still has associated computers"
+			Then  I should see "Can't destroy: co-CPU still has some hardware associated"
 			And   I should be on the co cpus page
 			And   I should see "8087"
 			

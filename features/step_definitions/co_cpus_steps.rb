@@ -21,9 +21,9 @@ Given /^a co cpu "([^\"]*)" exists$/ do |values|
   @co_cpu
 end
 
-Given /^a co cpu "([^\"]*)" is associated to a computer$/ do |fields|
+Given /^a co cpu "([^\"]*)" is associated to a hardware$/ do |fields|
   co_cpu = Given "a co cpu \"#{fields}\" exists"
-  computer = Factory(:computer)
-  co_cpu.computers << computer
-  computer.co_cpus.should include(co_cpu)
+  hardware = Factory(:hardware)
+  co_cpu.hardware << hardware
+  hardware.co_cpus.should include(co_cpu)
 end

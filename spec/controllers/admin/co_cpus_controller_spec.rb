@@ -182,9 +182,9 @@ describe Admin::CoCpusController do
     end
     
     describe 'DELETE DESTROY' do
-      describe 'when co-cpu has no computer associated' do
+      describe 'when co-cpu has no hardware associated' do
         before do
-          CoCpu.should_receive(:find).and_return(mock_co_cpu(:computers => []))
+          CoCpu.should_receive(:find).and_return(mock_co_cpu(:hardware => []))
           mock_co_cpu.should_receive(:destroy)
           delete_destroy
         end
@@ -198,9 +198,9 @@ describe Admin::CoCpusController do
         end
       end
       
-      describe 'when co-cpu has at least one associated computer' do
+      describe 'when co-cpu has at least one associated hardware' do
         before do
-          CoCpu.should_receive(:find).and_return(mock_co_cpu(:computers => [mock_model(Computer)]))
+          CoCpu.should_receive(:find).and_return(mock_co_cpu(:hardware => [mock_model(Hardware)]))
           mock_co_cpu.should_not_receive(:destroy)
           delete_destroy
         end

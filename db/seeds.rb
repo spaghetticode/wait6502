@@ -2,11 +2,6 @@ puts 'Creating user admin@test.com'
 password = 'secret'
 User.create!(:email => 'admin@test.com', :password => password, :password_confirmation => password)
 
-puts 'Creating computer types'
-['Home', 'Personal', 'Portable', 'Pocket'].each do |name|
-  ComputerType.create!(:name => name)
-end
-
 puts 'Creating countries'
 ['Italy', 'USA', 'France', 'Germany', 'Japan', 'Great Britain'].each do |country|
   Country.create!(:name => country)
@@ -103,11 +98,11 @@ puts 'Creating IO ports'
   IoPort.create!(:name => port[0], :connector => port[1])
 end
 
-puts 'Creating Peripheral types'
-%w{Monitor Printer Modem Keyboard Mouse}.each do |name|
-  PeripheralType.create!(:name => name)
+puts 'Creating Hardware Types'
+['Home Computer', 'Personal Computer', 'Portable Computer', 'Pocket Computer', 'Monitor', 'Printer', 'Keyboard', 'Mouse', 'External Floppy Disk Drive', 'External Hard Disk'].each do |name|
+  HardwareType.create!(:name => name)
 end
-
+  
 puts 'Creating ebay sites'
 %w{DE IT US FR ES GB NL}.each do |name|
   EbaySite.create!(:name => name)

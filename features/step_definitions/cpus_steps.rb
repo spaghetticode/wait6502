@@ -27,11 +27,11 @@ Given /^a cpu "([^\"]*)" exists$/ do |description|
     :clock => clock)
 end
 
-Given /^existing cpu is associated to a computer$/ do
+Given /^existing cpu is associated to a hardware$/ do
   cpu = Cpu.first
-  computer = Factory(:computer)
-  cpu.computers << computer
-  computer.cpus.should include(cpu)
+  hardware = Factory(:hardware)
+  cpu.hardware << hardware
+  hardware.cpus.should include(cpu)
 end
 
 Given /^a cpu (\w+) named "(.*)" is part of a CPU$/ do |type, name|

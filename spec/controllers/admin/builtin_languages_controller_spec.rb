@@ -111,10 +111,10 @@ describe Admin::BuiltinLanguagesController do
     # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
     # l'id con il punto, visto che rails lo interpreta come separatore per format'
     describe 'DELETE DELETE' do
-      describe 'when builtin language has no computer associated' do
+      describe 'when builtin language has no hardware associated' do
         before do
           BuiltinLanguage.should_receive(:find).with('BASIC').
-            and_return(mock_builtin_language(:destroy => nil, :computers => []))
+            and_return(mock_builtin_language(:destroy => nil, :hardware => []))
           # the following expectation should not be in a before block, as it tests
           # the real guts of the method but this makes specs code more readable
           # and in my opinion doesn't hurt that much
@@ -131,10 +131,10 @@ describe Admin::BuiltinLanguagesController do
         end
       end
       
-      describe 'when builtin language has computers associated' do
+      describe 'when builtin language has hardware associated' do
         before do
           BuiltinLanguage.should_receive(:find).with('BASIC').
-            and_return(mock_builtin_language(:computers => [mock_model(Computer)]))
+            and_return(mock_builtin_language(:hardware => [mock_model(Hardware)]))
           mock_builtin_language.should_not_receive(:destroy)
           delete_delete
         end
@@ -144,7 +144,7 @@ describe Admin::BuiltinLanguagesController do
         end
         
         it 'should flash a failure message' do
-          flash[:error] = 'Can\'t destroy: language still has associated computers'
+          flash[:error] = 'Can\'t destroy: language still has associated hardware'
         end
       end
     end

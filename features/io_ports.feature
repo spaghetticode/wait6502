@@ -1,5 +1,5 @@
 Feature: Manage I/O Ports
-	In order to add computer io ports information
+	In order to add hardware io ports information
 	As a logged in user
 	I want to manage io ports
 	
@@ -58,10 +58,10 @@ Feature: Manage I/O Ports
 		And   I should not see "rs232"
 		
 	Scenario: Failed IO Port Destroy
-		Given a io port with name "serial" has a computer associated
+		Given a io port with name "serial" has a hardware associated
 		And   I am on the io ports page
 		When  I follow "destroy"
-		Then  I should see "Can't destroy: IO port still has associated computers"
+		Then  I should see "Can't destroy: IO port still has some hardware associated"
 		And   I should be on the io ports page
 		And   I should see "serial"
 		
