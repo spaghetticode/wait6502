@@ -10,7 +10,7 @@ module EbayFinderHelper
   end  
 end
 
-describe 'EbayFinder module' do
+describe EbayFinder do
   include EbayFinderHelper
   
   describe 'a new Request instance' do
@@ -101,4 +101,13 @@ describe 'EbayFinder module' do
       end
     end
   end 
+  
+  describe 'an Item instance' do
+    it 'current_price should format prices to 2 decimal digits' do
+      item = EbayFinder::Item.new({})
+      price_hash = {'currentPrice' => {:currency => 'EUR', :amount => '10.2'}}
+      item.should_receive(:[]).and_return(price_hash)
+      item.current_price.should == 'EUR 10.20'
+    end
+  end
 end

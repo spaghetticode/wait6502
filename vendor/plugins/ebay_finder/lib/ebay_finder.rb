@@ -46,11 +46,11 @@ module EbayFinder
     
     def http_get(url)
       response = nil
-      url = URI.parse(url)
-      request = Net::HTTP.new(url.host, url.port)
+      uri = URI.parse(url)
+      request = Net::HTTP.new(uri.host, uri.port)
       request.read_timeout = 5
       begin
-        response = request.get(url.request_uri)
+        response = request.get(uri.request_uri)
         raise RequestError, 'Problems retrieving data from ebay' unless response.is_a? Net::HTTPSuccess
       rescue Timeout::Error
         raise TimeoutError, 'Time out... ebay seems to be currently unavailable.'
@@ -120,7 +120,8 @@ module EbayFinder
     end
     
     def current_price
-      self['sellingStatus']['currentPrice'].values.join(' ')
+      currency, amount = self['sellingStatus']['currentPrice'].values
+      "#{currency} %.2f" % amount.to_f
     end
   end
 end
