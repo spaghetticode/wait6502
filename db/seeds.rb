@@ -109,6 +109,6 @@ puts 'Creating Peripheral types'
 end
 
 puts 'Creating ebay sites'
-%w{DE IT US FR ES UK}.each do |name|
+%w{DE IT US FR ES GB NL}.each do |name|
   EbaySite.create!(:name => name)
 end

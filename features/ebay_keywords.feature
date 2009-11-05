@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Ebay Keywords
 	In order to add ebay search keywords to computers and peripherals
 	As a logged user

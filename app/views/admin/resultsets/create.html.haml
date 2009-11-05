@@ -1,0 +1,17 @@
+%h1
+  = params[:keyword]
+  Auctions
+%p
+  There were
+  = @resultset.total_items
+  matches on ebay
+  = params[:ebay_site]
+- @resultset.items.each do |item|
+  .auction_info
+    .image_box
+      = image_tag item.gallery_url || 'no image'
+    %h3= link_to item.title, '#', :onclick => "window.open('#{item.view_item_url}')"
+    %p.current_price
+      current price:
+      %span.price= item.current_price
+    
