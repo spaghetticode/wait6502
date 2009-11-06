@@ -172,3 +172,10 @@ ul.tabs li {
 .auction_info .price {
 	font-weight:bold;
 }
+
+.ebay_gallery {
+	min-height:60px;
+	display:block;
+	color:white;
+	border:1px solid silver;
+}

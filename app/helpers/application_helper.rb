@@ -18,10 +18,18 @@ module ApplicationHelper
   end
   
   def currency_selector(f)
-    f.select :currency_id, Currency.ordered.map{|c| [c.symbol, c.id]}, :include_blank => true
+    f.select :currency_id, Currency.ordered.map{|c| [c.code, c.id]}, :include_blank => true
   end
   
   def year_selector(field, f)
     f.select field, (1970...2010).to_a, :include_blank => true
+  end
+  
+  def ebay_site_selector(f)
+    f.select :ebay_site_id, EbaySite.ordered.map(&:name), :include_blank => true
+  end
+  
+  def hardware_selector(f)
+    f.select :hardware_id, Hardware.ordered.map{|h| [h.name, h.id]}, :include_blank => true
   end
 end

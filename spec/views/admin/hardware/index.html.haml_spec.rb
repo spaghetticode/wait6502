@@ -54,18 +54,9 @@ describe "/admin/hardware/index.html.haml" do
   it "renders a list of hardware items" do
     render
     response.should have_tag("tr>td", "value for name".to_s, 2)
-    response.should have_tag("tr>td", 1.to_s, 2)
-    response.should have_tag("tr>td", "value for hardware_type_id".to_s, 2)
-    response.should have_tag("tr>td", "value for code".to_s, 2)
-    response.should have_tag("tr>td", "value for codename".to_s, 2)
-    response.should have_tag("tr>td", "value for ram".to_s, 2)
-    response.should have_tag("tr>td", "value for vram".to_s, 2)
-    response.should have_tag("tr>td", "value for rom".to_s, 2)
+    response.should have_tag("tr>td", "1", 2)
     response.should have_tag("tr>td", "1989".to_s, 2)
     response.should have_tag("tr>td", "Apple", 2)
     response.should have_tag("tr>td", "value for builtin_language_id".to_s, 2)
-    response.should have_tag("tr>td", "value for text_modes".to_s, 2)
-    response.should have_tag("tr>td", "value for graphic_modes".to_s, 2)
-    response.should have_tag("tr>td", "value for sound".to_s, 2)
   end
 end

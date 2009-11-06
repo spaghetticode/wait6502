@@ -3,7 +3,7 @@ class Admin::BuiltinLanguagesController < ApplicationController
   layout 'admin'
   
   def index
-    @builtin_languages = BuiltinLanguage.all
+    @builtin_languages = BuiltinLanguage.ordered.paginate(:page => params[:page])
   end
 
   def new

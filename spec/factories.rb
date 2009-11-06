@@ -114,3 +114,18 @@ end
 Factory.define :hardware_type do |ht|
   ht.sequence(:name) {|n| "hardware_type #{n}"}
 end
+
+Factory.define :ebay_site do |es|
+  es.sequence(:name) {|n| "site #{n}"}
+end
+
+Factory.define :auction do |a|
+  a.association :currency
+  a.association :hardware
+  a.association :ebay_site
+  a.title 'Auction title'
+  a.cosmetic_conditions 'average'
+  a.completeness 'complete'
+  a.sequence(:url) {|n| "http://some.ebay.com/url-name-#{n}"}
+  a.end_time Time.now.tomorrow
+end

@@ -12,5 +12,6 @@
         -form_tag delete_admin_builtin_languages_path, :method => :delete do
           = hidden_field_tag 'id', language.name
           = submit_tag 'destroy'
-
+          
+%p= will_paginate @builtin_languages
 %p= link_to 'New builtin language', new_admin_builtin_language_path

@@ -13,5 +13,8 @@
     %h3= link_to item.title, '#', :onclick => "window.open('#{item.view_item_url}')"
     %p.current_price
       current price:
-      %span.price= item.current_price
+      %span.price= item.current_price.values.join(' ')
+      %br
+      end time:
+      %span.price= item.end_time
     

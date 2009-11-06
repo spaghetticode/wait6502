@@ -11,6 +11,7 @@ describe "/admin/builtin_languages/index.html.haml" do
         :name => "value for name"
       )
     ]
+    assigns[:builtin_languages].stub!(:total_pages).and_return(0)
   end
 
   it "renders a list of admin_builtin_languages" do

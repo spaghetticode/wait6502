@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Builtin Languages
 	In order to enter complete computer language info
 	As a logged user

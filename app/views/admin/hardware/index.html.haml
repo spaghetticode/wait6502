@@ -5,18 +5,9 @@
     %th Name
     %th Manufacturer
     %th Category
-    %th Type
     %th Prod. Start
     %th Prod. Stop
-    %th Code
-    %th Codename
     %th Builtin Language
-    %th Ram
-    %th Vram
-    %th Rom
-    %th Text
-    %th Graphics
-    %th Sound
     %th Notes
     %th CPUs
     %th Co-CPUs
@@ -30,18 +21,9 @@
       %td= h hardware.name
       %td= h hardware.manufacturer.name
       %td= hardware.hardware_category
-      %td= h hardware.hardware_type_id
       %td= h hardware.production_start
       %td= h hardware.production_stop
-      %td= h hardware.code
-      %td= h hardware.codename
       %td= h hardware.builtin_language_id
-      %td= truncate h(hardware.ram)
-      %td= truncate h(hardware.vram)
-      %td= truncate h(hardware.rom)
-      %td= truncate h(hardware.text_modes)
-      %td= truncate h(hardware.graphic_modes)
-      %td= truncate h(hardware.sound)
       %td= truncate h(hardware.notes)
       %td= h hardware.cpu_names
       %td= truncate h(hardware.co_cpu_names)

@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   associations = {}
   %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
     associations["add_#{model}"] = :put
@@ -6,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace(:admin) do |admin|
-    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
+    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems, :auctions
     admin.resources :hardware, :member => associations, :has_many => [:original_prices, :images, :ebay_keywords]
     
     admin.resources :countries,         :except => [:show, :update, :edit]

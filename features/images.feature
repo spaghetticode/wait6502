@@ -6,7 +6,7 @@ Feature: Manage Images
 	Background:
 		Given I am logged in as user
 		And   I have a hardware named "Amiga 1000"
-		
+	
 	Scenario: Only logged users can access Images area
 		Given I am logged out
 		When  I go to the "Amiga 1000" hardware images page
@@ -19,7 +19,7 @@ Feature: Manage Images
 		Then  I should see "Amiga 1000 Images"
 		And   I should see "Inner view"
 		And   I should see "New image"
-	
+		
 	Scenario: Adding Images
 		Given I am on the "Amiga 1000" hardware editor page
 		And   I follow "Images"

@@ -1,0 +1,4 @@
+Autotest.add_hook :initialize do |at|
+# ignores files in spec/fixtures
+	at.add_exception %r{^\./spec\/fixtures}
+end
