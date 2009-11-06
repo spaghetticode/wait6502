@@ -18,9 +18,12 @@ class Hardware < ActiveRecord::Base
   validates_presence_of :name, :manufacturer, :hardware_type, :hardware_category
   validates_uniqueness_of :name, :scope => [:manufacturer_id, :code], :case_sensitive => false
   
-  named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, hardware.name'
-  
   CATEGORIES = %w{computer peripheral}
+  
+  CATEGORIES.each do |category|
+    named_scope category, :conditions => {:hardware_category => category}
+  end
+  named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, hardware.name'
 
   def co_cpu_names
     co_cpus.map{|cc| "#{cc.manufacturer.name} #{cc.co_cpu_name_id}"}.join(', ')

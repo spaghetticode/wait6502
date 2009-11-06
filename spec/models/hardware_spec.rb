@@ -91,6 +91,26 @@ describe Hardware do
     end
   end
 
+  describe 'named scopes' do
+    before do
+      Hardware::CATEGORIES.each do |category|
+        3.times{Factory(:hardware, :hardware_category => category)}
+      end
+    end
+    
+    it 'should select only computer hardware' do
+      Hardware.computer.each do |hw|
+        hw.hardware_category.should == 'computer'
+      end
+    end
+    
+    it 'should select only peripheral hardware' do
+      Hardware.peripheral.each do |hw|
+        hw.hardware_category.should == 'peripheral'
+      end
+    end
+  end
+  
   describe 'testing many-to-many associations' do
     describe 'an instance with associated CPUs' do
       before do
