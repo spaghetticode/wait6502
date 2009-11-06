@@ -51,7 +51,7 @@ describe EbayFinder do
       end
     end
     
-    describe 'from a 1 item xml resultset' do
+    describe 'from a single item xml resultset' do
       before do
         @response = xml_response_from_file('standard.xml')
       end
@@ -74,6 +74,25 @@ describe EbayFinder do
       
       it 'page_number should be 1' do
         @response.page_number.should == 1
+      end
+      
+      describe 'the expected item' do
+        before do
+          @item = @response.items.first
+        end
+        
+        it 'should have EUR as current price currency' do
+          @item.current_price[:currency].should == 'EUR'
+        end
+        
+        it 'should have 28.2 as current price amount' do
+          @item.current_price[:amount].should == 28.0
+        end
+        
+        it 'should have a end time' do
+          @item.end_time.should == Time.parse("2009-11-05T18:50:24.000Z")
+          @item.end_time.hour.should == 18
+        end
       end
     end
     
@@ -99,15 +118,6 @@ describe EbayFinder do
           xml_response_from_file('system_error.xml')
         end.should raise_error(EbayFinder::SystemError)
       end
-    end
-  end 
-  
-  describe 'an Item instance' do
-    it 'current_price should format prices to 2 decimal digits' do
-      item = EbayFinder::Item.new({})
-      price_hash = {'currentPrice' => {:currency => 'EUR', :amount => '10.2'}}
-      item.should_receive(:[]).and_return(price_hash)
-      item.current_price.should == 'EUR 10.20'
     end
   end
 end

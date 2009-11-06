@@ -121,7 +121,11 @@ module EbayFinder
     
     def current_price
       currency, amount = self['sellingStatus']['currentPrice'].values
-      "#{currency} %.2f" % amount.to_f
+      {:currency => currency, :amount => amount.to_f}
+    end
+    
+    def end_time
+      Time.parse self['listingInfo']['endTime']
     end
   end
 end
