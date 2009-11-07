@@ -14,42 +14,29 @@ Feature: Manage Currencies
 	Scenario: Listing Currencies
 		When  I go to the currencies page
 		Then  I should see "Listing Currencies"
-		And   I should see "Symbol"
-		And   I should see "Code"
+		And   I should see "Name"
 
 	Scenario: Creating New Currency
 		Given I am on the currencies page
 		And   I cache the currencies count
 		And   I follow "new currency"
-		When  I fill in "Code" with "Euro"
-		And   I fill in "symbol" with "EURO"
+		When  I fill in "Name" with "EUR"
 		And   I press "create"
 		Then  I should see "Currency was successfully created"
 		And   I should be on the currencies page
 		And   a new currency has been created	
 		
 	Scenario: Failed New Currency Creation
-		Given currency with code "EURO" and symbol "€" exists
+		Given a currency named "EUR" exists
 		And   I am on the new currency page
 		And   I cache the currencies count
-		When  I fill in "code" with "EURO"
-		And   I fill in "symbol" with "EURO"
+		When  I fill in "Name" with "EUR"
 		And   I press "create"
-		Then  I should see "Code has already been taken"
+		Then  I should see "Name has already been taken"
 		And   a new currency has not been created
 		
-	Scenario: Updating Currency
-		Given currency with code "EURO" and symbol "€" exists
-		When  I go to the currencies page
-		And   I follow "edit"
-		And   I fill in "symbol" with "&euro;"
-		And   I press "update"
-		Then  I should see "Currency was successfully updated"
-		And   I should be on the currencies page
-		And   I should see "&euro;"
-		
 	Scenario: Destroying Currency
-		Given currency with code "USD" and symbol "$" exists
+		Given a currency named "USD" exists
 		When  I go to the currencies page
 		And   I follow "destroy"
 		Then  I should see "Currency was successfully destroyed"

@@ -1,7 +1,6 @@
 Given /^some currencies and countries exist$/ do
-  [%w{EUR EURO}, %w{£ ITL}, %w{$ USD}].each do |currency|
-    symbol, code = *currency
-    Currency.create!(:symbol => symbol, :code => code)
+  %w{EUR ITL USD}.each do |currency|
+    Currency.create!(:name => currency)
   end
   %w{Italy Spain USA Canada France}.each do |country|
     Country.create!(:name => country)

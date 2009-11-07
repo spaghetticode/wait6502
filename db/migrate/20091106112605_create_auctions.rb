@@ -3,7 +3,7 @@ class CreateAuctions < ActiveRecord::Migration
     create_table :auctions do |t|
       t.integer :hardware_id, :null => false
       t.string :ebay_site_id, :null => false
-      t.integer :currency_id, :null => false
+      t.string :currency_id, :null => false
       t.string :title, :null => false
       t.string :url, :null => false
       t.string :image_url

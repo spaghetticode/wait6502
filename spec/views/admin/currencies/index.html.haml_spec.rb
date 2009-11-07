@@ -5,12 +5,10 @@ describe "/admin/currencies/index.html.haml" do
   before(:each) do
     assigns[:currencies] = [
       stub_model(Currency,
-        :code => "EUR",
-        :symbol => "€"
+        :name => "EUR"
       ),
       stub_model(Currency,
-        :code => "USD",
-        :symbol => "$"
+        :name => "USD"
       )
     ]
     assigns[:currencies].should_receive(:total_pages).and_return(0)
@@ -19,6 +17,5 @@ describe "/admin/currencies/index.html.haml" do
   it "renders a list of admin_currencies" do
     render
     response.should have_tag("tr>td", "EUR".to_s, 2)
-    response.should have_tag("tr>td", "$".to_s, 2)
   end
 end

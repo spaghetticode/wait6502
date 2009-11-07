@@ -6,18 +6,14 @@ describe Currency do
       Currency.new.should_not be_valid
     end
     
-    it 'should require code' do
-      Currency.new.should have(1).error_on(:code)
+    it 'should require name' do
+      Currency.new.should have(1).error_on(:name)
     end
     
-    it 'should require symbol' do
-      Currency.new.should have(1).error_on(:symbol)
-    end
-    
-    it 'should require a unique code' do
+    it 'should require a unique name' do
       currency = Factory(:currency)
-      invalid = Currency.new(:code => currency.code)
-      invalid.should have(1).error_on(:code)
+      invalid = Currency.new(:name => currency.name)
+      invalid.should have(1).error_on(:name)
     end
   end
   
@@ -32,8 +28,8 @@ describe Currency do
       5.times {Factory(:currency)}
     end
     
-    it 'should sort currencies by code' do
-      Currency.ordered.should == Currency.all.sort_by(&:code)
+    it 'should sort currencies by name' do
+      Currency.ordered.should == Currency.all.sort_by(&:name)
     end
   end
 end 

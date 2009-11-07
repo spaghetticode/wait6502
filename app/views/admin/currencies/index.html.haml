@@ -2,14 +2,11 @@
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
-    %th Code
-    %th Symbol
+    %th Name
     %th{:colspan => 2} Actions
   - @currencies.each do |currency|
     %tr
-      %td= h currency.code
-      %td= h currency.symbol
-      %td= link_to 'Edit', edit_admin_currency_path(currency) 
+      %td= h currency.name
       %td= link_to 'Destroy', admin_currency_path(currency), :confirm => 'Are you sure?', :method => :delete
 %p= will_paginate @currencies
     

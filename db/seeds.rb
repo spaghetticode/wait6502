@@ -8,8 +8,8 @@ puts 'Creating countries'
 end
 
 puts 'Creating currencies'
-[%w{EUR EURO}, %w{USD $}, %w{JPY ¥}, %w{BPD £}].each do |currency|
-  Currency.create!(:code => currency[0], :symbol => currency[1])
+%w{EUR USD YEN GBP}.each do |currency|
+  Currency.create!(:name => currency)
 end
 
 puts 'Creating manufacturers'

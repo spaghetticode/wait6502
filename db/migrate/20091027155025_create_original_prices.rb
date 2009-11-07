@@ -1,7 +1,7 @@
 class CreateOriginalPrices < ActiveRecord::Migration
   def self.up
     create_table :original_prices do |t|
-      t.integer :currency_id
+      t.string :currency_id
       t.string :country_id
       t.date :date
       t.string :amount

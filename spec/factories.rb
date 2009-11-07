@@ -9,8 +9,7 @@ Factory.define :user do |u|
 end
 
 Factory.define :currency do |c|
-  c.sequence(:code) {|n| "code#{n}"}
-  c.symbol '$'
+  c.sequence(:name) {|n| "USD#{n}"}
 end
 
 Factory.define :manufacturer do |m|
