@@ -81,16 +81,16 @@ describe EbayFinder do
           @item = @response.items.first
         end
         
-        it 'should return a hash as current_price' do
-          @item.current_price.should be_a(Hash)
+        it 'should return a Money object as current_price' do
+          @item.current_price.should be_a(EbayFinder::Money)
         end
         
-        it 'should have EUR as current price currencyID' do
-          @item.current_price['currencyID'].should == 'EUR'
+        it 'should have EUR as current price currency id' do
+          @item.current_price.currency_id.should == 'EUR'
         end
         
-        it 'should have 499.0 as current price content' do
-          @item.current_price['content'].should == '499.0'
+        it 'should have 499.0 as current price amount' do
+          @item.current_price.amount.should == 499.0
         end
         
         it 'should have a end time' do
@@ -145,12 +145,12 @@ describe EbayFinder do
           @item.listing_status.should == 'Active'
         end
         
-        it 'should have a current_price' do
-          @item.current_price.should be_a(Hash)
+        it 'should have a Money object current_price' do
+          @item.current_price.should be_a(EbayFinder::Money)
         end
       end
     end
-    describe 'froma  2 items xml resultset' do
+    describe 'from a 2 items xml resultset' do
       before do
         @response = xml_response_from_file('getItemStatus2Items.xml', EbayFinder::GetItemStatusResponse)
       end

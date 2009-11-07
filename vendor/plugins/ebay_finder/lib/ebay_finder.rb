@@ -145,11 +145,24 @@ module EbayFinder
     end
     
     def current_price
-      self['ConvertedCurrentPrice']
+      EbayFinder::Money.new(self['ConvertedCurrentPrice'])
     end
     
     def end_time
       Time.parse self['EndTime']
+    end
+  end
+  
+  class Money
+    attr_reader :currency_id, :amount
+
+    def initialize(currency_hash)
+      @currency_id = currency_hash['currencyID']
+      @amount = currency_hash['content'].to_f
+    end
+    
+    def to_s
+      "#{currency_id} #{format('%0.2f', amount)}"
     end
   end
 end
