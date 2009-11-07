@@ -71,6 +71,10 @@ describe Auction do
         @auction = Factory(:auction)
       end
       
+      it 'should have no final_price_value' do
+        @auction.final_price_value.should be_nil
+      end
+      
       it 'should not be closed' do
         @auction.should_not be_closed
       end
@@ -85,12 +89,44 @@ describe Auction do
         @auction = Factory(:auction, :end_time => Time.now.yesterday)
       end
       
+      it 'should have no final_price_value' do
+        @auction.final_price_value.should be_nil
+      end
+      
       it 'should be closed' do
         @auction.should be_closed
       end
       
       it 'closed_or_end_time should return closed' do
         @auction.closed_or_end_time.should == 'closed'
+      end
+      
+      describe 'SET_FINAL_PRICE' do
+        describe 'when auction went without bids' do
+          before do
+            unsold_item = mock(:bid_count => 0)
+            @auction.should_receive(:find_ebay_item).and_return(unsold_item)
+          end
+          
+          it 'should not change final_price_value attribute' do
+            lambda do
+              @auction.set_final_price
+            end.should_not change(@auction, :final_price_value)
+          end
+        end
+      
+        describe 'when auction received at least 1 bid' do
+          before do
+            sold_item = mock(:bid_count => 1, :current_price => {'content' => 10.0})
+            @auction.should_receive(:find_ebay_item).and_return(sold_item)
+          end
+          
+          it 'should change final_price_value attribute' do
+            lambda do
+              @auction.set_final_price
+            end.should change(@auction, :final_price_value)
+          end
+        end
       end
     end
   end

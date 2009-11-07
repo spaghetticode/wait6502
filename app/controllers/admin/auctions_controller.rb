@@ -30,7 +30,6 @@ class Admin::AuctionsController < ApplicationController
       flash[:notice] = 'Auction was successfully updated.'
       redirect_to admin_auctions_path
     else
-      raise "#{@auction.to_yaml}"
       render :action => "edit"
     end
   end
@@ -39,5 +38,15 @@ class Admin::AuctionsController < ApplicationController
     Auction.find(params[:id]).destroy
     flash[:notice] = 'Auction was successfully destroyed.'
     redirect_to admin_auctions_path
+  end
+  
+  def set_final_price
+    @auction = Auction.find(params[:id])
+    if @auction.set_final_price
+      flash[:notice] = 'Final Price was successfully updated.'
+    else
+      flash[:error]  = 'Auction went without bids. Please destroy it.'
+    end
+   redirect_to admin_auctions_path
   end
 end

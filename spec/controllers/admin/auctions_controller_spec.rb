@@ -119,5 +119,47 @@ describe Admin::AuctionsController do
         flash[:notice].should =~ /successfully destroyed/
       end
     end
+    
+    describe 'SET_FINAL_PRICE' do
+      describe 'when auction went without bids' do
+        before do
+          Auction.should_receive(:find).and_return(mock_auction)
+          mock_auction.should_receive(:set_final_price).and_return(false)
+          put :set_final_price, :id => '1'          
+        end
+        
+        it 'should assign @auction' do
+          assigns[:auction].should_not be_nil
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should redirect to auctions page' do
+          response.should redirect_to(admin_auctions_path)
+        end
+      end
+      
+      describe 'when auction went with a valid final price' do
+        before do
+          Auction.should_receive(:find).and_return(mock_auction)
+          mock_auction.should_receive(:set_final_price).and_return(true)
+          put :set_final_price, :id => '1'          
+        end
+        
+        it 'should assign @auction' do
+          assigns[:auction].should_not be_nil
+        end
+        
+        it 'should flash[:notice]' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should redirect to auctions page' do
+          response.should redirect_to(admin_auctions_path)
+        end
+      end
+    end
   end
 end

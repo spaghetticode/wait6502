@@ -20,4 +20,17 @@ class Auction < ActiveRecord::Base
   def closed_or_end_time
     closed? ? 'closed' : end_time.to_s(:short)
   end
+  
+  def set_final_price
+    ebay_item = find_ebay_item
+    if ebay_item.bid_count > 0
+      update_attribute(:final_price_value, ebay_item.current_price['content'])
+    end
+  end
+  
+  private
+  
+  def find_ebay_item
+    EbayFinder::Request.new(:item_id => item_id, :callname => 'GetItemStatus').response.items.first
+  end
 end

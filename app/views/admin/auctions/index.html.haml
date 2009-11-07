@@ -1,25 +1,25 @@
 %h1 Listing Auctions
 
-- @auctions.each do |auction|
-  %table.list{:cellpadding => 0, :cellspacing => 1}
-    %tr
-      %th Image
-      %th Hardware
-      %th Title
-      %th Ebay website
-      %th Conditions
-      %th End time
-      %th{:colspan => 2} Actions
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Image
+    %th Hardware
+    %th Title
+    %th Location
+    %th Conditions
+    %th End time/Price
+    %th{:colspan => 2} Actions
+  - @auctions.each do |auction|
     %tr
       %td= image_tag auction.image_url || 'no image', :class => 'ebay_gallery'
       %td= auction.hardware.name
       %td= link_to truncate(auction.title), '#', :onclick => "window.open('#{auction.url}')"
-      %td= auction.ebay_site_id
+      %td.center= auction.ebay_site_id
       %td
         = "#{auction.completeness},"
         = auction.cosmetic_conditions
         conditions
-      %td= auction.closed_or_end_time
+      %td.right= render :partial => 'final_price', :locals => {:auction => auction}
       %td= link_to 'Edit', edit_admin_auction_path(auction)
       %td= link_to 'Destroy', admin_auction_path(auction), :method => :delete, :confirm => 'are you sure?'
 

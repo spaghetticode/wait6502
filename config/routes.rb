@@ -7,9 +7,10 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace(:admin) do |admin|
-    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems, :auctions
+    admin.resources :users, :currencies, :manufacturers, :io_ports, :builtin_storages, :cpus, :co_cpus, :operative_systems
     admin.resources :hardware, :member => associations, :has_many => [:original_prices, :images, :ebay_keywords]
     
+    admin.resources :auctions, :member => {:set_final_price => :put}
     admin.resources :countries,         :except => [:show, :update, :edit]
     admin.resources :hardware_types,    :except => [:show, :update, :edit]
     

@@ -1,0 +1,7 @@
+- if auction.final_price_value
+  = sprintf("#{auction.currency.code} %.2f", auction.final_price_value)
+- else 
+  - if auction.closed?
+    = button_to( 'set final price', set_final_price_admin_auction_path(auction), :method => :put)
+  - else
+    = auction.closed_or_end_time

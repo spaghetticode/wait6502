@@ -29,5 +29,9 @@ describe Admin::AuctionsController do
     it "recognizes and generates #destroy" do
       { :delete => "/admin/auctions/1" }.should route_to(:controller => "admin/auctions", :action => "destroy", :id => "1") 
     end
+    
+    it "recognizes and generates #set_final_price" do
+      { :put => "/admin/auctions/1/set_final_price" }.should route_to(:controller => "admin/auctions", :action => "set_final_price", :id => "1") 
+    end
   end
 end
