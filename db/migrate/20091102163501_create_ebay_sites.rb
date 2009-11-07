@@ -1,7 +1,8 @@
 class CreateEbaySites < ActiveRecord::Migration
   def self.up
     create_table :ebay_sites, :id => false do |t|
-      t.string :name
+      t.string :name, :null => false
+      t.string :site_id, :null => false
 
       t.timestamps
     end

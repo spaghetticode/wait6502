@@ -25,8 +25,14 @@ module ApplicationHelper
     f.select field, (1970...2010).to_a, :include_blank => true
   end
   
-  def ebay_site_selector(f)
-    f.select :ebay_site_id, EbaySite.ordered.map(&:name), :include_blank => true
+  def ebay_site_selector(f=nil)
+    # forms where ActiveRecord objects are handled pass f, while forms that query
+    # ebay apis don't, and use site_id instead of name as value parameter for the select
+    if f
+      f.select :ebay_site_id, EbaySite.ordered.map(&:name), :include_blank => true
+    else
+      select_tag :ebay_site, options_from_collection_for_select(EbaySite.ordered, :site_id, :name), :include_blank => true
+    end
   end
   
   def hardware_selector(f)

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
     t.string   "title",                                              :null => false
     t.string   "url",                                                :null => false
     t.string   "image_url"
+    t.string   "item_id",                                            :null => false
     t.string   "cosmetic_conditions",                                :null => false
     t.string   "completeness",                                       :null => false
     t.decimal  "final_price_value",   :precision => 11, :scale => 2
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
 
   create_table "ebay_sites", :id => false, :force => true do |t|
     t.string   "name"
+    t.string   "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

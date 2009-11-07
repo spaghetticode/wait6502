@@ -30,6 +30,10 @@ describe Auction do
       Auction.new.should have(1).error_on(:end_time)
     end
     
+    it 'should require a item_id' do
+      Auction.new.should have(1).error_on(:item_id)
+    end
+    
     it 'should require a valid completeness' do
       Auction.new(:completeness => 'invalid value').should have(1).error_on(:completeness)
     end
@@ -48,6 +52,12 @@ describe Auction do
       auction = Factory(:auction)
       invalid = Auction.new(:url => auction.url)
       invalid.should have(1).error_on(:url)
+    end
+    
+    it 'should have a unique item_id' do
+      auction = Factory(:auction)
+      invalid = Auction.new(:item_id => auction.item_id)
+      invalid.should have(1).error_on(:item_id)
     end
   end
   

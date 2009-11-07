@@ -30,6 +30,7 @@ class Admin::AuctionsController < ApplicationController
       flash[:notice] = 'Auction was successfully updated.'
       redirect_to admin_auctions_path
     else
+      raise "#{@auction.to_yaml}"
       render :action => "edit"
     end
   end

@@ -15,7 +15,7 @@
       %td
         - form_tag admin_resultset_path do
           = hidden_field_tag :keyword, kw.name
-          = select_tag :ebay_site, options_from_collection_for_select(EbaySite.ordered, :name, :name)
+          = ebay_site_selector
           = submit_tag 'search ebay'
       
       

@@ -7,6 +7,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.string :title, :null => false
       t.string :url, :null => false
       t.string :image_url
+      t.string :item_id, :null => false
       t.string :cosmetic_conditions, :null => false
       t.string :completeness, :null => false
       t.decimal :final_price_value, :scale => 2, :precision => 11

@@ -128,4 +128,5 @@ Factory.define :auction do |a|
   a.completeness 'complete'
   a.sequence(:url) {|n| "http://some.ebay.com/url-name-#{n}"}
   a.end_time Time.now.tomorrow
+  a.sequence(:item_id) {|n| "12345#{n}"}
 end

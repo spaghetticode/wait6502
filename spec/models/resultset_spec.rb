@@ -3,7 +3,7 @@ require 'spec_helper'
 module ResultsetHelper
   def ebay_response_from(filename)
     xml_mock = "#{RAILS_ROOT}/vendor/plugins/ebay_finder/spec/stubs/#{filename}"
-    EbayFinder::FindItemsResponse.new(xml_mock)
+    EbayFinder::FindItemsAdvancedResponse.new(xml_mock)
   end
 
   def mock_resultset(params={})
@@ -24,7 +24,7 @@ describe Resultset do
   
   describe 'when no item is found' do
     before do
-      mock_resultset(:file => 'empty.xml')
+      mock_resultset(:file => 'FindItemsAdvancedResponse0Items.xml')
     end
     
     it 'should have no items' do
@@ -38,7 +38,7 @@ describe Resultset do
   
   describe 'when one item is found' do
     before do
-      mock_resultset(:file => 'standard.xml')
+      mock_resultset(:file => 'FindItemsAdvancedResponse1Item.xml')
     end
     
     it 'total_items should return 1' do
@@ -51,11 +51,11 @@ describe Resultset do
     
     describe 'found item' do
       it 'should have expected item_id' do
-        mock_item.item_id.should == '250509847328'
+        mock_item.item_id.should == '170402561257'
       end
       
       it 'should have expected title' do
-        mock_item.title.should == "Libro Manule Introduzione all'MSX BASIC ( Sony ) rarità"
+        mock_item.title.should == "COMMODORE AMIGA 1000 + MEMORY + GAMES ORIGINAL BOX"
       end
     end
   end

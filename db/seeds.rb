@@ -104,6 +104,6 @@ puts 'Creating Hardware Types'
 end
   
 puts 'Creating ebay sites'
-%w{DE IT US FR ES GB NL}.each do |name|
-  EbaySite.create!(:name => name)
+{:DE => 77, :IT => 101, :US => 0, :FR => 71, :ES => 186, :GB => 3, :NL => 146}.each do |name, site_id|
+  EbaySite.create!(:name => name.to_s, :site_id => site_id)
 end

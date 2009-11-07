@@ -1,16 +1,15 @@
 class Resultset
-  attr_reader :items, :page, :total_items, :total_pages
+  attr_reader :items, :total_items, :ebay_site
   def initialize(params)
     ebay_params = {
-      :keywords => params[:keyword],
-      :website => "EBAY-#{params[:ebay_site]}",
-      :pagination_input => {
-        :entries_per_page => 30, 
-        :page_number => params[:page] || 1
-      }
+      :query_keywords => params[:keyword],
+      :website => params[:ebay_site],
+      :max_entries => 30, 
+      :page_number => params[:page] || 1
     }
     response = EbayFinder::Request.new(ebay_params).response
     @items = response.items
     @total_items = response.total_items
+    @ebay_site = EbaySite.find_by_site_id(params[:ebay_site])
   end
 end
