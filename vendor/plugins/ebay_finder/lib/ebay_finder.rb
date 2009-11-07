@@ -140,6 +140,10 @@ module EbayFinder
       params[param_name]
     end
     
+    def bid_count
+      self['BidCount'].to_i
+    end
+    
     def current_price
       self['ConvertedCurrentPrice']
     end

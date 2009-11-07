@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <GetItemStatusResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-07T08:46:54.797Z</Timestamp>
+   <Ack>Success</Ack>
+   <Build>E637_CORE_BUNDLED_10165894_R1</Build>
+   <Version>637</Version>
+   <Item>
+    <ItemID>260502482741</ItemID>
+    <EndTime>2009-11-07T08:46:06.000Z</EndTime>
+    <BidCount>9</BidCount>
+    <ConvertedCurrentPrice currencyID="USD">48.57</ConvertedCurrentPrice>
+    <HighBidder>
+     <UserID>d***n</UserID>
+    </HighBidder>
+    <ListingStatus>Completed</ListingStatus>
+    <ReserveMet>true</ReserveMet>
+    <TimeLeft>PT0S</TimeLeft>
+   </Item>
+  </GetItemStatusResponse>
+ 
