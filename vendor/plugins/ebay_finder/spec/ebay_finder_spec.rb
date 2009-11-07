@@ -5,8 +5,8 @@ module EbayFinderHelper
     @ebay_request ||= EbayFinder::Request.new(params)
   end
 
-  def xml_response_from_file(filename)
-    EbayFinder::FindItemsResponse.new(File.read(File.dirname(__FILE__) + "/stubs/#{filename}"))
+  def xml_response_from_file(filename, klass=EbayFinder::FindItemsAdvancedResponse)
+    klass.new(File.read(File.dirname(__FILE__) + "/stubs/#{filename}"))
   end  
 end
 
@@ -16,7 +16,7 @@ describe EbayFinder do
   describe 'a new Request instance' do
     
     it 'should have a default website' do
-      ebay_request.website.should == 'EBAY-IT'
+      ebay_request.website.should == '0'
     end
     
     it 'should set app_id from ebay_config.yml file' do
@@ -24,10 +24,10 @@ describe EbayFinder do
     end
   end
   
-  describe 'a FindItemsResponse instance' do
+  describe 'a FindItemsAdvancedResponse instance' do
     describe 'from an empty items xml resultset' do
       before do
-        @response = xml_response_from_file('empty.xml')
+        @response = xml_response_from_file('FindItemsAdvancedResponse0Items.xml')
       end
 
       it 'xml_items should be nil' do
@@ -46,14 +46,14 @@ describe EbayFinder do
         @response.total_pages.should  be_zero
       end
       
-      it 'page_number should be zero' do
-        @response.page_number.should be_zero
+      it 'page_number should be 1' do
+        @response.page_number.should == 1
       end
     end
     
     describe 'from a single item xml resultset' do
       before do
-        @response = xml_response_from_file('standard.xml')
+        @response = xml_response_from_file('FindItemsAdvancedResponse1Item.xml')
       end
       
       it 'xml_items should be an hash' do
@@ -81,29 +81,105 @@ describe EbayFinder do
           @item = @response.items.first
         end
         
-        it 'should have EUR as current price currency' do
-          @item.current_price[:currency].should == 'EUR'
+        it 'should return a hash as current_price' do
+          @item.current_price.should be_a(Hash)
         end
         
-        it 'should have 28.2 as current price amount' do
-          @item.current_price[:amount].should == 28.0
+        it 'should have EUR as current price currencyID' do
+          @item.current_price['currencyID'].should == 'EUR'
+        end
+        
+        it 'should have 499.0 as current price content' do
+          @item.current_price['content'].should == '499.0'
         end
         
         it 'should have a end time' do
-          @item.end_time.should == Time.parse("2009-11-05T18:50:24.000Z")
-          @item.end_time.hour.should == 18
+          @item.end_time.should == Time.parse("2009-12-03T20:10:27.000Z")
         end
       end
     end
     
-    describe 'from a request error xml resultset' do      
+    describe 'from a 10 items xml resultset' do
+      before do
+        @response = xml_response_from_file('FindItemsAdvancedResponse10Items.xml')
+      end
+      
+      it 'should find 9 items' do
+        @response.items.should have(10).items
+      end
+    end
+    
+    describe 'from a failure xml resultset' do
       it 'should raise a request error' do
         lambda do
-          xml_response_from_file('request_error.xml')
+          @response = xml_response_from_file('FindItemsAdvancedFailure.xml')
+        end.should raise_error(EbayFinder::RequestError)
+      end
+    end          
+  end
+  
+  describe 'a GetItemStatusResponse instance' do
+    describe 'from a single item xml resultset' do
+      before do
+        @response = xml_response_from_file('getItemStatus1Item.xml', EbayFinder::GetItemStatusResponse)
+      end
+    
+      it 'should find 1 item' do
+        @response.items.should have(1).item
+      end
+      
+      it 'should have 1 total_items' do
+        @response.total_items.should == 1
+      end
+    
+      describe 'found item' do
+        before do
+          @item = @response.items.first
+        end
+        
+        it 'should have a end_time attribute' do
+          @item.end_time.should == Time.parse('2009-12-03T20:10:27.000Z')
+        end
+        
+        it 'should have active listing_status' do
+          @item.listing_status.should == 'Active'
+        end
+        
+        it 'should have a current_price' do
+          @item.current_price.should be_a(Hash)
+        end
+      end
+    end
+    describe 'froma  2 items xml resultset' do
+      before do
+        @response = xml_response_from_file('getItemStatus2Items.xml', EbayFinder::GetItemStatusResponse)
+      end
+      
+      it 'should find 2 items' do
+        @response.items.should have(2).items
+      end
+      
+      it 'should return 2 as total_items' do
+        @response.total_items.should == 2
+      end
+      
+      it 'each found item should have an active listing_status' do
+        @response.items.each do |item|
+          item.listing_status.should == 'Active'
+        end
+      end
+    end
+    
+    describe 'from a failure xml resultset' do
+      it 'should raise an error' do
+        lambda do
+          @response = xml_response_from_file('getItemStatusFailure.xml', EbayFinder::GetItemStatusResponse)
         end.should raise_error(EbayFinder::RequestError)
       end
     end
-   
+  end
+  
+  describe 'a response instance' do
     describe 'from a timeout error xml resultset' do
       it 'should raise a timeout error' do
         lambda do

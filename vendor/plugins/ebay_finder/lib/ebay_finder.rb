@@ -1,6 +1,5 @@
-require 'parametrizer'
 module EbayFinder
-  EBAY_BASE_URL = 'http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0'
+  EBAY_BASE_URL = 'http://open.api.ebay.com/shopping'
   
   # custom error classes
   class EbayError < StandardError; end
@@ -9,12 +8,13 @@ module EbayFinder
   class SystemError < EbayError; end
   
   class Request
-    attr_reader :app_id, :website, :params
+    attr_reader :app_id, :website, :callname, :params
     @@config_params = nil
     
     def initialize(params={})
-      @website = params.delete(:website) || self.class.config_params[:website] || 'EBAY-IT'
+      @website = params.delete(:website) || self.class.config_params[:website] || '0'
       @app_id = self.class.config_params[:app_id]
+      @callname = params.delete(:callname) || 'FindItemsAdvanced' # option is GetItemStatus
       @params = params
     end
     
@@ -25,15 +25,16 @@ module EbayFinder
     end
     
     def response
-      @response ||= EbayFinder::FindItemsResponse.new(http_get(query_url), self)
+      @response ||= "EbayFinder::#{callname.camelize}Response".constantize.new(http_get(query_url), self)
     end
     
     protected
     
     def query_url
-      app_query = "SECURITY-APPNAME=#{app_id}"
-      website_query = "GLOBAL-ID=#{website}"
-      @url = "#{EBAY_BASE_URL}&#{app_query}&#{website_query}&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD&#{query_params}"
+      app_query = "appid=#{app_id}"
+      website_query = "siteid=#{website}"
+      callname_query = "callname=#{callname}"
+      @url = "#{EBAY_BASE_URL}?#{callname_query}&responseencoding=XML&version=525&#{app_query}&#{website_query}&#{query_params}"
     end
   
     def query_params
@@ -41,7 +42,10 @@ module EbayFinder
     end
     
     def build_params
-      self.params.ebay_parametrize
+      self.params.inject([]) do |collection, data|
+        name, value = data
+        collection << "#{name.to_s.camelize}=#{CGI.escape(value.to_s).gsub(' ', '%20')}"
+      end.join('&')
     end
     
     def http_get(url)
@@ -59,8 +63,9 @@ module EbayFinder
     end
   end
   
-  class FindItemsResponse
+  class Response
     attr_reader :xml_response, :request
+    
     def initialize(response_body, request=nil)
       @xml_response = XmlSimple.xml_in(response_body, 'ForceArray' => false)
       @request = request
@@ -68,24 +73,11 @@ module EbayFinder
     end
     
     def items
-      return [] if total_items == 0
       @items ||= (xml_items.is_a?(Array) ? xml_items : [xml_items]).collect{|i| Item.new(i)}
     end
     
-    def xml_items
-      xml_response['searchResult']['item']
-    end
-    
     def total_items
-      @total_items ||= xml_response['paginationOutput']['totalEntries'] && xml_response['paginationOutput']['totalEntries'].to_i
-    end
-    
-    def total_pages
-      @total_pages ||= xml_response['paginationOutput']['totalPages'] && xml_response['paginationOutput']['totalPages'].to_i
-    end
-    
-    def page_number
-      @page_number ||= xml_response['paginationOutput']['pageNumber'] && xml_response['paginationOutput']['pageNumber'].to_i
+      @total_items ||= xml_response['TotalItems'] && xml_response['TotalItems'].to_i
     end
     
     private
@@ -103,8 +95,37 @@ module EbayFinder
     end
   end
   
+  class GetItemStatusResponse < Response
+    def xml_items
+      xml_response['Item']
+    end
+    
+    def total_items
+      items.size
+    end
+  end
+  
+  class FindItemsAdvancedResponse < Response
+    def items
+      return [] if total_items.zero?
+      @items ||= (xml_items.is_a?(Array) ? xml_items : [xml_items]).collect{|i| Item.new(i)}
+    end
+    
+    def xml_items
+      xml_response['SearchResult']['ItemArray']['Item'] rescue nil
+    end
+    
+    def total_pages
+      @total_pages ||= xml_response['TotalPages'] && xml_response['TotalPages'].to_i
+    end
+    
+    def page_number
+      @page_number ||= xml_response['PageNumber'] && xml_response['PageNumber'].to_i
+    end
+  end
+  
   class Item
-    attr_reader :params, :title, :view_item_url, :gallery_url, :item_id
+    attr_reader :params, :title, :view_item_url_for_natural_search, :gallery_url, :item_id, :listing_status
     
     def initialize(params)
       @params = params
@@ -120,12 +141,11 @@ module EbayFinder
     end
     
     def current_price
-      currency, amount = self['sellingStatus']['currentPrice'].values
-      {:currency => currency, :amount => amount.to_f}
+      self['ConvertedCurrentPrice']
     end
     
     def end_time
-      Time.parse self['listingInfo']['endTime']
+      Time.parse self['EndTime']
     end
   end
 end

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <GetItemStatusResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T23:21:05.479Z</Timestamp>
+   <Ack>Failure</Ack>
+   <Errors>
+    <ShortMessage>Invalid item ID.</ShortMessage>
+    <LongMessage>Invalid or non-existent item ID.</LongMessage>
+    <ErrorCode>10.12</ErrorCode>
+    <SeverityCode>Error</SeverityCode>
+    <ErrorParameters ParamID="0">
+     <Value>1704025</Value>
+    </ErrorParameters>
+    <ErrorClassification>RequestError</ErrorClassification>
+   </Errors>
+   <Build>E637_CORE_BUNDLED_10165894_R1</Build>
+   <Version>637</Version>
+  </GetItemStatusResponse>
+ 

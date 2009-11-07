@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <FindItemsAdvancedResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T22:16:24.536Z</Timestamp>
+   <Ack>Success</Ack>
+   <Build>E639_CORE_BUNDLED_10221220_R1</Build>
+   <Version>639</Version>
+   <SearchResult>
+    <ItemArray>
+     <Item>
+      <ItemID>370242489628</ItemID>
+      <EndTime>2009-11-06T22:16:37.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/Harry-Potter-and-the-Order-of-the-Phoenix_W0QQitemZ370242489628QQcategoryZ377QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>FixedPriceItem</ListingType>
+      <GalleryURL>http://thumbs1.ebaystatic.com/pict/3702424896288080_3.jpg</GalleryURL>
+      <PrimaryCategoryID>377</PrimaryCategoryID>
+      <PrimaryCategoryName>Books:Fiction &amp; Literature</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">9.0</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT13S</TimeLeft>
+      <Title>Harry Potter and the Order of the Phoenix</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">0.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">0.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>120348689221</ItemID>
+      <EndTime>2009-11-06T22:22:25.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/NEW-The-Gospel-According-to-Harry-Potter-Leaders-G_W0QQitemZ120348689221QQcategoryZ378QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>FixedPriceItem</ListingType>
+      <GalleryURL>http://thumbs2.ebaystatic.com/pict/1203486892218080_11.jpg</GalleryURL>
+      <PrimaryCategoryID>378</PrimaryCategoryID>
+      <PrimaryCategoryName>Books:Nonfiction</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">8.99</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT6M1S</TimeLeft>
+      <Title>NEW The Gospel According to Harry Potter: Leader&apos;s G...</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.25</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.25</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>110452070534</ItemID>
+      <EndTime>2009-11-06T22:22:29.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/The-Magical-World-of-Harry-Potter-The-Unauthorized_W0QQitemZ110452070534QQcategoryZ617QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>Chinese</ListingType>
+      <GalleryURL>http://thumbs3.ebaystatic.com/pict/1104520705348080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>617</PrimaryCategoryID>
+      <PrimaryCategoryName>DVDs &amp; Movies:DVD, HD DVD &amp; Blu-ray</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">2.99</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT6M5S</TimeLeft>
+      <Title>The Magical World of Harry Potter: The Unauthorized ...</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>170401744736</ItemID>
+      <EndTime>2009-11-06T22:24:36.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/Harry-Potter-paperback-set-1-4_W0QQitemZ170401744736QQcategoryZ279QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>Chinese</ListingType>
+      <GalleryURL>http://thumbs1.ebaystatic.com/pict/1704017447368080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>279</PrimaryCategoryID>
+      <PrimaryCategoryName>Books:Children &amp; Young Adults</PrimaryCategoryName>
+      <BidCount>5</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">6.05</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT8M12S</TimeLeft>
+      <Title>Harry Potter paperback set 1-4</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.16</ShippingServiceCost>
+       <ShippingType>Calculated</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.16</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>320433184533</ItemID>
+      <EndTime>2009-11-06T22:25:13.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/Harry-Potter-and-the-Order-of-the-Phoenix-Book-5-by-J_W0QQitemZ320433184533QQcategoryZ279QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>FixedPriceItem</ListingType>
+      <GalleryURL>http://thumbs2.ebaystatic.com/pict/3204331845338080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>279</PrimaryCategoryID>
+      <PrimaryCategoryName>Books:Children &amp; Young Adults</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">6.95</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT8M49S</TimeLeft>
+      <Title>Harry Potter and the Order of the Phoenix (Book 5) by J</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.98</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.98</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>390103409471</ItemID>
+      <EndTime>2009-11-06T22:25:19.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/Harry-Potter-and-the-Chamber-of-Secrets-DVD-2003-WS-VG_W0QQitemZ390103409471QQcategoryZ617QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>FixedPriceItem</ListingType>
+      <GalleryURL>http://thumbs4.ebaystatic.com/pict/3901034094718080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>617</PrimaryCategoryID>
+      <PrimaryCategoryName>DVDs &amp; Movies:DVD, HD DVD &amp; Blu-ray</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">3.5</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT8M55S</TimeLeft>
+      <Title>Harry Potter and the Chamber of Secrets DVD 2003 WS VG</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>400077701806</ItemID>
+      <EndTime>2009-11-06T22:26:51.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/Harry-Potter-and-the-Prisoner-of-Azkaban-DVD-Full-VG_W0QQitemZ400077701806QQcategoryZ617QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>FixedPriceItem</ListingType>
+      <GalleryURL>http://thumbs3.ebaystatic.com/pict/4000777018068080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>617</PrimaryCategoryID>
+      <PrimaryCategoryName>DVDs &amp; Movies:DVD, HD DVD &amp; Blu-ray</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">3.5</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT10M27S</TimeLeft>
+      <Title>Harry Potter and the Prisoner of Azkaban (DVD) Full VG</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>260500270400</ItemID>
+      <EndTime>2009-11-06T22:31:39.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/HARRY-POTTER-HBP-PROP-CARD-CHRISTMAS-PARTY-LANTERN-P1_W0QQitemZ260500270400QQcategoryZ29798QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>Chinese</ListingType>
+      <GalleryURL>http://thumbs1.ebaystatic.com/pict/2605002704008080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>29798</PrimaryCategoryID>
+      <PrimaryCategoryName>Collectibles:Fantasy, Mythical &amp; Magic:Harry Potter</PrimaryCategoryName>
+      <BidCount>6</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">5.61</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT15M15S</TimeLeft>
+      <Title>HARRY POTTER HBP PROP CARD CHRISTMAS PARTY LANTERN P1</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">0.0</ShippingServiceCost>
+       <ShippingType>FlatDomesticCalculatedInternational</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">0.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>350272467970</ItemID>
+      <EndTime>2009-11-06T22:39:12.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/NEW-SEALED-HARRY-POTTER-AND-THE-CHAMBER-OF-SECRETS_W0QQitemZ350272467970QQcategoryZ617QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>Chinese</ListingType>
+      <GalleryURL>http://thumbs3.ebaystatic.com/pict/3502724679708080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>617</PrimaryCategoryID>
+      <PrimaryCategoryName>DVDs &amp; Movies:DVD, HD DVD &amp; Blu-ray</PrimaryCategoryName>
+      <BidCount>1</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">2.99</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT22M48S</TimeLeft>
+      <Title>NEW SEALED  HARRY POTTER AND THE CHAMBER OF SECRETS</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+     <Item>
+      <ItemID>390112563476</ItemID>
+      <EndTime>2009-11-06T22:39:14.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.com/NEW-SEALED-HARRY-POTTER-AND-THE-SORCERERS-STONE_W0QQitemZ390112563476QQcategoryZ617QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>Chinese</ListingType>
+      <GalleryURL>http://thumbs1.ebaystatic.com/pict/3901125634768080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>617</PrimaryCategoryID>
+      <PrimaryCategoryName>DVDs &amp; Movies:DVD, HD DVD &amp; Blu-ray</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="USD">2.99</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>PT22M50S</TimeLeft>
+      <Title>NEW SEALED  HARRY POTTER AND THE SORCERER&apos;S STONE</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="USD">3.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="USD">3.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+    </ItemArray>
+   </SearchResult>
+   <PageNumber>1</PageNumber>
+   <TotalPages>1472</TotalPages>
+   <TotalItems>14718</TotalItems>
+   <ItemSearchURL>http://search.ebay.com/ws/search/SaleSearch?fsoo=1&amp;fsop=1&amp;satitle=harry+potter</ItemSearchURL>
+  </FindItemsAdvancedResponse>
+ 

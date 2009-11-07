@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <FindItemsAdvancedResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T23:48:36.415Z</Timestamp>
+   <Ack>Success</Ack>
+   <Build>E639_CORE_BUNDLED_10221220_R1</Build>
+   <Version>639</Version>
+   <PageNumber>1</PageNumber>
+   <TotalPages>0</TotalPages>
+   <TotalItems>0</TotalItems>
+   <ItemSearchURL>http://search.ebay.com/ws/search/SaleSearch?DemandData=1&amp;fsop=32&amp;satitle=ahsdu</ItemSearchURL>
+  </FindItemsAdvancedResponse>
+ 

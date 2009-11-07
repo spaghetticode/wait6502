@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <FindItemsAdvancedResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T22:39:53.176Z</Timestamp>
+   <Ack>Success</Ack>
+   <Build>E639_CORE_BUNDLED_10221220_R1</Build>
+   <Version>639</Version>
+   <SearchResult>
+    <ItemArray>
+     <Item>
+      <ItemID>170402561257</ItemID>
+      <EndTime>2009-12-03T20:10:27.000Z</EndTime>
+      <ViewItemURLForNaturalSearch>http://cgi.ebay.it/COMMODORE-AMIGA-1000-MEMORY-GAMES-ORIGINAL-BOX_W0QQitemZ170402561257QQcategoryZ4598QQcmdZViewItem</ViewItemURLForNaturalSearch>
+      <ListingType>StoresFixedPrice</ListingType>
+      <GalleryURL>http://thumbs2.ebaystatic.com/pict/1704025612578080_1.jpg</GalleryURL>
+      <PrimaryCategoryID>4598</PrimaryCategoryID>
+      <PrimaryCategoryName>Informatica e Palmari:Retrocomputer:Amiga</PrimaryCategoryName>
+      <BidCount>0</BidCount>
+      <ConvertedCurrentPrice currencyID="EUR">499.0</ConvertedCurrentPrice>
+      <ListingStatus>Active</ListingStatus>
+      <TimeLeft>P26DT21H30M34S</TimeLeft>
+      <Title>COMMODORE AMIGA 1000 + MEMORY + GAMES ORIGINAL BOX</Title>
+      <ShippingCostSummary>
+       <ShippingServiceCost currencyID="EUR">10.0</ShippingServiceCost>
+       <ShippingType>Flat</ShippingType>
+       <ListedShippingServiceCost currencyID="EUR">10.0</ListedShippingServiceCost>
+      </ShippingCostSummary>
+     </Item>
+    </ItemArray>
+   </SearchResult>
+   <PageNumber>1</PageNumber>
+   <TotalPages>1</TotalPages>
+   <TotalItems>1</TotalItems>
+   <ItemSearchURL>http://search.ebay.it/ws/search/SaleSearch?fsoo=1&amp;fsop=1&amp;satitle=Amiga+1000</ItemSearchURL>
+  </FindItemsAdvancedResponse>
+ 

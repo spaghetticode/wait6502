@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <FindItemsAdvancedResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T22:19:37.785Z</Timestamp>
+   <Ack>Failure</Ack>
+   <Errors>
+    <ShortMessage>Please specify a query!</ShortMessage>
+    <LongMessage>Please specify a query!</LongMessage>
+    <ErrorCode>10.1</ErrorCode>
+    <SeverityCode>Error</SeverityCode>
+    <ErrorClassification>RequestError</ErrorClassification>
+   </Errors>
+   <Build>E639_CORE_BUNDLED_10221220_R1</Build>
+   <Version>639</Version>
+  </FindItemsAdvancedResponse>
+ 

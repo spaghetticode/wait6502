@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <GetItemStatusResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+   <Timestamp>2009-11-06T23:20:35.062Z</Timestamp>
+   <Ack>Success</Ack>
+   <Build>E637_CORE_BUNDLED_10165894_R1</Build>
+   <Version>637</Version>
+   <Item>
+    <ItemID>170402561257</ItemID>
+    <EndTime>2009-12-03T20:10:27.000Z</EndTime>
+    <BidCount>0</BidCount>
+    <ConvertedCurrentPrice currencyID="USD">742.94</ConvertedCurrentPrice>
+    <ListingStatus>Active</ListingStatus>
+    <ReserveMet>true</ReserveMet>
+    <TimeLeft>P26DT20H49M52S</TimeLeft>
+   </Item>
+  </GetItemStatusResponse>
+ 
