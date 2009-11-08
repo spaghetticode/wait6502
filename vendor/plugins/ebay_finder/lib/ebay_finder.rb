@@ -1,5 +1,16 @@
 module EbayFinder
   EBAY_BASE_URL = 'http://open.api.ebay.com/shopping'
+  EBAY_SITES = {
+    :US => 0,
+    :FR => 71,
+    :ES => 186,
+    :GB => 3,
+    :DE => 77,
+    :NL => 146,
+    :IT => 101,
+    :AU => 15,
+    :CA => 2
+  }
   
   # custom error classes
   class EbayError < StandardError; end
@@ -12,7 +23,7 @@ module EbayFinder
     @@config_params = nil
     
     def initialize(params={})
-      @website = params.delete(:website) || self.class.config_params[:website] || '0'
+      @website = params.delete(:website) || self.class.config_params[:website] || 'US'
       @app_id = self.class.config_params[:app_id]
       @callname = params.delete(:callname) || 'FindItemsAdvanced' # option is GetItemStatus
       @params = params
@@ -32,7 +43,7 @@ module EbayFinder
     
     def query_url
       app_query = "appid=#{app_id}"
-      website_query = "siteid=#{website}"
+      website_query = "siteid=#{EBAY_SITES[website.to_sym]}"
       callname_query = "callname=#{callname}"
       @url = "#{EBAY_BASE_URL}?#{callname_query}&responseencoding=XML&version=525&#{app_query}&#{website_query}&#{query_params}"
     end

@@ -14,13 +14,17 @@ describe EbayFinder do
   include EbayFinderHelper
   
   describe 'a new Request instance' do
-    
-    it 'should have a default website' do
-      ebay_request.website.should == '0'
+    it 'should have US as default website' do
+      ebay_request.website.should == 'US'
     end
     
     it 'should set app_id from ebay_config.yml file' do
       ebay_request.app_id.should == 'test_ebay_app_id'
+    end
+    
+    it 'should replace DE website with expected numeric value in query url' do
+      url = ebay_request(:website => :DE).send(:query_url)
+      url.should include('&siteid=77')
     end
   end
   
