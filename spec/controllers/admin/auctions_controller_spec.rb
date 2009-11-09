@@ -43,7 +43,7 @@ describe Admin::AuctionsController do
     
     describe 'GET EDIT' do
       before do
-        Auction.stub!(:find).and_return(mock_auction)
+        Auction.stub!(:find).and_return(mock_auction(:currency_id => 'USD', :final_price => 33.0))
         get :edit, :id => '1'
       end
       
@@ -143,9 +143,9 @@ describe Admin::AuctionsController do
       
       describe 'when auction went with a valid final price' do
         before do
-          Auction.should_receive(:find).and_return(mock_auction)
+          Auction.should_receive(:find).and_return(mock_auction(:currency_id => 'USD', :final_price => 33.0))
           mock_auction.should_receive(:set_final_price).and_return(true)
-          put :set_final_price, :id => '1'          
+          put :set_final_price, :id => '1'
         end
         
         it 'should assign @auction' do

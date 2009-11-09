@@ -1,0 +1,28 @@
+%tr
+  %td.image
+    = image_tag item.gallery_url || Auction::BLANK_IMAGE_URL, :class => 'ebay_gallery'
+  %td
+    = link_to item.title, '#', :onclick => "window.open('#{item.view_item_url_for_natural_search}')"
+    %ul
+      %li= pluralize(item.bid_count, 'bid')
+      %li
+        current price:
+        = item.current_price
+        end time:
+        = item.end_time.to_s(:short)
+  %td.center
+    - unless @item_ids.include? item.item_id
+      - form_for :auction, :url => admin_auctions_path do |f|
+        = hidden_field_tag 'auction[title]',        item.title
+        = hidden_field_tag 'auction[item_id]',      item.item_id
+        = hidden_field_tag 'auction[end_time]',     item.end_time
+        = hidden_field_tag 'auction[ebay_site_id]', @resultset.ebay_site
+        = hidden_field_tag 'auction[currency_id]',  item.current_price.currency_id
+        = hidden_field_tag 'auction[url]',          item.view_item_url_for_natural_search
+        = hidden_field_tag 'auction[image_url]',    item.gallery_url
+        = f.select :cosmetic_conditions,  Auction::COSMETIC_CONDITIONS
+        = f.select :completeness,         Auction::COMPLETENESSES
+        = hardware_selector(f)
+        = f.submit 'watch'
+    - else
+      You are already watching this auction

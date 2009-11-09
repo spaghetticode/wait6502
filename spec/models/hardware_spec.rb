@@ -49,6 +49,10 @@ describe Hardware do
     it 'should have an ebay_keywords association' do
       Hardware.new.ebay_keywords.should_not be_nil
     end
+    
+    it 'should have an auctions association' do
+      Hardware.new.auctions.should_not be_nil
+    end
   
     it 'should require a unique name for given manufacturer and code' do
       code = '12345'
@@ -87,11 +91,11 @@ describe Hardware do
   describe 'ORDERED named scope' do
     it 'should sort hardware by manufacturers and name' do
       5.times{Factory(:hardware)}
-      Hardware.ordered.should == Hardware.all.sort_by{|c| [c.manufacturer.name, c.name]}
+      Hardware.ordered.should == Hardware.all.sort_by(&:name)
     end
   end
 
-  describe 'named scopes' do
+  describe 'HARDWARE and PERIPHERAL named scopes' do
     before do
       Hardware::CATEGORIES.each do |category|
         3.times{Factory(:hardware, :hardware_category => category)}
@@ -127,59 +131,60 @@ describe Hardware do
           @hardware.cpu_names.should =~ %r{#{cpu.cpu_name_id}}
         end
       end
-
-      describe 'an instance with associated Co-CPUs' do
-        before do
-          @hardware = Factory(:hardware)
-          @hardware.co_cpus << Factory(:co_cpu)
-        end
-
-        it 'should respond to :co_cpu_names' do
-          @hardware.should respond_to(:co_cpu_names)
-        end
-
-        it 'co_cpu_names should return a string with co_cpu names' do
-          @hardware.co_cpus.each do |co_cpu|
-            @hardware.co_cpu_names.should =~ /#{co_cpu.co_cpu_name_id}/
-          end
+    end
+    
+    describe 'an instance with associated Co-CPUs' do
+      before do
+        @hardware = Factory(:hardware)
+        @hardware.co_cpus << Factory(:co_cpu)
+      end
+    
+      it 'should respond to :co_cpu_names' do
+        @hardware.should respond_to(:co_cpu_names)
+      end
+    
+      it 'co_cpu_names should return a string with co_cpu names' do
+        @hardware.co_cpus.each do |co_cpu|
+          @hardware.co_cpu_names.should =~ /#{co_cpu.co_cpu_name_id}/
         end
       end
-
-      describe 'an instance with associated IO_PORTS' do
-        before do
-          @hardware = Factory(:hardware)
-          @hardware.io_ports << Factory(:io_port)
-        end
-
-        it 'should respond to :io_port_names' do
-          @hardware.should respond_to(:io_port_names)
-        end
-
-        it 'co_cpu_names should return a string with io port names' do
-          @hardware.io_ports.each do |io_port|
-            @hardware.io_port_names.should =~ /#{io_port.name}/
-          end
+    end
+    
+    describe 'an instance with associated IO_PORTS' do
+      before do
+        @hardware = Factory(:hardware)
+        @hardware.io_ports << Factory(:io_port)
+      end
+    
+      it 'should respond to :io_port_names' do
+        @hardware.should respond_to(:io_port_names)
+      end
+    
+      it 'co_cpu_names should return a string with io port names' do
+        @hardware.io_ports.each do |io_port|
+          @hardware.io_port_names.should =~ /#{io_port.name}/
         end
       end
-
-      describe 'an instance with associated BUILTIN_STORAGES' do
-        before do
-          @hardware = Factory(:hardware)
-          @hardware.builtin_storages << Factory(:builtin_storage)
-        end
-
-        it 'should respond to :storage_names' do
-          @hardware.should respond_to(:storage_names)
-        end
-
-        it 'co_cpu_names should return a string with builtin storage names' do
-          @hardware.builtin_storages.each do |storage|
-            @hardware.storage_names.should =~ /#{storage.full_name}/
-          end
+    end
+    
+    describe 'an instance with associated BUILTIN_STORAGES' do
+      before do
+        @hardware = Factory(:hardware)
+        @hardware.builtin_storages << Factory(:builtin_storage)
+      end
+    
+      it 'should respond to :storage_names' do
+        @hardware.should respond_to(:storage_names)
+      end
+    
+      it 'co_cpu_names should return a string with builtin storage names' do
+        @hardware.builtin_storages.each do |storage|
+          @hardware.storage_names.should =~ /#{storage.full_name}/
         end
       end
-
-      describe 'an instance with associated OPERATIVE_SYSTEMS' do
+    end
+    
+    describe 'an instance with associated OPERATIVE_SYSTEMS' do
         before do
           @hardware = Factory(:hardware)
           @hardware.operative_systems << Factory(:operative_system)
@@ -195,6 +200,5 @@ describe Hardware do
           end
         end
       end  
-    end
   end
 end

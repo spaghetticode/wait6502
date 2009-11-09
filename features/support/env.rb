@@ -25,4 +25,9 @@ require 'cucumber/rails/rspec'
 require 'webrat/core/matchers'
 require 'spec/factories'
 require 'spec/stubs/cucumber'
+
+# changing location where image files will be saved:
 Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures/images')
+# changing the location where auction gallery image files will be saved:
+Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
+

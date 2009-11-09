@@ -1,0 +1,9 @@
+%h1 Search Ebay
+- form_for :resultset, :url => admin_resultset_path do |f|
+  %p
+    = f.label :keywords
+    = f.text_field :keywords
+    = f.label :ebay_site_id
+    = ebay_site_selector(f)
+    = f.submit 'search'
+  

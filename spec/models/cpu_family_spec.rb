@@ -33,7 +33,7 @@ describe CpuFamily do
       5.times {Factory(:cpu_family)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort cpu families by name' do
       CpuFamily.ordered.should == CpuFamily.all.sort_by(&:name)
     end
   end

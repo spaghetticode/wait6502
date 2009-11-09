@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Auctions
 	In order to have relevant auctions data
 	As a logged user
@@ -6,7 +5,12 @@ Feature: Manage Auctions
 	
 	Background:
 		Given I am logged in as user
-		Given the following auction exists:
+		And the following ebay sites exist:
+		| name |
+		| IT   |
+		| US   |
+		| DE   |
+		And   the following auction exists:
 		| hardware | ebay_site | title         |
 		| Pet 2001 | US        | Commodore PET |
 		
@@ -51,11 +55,26 @@ Feature: Manage Auctions
 		Given the auction titled "Commodore PET" has ended with 1 bid
 		And   I am on the auctions page
 		When  I press "set final price"
-		Then  I should see "Final Price was successfully updated."
+		Then  I should see "Final Price for this auction was "
 		
 	Scenario: Updating Final Price Value through Ebay (auction received no bid)
 		Given the auction titled "Commodore PET" has ended with 0 bids
 		And   I am on the auctions page
 		When  I press "set final price"
 		Then  I should see "Auction went without bids. Please destroy it"
+	
+	Scenario: Failed Search for Auctions (no keywords)
+		Given I am on the auctions page
+		When  I press "search"
+		Then  I should see "You must provide a search keyword"
+		And   I should be on the auctions page
 		
+	Scenario: Successful Search for Auctions
+		Given I stub search requests to ebay
+		And   I am on the auctions page
+		When  I fill in "Keywords" with "Amiga 1000"
+		And   I select "IT" from "Ebay site"
+		And   I press "search"
+		Then  I should see "Current Auctions for Amiga 1000"
+		And   I should see "COMMODORE AMIGA 1000 + MEMORY + GAMES ORIGINAL BOX"
+		And   I should see "EUR 499.00"

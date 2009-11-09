@@ -33,7 +33,7 @@ describe CpuBit do
       5.times {Factory(:cpu_bit)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort cpu bits by name' do
       CpuBit.ordered.should == CpuBit.all.sort_by(&:name)
     end
   end

@@ -3,6 +3,13 @@ class Admin::ResultsetsController < ApplicationController
   layout 'admin'
   
   def create
-    @resultset = Resultset.new(params)
+    if params[:resultset][:keywords].blank?
+      flash[:error] = 'You must provide a search keyword.'
+      redirect_to admin_auctions_path
+    else
+      @resultset = Resultset.new(params[:resultset])
+      @item_ids = Auction.item_ids
+      render :template => '/admin/resultsets/show'
+    end
   end
 end

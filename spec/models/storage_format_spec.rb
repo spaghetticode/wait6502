@@ -33,7 +33,7 @@ describe StorageFormat do
       5.times {Factory(:storage_format)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort storage formats by name' do
       StorageFormat.ordered.should == StorageFormat.all.sort_by(&:name)
     end
   end

@@ -1,0 +1,12 @@
+%tr
+  %td= image_tag auction.gallery_image_url || 'no image', :class => 'ebay_gallery'
+  %td= auction.hardware.name
+  %td= link_to truncate(auction.title), '#', :onclick => "window.open('#{auction.url}')"
+  %td.center= auction.ebay_site_id
+  %td
+    = "#{auction.completeness},"
+    = auction.cosmetic_conditions
+    conditions
+  %td.right= render :partial => 'final_price', :locals => {:auction => auction}
+  %td= link_to 'Edit', edit_admin_auction_path(auction)
+  %td= link_to 'Destroy', admin_auction_path(auction), :method => :delete, :confirm => 'are you sure?'

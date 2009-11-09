@@ -18,7 +18,7 @@ module ApplicationHelper
   end
   
   def currency_selector(f)
-    f.select :currency_id, Currency.ordered.map{|c| [c.code, c.id]}, :include_blank => true
+    f.select :currency_id, Currency.ordered.map(&:name), :include_blank => true
   end
   
   def year_selector(field, f)
@@ -29,9 +29,9 @@ module ApplicationHelper
     # forms where ActiveRecord objects are handled pass f, while forms that query
     # ebay apis don't, and use site_id instead of name as value parameter for the select
     if f
-      f.select :ebay_site_id, EbaySite.ordered.map(&:name), :include_blank => true
+      f.select :ebay_site_id, EbaySite.ordered.map(&:name)
     else
-      select_tag :ebay_site, options_from_collection_for_select(EbaySite.ordered, :site_id, :name), :include_blank => true
+      select_tag :ebay_site, options_from_collection_for_select(EbaySite.ordered, :name, :name)
     end
   end
   

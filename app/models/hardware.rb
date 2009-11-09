@@ -5,10 +5,11 @@ class Hardware < ActiveRecord::Base
   belongs_to :hardware_type
   belongs_to :builtin_language
   
+  has_many :auctions
   has_many :images, :as => :imageable
   has_many :ebay_keywords, :as => :searchable
   has_many :original_prices, :as => :purchaseable
-
+  
   has_and_belongs_to_many :cpus, :join_table => :cpus_hardware
   has_and_belongs_to_many :co_cpus, :join_table => :co_cpus_hardware
   has_and_belongs_to_many :io_ports, :join_table => :hardware_io_ports
@@ -23,7 +24,7 @@ class Hardware < ActiveRecord::Base
   CATEGORIES.each do |category|
     named_scope category, :conditions => {:hardware_category => category}
   end
-  named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, hardware.name'
+  named_scope :ordered, :order => 'hardware.name'
 
   def co_cpu_names
     co_cpus.map{|cc| "#{cc.manufacturer.name} #{cc.co_cpu_name_id}"}.join(', ')

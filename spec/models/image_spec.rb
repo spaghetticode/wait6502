@@ -23,9 +23,6 @@ end
 describe Image do
   include ImageUploadedFileHelper
   
-  # changing location where image files will be saved
-  Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures', Image::DB_PREFIX)
-  
   describe  'a new blank image' do
     it 'should not be valid' do
       Image.new.should_not be_valid

@@ -115,7 +115,7 @@ Factory.define :hardware_type do |ht|
 end
 
 Factory.define :ebay_site do |es|
-  es.sequence(:name) {|n| "site #{n}"}
+  es.sequence(:name) {|n| "name #{n}"}
 end
 
 Factory.define :auction do |a|

@@ -1,6 +1,6 @@
 class BuiltinLanguage < ActiveRecord::Base
-  include ActsAsSingleColumn
-  acts_as_single_column :name
+  include ActsAsNaturalKey
+  acts_as_natural_key :name
   
   has_many :hardware
 end

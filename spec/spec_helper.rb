@@ -8,6 +8,11 @@ require 'authlogic/test_case'
 require File.dirname(__FILE__) + '/factories'
 require File.dirname(__FILE__) + '/controller_macros'
 
+# changing the location for saved auction gallery image files:
+Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
+  # changing location where image files will be saved
+Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures', Image::DB_PREFIX)
+
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
@@ -20,7 +25,6 @@ Spec::Runner.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
   config.include ControllerMacros
-
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:

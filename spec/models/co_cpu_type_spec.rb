@@ -33,7 +33,7 @@ describe CoCpuType do
       5.times {Factory(:co_cpu_type)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort co cpu types by name' do
       CoCpuType.ordered.should == CoCpuType.all.sort_by(&:name)
     end
   end

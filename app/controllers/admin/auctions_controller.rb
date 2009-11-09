@@ -1,4 +1,5 @@
 class Admin::AuctionsController < ApplicationController
+  include Admin::AuctionsHelper
   before_filter :require_logged_in
   layout 'admin'
   
@@ -43,7 +44,7 @@ class Admin::AuctionsController < ApplicationController
   def set_final_price
     @auction = Auction.find(params[:id])
     if @auction.set_final_price
-      flash[:notice] = 'Final Price was successfully updated.'
+      flash[:notice] = "Final Price for this auction was #{final_price_string(@auction)}"
     else
       flash[:error]  = 'Auction went without bids. Please destroy it.'
     end

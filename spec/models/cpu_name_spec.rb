@@ -33,7 +33,7 @@ describe CpuName do
       5.times {Factory(:cpu_name)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort cpu names by name' do
       CpuName.ordered.should == CpuName.all.sort_by(&:name)
     end
   end

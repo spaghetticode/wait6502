@@ -7,8 +7,8 @@
       %th= f.label :title 
       %td= f.text_field :title
     %tr
-      %th= f.label :final_price_value 
-      %td= f.text_field :final_price_value    
+      %th= f.label :final_price
+      %td= f.text_field :final_price   
     %tr
       %th= f.label :hardware_id
       %td= hardware_selector(f)
@@ -26,7 +26,7 @@
       %td= f.select :completeness, Auction::COMPLETENESSES 
     %tr
       %th= f.label :end_time
-      %td= @auction.closed_or_end_time
+      %td= @auction.end_time.to_s(:short)
     %tr
       %td.center{:colspan => 2}= f.submit 'Update' 
 

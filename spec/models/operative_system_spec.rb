@@ -37,7 +37,7 @@ describe OperativeSystem do
       5.times {Factory(:operative_system)}
     end
     
-    it 'should sort countries by name' do
+    it 'should sort operative systems by name' do
       OperativeSystem.ordered.should == OperativeSystem.all.sort_by(&:name)
     end
   end

@@ -6,7 +6,7 @@ body {
 }
 
 table.list {
-	background:gray;
+	background: silver;
 }
 
 th, td {
@@ -21,6 +21,14 @@ table.list th {
 
 table.list td {
 	background:white;
+}
+
+.list ul {
+	padding:0px;
+}
+
+.list li {
+	list-style-type:none;
 }
 
 h1, h2, h3 {
@@ -150,32 +158,9 @@ ul.tabs li {
 	padding:5px;
 }
 
-.auction_info {
-	overflow:auto;
-}
-
-.auction_info .image_box {
-	float:left;
-	width:80px;
-	margin:15px;
-	height:60px;
-	text-align:center;
-}
-
-.auction_info img {
-	display:block;
-	margin:auto;
-	color:gray;
-	max-height:60px;
-}
-
-.auction_info .price {
-	font-weight:bold;
-}
-
 .ebay_gallery {
-	min-height:60px;
+	max-height:60px;
 	display:block;
 	color:white;
-	border:1px solid silver;
+	margin:auto;
 }

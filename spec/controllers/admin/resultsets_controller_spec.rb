@@ -10,7 +10,7 @@ describe Admin::ResultsetsController do
     describe 'POST CREATE' do
       before do
         Resultset.should_receive(:new).and_return(mock_model(Resultset))
-        post :create, :params => {}
+        post :create, :resultset => {:keywords => 'kword'}
       end
     
       it 'should assing @resultset' do

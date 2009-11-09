@@ -1,0 +1,19 @@
+%h1
+  = "Current Auctions for #{@resultset.keywords}"
+%p
+  There were
+  = pluralize(@resultset.total_items, 'match')
+  for a total of
+  = pluralize(@resultset.total_pages, 'page')
+  on EBAY
+  = @resultset.ebay_site
+  
+%p= link_to 'back to auctions list', admin_auctions_path
+
+%table.list{:cellpadding=> 0, :cellspacing => 1}
+  %tr
+    %th Image
+    %th Auction
+    %th Watch Auction
+
+  = render :partial => 'item', :collection => @resultset.items

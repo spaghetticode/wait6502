@@ -71,5 +71,7 @@ def class_for(model)
     BuiltinLanguage
   when /hardware type/
     HardwareType
+  when /ebay site/
+    EbaySite
   end
 end

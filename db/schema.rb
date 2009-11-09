@@ -14,14 +14,14 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
     t.string   "ebay_site_id",                                       :null => false
-    t.integer  "currency_id",                                        :null => false
+    t.string   "currency_id",                                        :null => false
     t.string   "title",                                              :null => false
     t.string   "url",                                                :null => false
     t.string   "image_url"
     t.string   "item_id",                                            :null => false
     t.string   "cosmetic_conditions",                                :null => false
     t.string   "completeness",                                       :null => false
-    t.decimal  "final_price_value",   :precision => 11, :scale => 2
+    t.decimal  "final_price",   :precision => 11, :scale => 2
     t.datetime "end_time",                                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -106,9 +106,8 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
     t.integer "cpu_id"
   end
 
-  create_table "currencies", :force => true do |t|
-    t.string   "code"
-    t.string   "symbol"
+  create_table "currencies", :id => false,  :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -123,7 +122,6 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
 
   create_table "ebay_sites", :id => false, :force => true do |t|
     t.string   "name"
-    t.string   "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -192,7 +190,7 @@ ActiveRecord::Schema.define(:version => 20091106112605) do
   end
 
   create_table "original_prices", :force => true do |t|
-    t.integer  "currency_id"
+    t.string   "currency_id"
     t.string   "country_id"
     t.date     "date"
     t.string   "amount"
