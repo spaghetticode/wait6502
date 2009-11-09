@@ -1,0 +1,2 @@
+<% html = @auction.final_price ? final_price_string(@auction) : 'no bids' %>
+$('#<%= @auction.item_id %>').html('<%= html %>')

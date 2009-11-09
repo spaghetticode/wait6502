@@ -17,11 +17,17 @@ class Admin::AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(params[:auction])
-    if @auction.save
-      flash[:notice] = 'Auction was successfully created.'
-      redirect_to admin_auctions_path
-    else
-      render :action => "new"
+    respond_to do |f|
+      if @auction.save
+        f.html do
+          flash[:notice] = 'Auction was successfully created.'
+          redirect_to admin_auctions_path
+        end
+        f.js
+      else
+        f.html { render :action => "new" }
+        f.js
+      end
     end
   end
 
@@ -43,11 +49,19 @@ class Admin::AuctionsController < ApplicationController
   
   def set_final_price
     @auction = Auction.find(params[:id])
-    if @auction.set_final_price
-      flash[:notice] = "Final Price for this auction was #{final_price_string(@auction)}"
-    else
-      flash[:error]  = 'Auction went without bids. Please destroy it.'
+    respond_to do |f|
+      if @auction.set_final_price
+        f.html do
+          flash[:notice] = "Final Price for this auction was #{final_price_string(@auction)}"
+        end
+        f.js { return }
+      else
+        f.html do
+          flash[:error]  = 'Auction went without bids. Please destroy it.'
+        end
+        f.js { return }
+      end
     end
-   redirect_to admin_auctions_path
+    redirect_to admin_auctions_path
   end
 end

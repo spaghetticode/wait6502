@@ -7,6 +7,6 @@
     = "#{auction.completeness},"
     = auction.cosmetic_conditions
     conditions
-  %td.right= render :partial => 'final_price', :locals => {:auction => auction}
+  %td.right{:id => auction.item_id}= render :partial => 'final_price', :locals => {:auction => auction}
   %td= link_to 'Edit', edit_admin_auction_path(auction)
   %td= link_to 'Destroy', admin_auction_path(auction), :method => :delete, :confirm => 'are you sure?'

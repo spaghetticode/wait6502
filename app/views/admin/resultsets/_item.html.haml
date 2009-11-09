@@ -10,7 +10,7 @@
         = item.current_price
         end time:
         = item.end_time.to_s(:short)
-  %td.center
+  %td.center{:id => item.item_id}
     - unless @item_ids.include? item.item_id
       - form_for :auction, :url => admin_auctions_path do |f|
         = hidden_field_tag 'auction[title]',        item.title

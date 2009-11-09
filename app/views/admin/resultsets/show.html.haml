@@ -1,3 +1,17 @@
+- content_for :head do
+  = javascript_include_tag 'jquery-1.3.2.min'
+  %script{:type => 'text/javascript'}
+    jQuery.ajaxSetup({
+    'beforeSend': function(xhr){xhr.setRequestHeader('Accept', 'text/javascript')}
+    })
+    $(function(){
+    $('form').submit(function(){
+    $.post($(this).attr('action'), $(this).serialize(), null, 'script');
+    $(this).hide();
+    $(this).parent().append('<img id="spinner" src="/images/spinner.gif" />');
+    return false;
+    })
+    })
 %h1
   = "Current Auctions for #{@resultset.keywords}"
 %p
@@ -17,3 +31,5 @@
     %th Watch Auction
 
   = render :partial => 'item', :collection => @resultset.items
+  
+%p= link_to 'back to auctions list', admin_auctions_path

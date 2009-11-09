@@ -1,0 +1,9 @@
+spinner = $('#spinner');
+spinner.hide();
+<% if @auction.new_record? %>
+	$(spinner.siblings()[0]).show();
+	spinner.remove();	
+	alert('please select hardware');
+<% else %>
+	$('#<%= @auction.item_id %>').html('you are now watching this auction');
+<% end %>
