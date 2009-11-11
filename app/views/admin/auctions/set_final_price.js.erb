@@ -1,2 +1,1 @@
-<% html = @auction.final_price ? final_price_string(@auction) : 'no bids' %>
-$('#<%= @auction.item_id %>').html('<%= html %>')
+$('tr#<%= @auction.item_id %> td.price').html('<%= results_for(@auction) %>')

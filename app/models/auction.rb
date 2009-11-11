@@ -8,8 +8,12 @@ class Auction < ActiveRecord::Base
   COMPLETENESSES = ['bare', 'complete', 'complete with extras', 'boxed', 'boxed with extras']
   COSMETIC_CONDITIONS = %w{poor average good mint}
   GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/public/images/auctions"
-  BLANK_IMAGE_URL = "/images/auctions/blank.png" 
-    
+  BLANK_IMAGE_URL = "/images/auctions/blank.png"
+  SEARCH_FIELDS = {
+    'hardware name' => 'hardware.name', 'title' => 'auctions.title',
+    'ebay website' => 'ebay_site_id', 'cosmetic conditions' => 'cosmetic_conditions',
+    'completeness' => 'completeness', 'price' => 'final_price', 'end time' => 'end_time'
+  }
   # validations:
   validates_uniqueness_of :url, :item_id
   validates_presence_of :hardware, :ebay_site, :currency, :url, :item_id
@@ -24,6 +28,7 @@ class Auction < ActiveRecord::Base
   # named scopes:
   named_scope :ordered, :order => 'created_at'
   named_scope :active, lambda {{:conditions => ['end_time > ?', Time.now]}}
+  named_scope :closed, lambda {{:conditions => ['end_time < ?', Time.now]}}
   COSMETIC_CONDITIONS.each do |condition|
     named_scope condition, :conditions => {:cosmetic_conditions => condition}
   end
@@ -35,6 +40,12 @@ class Auction < ActiveRecord::Base
   # class methods:
   def self.item_ids
     @item_ids = Auction.all(:select => :item_id).map(&:item_id)
+  end
+  
+  def self.concat_fields
+    SEARCH_FIELDS.values.inject([]) do |collection, field|
+      collection << "IFNULL(CAST(#{field} AS CHAR), '')"
+    end.join(', ')
   end
   
   # instance methods:
@@ -74,10 +85,10 @@ class Auction < ActiveRecord::Base
   end
   
   def download_image
-    @uri = URI.parse(image_url)
-    request = Net::HTTP.new(@uri.host, @uri.port)
+    uri = URI.parse(image_url)
+    request = Net::HTTP.new(uri.host, uri.port)
     request.read_timeout = 3
-    self.image_file = request.get(@uri.request_uri).body
+    self.image_file = request.get(uri.request_uri).body
   end
   
   def save_image

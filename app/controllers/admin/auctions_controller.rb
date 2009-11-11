@@ -4,7 +4,14 @@ class Admin::AuctionsController < ApplicationController
   layout 'admin'
   
   def index
-    @auctions = Auction.paginate(:page => params[:page])
+
+    conditions = ["concat(#{Auction.concat_fields}) like ?", "%#{params[:keywords]}%"] if params[:keywords]
+    @auctions = Auction.send(params[:scope] || :all).paginate(
+      :page => params[:page],
+      :conditions => conditions,
+      :order => "#{params[:order] || 'created_at'} #{params[:desc]}",
+      :include => :hardware
+    )
   end
   
   def new
@@ -42,9 +49,15 @@ class Admin::AuctionsController < ApplicationController
   end
 
   def destroy
-    Auction.find(params[:id]).destroy
-    flash[:notice] = 'Auction was successfully destroyed.'
-    redirect_to admin_auctions_path
+    @auction = Auction.find(params[:id])
+    @auction.destroy
+    respond_to do |f|
+      f.html do
+        flash[:notice] = 'Auction was successfully destroyed.'
+        redirect_to admin_auctions_path
+      end
+      f.js
+    end
   end
   
   def set_final_price
@@ -53,15 +66,16 @@ class Admin::AuctionsController < ApplicationController
       if @auction.set_final_price
         f.html do
           flash[:notice] = "Final Price for this auction was #{final_price_string(@auction)}"
+          redirect_to admin_auctions_path
         end
-        f.js { return }
+        f.js
       else
         f.html do
           flash[:error]  = 'Auction went without bids. Please destroy it.'
+          redirect_to admin_auctions_path
         end
-        f.js { return }
+        f.js
       end
     end
-    redirect_to admin_auctions_path
   end
 end

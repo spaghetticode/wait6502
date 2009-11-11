@@ -20,12 +20,36 @@ class Hardware < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [:manufacturer_id, :code], :case_sensitive => false
   
   CATEGORIES = %w{computer peripheral}
+  SEARCH_FIELDS = {
+    'name' => 'hardware.name', 'type' => 'hardware_types.name',
+    'manufacturer' => 'manufacturers.name', 'co CPU name' => 'co_cpus.co_cpu_name_id',
+    'builtin language' => 'hardware.builtin_language_id', 'CPU name' => 'cpus.cpu_name_id',
+    'I/O port connector' => 'io_ports.connector', 'I/O port name' => 'io_ports.name',
+    'storage name' => 'builtin_storages.storage_name_id',
+    'storage format' => 'builtin_storages.storage_format_id',
+    'storage size' => 'builtin_storages.storage_size_id',
+    'operative systems name' => 'operative_systems.name',
+  }
   
   CATEGORIES.each do |category|
     named_scope category, :conditions => {:hardware_category => category}
   end
   named_scope :ordered, :order => 'hardware.name'
 
+  def self.conditions(params)
+    strings = []
+    values = []
+    unless params[:category].blank?
+      strings << 'hardware_category=?'
+      values << "#{params[:category]}"
+    end
+    unless params[:keywords].blank?
+      strings << "concat(#{search_field_string}) like ?"
+      values << "%#{params[:keywords]}%"
+    end
+    conditions = [ strings.join(' AND '), values ].flatten
+  end
+  
   def co_cpu_names
     co_cpus.map{|cc| "#{cc.manufacturer.name} #{cc.co_cpu_name_id}"}.join(', ')
   end
@@ -44,5 +68,13 @@ class Hardware < ActiveRecord::Base
   
   def storage_names
     builtin_storages.map(&:full_name).join(', ')
+  end
+  
+  private
+  
+  def self.search_field_string
+    SEARCH_FIELDS.values.inject([]) do |collection, field|
+      collection << "IFNULL(#{field}, '')"
+    end.join(', ')
   end
 end

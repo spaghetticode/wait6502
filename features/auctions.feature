@@ -46,7 +46,7 @@ Feature: Manage Auctions
 	Scenario: Destroy Auction
 		Given I am on the auctions page
 		And   I should see "Pet 2001"
-		When  I follow "Destroy"
+		When  I press "Destroy"
 		Then  I should see "Auction was successfully destroyed."
 		And   I should be on the auctions page
 		And   I should not see "Pet 2001"

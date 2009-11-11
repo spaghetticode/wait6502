@@ -1,4 +1,3 @@
-@focus
 Feature: Watch ebay auctions
 	In order to follow ebay auctions
 	As a logegd user

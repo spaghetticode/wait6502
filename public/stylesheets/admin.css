@@ -164,3 +164,9 @@ ul.tabs li {
 	color:white;
 	margin:auto;
 }
+
+ul#hardware_categories, ul#auction_categories {
+	padding:0px;
+	margin:10px;
+	list-style-type:none;
+}

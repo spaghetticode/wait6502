@@ -28,9 +28,13 @@ class Admin::HardwareController < ApplicationController
   end
   
   def index
-    @hardware = Hardware.ordered.paginate(:page => params[:page])
+    @hardware = Hardware.ordered.paginate(
+      :page => params[:page],
+      :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",
+      :conditions => Hardware.conditions(params),
+      :include => [:hardware_type, :cpus, :co_cpus, :builtin_storages, :operative_systems, :io_ports, :manufacturer]
+    )
   end
-
 
   def new
     @hardware = Hardware.new

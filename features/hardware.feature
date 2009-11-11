@@ -99,3 +99,39 @@ Feature: Manage Hardware
 		And    I fill in "original_price_amount" with "2'500'000"
 		And    I press "Add Price"
 		Then   I should see "Original Price was successfully created"
+
+@focus
+	Scenario: Computers List
+		Given the following hardware exists:
+			| name      | manufacturer| category  |
+			| Amiga 1000| Commodore   | computer  |
+			| DuoDisk   | Apple       | peripheral|
+		And   I am on the hardware page
+		When  I follow "computers"
+		Then  I should see "Listing Computers"
+		And   I should see "Amiga 1000"
+		But   I should not see "DuoDisk"
+
+@focus
+	Scenario: Peripherals List
+		Given the following hardware exists:
+			| name      | manufacturer| category  |
+			| Amiga 1000| Commodore   | computer  |
+			| DuoDisk   | Apple       | peripheral|
+		And   I am on the hardware page
+		When  I follow "peripherals"
+		Then  I should see "Listing Peripherals"
+		And   I should see "DuoDisk"
+		But   I should not see "Amiga 1000"
+
+@focus		
+	Scenario: Hardware Search
+		Given the following computers exist:
+			| name      | manufacturer|
+			| Amiga 1000| Commodore   |
+			| Apple IIe | Apple       |
+		And  I am on the hardware page
+		When I fill in "Keywords" with "Amiga"
+		And  I press "search"
+		Then I should see "Amiga 1000"
+		But  I should not see "Apple IIe"

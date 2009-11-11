@@ -1,10 +1,17 @@
-%h1 Listing Hardware
+%h1 Listing #{hardware_category(params[:category])}
+
+%ul#hardware_categories
+  %li= link_to 'computers', admin_hardware_index_path + "?category=computer"
+  %li= link_to 'peripherals', admin_hardware_index_path + "?category=peripheral"
+
+= render :partial => 'search_form'
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
     %th Manufacturer
     %th Category
+    %th Type
     %th Prod. Start
     %th Prod. Stop
     %th Builtin Language
@@ -21,6 +28,7 @@
       %td= h hardware.name
       %td= h hardware.manufacturer.name
       %td= hardware.hardware_category
+      %td= hardware.hardware_type_id
       %td= h hardware.production_start
       %td= h hardware.production_stop
       %td= h hardware.builtin_language_id
