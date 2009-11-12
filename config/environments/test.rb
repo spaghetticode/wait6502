@@ -28,3 +28,4 @@ config.action_mailer.delivery_method = :test
 # config.active_record.schema_format = :sql
 
 config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :version => '>=1.2.1'
+config.gem 'pickle', :lib => false, :version => '>=0.1.22'

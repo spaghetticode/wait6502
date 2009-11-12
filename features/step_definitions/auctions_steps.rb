@@ -3,7 +3,7 @@ Given /^the following auctions? exists?:$/ do |table|
     Factory(:auction,
       :title => fields[:title],
       :hardware => Factory(:hardware, :name => fields[:hardware]),
-      :ebay_site => EbaySite.find_by_name(fields[:ebay_site])
+      :ebay_site => EbaySite.find_by_name(fields[:ebay_site]) || Factory(:ebay_site, :name => fields[:ebay_site])
     )
   end
 end
@@ -31,6 +31,10 @@ Given /^I stub image downloads from ebay$/ do
   mock_response = mock(:class => Net::HTTPOK, :body => File.read(filename))
   mock_request = mock(:class => Net::HTTP, :get => mock_response, :read_timeout= => nil)
   Net::HTTP.stub!(:new => mock_request)
+end
+
+Given /^the auction titled "([^\"]*)" is closed$/ do |title|
+  Auction.find_by_title(title).update_attribute(:end_time, Time.now.yesterday)
 end
 
 private

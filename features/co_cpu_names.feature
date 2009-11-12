@@ -12,7 +12,7 @@ Feature: Manage Co-CPU Names
 		Then  I should see "You must be logged in to access this page"
 		
 	Scenario: Listing Co-CPU Names
-		Given a co cpu name named "Intel 8087" exists
+		Given a co cpu name exists with name: "Intel 8087"
 		When  I go to the co cpu names page
 		Then  I should see "Listing Co-CPU Names"
 		And   I should see "Intel 8087"
@@ -34,7 +34,7 @@ Feature: Manage Co-CPU Names
 		And   a new co cpu name has not been created
 	
 	Scenario: Failing Co-CPU Name Creation (name taken)
-		Given a co cpu name named "68881" exists
+		Given a co cpu name exists with name: "68881"
 		And   I cache the co cpu names count
 		When  I go to the new co cpu name page
 		And   I fill in "name" with "68881"
@@ -43,7 +43,7 @@ Feature: Manage Co-CPU Names
 		And   a new co cpu name has not been created
 		
 	Scenario: Destroying Co-CPU Name
-		Given a co cpu name named "8087" exists
+		Given a co cpu name exists with name: "8087"
 		And   I am on the co cpu names page
 		And   I should see "8087"
 		When  I press "destroy"
@@ -53,7 +53,7 @@ Feature: Manage Co-CPU Names
 		
 	Scenario: Failied Co-CPU Name Destroy
 		Given some co cpu names and types and manufacturers exist
-		And   a co cpu "Intel 8087 Math" exists
+		And   a co cpu "Intel 8087 Math" has been created
 		And	  I am on the co cpu names page
 		And   I should see "8087"
 		When  I press "destroy"

@@ -6,7 +6,7 @@ Feature: CPUs Management
 	Background:
 		Given I am logged in as user
 		And   some data exists for cpu names, bits, families, manufacturers
-		And   a cpu "Motorola 68000 7.16Mhz 16bit 68K" exists
+		And   a cpu "Motorola 68000 7.16Mhz 16bit 68K" has been created
 	
 	Scenario: Listing CPUs Page
 		When I go to the cpus page
@@ -64,7 +64,7 @@ Feature: CPUs Management
 			But   I should not see "68000"
 			
 		Scenario: Failed Update CPU
-			Given a cpu "Motorola 68000 8Mhz 16bit 68K" exists
+			Given a cpu "Motorola 68000 8Mhz 16bit 68K" has been created
 			Given I am on the cpus page
 			And   I follow "edit"
 			When  I fill in "Clock" with "8Mhz"

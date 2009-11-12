@@ -19,7 +19,7 @@ Feature: Manage I/O Ports
 
 	Scenario: Creating New IO Port
 		Given I am on the io ports page
-		And   a io port with name "RS232" and connector "DB-25" exists
+		And   a io port exists with name: "RS232", connector: "DB-25"
 		And   I cache the io ports count
 		And   I follow "new io port"
 		When  I fill in "name" with "RS232"
@@ -30,7 +30,7 @@ Feature: Manage I/O Ports
 		And   a new io port has been created	
 		
 	Scenario: Failed New IO Port Creation (name/connector combination taken)
-		Given a io port with name "parallel" and connector "centronics" exists
+		Given a io port exists with name: "parallel", connector: "centronics"
 		And   I am on the new io port page
 		And   I cache the io port count
 		When  I fill in "name" with "parallel"
@@ -40,7 +40,7 @@ Feature: Manage I/O Ports
 		And   a new io port has not been created
 		
 	Scenario: Updating IO Port
-		Given a io port with name "serial" and connector "rs232" exists
+		Given a io port exists with name: "serial", connector: "rs232"
 		When  I go to the io ports page
 		And   I follow "edit"
 		And   I fill in "connector" with "din 8 pin"
@@ -50,7 +50,7 @@ Feature: Manage I/O Ports
 		And   I should see "din 8 pin"
 		
 	Scenario: Destroying IO Port
-		Given a io port with name "serial" and connector "rs232" exists
+		Given a io port exists with name: "serial", connector: "rs232"
 		When  I go to the io ports page
 		And   I follow "destroy"
 		Then  I should see "IO Port was successfully destroyed"

@@ -13,7 +13,7 @@ Given /^some data exists for cpu names, bits, families, manufacturers$/ do
   end
 end
 
-Given /^a cpu "([^\"]*)" exists$/ do |description|
+Given /^a cpu "([^\"]*)" has been created$/ do |description|
   manufacturer, name, clock, bit, family = description.split(' ')
   manufacturer = Manufacturer.find_by_name(manufacturer)
   name = CpuName.find_by_name(name)

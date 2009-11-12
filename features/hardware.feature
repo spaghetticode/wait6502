@@ -50,7 +50,7 @@ Feature: Manage Hardware
 	Scenario: Add CPU to Existing Hardware
 		Given I have a hardware named "Atari 800"
 		And   some data exists for cpu names, bits, families, manufacturers
-		And   a cpu "MOS 6502 1Mhz 8bit" exists
+		And   a cpu "MOS 6502 1Mhz 8bit" has been created
 		And   I am on the "Atari 800" hardware editor page
 		When  I select "MOS 6502 @1Mhz, 8bit  family" from "cpu_id"
 		And   I press "Add CPU"
@@ -59,7 +59,7 @@ Feature: Manage Hardware
 	Scenario: Add co-CPU to Existing Hardware
 		Given I have a hardware named "IBM PC"
 		And   some co cpu names and types and manufacturers exist
-		And   a co cpu "Intel 8087 Math" exists
+		And   a co cpu "Intel 8087 Math" has been created
 		And   I am on the "IBM PC" hardware editor page
 		When  I select "Intel 8087 Math co-processor" from "co_cpu_id"
 		And   I press "Add CO CPU"
@@ -68,7 +68,7 @@ Feature: Manage Hardware
 	Scenario: Add Builtin Storage to Existing Hardware
 		Given I have a hardware named "IBM PC"
 		And   I have entered some data for storage names, formats and sizes
-		And   a builtin storage "floppy disk - 5.25 inches - 360Kb" exists
+		And   a builtin storage "floppy disk - 5.25 inches - 360Kb" has been created
 		And   I am on the "IBM PC" hardware editor page
 		When  I select "floppy disk 5.25 inches 360Kb" from "builtin_storage_id"
 		And   I press "Add BUILTIN STORAGE"
@@ -100,7 +100,6 @@ Feature: Manage Hardware
 		And    I press "Add Price"
 		Then   I should see "Original Price was successfully created"
 
-@focus
 	Scenario: Computers List
 		Given the following hardware exists:
 			| name      | manufacturer| category  |
@@ -112,7 +111,6 @@ Feature: Manage Hardware
 		And   I should see "Amiga 1000"
 		But   I should not see "DuoDisk"
 
-@focus
 	Scenario: Peripherals List
 		Given the following hardware exists:
 			| name      | manufacturer| category  |
@@ -123,8 +121,7 @@ Feature: Manage Hardware
 		Then  I should see "Listing Peripherals"
 		And   I should see "DuoDisk"
 		But   I should not see "Amiga 1000"
-
-@focus		
+		
 	Scenario: Hardware Search
 		Given the following computers exist:
 			| name      | manufacturer|
@@ -132,6 +129,6 @@ Feature: Manage Hardware
 			| Apple IIe | Apple       |
 		And  I am on the hardware page
 		When I fill in "Keywords" with "Amiga"
-		And  I press "search"
+		And  I press "find"
 		Then I should see "Amiga 1000"
 		But  I should not see "Apple IIe"

@@ -2,9 +2,9 @@
   %p
     = label_tag :keywords
     = text_field_tag :keywords, params[:keywords]
-    = label_tag :sort_by
+    = label_tag :order
     = select_tag :order, options_for_select(option_values, params[:order])
     = label_tag :desc
     = check_box_tag :desc, 'DESC', params[:desc]
     = hidden_field_tag hidden[:name], hidden[:value]
-    = submit_tag 'search'
+    = submit_tag 'find'

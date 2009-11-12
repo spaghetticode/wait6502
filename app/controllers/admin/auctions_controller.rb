@@ -5,12 +5,12 @@ class Admin::AuctionsController < ApplicationController
   
   def index
     conditions = ["concat(#{Auction.concat_fields}) like ?", "%#{params[:keywords]}%"] if params[:keywords]
-    scope = params[:scope].blank? ? :all : params[:scope]
+    scope = params[:scope].blank? ? :ordered : params[:scope]
     @auctions = Auction.send(scope).paginate(
       :page => params[:page],
-      :conditions => conditions,
       :order => "#{params[:order] || 'end_time'} #{params[:desc]}",
-      :include => :hardware
+      :conditions => conditions,
+      :include => :hardware      
     )
   end
   

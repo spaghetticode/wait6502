@@ -78,3 +78,26 @@ Feature: Manage Auctions
 		Then  I should see "Current Auctions for Amiga 1000"
 		And   I should see "COMMODORE AMIGA 1000 + MEMORY + GAMES ORIGINAL BOX"
 		And   I should see "EUR 499.00"
+	
+	Scenario: List only Active Auctions
+		Given the following auctions exist:
+		| hardware     | ebay_site | title      |
+		|	Amiga 1000   | IT        | Amiga 1000 |
+		| Commodore 64 | DE        | C64 OVP    |
+		And  the auction titled "Amiga 1000" is closed
+		And  I am on the auctions page
+		When I follow "active"
+		Then I should not see "Amiga 1000"
+		But  I should see "C64 OVP"
+
+	Scenario: List only Closed Auctions
+		Given the following auctions exist:
+		| hardware     | ebay_site | title      |
+		| Amiga 1000   | IT        | Amiga 1000 |
+		| Commodore 64 | DE        | C64 OVP    |
+		And  the auction titled "Amiga 1000" is closed
+		And  I am on the auctions page
+		When I follow "closed"
+		Then I should see "Amiga 1000"
+		But  I should not see "C64 OVP"
+		

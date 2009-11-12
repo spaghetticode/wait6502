@@ -34,7 +34,7 @@ Feature: Builtin Storages Management
 			Then  I should see "Storage name can't be blank"
 			
 		Scenario: Failed Builtin Storage Creation (duplicate data)
-			Given a builtin storage "floppy disk - 3.5 inches - 720Kb" exists
+			Given a builtin storage "floppy disk - 3.5 inches - 720Kb" has been created
 			When  I go to the new builtin storage page
 			And   I select "floppy disk" from "Name"
 			And   I select "3.5 inches" from "Format"
@@ -43,7 +43,7 @@ Feature: Builtin Storages Management
 			Then  I should see "Storage name has already been taken"
 
 		Scenario: Editing Builtin Storage
-			Given a builtin storage "floppy disk - 5.25 inches - 360Kb" exists
+			Given a builtin storage "floppy disk - 5.25 inches - 360Kb" has been created
 			And   I am on the builtin storages page
 			When  I follow "edit"
 			And   I select "3.5 inches" from "Format"
@@ -56,7 +56,7 @@ Feature: Builtin Storages Management
 			And   I should see "1.44Mb"
 		
 		Scenario: Destroying Builtin Storage
-			Given a builtin storage "floppy-5.25 inches-360k" exists
+			Given a builtin storage "floppy-5.25 inches-360k" has been created
 			And   I am on the builtin storages page
 			When  I follow "destroy"
 			Then  I should see "Builtin storage was successfully destroyed"

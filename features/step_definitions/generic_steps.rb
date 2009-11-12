@@ -37,6 +37,17 @@ Given /^a ([\w\s]+) named "([^\"]*)" is associated to a hardware$/ do |model, na
   Factory(:hardware, attribute => Factory(attribute, :name => name))
 end
 
+Then /^I should see (hardware|auctions) table$/ do |model, table|
+  expected_rows = table.hashes.map(&:values)
+  actual_rows = table_at('.list').to_a
+  expected_rows.each_with_index do |row, i|
+    actual_row = actual_rows[i+1].map{|cell| cell.gsub(/<.+?>/, '') }
+    row.each do |cell|
+      actual_row.should include(cell)
+    end
+  end
+end
+
 def class_for(model)
   case model
   when /countr/

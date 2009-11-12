@@ -10,7 +10,7 @@ Given /^I have entered some data for storage names, formats and sizes$/ do
   end
 end
 
-Given /^a builtin storage "([^\"]*)" exists$/ do |fields|
+Given /^a builtin storage "([^\"]*)" has been created$/ do |fields|
   name, format, size = fields.split(/\s*\-\s*/)
   BuiltinStorage.create!(
     :storage_name_id => name,
@@ -20,7 +20,7 @@ Given /^a builtin storage "([^\"]*)" exists$/ do |fields|
 end
 
 Given /^a builtin storage "([^\"]*)" is associated to a hardware$/ do |fields|
-  storage = Given "a builtin storage \"#{fields}\" exists"
+  storage = Given "a builtin storage \"#{fields}\" has been created"
   hardware = Factory(:hardware)
   storage.hardware << hardware
 end

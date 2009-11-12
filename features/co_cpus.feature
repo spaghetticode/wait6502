@@ -13,7 +13,7 @@ Feature: Manage co-CPU
 			Then  I should see "You must be logged in to access this page"
 		
 		Scenario: listing co-CPUs
-			Given a co cpu "Intel 8087 Math" exists
+			Given a co cpu "Intel 8087 Math" has been created
 			When I go to the co cpus page
 			Then I should see "8087"
 			And  I should see "Math"
@@ -54,7 +54,7 @@ Feature: Manage co-CPU
 				Then  I should see "Co cpu type can't be blank"
 							
 		Scenario: Failed co-CPU Creation (name taken)
-			Given a co cpu "Intel 8087 Math" exists
+			Given a co cpu "Intel 8087 Math" has been created
 			And   I am on the new co cpu page
 			When  I select "Intel" from "Manufacturer"
 			And   I select "8087" from "Name"
@@ -63,7 +63,7 @@ Feature: Manage co-CPU
 			Then  I should see "Co cpu name has already been taken"
 			
 		Scenario: Update co-CPU
-			Given a co cpu "Intel Paula Math" exists
+			Given a co cpu "Intel Paula Math" has been created
 			And   I am on the co cpus page
 			When  I follow "edit"
 			And   I select "8087" from "Name"
@@ -74,8 +74,8 @@ Feature: Manage co-CPU
 			But   I should not see "Paula"
 		
 		Scenario: Failed co-CPU Update
-			Given a co cpu "CSG 8087 Audio" exists
-			And   a co cpu "CSG Paula Audio" exists
+			Given a co cpu "CSG 8087 Audio" has been created
+			And   a co cpu "CSG Paula Audio" has been created
 			And   I am on the co cpus page
 			When  I follow "edit"
 			And   I select "Paula" from "Name"
@@ -83,7 +83,7 @@ Feature: Manage co-CPU
 			Then  I should see "Co cpu name has already been taken"
 			
 		Scenario: Destroy co-CPU
-			Given a co cpu "Intel 8087 Math" exists
+			Given a co cpu "Intel 8087 Math" has been created
 			And   I am on the co cpus page
 			And   I should see "8087"
 			When  I follow "destroy"

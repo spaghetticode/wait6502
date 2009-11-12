@@ -31,3 +31,10 @@ Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures/images')
 # changing the location where auction gallery image files will be saved:
 Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
 
+require 'pickle/world'
+# Example of configuring pickle:
+#
+# Pickle.configure do |config|
+#   config.adapters = [:machinist]
+#   config.map 'I', 'myself', 'me', 'my', :to => 'user: "me"'
+# end
