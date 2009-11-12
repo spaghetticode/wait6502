@@ -8,7 +8,7 @@
   %li= link_to 'active', admin_auctions_path + '?scope=active'
   %li= link_to 'closed', admin_auctions_path + '?scope=closed'
   
-=render :partial => 'search_form'
+=render :partial => '/admin/hardware/search_form', :locals => {:path => admin_auctions_path, :option_values => Auction::SEARCH_FIELDS, :hidden => {:name => :scope, :value => params[:scope]}}
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr

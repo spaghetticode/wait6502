@@ -4,7 +4,7 @@
   %li= link_to 'computers', admin_hardware_index_path + "?category=computer"
   %li= link_to 'peripherals', admin_hardware_index_path + "?category=peripheral"
 
-= render :partial => 'search_form'
+= render :partial => 'search_form', :locals => { :path => admin_hardware_index_path, :option_values => Hardware::SEARCH_FIELDS, :hidden => {:value => params[:category], :name => :category}}
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
