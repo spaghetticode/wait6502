@@ -13,17 +13,18 @@
       %th= f.label :hardware_id
       %td= hardware_selector(f)
     %tr
-      %th= f.label :ebay_site_id 
-      %td= ebay_site_selector(f) 
-    %tr
-      %th= f.label :currency_id 
-      %td= currency_selector(f)
-    %tr
       %th= f.label :cosmetic_conditions 
       %td= f.select :cosmetic_conditions, Auction::COSMETIC_CONDITIONS 
     %tr
       %th= f.label :completeness 
       %td= f.select :completeness, Auction::COMPLETENESSES 
+    %tr
+      %th= f.label :ebay_site_id 
+      %td= @auction.ebay_site_id
+    %tr
+      %th= f.label :currency_id 
+      %td= @auction.currency_id
+      
     %tr
       %th= f.label :end_time
       %td= @auction.end_time.to_s(:short)

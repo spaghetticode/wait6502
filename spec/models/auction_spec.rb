@@ -112,8 +112,8 @@ describe Auction do
         @auction.should be_closed
       end
 
-      describe 'when auction went without bids' do
-        describe 'calling SET_FINAL_PRICE' do
+      describe 'calling SET_FINAL_PRICE' do
+        describe 'when auction went without bids' do
           before do
             unsold_item = mock(:bid_count => 0)
             @auction.should_receive(:find_ebay_item).and_return(unsold_item)
@@ -125,19 +125,19 @@ describe Auction do
             end.should_not change(@auction, :final_price)
           end
         end
-      end
-      
-      describe 'when auction received at least 1 bid' do
-        describe 'calling SET_FINAL_PRICE' do
-          before do
-            sold_item = mock(:bid_count => 1, :current_price => EbayFinder::Money.new(:amount => 10.0, :currency_id => 'USD'))
-            @auction.should_receive(:find_ebay_item).and_return(sold_item)
-          end
-          
-          it 'should change final_price attribute' do
-            lambda do
-              @auction.set_final_price
-            end.should change(@auction, :final_price)
+        
+        describe 'when auction received at least 1 bid' do
+          describe 'calling set_final_price' do
+            before do
+              sold_item = mock(:bid_count => 1, :current_price => EbayFinder::Money.new(:amount => 10.0, :currency_id => 'USD'))
+              @auction.should_receive(:find_ebay_item).and_return(sold_item)
+            end
+
+            it 'should change final_price attribute' do
+              lambda do
+                @auction.set_final_price
+              end.should change(@auction, :final_price)
+            end
           end
         end
       end
@@ -146,32 +146,28 @@ describe Auction do
   
   describe 'creating a new auction' do
     describe 'when ebay auction has a gallery image' do
-      describe 'SAVE_GALLERY_IMAGE' do
-        before do
-          mock_response = mock(:body => 'mock file content')
-          mock_request = mock(:read_timeout= => nil, :get => mock_response)
-          Net::HTTP.should_receive(:new).and_return(mock_request)
-          File.should_receive(:open).and_return(true)
-        end
+      before do
+        mock_response = mock(:body => 'mock file content')
+        mock_request = mock(:read_timeout= => nil, :get => mock_response)
+        Net::HTTP.should_receive(:new).and_return(mock_request)
+        File.should_receive(:open).and_return(true)
+      end
       
-        it 'gallery_image_url should include auction item_id' do
-          auction = Factory(:auction, :image_url => 'http://ebay.it/someimage.jpg')
-          auction.gallery_image_url.should include(auction.item_id)
-        end
+      it 'gallery_image_url should include auction item_id' do
+        auction = Factory(:auction, :image_url => 'http://ebay.it/someimage.jpg')
+        auction.gallery_image_url.should include(auction.item_id)
       end
     end
     
     describe 'when ebay auction has no gallery image' do
-      describe 'SAVE_GALLERY_IMAGE' do
-        before do
-          Net::HTTP.should_not_receive(:new)
-          File.should_not_receive(:open)
-        end
-        
-        it 'gallery_image_url should return default image path' do
-          auction = Factory(:auction)
-          auction.gallery_image_url.should == Auction::BLANK_IMAGE_URL
-        end
+      before do
+        Net::HTTP.should_not_receive(:new)
+        File.should_not_receive(:open)
+      end
+      
+      it 'gallery_image_url should return default image path' do
+        auction = Factory(:auction)
+        auction.gallery_image_url.should == Auction::BLANK_IMAGE_URL
       end
     end
   end
@@ -181,7 +177,7 @@ describe Auction do
       @auction = Factory(:auction)
     end
     
-    it 'destroy should trigger expected callback' do
+    it 'destroy should always trigger expected callback' do
       @auction.should_receive(:delete_gallery_image)
       @auction.destroy
     end
@@ -288,7 +284,7 @@ describe Auction do
     end
   end
   
-  describe 'ITEM_IDS' do
+  describe 'item_ids class method' do
     it 'should return an array' do
       Auction.item_ids.should be_an(Array)
     end

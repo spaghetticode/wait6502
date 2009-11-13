@@ -2,19 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe StorageFormat do
   describe 'a new blank instance' do
-    it 'should not be valid' do
-      StorageFormat.new.should_not be_valid
-    end
-    
-    it 'should require name' do
-      StorageFormat.new.should have(1).error_on(:name)
-    end
-    
-    it 'should require a unique name' do
-      storage_format = Factory(:storage_format)
-      invalid = StorageFormat.new(:name => storage_format.name)
-      invalid.should have(1).error_on(:name)
-    end
+    include NameUniqueRequired
+
+    before :all do
+      @class = StorageFormat
+    end    
   end
   
   describe 'an instance with valid attributes' do

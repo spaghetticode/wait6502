@@ -105,11 +105,6 @@ Factory.define :image do |i|
   # missing uploaded_file attribute which must be stubbed
 end
 
-Factory.define :ebay_keyword do |kw|
-  kw.sequence(:name) {|n| "keyword #{n}"}
-  kw.association :searchable, :factory => :hardware
-end
-
 Factory.define :hardware_type do |ht|
   ht.sequence(:name) {|n| "hardware_type #{n}"}
 end

@@ -42,7 +42,7 @@ describe Image do
       @image ||= Factory(:image, options.merge(:uploaded_file => valid_file))
     end
     
-    after do
+    after :all do
       Image::FORMATS.keys.push(:original).each do |directory|
         system "rm -rf #{Image::FS_PREFIX}/#{directory}/*"
       end

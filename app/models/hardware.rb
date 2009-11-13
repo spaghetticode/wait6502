@@ -7,7 +7,6 @@ class Hardware < ActiveRecord::Base
   
   has_many :auctions
   has_many :images, :as => :imageable
-  has_many :ebay_keywords, :as => :searchable
   has_many :original_prices, :as => :purchaseable
   
   has_and_belongs_to_many :cpus, :join_table => :cpus_hardware

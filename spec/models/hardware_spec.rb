@@ -45,10 +45,6 @@ describe Hardware do
     it 'should have an images association' do
       Hardware.new.images.should_not be_nil
     end
-  
-    it 'should have an ebay_keywords association' do
-      Hardware.new.ebay_keywords.should_not be_nil
-    end
     
     it 'should have an auctions association' do
       Hardware.new.auctions.should_not be_nil
@@ -88,14 +84,14 @@ describe Hardware do
     end
   end
 
-  describe 'ORDERED named scope' do
+  describe 'ordered named scope' do
     it 'should sort hardware by manufacturers and name' do
       5.times{Factory(:hardware)}
       Hardware.ordered.should == Hardware.all.sort_by(&:name)
     end
   end
 
-  describe 'HARDWARE and PERIPHERAL named scopes' do
+  describe 'computer and peripheral named scopes' do
     before do
       Hardware::CATEGORIES.each do |category|
         3.times{Factory(:hardware, :hardware_category => category)}

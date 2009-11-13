@@ -7,6 +7,7 @@ require 'spec/rails'
 require 'authlogic/test_case'
 require File.dirname(__FILE__) + '/factories'
 require File.dirname(__FILE__) + '/controller_macros'
+require File.dirname(__FILE__) + '/model_macros'
 
 # changing the location for saved auction gallery image files:
 Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"

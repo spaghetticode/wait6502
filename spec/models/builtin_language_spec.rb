@@ -2,18 +2,10 @@ require 'spec_helper'
 
 describe BuiltinLanguage do
   describe 'a new blank instance' do
-    it 'should not be valid' do
-      BuiltinLanguage.new.should_not be_valid
-    end
+    include NameUniqueRequired
     
-    it 'should require name' do
-      BuiltinLanguage.new.should have(1).error_on(:name)
-    end
-    
-    it 'should require a unique name' do
-      builtin_language = Factory(:builtin_language)
-      invalid = BuiltinLanguage.new(:name => builtin_language.name)
-      invalid.should have(1).error_on(:name)
+    before :all do
+      @class = StorageFormat
     end
     
     it 'should have hardware association' do

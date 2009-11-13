@@ -1,7 +1,7 @@
 %tr{:id => auction.item_id}
   %td= image_tag auction.gallery_image_url || 'no image', :class => 'ebay_gallery'
   %td= auction.hardware.name
-  %td= link_to truncate(auction.title), '#', :onclick => "window.open('#{auction.url}')"
+  %td= link_to truncate(auction.title), auction.url, :onclick => "window.open('#{auction.url}');return false"
   %td.center= auction.ebay_site_id
   %td
     = "#{auction.completeness},"

@@ -2,24 +2,15 @@ require 'spec_helper'
 
 describe OperativeSystem do
   describe 'a new blank instance' do
-    it 'should not be valid' do
-      OperativeSystem.new.should_not be_valid
-    end
+    include NameUniqueRequired
     
-    it 'should require name' do
-      OperativeSystem.new.should have(1).error_on(:name)
-    end
-    
-    it 'should require a unique name' do
-      operative_system = Factory(:operative_system)
-      invalid = OperativeSystem.new(:name => operative_system.name)
-      invalid.should have(1).error_on(:name)
+    before :all do
+      @class = OperativeSystem
     end
     
     it 'should have a hardware association' do
       OperativeSystem.new.hardware.should_not be_nil
     end
-    
   end
   
   describe 'an instance with valid attributes' do
