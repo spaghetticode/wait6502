@@ -4,7 +4,7 @@
   = "Current Auctions for #{@resultset.keywords}"
 %p
   There were
-  = pluralize(@resultset.total_items, 'match')
+  = pluralize(@resultset.items.size, 'match')
   for a total of
   = pluralize(@resultset.total_pages, 'page')
   on EBAY

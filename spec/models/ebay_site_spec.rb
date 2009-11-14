@@ -6,5 +6,9 @@ describe EbaySite do
   before :all do
     @class = EbaySite
   end
+  
+  it 'should require a currency' do
+    @class.new.should have(1).error_on(:currency)
+  end
 end
   

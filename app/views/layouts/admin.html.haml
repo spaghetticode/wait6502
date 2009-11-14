@@ -11,7 +11,6 @@
         -if current_user
           %li= link_to 'hardware', admin_hardware_index_path
           %li= link_to 'manufacturers', admin_manufacturers_path
-          %li= link_to 'io ports', admin_io_ports_path
           %li 
             CPU
             %ul 
@@ -23,6 +22,7 @@
             %ul
               %li= link_to 'co cpus', admin_co_cpus_path
               %li= link_to 'co cpu names', admin_co_cpu_names_path
+          %li= link_to 'io ports', admin_io_ports_path
           %li 
             Storage
             %ul

@@ -8,8 +8,9 @@ class Admin::ResultsetsController < ApplicationController
       redirect_to admin_auctions_path
     else
       @resultset = Resultset.new(params[:resultset])
+      @resultset.set_results
       @item_ids = Auction.item_ids
-      render :template => '/admin/resultsets/show'
+      render :action => 'show'
     end
   end
 end

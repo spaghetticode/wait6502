@@ -111,6 +111,7 @@ end
 
 Factory.define :ebay_site do |es|
   es.sequence(:name) {|n| "name #{n}"}
+  es.association :currency
 end
 
 Factory.define :auction do |a|

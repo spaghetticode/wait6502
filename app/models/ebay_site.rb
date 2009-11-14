@@ -4,4 +4,7 @@ class EbaySite < ActiveRecord::Base
   # is not supposed to change.
   include ActsAsNaturalKey
   acts_as_natural_key :name
+  
+  belongs_to :currency
+  validates_presence_of :currency
 end

@@ -176,7 +176,6 @@ ul#hardware_categories, ul#auction_categories {
 
 div#ebay_prices table {
 	margin:auto;
-	border:1px solid gray;
 }
 
 #ebay_prices td {
@@ -185,7 +184,7 @@ div#ebay_prices table {
 }
 
 #ebay_prices th {
-	background:#ddd;
+	background: white;
 	text-transform:uppercase;
 	font-weight:normal;
 }

@@ -8,7 +8,7 @@ puts 'Creating countries'
 end
 
 puts 'Creating currencies'
-%w{EUR USD YEN GBP}.each do |currency|
+%w{EUR USD YEN GBP CAD AUD}.each do |currency|
   Currency.create!(:name => currency)
 end
 
@@ -104,6 +104,10 @@ puts 'Creating Hardware Types'
 end
   
 puts 'Creating ebay sites'
-{:DE => 77, :IT => 101, :US => 0, :FR => 71, :ES => 186, :GB => 3, :NL => 146}.each do |name, site_id|
-  EbaySite.create!(:name => name.to_s, :site_id => site_id)
+{
+  :DE => :EUR, :IT => :EUR, :US => :USD, :FR => :EUR,
+  :ES => :EUR, :GB => :GBP, :NL => :EUR, :AU => :AUD,
+  :CA => :CAD
+}.each do |name, currency|
+  EbaySite.create!(:name => name.to_s, :currency => Currency.find(currency.to_s))
 end

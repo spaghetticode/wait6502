@@ -68,7 +68,7 @@ describe Auction do
       Auction.new.gallery_image_url.should == Auction::BLANK_IMAGE_URL
     end
   end
-  
+
   context 'an auction with valid attributes' do
     it 'should be valid' do
       Factory(:auction).should be_valid
@@ -235,8 +235,8 @@ describe Auction do
     
     describe 'sold_in' do
       before do
-        italy = mock_model(EbaySite, :name => 'IT')
-        usa  = mock_model(EbaySite, :name => 'US')
+        italy = mock_model(EbaySite, :name => 'IT', :currency_id => 'EUR')
+        usa  = mock_model(EbaySite, :name => 'US', :currency_id => 'USD')
         3.times {Factory(:auction, :ebay_site => italy, :final_price => '33')}
         Auction.last.update_attributes(
           :ebay_site_id => 'US',

@@ -5,5 +5,7 @@
     = f.text_field :keywords
     = f.label :ebay_site_id
     = ebay_site_selector(f)
+    = f.label :category_id, 'search Computers category only'
+    = f.check_box :category_id, :checked => true
     = f.submit 'search'
   
