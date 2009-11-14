@@ -1,6 +1,6 @@
 = render :partial => 'tabs_js'    
 
-%h1 Editing Hardware
+%h1= @hardware.name
 
 = render :partial => 'tabs_navigation'
 
@@ -22,4 +22,7 @@
 #original_prices.section
   = render :partial => 'original_prices', :locals => {:purchaseable => @hardware}
 
+#ebay_prices.section
+  = render :partial => 'ebay_prices'
+    
 %p= link_to 'Back', admin_hardware_index_path

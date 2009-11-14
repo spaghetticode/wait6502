@@ -130,7 +130,7 @@ table.record th, table.record td {
 	padding:0px;
 }
 
-#associations, #original_prices {
+#associations, #original_prices, #ebay_prices {
 	padding:15px;
 	border:2px solid gray;
 	background:#ddd;
@@ -148,6 +148,9 @@ table.record th, table.record td {
 	width:520px;
 }
 
+#ebay_prices {
+	width:500px;
+}
 ul.tabs {
 	margin:10px;
 	padding:0px;
@@ -169,4 +172,20 @@ ul#hardware_categories, ul#auction_categories {
 	padding:0px;
 	margin:10px;
 	list-style-type:none;
+}
+
+div#ebay_prices table {
+	margin:auto;
+	border:1px solid gray;
+}
+
+#ebay_prices td {
+	background:white;
+	text-align:right;
+}
+
+#ebay_prices th {
+	background:#ddd;
+	text-transform:uppercase;
+	font-weight:normal;
 }

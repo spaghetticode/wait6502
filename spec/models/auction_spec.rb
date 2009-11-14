@@ -214,15 +214,40 @@ describe Auction do
       end
     end
     
-    describe 'ACTIVE' do
+    describe 'ACTIVE, CLOSED' do
       before do
         3.times {Factory(:auction)}
         Auction.last.update_attribute(:end_time, Time.now.yesterday)
       end
       
-      it 'should select only active auctions' do
+      it 'active should select only active auctions' do
         Auction.active.each do |auction|
           auction.should_not be_closed
+        end
+      end
+      
+      it 'closed should select only closed auctions' do
+        Auction.closed.each do |auction|
+          auction.should be_closed
+        end
+      end
+    end
+    
+    describe 'sold_in' do
+      before do
+        italy = mock_model(EbaySite, :name => 'IT')
+        usa  = mock_model(EbaySite, :name => 'US')
+        3.times {Factory(:auction, :ebay_site => italy, :final_price => '33')}
+        Auction.last.update_attributes(
+          :ebay_site_id => 'US',
+          :final_price => nil
+        )
+      end
+      
+      it 'should select only expected auctions' do
+        Auction.sold_in('IT').each do |auction|
+          auction.ebay_site_id.should == 'IT'
+          auction.final_price.should_not be_nil
         end
       end
     end

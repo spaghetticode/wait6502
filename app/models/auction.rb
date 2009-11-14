@@ -29,6 +29,7 @@ class Auction < ActiveRecord::Base
   named_scope :ordered, :order => 'created_at'
   named_scope :active, lambda {{:conditions => ['end_time > ?', Time.now]}}
   named_scope :closed, lambda {{:conditions => ['end_time < ?', Time.now]}}
+  named_scope :sold_in, lambda {|site| {:conditions => ['final_price is not null and ebay_site_id = ?', site]}}
   COSMETIC_CONDITIONS.each do |condition|
     named_scope condition, :conditions => {:cosmetic_conditions => condition}
   end

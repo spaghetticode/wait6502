@@ -1,0 +1,19 @@
+%h2 Ebay Prices
+%table{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Website
+    %th Min Price
+    %th Average
+    %th Max Price
+    %th Auctions
+  - EbaySite.ordered.each do |site|
+    %tr
+      - data = @hardware.auctions.closed.sold_in(site).map(&:final_price).compact
+      - unless data.empty?
+        - currency = @hardware.auctions.closed.sold_in(site).first.currency_id
+        - average = data.sum / data.size
+      %td= site.name
+      %td= data.min && sprintf("#{currency} %.2f", data.min) || '-'
+      %td= average.to_s[0..5] || '-'
+      %td= data.max || '-'
+      %td= data.size
