@@ -3,7 +3,13 @@ class Admin::CoCpusController < ApplicationController
   layout 'admin'
   
   def index
-    @co_cpus = CoCpu.all
+    conditions = [CoCpu.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    @co_cpus = CoCpu.paginate(
+      :page => params[:page],
+      :conditions => conditions,
+      :order => "#{params[:order] || 'co_cpu_name_id'} #{params[:desc]}",
+      :include => :manufacturer
+    )
   end
 
   def new

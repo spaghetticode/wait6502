@@ -10,7 +10,20 @@ class CoCpu < ActiveRecord::Base
   
   named_scope :ordered, :order => 'co_cpu_name_id'
   
+  SEARCH_FIELDS = {
+    :name => 'co_cpu_name_id', :family => 'cpu_family_id',
+    :manufacturer => 'manufacturers.name', :type => 'co_cpu_type_id'
+  }
+  
+  def self.concat_string
+    string = SEARCH_FIELDS.values.inject([]) do |group, field|
+      group << "IFNULL(#{field}, '')"
+    end.join(', ')
+    "concat(#{string}) like ?"
+  end
+  
   def full_name
     "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id} co-processor"
   end
+  
 end

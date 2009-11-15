@@ -100,3 +100,13 @@ Feature: Manage co-CPU
 			Then  I should see "Can't destroy: co-CPU still has some hardware associated"
 			And   I should be on the co cpus page
 			And   I should see "8087"
+		
+		Scenario: Search co-CPU
+			Given a co cpu "Intel 8087 Math" has been created
+			And   a co cpu "CSG Paula Math" has been created
+			And   I am on the co cpus page
+			When  I fill in "Keywords" with "8087"
+			And   I press "find"
+			Then  I should see "8087"
+			But   I should not see "Paula"
+			
