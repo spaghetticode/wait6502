@@ -4,5 +4,6 @@ tmp/**/*
 config/database.yml
 public/images/**/*
 !public/images/**/.gitignore
+!public/images/flags/*
 spec/fixtures/images/**/*
 !spec/fixtures/images/**/.gitignore
