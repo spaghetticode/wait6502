@@ -8,7 +8,9 @@
   - @manufacturers.each do |manufacturer|
     %tr
       %td= h manufacturer.name
-      %td= h manufacturer.country_id
+      %td
+        = image_tag h(manufacturer.country.flag_image_filename), :height => 10
+        = h manufacturer.country_id
       %td= link_to 'Edit', edit_admin_manufacturer_path(manufacturer)
       %td= link_to 'Destroy', admin_manufacturer_path(manufacturer), :confirm => 'Are you sure?', :method => :delete
 %p= will_paginate @manufacturers
