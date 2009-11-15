@@ -1,3 +1,4 @@
+@focus
 Feature: Manage Countries
 	In order to mantain correct geographical data
 	As a logged user
@@ -12,7 +13,21 @@ Feature: Manage Countries
 		Then  I should see "Listing Countries"
 		And   I should see "Italy"
 		
-	Scenario: Successfull Country Creation
+	Scenario: Successfull Country Creation (with flag)
+		Given I cache the countries count
+		And   I am on the countries page
+		And   I follow "new country"
+		When  I fill in "name" with "Italy"
+		And   I fill in "flag filename" with "it"
+		And   I attach a valid flag image
+		And   I press "Create"
+		Then  I should see "Country was successfully created"
+		And   a new country has been created
+		And   I should be on the countries page
+		And   I should see "Italy"
+		And   the "Italy" country flag file should exist
+
+	Scenario: Successfull Country Creation (no flag)
 		Given I cache the countries count
 		And   I am on the countries page
 		And   I follow "new country"
@@ -22,7 +37,7 @@ Feature: Manage Countries
 		And   a new country has been created
 		And   I should be on the countries page
 		And   I should see "Italy"
-		
+				
 	Scenario: Failing Country Creation (no name)
 		Given I cache the countries count
 		And   I am on the new country page

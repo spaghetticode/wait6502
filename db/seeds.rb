@@ -1,10 +1,20 @@
 puts 'Creating user admin@test.com'
 password = 'secret'
-User.create!(:email => 'admin@test.com', :password => password, :password_confirmation => password)
+User.create!(
+  :email => 'admin@test.com',
+  :password => password,
+  :password_confirmation => password
+)
 
 puts 'Creating countries'
-['Italy', 'USA', 'France', 'Germany', 'Japan', 'Great Britain'].each do |country|
-  Country.create!(:name => country)
+{ :it => 'Italy', :us => 'USA', :fr => 'France', :de => 'Germany', 
+  :es => 'Spain', :jp => 'Japan', :uk => 'Great Britain', :nl => 'Holland',
+  :ca => 'Canada', :au => 'Australia', :at => 'Austria', :po =>  'Portugal'
+}.each_pair do |code, name|
+  Country.create!(
+    :name => name,
+    :flag_filename => code.to_s
+  )
 end
 
 puts 'Creating currencies'
@@ -106,12 +116,12 @@ end
 puts 'Creating ebay sites'
 {
   :DE => :EUR, :IT => :EUR, :US => :USD, :FR => :EUR,
-  :ES => :EUR, :GB => :GBP, :NL => :EUR, :AU => :AUD,
+  :ES => :EUR, :UK => :GBP, :NL => :EUR, :AU => :AUD,
   :CA => :CAD
 }.each do |name, currency|
   EbaySite.create!(
     :name => name.to_s,
     :currency => Currency.find(currency.to_s),
-    :image => "/images/flags/#{name.to_s.downcase}.png"
+    :country => Country.find_by_flag_filename(name.to_s.downcase)
   )
 end

@@ -188,3 +188,9 @@ div#ebay_prices table {
 	text-transform:uppercase;
 	font-weight:normal;
 }
+
+span.light {
+	color:#555;
+	text-transform:italize;
+	font-style: italic;
+}

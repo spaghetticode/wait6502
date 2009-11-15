@@ -112,7 +112,7 @@ end
 Factory.define :ebay_site do |es|
   es.sequence(:name) {|n| "name #{n}"}
   es.association :currency
-  es.image 'path/to/image.jpg'
+  es.association :country
 end
 
 Factory.define :auction do |a|

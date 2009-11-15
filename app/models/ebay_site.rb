@@ -6,5 +6,7 @@ class EbaySite < ActiveRecord::Base
   acts_as_natural_key :name
   
   belongs_to :currency
-  validates_presence_of :currency, :image
+  belongs_to :country
+  validates_presence_of :currency
+  validates_presence_of :country
 end

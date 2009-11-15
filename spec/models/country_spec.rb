@@ -5,13 +5,44 @@ describe Country do
     before :all do
       @class = Country
     end
+
+    include NaturalKeyTable
+
+    describe 'when no image is uploaded' do
+      before do
+        @country = Country.new
+      end
+      
+      it 'should not validate image content type' do
+        @country.should_not_receive(:validate_file_format)
+        @country.save
+      end
+      
+      it 'flag_image_filename should be nil' do
+        @country.flag_image_filename.should be_nil
+      end
+    end
     
-    include NaturalKeyTable 
+    describe 'when uploading an image' do
+      it 'flag filename should be 2 letters lowercase' do
+        %w{AZ Uk China china}.each do |invalid|
+          country = @class.new(:flag_filename => invalid)
+          country.valid?
+          country.errors.on(:flag_filename).should == 'is invalid'
+        end
+      end
+      
+      it 'should check image file contet type' do
+        country = @class.new(:flag_filename => 'us')
+        country.should_receive(:validate_file_format)
+        country.save
+      end
+    end
   end
   
   describe 'an instance with valid attributes' do
     it 'should be valid' do
-      Country.new(:name => 'Italy').should be_valid
+      Factory(:country).should be_valid
     end
     
     it 'should have id same as name (name is primary key)' do

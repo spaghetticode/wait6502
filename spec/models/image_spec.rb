@@ -10,7 +10,8 @@ module ImageUploadedFileHelper
   end
   
   def mock_image_file(options)
-    returning ActionController::UploadedStringIO.new(File.read("#{RAILS_ROOT}/public/images/rails.png")) do |file|
+    file = File.read("#{RAILS_ROOT}/public/images/rails.png")
+    returning ActionController::UploadedStringIO.new(file) do |file|
       content_type = options[:valid] ? 'image/jpg' : 'text/txt'
       file.stub!(
         :content_type => content_type,

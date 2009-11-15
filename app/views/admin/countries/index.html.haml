@@ -3,10 +3,12 @@
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
+    %th Flag
     %th Actions
   - @countries.each do |country|
     %tr
       %td= h country.name
+      %td= image_tag h(country.flag_image_filename), :title => country.name
       %td= link_to 'Destroy', admin_country_path(country), :confirm => 'Are you sure?', :method => :delete
 %p= will_paginate @countries
 
