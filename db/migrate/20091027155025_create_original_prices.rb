@@ -4,7 +4,7 @@ class CreateOriginalPrices < ActiveRecord::Migration
       t.string :currency_id
       t.string :country_id
       t.date :date
-      t.string :amount
+      t.decimal :amount, :scale => 2, :precision => 11
       t.integer :purchaseable_id
       t.string :purchaseable_type
 

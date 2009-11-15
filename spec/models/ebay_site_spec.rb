@@ -10,5 +10,9 @@ describe EbaySite do
   it 'should require a currency' do
     @class.new.should have(1).error_on(:currency)
   end
+  
+  it 'should require an image' do
+    @class.new.should have(1).error_on(:image)
+  end
 end
   

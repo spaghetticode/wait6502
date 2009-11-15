@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091114093218) do
+ActiveRecord::Schema.define(:version => 20091115090946) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20091114093218) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency_id"
+    t.string   "image"
   end
 
   create_table "hardware", :force => true do |t|
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20091114093218) do
     t.string  "rom"
     t.string  "hardware_category"
     t.string  "hardware_type_id",    :null => false
+    t.text    "description"
   end
 
   create_table "hardware_io_ports", :id => false, :force => true do |t|
@@ -194,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20091114093218) do
     t.string   "currency_id"
     t.string   "country_id"
     t.date     "date"
-    t.string   "amount"
+    t.decimal  "amount",            :precision => 11, :scale => 2
     t.integer  "purchaseable_id"
     t.string   "purchaseable_type"
     t.datetime "created_at"

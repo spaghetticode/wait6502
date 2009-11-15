@@ -94,7 +94,7 @@ Factory.define :original_price do |op|
   op.association :currency
   op.association :country
   op.date Date.today
-  op.amount '1000'
+  op.amount 999.99
   op.association :purchaseable, :factory => :hardware
 end
 
@@ -112,6 +112,7 @@ end
 Factory.define :ebay_site do |es|
   es.sequence(:name) {|n| "name #{n}"}
   es.association :currency
+  es.image 'path/to/image.jpg'
 end
 
 Factory.define :auction do |a|

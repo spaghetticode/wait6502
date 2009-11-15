@@ -30,8 +30,7 @@ Feature: Manage Hardware
 	Scenario: Edit Hardware
 		Given I have a hardware named "Amiga 1000"
 		And   I am on the hardware page
-		And   I should see "Amiga 1000"
-		When  I follow "Edit"
+		When  I follow "Amiga 1000"
 		And   I fill in "name" with "Amiga 2000"
 		And   I press "Update"
 		Then  I should see "Hardware was successfully updated"

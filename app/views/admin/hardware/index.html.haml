@@ -8,38 +8,24 @@
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
-    %th Name
+    %th Hardware Name
     %th Manufacturer
     %th Category
     %th Type
     %th Prod. Start
     %th Prod. Stop
     %th Builtin Language
+    %th Description
     %th Notes
     %th CPUs
     %th Co-CPUs
     %th Mass Storage
     %th I/O Ports
     %th OSes
-    %th{:colspan => 2} Actions
+    %th
 
-  - @hardware.each do |hardware|
-    %tr
-      %td= h hardware.name
-      %td= h hardware.manufacturer.name
-      %td= hardware.hardware_category
-      %td= hardware.hardware_type_id
-      %td= h hardware.production_start
-      %td= h hardware.production_stop
-      %td= h hardware.builtin_language_id
-      %td= truncate h(hardware.notes)
-      %td= h hardware.cpu_names
-      %td= truncate h(hardware.co_cpu_names)
-      %td= h hardware.storage_names
-      %td= truncate h(hardware.io_port_names)
-      %td= h hardware.os_names
-      %td=  link_to 'Edit', edit_admin_hardware_path(hardware)
-      %td=  link_to 'Destroy', admin_hardware_path(hardware), :confirm => 'Are you sure?', :method => :delete
+  = render :partial => @hardware
+
 
 %p= will_paginate @hardware
 %p= link_to 'New hardware', new_admin_hardware_path

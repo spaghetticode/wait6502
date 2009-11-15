@@ -5,15 +5,21 @@
   - purchaseable.original_prices.sort_by(&:date).each do |price|
     %tr
       %td= price.country_id
-      %td
-        = price.currency_id
-        = price.amount
+      %td= sprintf("#{price.currency_id} %.2f", price.amount)
       %td= price.date.strftime('%Y, %B')
       %td= link_to 'destroy', send("admin_#{model}_original_price_path", price.purchaseable.id, price), :method => :delete, :confirm => 'Are you sure?'
 
 - form_for OriginalPrice.new, :url => send("admin_#{model}_original_prices_path", purchaseable) do |f|
-  = country_selector(f)
-  = currency_selector(f)
-  = f.text_field :amount, :size => 10
-  = f.date_select :date, :start_year => 1975, :discard_day => true
-  = f.submit 'Add Price'
+  %table
+    %tr
+      %th Country
+      %th Currency
+      %th Amount
+      %th Date
+      %th
+    %tr
+      %td= country_selector(f)
+      %td= currency_selector(f)
+      %td= f.text_field :amount, :size => 12
+      %td= f.date_select :date, :start_year => 1975, :discard_day => true
+      %td= f.submit 'Add Price'

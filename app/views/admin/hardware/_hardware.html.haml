@@ -1,0 +1,16 @@
+%tr
+  %td= link_to h(hardware.name), edit_admin_hardware_path(hardware)
+  %td= h hardware.manufacturer.name
+  %td= hardware.hardware_category
+  %td= hardware.hardware_type_id
+  %td= h hardware.production_start
+  %td= h hardware.production_stop
+  %td= h hardware.builtin_language_id
+  %td= truncate h(hardware.description)
+  %td= truncate h(hardware.notes)
+  %td= h hardware.cpu_names
+  %td= truncate h(hardware.co_cpu_names)
+  %td= h hardware.storage_names
+  %td= truncate h(hardware.io_port_names)
+  %td= h hardware.os_names
+  %td=  link_to 'Destroy', admin_hardware_path(hardware), :confirm => 'Are you sure?', :method => :delete
