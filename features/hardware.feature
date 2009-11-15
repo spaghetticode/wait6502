@@ -57,7 +57,7 @@ Feature: Manage Hardware
 		
 	Scenario: Add co-CPU to Existing Hardware
 		Given I have a hardware named "IBM PC"
-		And   some co cpu names and types and manufacturers exist
+		And   some co cpu names and types and families and manufacturers exist
 		And   a co cpu "Intel 8087 Math" has been created
 		And   I am on the "IBM PC" hardware editor page
 		When  I select "Intel 8087 Math co-processor" from "co_cpu_id"

@@ -2,15 +2,17 @@
 
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
-    %th Name
-    %th Type
     %th Manufacturer
+    %th Name
+    %th Family
+    %th Type
     %th{:colspan => 2} Actions
   - @co_cpus.each do |co_cpu|
     %tr
-      %td= h co_cpu.co_cpu_name_id
-      %td= h co_cpu.co_cpu_type_id
       %td= h co_cpu.manufacturer.name
+      %td= h co_cpu.co_cpu_name_id
+      %td= h co_cpu.cpu_family_id
+      %td= h co_cpu.co_cpu_type_id
       %td= link_to 'Edit', edit_admin_co_cpu_path(co_cpu)
       %td= link_to 'Destroy', admin_co_cpu_path(co_cpu), :confirm => 'Are you sure?', :method => :delete
 

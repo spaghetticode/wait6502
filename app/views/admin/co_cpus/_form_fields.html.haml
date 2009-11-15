@@ -7,3 +7,6 @@
 %tr
   %th= f.label :co_cpu_type_id, 'Type'
   %td= f.select :co_cpu_type_id, CoCpuType.ordered.map(&:name), :include_blank => true
+%tr
+  %th= f.label :cpu_family_id, 'CPU Family'
+  %td= f.select :cpu_family_id, CpuFamily.ordered.map(&:name), :include_blank => true

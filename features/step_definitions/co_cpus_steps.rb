@@ -1,4 +1,4 @@
-Given /^some co cpu names and types and manufacturers exist$/ do
+Given /^some co cpu names and types and families and manufacturers exist$/ do
   %w{8087 Paula}.each do |name|
     CoCpuName.create!(:name => name)
   end
@@ -7,6 +7,9 @@ Given /^some co cpu names and types and manufacturers exist$/ do
   end
   %w{Intel CSG}.each do |name|
     Manufacturer.create!(:name => name)
+  end
+  %w{65XX X86}.each do |name|
+    CpuFamily.create!(:name => name)
   end
 end
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091115115854) do
+ActiveRecord::Schema.define(:version => 20091115175455) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20091115115854) do
     t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cpu_family_id"
   end
 
   create_table "co_cpus_hardware", :id => false, :force => true do |t|

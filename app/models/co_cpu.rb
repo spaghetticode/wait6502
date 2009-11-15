@@ -1,6 +1,7 @@
 class CoCpu < ActiveRecord::Base
   belongs_to :co_cpu_name
   belongs_to :co_cpu_type
+  belongs_to :cpu_family
   belongs_to :manufacturer
   has_and_belongs_to_many :hardware, :join_table => :co_cpus_hardware
   

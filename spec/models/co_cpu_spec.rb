@@ -18,6 +18,11 @@ describe CoCpu do
       CoCpu.new.should have(1).error_on(:co_cpu_type)
     end
     
+    it 'could have a co_cpu_family' do
+      co_cpu = CoCpu.new(:cpu_family => Factory(:cpu_family))
+      co_cpu.cpu_family.should_not be_nil
+    end      
+    
     it 'should require a unique co_cpu_name for given manufacturer' do
       co_cpu = Factory(:co_cpu)
       invalid = CoCpu.new(:co_cpu_name => co_cpu.co_cpu_name, :manufacturer => co_cpu.manufacturer)

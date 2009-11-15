@@ -1,3 +1,4 @@
+@focus
 Feature: Manage co-CPU
 	In order to add correct co-cpu information
 	As a logged user
@@ -5,7 +6,7 @@ Feature: Manage co-CPU
 	
 	Background:
 		Given I am logged in as user
-		And   some co cpu names and types and manufacturers exist
+		And   some co cpu names and types and families and manufacturers exist
 		
 		Scenario: Access is restricted
 			Given I am logged out
@@ -25,6 +26,7 @@ Feature: Manage co-CPU
 			And   I select "CSG" from "Manufacturer"
 			And   I select "Paula" from "Name"
 			And   I select "Audio" from "Type"
+			And   I select "X86" from "CPU Family"
 			And   I press "create"
 			Then  I should see "Co CPU was successfully created"
 			And   I should be on the co cpus page
@@ -46,13 +48,13 @@ Feature: Manage co-CPU
 			And   I press "create"
 			Then  I should see "Manufacturer can't be blank"
 
-			Scenario: Failed co-CPU Creation (no type)
-				Given I am on the new co cpu page
-				And   I select "8087" from "Name"
-				And 	I select "Intel" from "Manufacturer"
-				And   I press "create"
-				Then  I should see "Co cpu type can't be blank"
-							
+		Scenario: Failed co-CPU Creation (no type)
+			Given I am on the new co cpu page
+			And   I select "8087" from "Name"
+			And 	I select "Intel" from "Manufacturer"
+			And   I press "create"
+			Then  I should see "Co cpu type can't be blank"
+						
 		Scenario: Failed co-CPU Creation (name taken)
 			Given a co cpu "Intel 8087 Math" has been created
 			And   I am on the new co cpu page
@@ -98,4 +100,3 @@ Feature: Manage co-CPU
 			Then  I should see "Can't destroy: co-CPU still has some hardware associated"
 			And   I should be on the co cpus page
 			And   I should see "8087"
-			
