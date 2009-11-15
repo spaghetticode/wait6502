@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Countries
 	In order to mantain correct geographical data
 	As a logged user

@@ -48,6 +48,12 @@ Then /^I should see (hardware|auctions) table$/ do |model, table|
   end
 end
 
+Given /^I debug$/ do
+  require 'ruby-debug'
+  debugger
+end
+
+
 def class_for(model)
   case model
   when /countr/

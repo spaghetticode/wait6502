@@ -1,3 +1,4 @@
+@focus
 Feature: CPUs Management
 	In order to have correct hardware CPUs information
 	As a logged user
@@ -85,5 +86,12 @@ Feature: CPUs Management
 			Then  I should see "Can't destroy: CPU still has some hardware associated"
 			And   I should be on the cpus page
 			And   I should see "68000"
-			
-			
+		
+		Scenario: Search CPU
+			Given a cpu "Motorola 68000 8Mhz 16bit 68K" has been created
+			And   a cpu "MOS 6502 1Mhz 8bit 65XX" has been created
+			And   I am on the the cpus page
+			When  I fill in "Keywords" with "Motorola"
+			And   I press "find"
+			Then  I should see "Motorola"
+			But   I should not see "MOS"

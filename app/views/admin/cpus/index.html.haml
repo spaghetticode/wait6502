@@ -1,5 +1,7 @@
 %h1 Listing CPUs
 
+= render :partial => 'admin/hardware/search_form', :locals => { :path => admin_cpus_path, :option_values => Cpu::SEARCH_FIELDS, :hidden => {}}
+
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Bit

@@ -20,9 +20,9 @@ class Hardware < ActiveRecord::Base
   
   CATEGORIES = %w{computer peripheral}
   SEARCH_FIELDS = {
-    'name' => 'hardware.name', 'type' => 'hardware_types.name',
-    'manufacturer' => 'manufacturers.name', 'co CPU name' => 'co_cpus.co_cpu_name_id',
-    'builtin language' => 'hardware.builtin_language_id', 'CPU name' => 'cpus.cpu_name_id',
+    :name => 'hardware.name', :type => 'hardware_types.name',
+    :manufacturer => 'manufacturers.name', 'co CPU name' => 'co_cpus.co_cpu_name_id',
+    'builtin_language' => 'hardware.builtin_language_id', 'CPU name' => 'cpus.cpu_name_id',
     'I/O port connector' => 'io_ports.connector', 'I/O port name' => 'io_ports.name',
     'storage name' => 'builtin_storages.storage_name_id',
     'storage format' => 'builtin_storages.storage_format_id',

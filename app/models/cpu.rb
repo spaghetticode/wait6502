@@ -10,8 +10,21 @@ class Cpu < ActiveRecord::Base
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
   
+  SEARCH_FIELDS = {
+    :name => 'cpu_name_id', :family => 'cpu_family_id',
+    :bit => 'cpu_bit_id', :manufacturer => 'manufacturers.name',
+    :clock => 'clock'
+  }
+  
   def full_name
     clock = self.clock.blank? ? '' : "@#{self.clock}"
     "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+  end
+  
+  def self.concat_string
+    string  = SEARCH_FIELDS.values.inject([]) do |fields, field|
+      fields << "IFNULL(#{field}, '')"
+    end
+    "concat(#{string.join(', ')}) like ?"
   end
 end

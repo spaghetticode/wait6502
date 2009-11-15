@@ -3,7 +3,13 @@ class Admin::ManufacturersController < ApplicationController
   layout 'admin'
   
   def index
-    @manufacturers = Manufacturer.ordered.paginate(:page => params[:page])
+    conditions = [Manufacturer.concat_string, "%#{params[:keywords]}%"] if params[:keywords]
+    @manufacturers = Manufacturer.paginate(
+      :page => params[:page],
+      :conditions => conditions, 
+      :order => "#{params[:order] || 'manufacturers.name'} #{params[:desc]}",
+      :include => :country
+    )
   end
 
   def new

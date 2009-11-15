@@ -48,6 +48,7 @@ Feature: Manage Manufacturers
 		When  I follow "edit"
 		And   I fill in "Name" with "Olivetti"
 		And   I press "update"
+		
 		Then  I should see "Manufacturer was successfully updated"
 		And   I should be on the manufacturers page
 		And   I should see "Olivetti"
@@ -69,5 +70,13 @@ Feature: Manage Manufacturers
 		Then  I should see "Can't destroy: manufacturer still has some record associated"
 		And   I should be on the manufacturers page
 		And   I should see "Atari"
-		
+	
+	Scenario: Search Manufacturer
+		Given a manufacturer named "Atari" exists
+		And   a manufacturer named "Apple" exists
+		And   I am on the manufacturers page
+		When  I fill in "Keywords" with "Atari"
+		And   I press "find"
+		Then  I should see "Atari"
+		But   I should not see "Apple"
 		

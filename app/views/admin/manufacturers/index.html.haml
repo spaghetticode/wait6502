@@ -1,5 +1,7 @@
 %h1 Listing Manufacturers
 
+= render :partial => 'admin/hardware/search_form', :locals => { :path => admin_manufacturers_path, :option_values => Manufacturer::SEARCH_FIELDS, :hidden => {}}
+
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
@@ -9,7 +11,7 @@
     %tr
       %td= h manufacturer.name
       %td
-        = image_tag h(manufacturer.country.flag_image_filename), :height => 10
+        = flag_thumbnail(manufacturer)
         = h manufacturer.country_id
       %td= link_to 'Edit', edit_admin_manufacturer_path(manufacturer)
       %td= link_to 'Destroy', admin_manufacturer_path(manufacturer), :confirm => 'Are you sure?', :method => :delete
