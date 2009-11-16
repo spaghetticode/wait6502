@@ -65,3 +65,13 @@ Feature: Manage I/O Ports
 		And   I should be on the io ports page
 		And   I should see "serial"
 		
+	Scenario: Search IO Port
+		Given a io port exists with name: "serial", connector: "RS232"
+		And   a io port exists with name: "audio in", connector: "mini jack"
+		And   I am on the io ports page
+		When  I fill in "Keywords" with "audio"
+		And   I press "find"
+		Then  I should see "audio in"
+		But   I should not see "serial"
+		
+		

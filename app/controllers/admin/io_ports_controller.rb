@@ -3,7 +3,12 @@ class Admin::IoPortsController < ApplicationController
   layout 'admin'
   
   def index
-    @io_ports = IoPort.ordered.paginate(:page => params[:page])
+    conditions = [IoPort.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    @io_ports = IoPort.paginate(
+      :page => params[:page],
+      :conditions => conditions,
+      :order => "#{params[:order] || 'name'} #{params[:desc]}"
+    )
   end
 
   def new

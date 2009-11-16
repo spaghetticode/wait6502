@@ -3,7 +3,7 @@ class Admin::HardwareController < ApplicationController
   layout 'admin'
   
   def index
-    @hardware = Hardware.ordered.paginate(
+    @hardware = Hardware.paginate(
       :page => params[:page],
       :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",
       :conditions => Hardware.conditions(params),
