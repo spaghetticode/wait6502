@@ -1,0 +1,4 @@
+%h1= @cpu.full_name
+
+- @cpu.hardware.each do |hw|
+  %p= link_to hw.name, computer_path(hw)

@@ -16,9 +16,18 @@ class Cpu < ActiveRecord::Base
     :clock => 'clock'
   }
   
+  def name(format=:short)
+    case format
+    when :long
+      clock = self.clock.blank? ? '' : "@#{self.clock}"
+      "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+    when :short
+      "#{manufacturer.name} #{cpu_name_id}"
+    end
+  end
+
   def full_name
-    clock = self.clock.blank? ? '' : "@#{self.clock}"
-    "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+    name(:long)
   end
   
   def self.concat_query

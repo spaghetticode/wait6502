@@ -31,7 +31,7 @@ describe UserSessionsController do
     
     describe 'GET DESTROY' do
       before do
-        get :destroy
+        get :destroy, :id => '1'
       end
 
       it 'should flash and redirect on destroy' do
@@ -44,7 +44,7 @@ describe UserSessionsController do
   describe 'NOT BEING LOGGED IN as user' do
     describe 'GET DESTROY' do
       before do
-        get :destroy
+        get :destroy, :id => '1'
       end
       
       it 'should flash and redirect' do

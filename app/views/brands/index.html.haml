@@ -1,0 +1,3 @@
+%h1 Brands
+- @brands.each do |brand|
+  %p= link_to brand.name, brand_path(brand)

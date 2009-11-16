@@ -1,0 +1,3 @@
+%h1 CPUs
+- @cpus.each do |cpu|
+  %p= link_to cpu.name, cpu_path(cpu)

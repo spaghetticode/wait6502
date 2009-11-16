@@ -42,9 +42,9 @@
               %li= link_to 'countries', admin_countries_path
               %li= link_to 'currencies', admin_currencies_path
               %li= link_to 'hardware types', admin_hardware_types_path
+          %li= link_to 'homepage', root_path
           %li= link_to 'logout', logout_path
-        - else
-          %li= link_to 'login', login_path        
+              
     - flash.each_pair do |type, message|
       %p{:class => type}= message
     = yield
