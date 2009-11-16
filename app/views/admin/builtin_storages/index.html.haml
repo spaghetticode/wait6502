@@ -1,5 +1,7 @@
 %h1 Listing Builtin Storages
 
+= render :partial => 'admin/hardware/search_form', :locals => { :path => admin_builtin_storages_path, :option_values => BuiltinStorage::SEARCH_FIELDS, :hidden => {}}
+
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name

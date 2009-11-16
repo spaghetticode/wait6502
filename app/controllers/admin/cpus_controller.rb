@@ -3,7 +3,7 @@ class Admin::CpusController < ApplicationController
   layout 'admin'
   
   def index
-    conditions = ["#{Cpu.concat_string}", "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    conditions = [Cpu.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     @cpus =Cpu.paginate(
       :page => params[:page], 
       :conditions => conditions,

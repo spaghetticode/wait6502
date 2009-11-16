@@ -15,7 +15,7 @@ class CoCpu < ActiveRecord::Base
     :manufacturer => 'manufacturers.name', :type => 'co_cpu_type_id'
   }
   
-  def self.concat_string
+  def self.concat_query
     string = SEARCH_FIELDS.values.inject([]) do |group, field|
       group << "IFNULL(#{field}, '')"
     end.join(', ')

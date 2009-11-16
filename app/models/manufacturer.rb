@@ -11,7 +11,7 @@ class Manufacturer < ActiveRecord::Base
   
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}
   
-  def self.concat_string
+  def self.concat_query
     string  = SEARCH_FIELDS.values.inject([]) do |fields, field|
       fields << "IFNULL(#{field}, '')"
     end

@@ -70,3 +70,13 @@ Feature: Builtin Storages Management
 			Then  I should see "Can't destroy: storage still has some hardware associated"
 			And   I should be on the builtin storages page
 			And   I should see "floppy"
+		
+		Scenario: Search Builtin Storage
+		Given a builtin storage "floppy-5.25 inches-360k" has been created
+		Given a builtin storage "floppy disk - 3.5 inches - 720Kb" has been created
+		And   I am on the builtin storages page
+		When  I fill in "Keywords" with "3.5 inches"
+		And   I press "find"
+		Then  I should see "3.5 inches"
+		But   I should not see "5.25 inches"
+		

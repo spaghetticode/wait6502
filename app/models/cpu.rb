@@ -21,7 +21,7 @@ class Cpu < ActiveRecord::Base
     "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
   end
   
-  def self.concat_string
+  def self.concat_query
     string  = SEARCH_FIELDS.values.inject([]) do |fields, field|
       fields << "IFNULL(#{field}, '')"
     end

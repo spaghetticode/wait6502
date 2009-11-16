@@ -43,10 +43,11 @@ class Auction < ActiveRecord::Base
     @item_ids = Auction.all(:select => :item_id).map(&:item_id)
   end
   
-  def self.concat_fields
-    SEARCH_FIELDS.values.inject([]) do |collection, field|
-      collection << "IFNULL(CAST(#{field} AS CHAR), '')"
+  def self.concat_query
+    fields = SEARCH_FIELDS.values.inject([]) do |fields, field|
+      fields << "IFNULL(CAST(#{field} AS CHAR), '')"
     end.join(', ')
+    "concat(#{fields}) like ?"
   end
   
   # instance methods:
