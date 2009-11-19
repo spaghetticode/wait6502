@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
     m.resources :manufacturers
     m.resources :cpus, :as => 'cpu'
     m.resources :hardware_types, :as => 'categories'
-    m.resources :io_ports
+    m.resources :io_ports, :as => 'io-ports'
     m.resources :co_cpus, :as => 'co-cpu'
     m.resources :operative_systems
     m.resources :builtin_languages

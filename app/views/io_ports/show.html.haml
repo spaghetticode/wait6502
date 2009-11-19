@@ -1,0 +1,9 @@
+%h2= @io_port.name.capitalize
+- if @io_port.hardware.empty?
+  %p
+    The port
+    %strong= @io_port.name
+    currently is not present in any computer or peripheral.
+- else
+  %table.hardware_list
+    = render :partial => 'computers/hardware', :collection => @io_port.hardware
