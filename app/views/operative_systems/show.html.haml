@@ -1,0 +1,9 @@
+%h2= @operative_system.name
+- if @operative_system.hardware.empty?
+  %p
+    The operative system
+    %strong= @operative_system.name
+    is not used by any computer in the database.
+- else
+  %table.hardware_list
+    = render :partial => 'computers/hardware', :collection => @operative_system.hardware

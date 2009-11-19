@@ -45,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
     m.resources :hardware_types, :as => 'categories'
     m.resources :io_ports, :as => 'io-ports'
     m.resources :co_cpus, :as => 'co-cpu'
-    m.resources :operative_systems
+    m.resources :operative_systems, :as => 'operative-systems'
     m.resources :builtin_languages
     m.resources :builtin_storages
   end
