@@ -1,0 +1,4 @@
+%h2 Categories
+- @hardware_types.each do |category|
+  %p= link_to category.name, hardware_type_path(category)
+  

@@ -23,7 +23,15 @@ class CoCpu < ActiveRecord::Base
   end
   
   def full_name
-    "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id} co-processor"
+    name(:long)
   end
   
+  def name(format=:short)
+    case format
+    when :short
+      "#{manufacturer.name} #{co_cpu_name_id}"
+    when :long
+      "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id} co-processor"
+    end
+  end
 end

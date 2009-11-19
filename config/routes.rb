@@ -41,10 +41,10 @@ ActionController::Routing::Routes.draw do |map|
     m.resources :computers, :as => 'old-computers'
     m.resources :peripherals
     m.resources :manufacturers
-    m.resources :cpus
-    m.resources :hardware_types
+    m.resources :cpus, :as => 'cpu'
+    m.resources :hardware_types, :as => 'categories'
     m.resources :io_ports
-    m.resources :co_cpus
+    m.resources :co_cpus, :as => 'co-cpu'
     m.resources :operative_systems
     m.resources :builtin_languages
     m.resources :builtin_storages
