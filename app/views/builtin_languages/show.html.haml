@@ -1,0 +1,10 @@
+%h2= @builtin_language.name
+- if @builtin_language.hardware.empty?
+  %p
+    The language
+    %strong= @builtin_language.name
+    is not used by any computer in the database.
+- else
+  %table.hardware_list
+    = render :partial => 'computers/hardware', :collection => @builtin_language.hardware
+    
