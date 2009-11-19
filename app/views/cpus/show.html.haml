@@ -1,5 +1,3 @@
 %h2= @cpu.name
-%p The #{@cpu.name} is a #{@cpu.cpu_bit_id} CPU#{@cpu.cpu_family_id ? " that belongs to the #{@cpu.cpu_family_id} family." : '.'}
-
-- @cpu.hardware.each do |hw|
-  %p= link_to hw.name, computer_path(hw)
+%table.hardware_list
+  = render :partial => 'computers/hardware', :collection => @cpu.hardware.ordered
