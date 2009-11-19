@@ -1,2 +1,12 @@
-%h1= @peripheral.name
-
+%h2= @peripheral.name
+#info
+  %p= @peripheral.description
+#images
+  - @peripheral.images.each do |image|
+    = link_to image_tag(image.filename(:thumb), :alt => @peripheral.name), image.filename(:normal), :onclick => "window.open('#{image.filename(:normal)}','','width=600, height=400, menubar=no, resizable=no, toolbar=no, status=no, scrollbar=no');return false"
+#specs
+  = render :partial => 'computers/specs', :locals => {:hardware => @peripheral}
+#retail-prices
+  = render :partial => 'computers/retail_prices', :locals => {:hardware => @peripheral}
+#values
+  = render :partial => 'computers/ebay_values', :locals => {:hardware => @peripheral}

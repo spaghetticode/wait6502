@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "/brands/index" do
+describe "/manufacturers/index" do
   before(:each) do
-    assigns[:brands] = []
-    render 'brands/index'
+    assigns[:manufacturers] = []
+    render 'manufacturers/index'
   end
 
 

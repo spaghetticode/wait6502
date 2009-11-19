@@ -1,0 +1,48 @@
+%table.specifications{:cellpadding => 0, :cellspacing => 1}
+  %caption Hardware Specifications
+  %tr
+    %th Manufacturer
+    %td.wide= link_to hardware.manufacturer.name, manufacturer_path(hardware.manufacturer)
+  %tr
+    %th Name
+    %td= hardware.name
+  - unless hardware.code.blank?
+    %tr
+      %th Code
+      %td= hardware.code
+  - unless hardware.codename.blank?
+    %tr
+      %th Codename
+      %td= hardware.codename
+  %tr
+    %th Category
+    %td= link_to hardware.hardware_type.name, hardware_type_path(hardware.hardware_type)
+  %tr
+    %th Production Years
+    %td #{hardware.production_start} - #{hardware.production_stop}
+  - unless hardware.cpus.empty?
+    %tr
+      %th CPU
+      %td= hardware.cpus.inject([]){|a,c| a << link_to(c.name, cpu_path(c))}.join(', ')
+  - unless hardware.co_cpus.empty?
+    %tr
+      %th co-CPU
+      %td= hardware.co_cpus.inject([]){|a,c| a << link_to(c.full_name, co_cpu_path(c))}.join(', ')
+  %tr
+    %th I/O Ports
+    %td= hardware.io_ports.inject([]){|a,i| a << link_to(i.full_name, io_port_path(i))}.join(', ')
+  - unless hardware.builtin_storages.empty?
+    %tr
+      %th Mass Storage
+      %td= hardware.builtin_storages.inject([]){|a,s| a << link_to(s.full_name, builtin_storage_path(s))}.join(', ')
+  - if hardware.builtin_language
+    %tr
+      %th Builtin Language
+      %td= link_to(hardware.builtin_language.name, builtin_language_path(hardware.builtin_language))
+  - unless hardware.operative_systems.empty?
+    %tr
+      %th Operative Systems
+      %td= hardware.operative_systems.inject([]){|a,o| a << link_to(o.name, operative_system_path(o))}.join(',')
+  %tr
+    %th Notes
+    %td= hardware.notes

@@ -23,6 +23,8 @@ class Cpu < ActiveRecord::Base
       "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
     when :short
       "#{manufacturer.name} #{cpu_name_id}"
+    when :info
+      "#{name(:short)}, #{cpu_bit_id} #{cpu_family_id} family"
     end
   end
 

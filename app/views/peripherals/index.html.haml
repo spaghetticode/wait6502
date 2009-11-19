@@ -1,3 +1,6 @@
-%h1 Peripherals
-- @peripherals.each do |p|
-  %p= link_to p.name, peripheral_path(p)
+%h2 Peripherals
+%table.hardware_list
+  - @peripherals.each do |p|
+    %tr
+      %td= image_tag(p.images.first.filename(:thumb)) unless p.images.empty?
+      %td= link_to p.name, peripheral_path(p)

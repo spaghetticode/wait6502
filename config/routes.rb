@@ -38,10 +38,16 @@ ActionController::Routing::Routes.draw do |map|
   end
     
   map.with_options :only => [:index, :show] do |m|
-    m.resources :computers 
+    m.resources :computers, :as => 'old-computers'
     m.resources :peripherals
-    m.resources :brands
+    m.resources :manufacturers
     m.resources :cpus
+    m.resources :hardware_types
+    m.resources :io_ports
+    m.resources :co_cpus
+    m.resources :operative_systems
+    m.resources :builtin_languages
+    m.resources :builtin_storages
   end
   
   map.resources :user_sessions  

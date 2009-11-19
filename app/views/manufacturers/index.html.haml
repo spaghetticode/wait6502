@@ -1,0 +1,3 @@
+%h2 Manufacturers
+- @manufacturers.each do |manufacturer|
+  %p= link_to manufacturer.name, manufacturer_path(manufacturer)

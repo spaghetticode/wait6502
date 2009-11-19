@@ -1,0 +1,50 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "it", :lang => "it"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
+    %title= @title || 'WAIT 6502 retrocomputing'
+    = stylesheet_link_tag 'museum'
+    = yield :head
+  %body
+    #topnav
+      %ul
+        - if current_user
+          %li= link_to 'logout', logout_path
+          %li= link_to 'admin area', admin_hardware_index_path
+        - else
+          %li= link_to 'login', login_path     
+    
+    #header
+      %h1= link_to 'Wait 6502 old computers and retrocomputing', root_path
+      %p old computers and retrocomputing
+        
+    #flash
+      - flash.each_pair do |type, message|
+        %p{:class => type}= message
+    
+    #container
+      #left-column
+        %ul.leftnav
+          %li.computers
+            %a computers »
+            %ul.subnav
+              %li
+                = image_tag('/images/kb.png', :usemap => '#keyboard')
+                %map{:name => 'keyboard'}
+                  - Keys.letters.each do |letter|
+                    %area{:shape => 'rect', :coords => letter[1], :href=>"#{computers_path}?letter=#{letter[0]}"}
+          %li.leftnav= link_to 'peripherals', peripherals_path
+          %li.leftnav= link_to 'manufacturers', manufacturers_path
+          %li.leftnav= link_to 'categories', hardware_types_path
+          %li.leftnav= link_to 'CPUs', cpus_path
+          %li.leftnav= link_to 'co-CPUs', co_cpus_path
+          %li.leftnav= link_to 'I/O ports', io_ports_path
+          %li.leftnav= link_to 'operative systems', operative_systems_path
+          %li.leftnav= link_to 'builtin languages', builtin_languages_path
+          %li.leftnav= link_to 'production years', '#'
+    
+      #right-column
+        = yield
+    
+    #footer
+      %p © 2009 Spaghetti Code productions

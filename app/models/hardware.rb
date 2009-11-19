@@ -34,7 +34,7 @@ class Hardware < ActiveRecord::Base
     named_scope category, :conditions => {:hardware_category => category}
   end
   named_scope :ordered, :order => 'hardware.name'
-
+  named_scope :by_manufacturer, :order => 'manufacturers.name', :include => :manufacturer
   def self.conditions(params)
     strings = []
     values = []
@@ -47,6 +47,10 @@ class Hardware < ActiveRecord::Base
       values << "%#{params[:keywords]}%"
     end
     conditions = [ strings.join(' AND '), values ].flatten
+  end
+  
+  def self.find_by_initial(letter)
+    self.all(:conditions => ['hardware.name like ?', "#{letter}%"])
   end
   
   def co_cpu_names

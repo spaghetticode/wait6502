@@ -1,1 +1,12 @@
-%h1= @computer.name
+%h2= @computer.name
+#info
+  %p= @computer.description
+#images
+  - @computer.images.each do |image|
+    = link_to image_tag(image.filename(:thumb), :alt => @computer.name), image.filename(:normal), :onclick => "window.open('#{image.filename(:normal)}','','width=600, height=400, menubar=no, resizable=no, toolbar=no, status=no, scrollbar=no');return false"
+#specs
+  = render :partial => 'specs', :locals => {:hardware => @computer}
+#retail-prices
+  = render :partial => 'retail_prices', :locals => {:hardware => @computer}
+#values
+  = render :partial => 'ebay_values', :locals => {:hardware => @computer}

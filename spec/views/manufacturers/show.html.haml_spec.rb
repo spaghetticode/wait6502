@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "/brands/show" do
+describe "/manufacturers/show" do
   before(:each) do
-    assigns[:brand] = mock_model(Manufacturer).as_null_object
-    render 'brands/show'
+    assigns[:manufacturer] = mock_model(Manufacturer).as_null_object
+    render 'manufacturers/show'
   end
 
   #Delete this example and add some real ones or delete this file

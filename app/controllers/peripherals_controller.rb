@@ -1,5 +1,5 @@
 class PeripheralsController < ApplicationController
-  layout 'default'
+  layout 'museum'
   
   def index
     @peripherals = Hardware.peripheral.ordered

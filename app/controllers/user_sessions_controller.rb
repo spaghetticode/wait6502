@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   before_filter :require_logged_in, :only => :destroy
   before_filter :require_logged_out, :except => :destroy
-  layout 'default'
+  layout 'museum'
   
   def new
     @user_session = UserSession.new

@@ -1,4 +1,15 @@
-%h1 Computers (homepage)
-- @computers.each do |comp|
-  %p= link_to comp.name, computer_path(comp)
-
+%h2 Computers
+- if params[:letter]
+  - if @computers.empty?
+    %p
+      No computer was found starting with the
+      %strong= params[:letter].upcase
+      letter.
+  - else
+    %p
+      Computers starting with 
+      %strong= params[:letter].upcase
+      letter:
+    %table.hardware_list
+      = render :partial => 'hardware', :collection => @computers
+      

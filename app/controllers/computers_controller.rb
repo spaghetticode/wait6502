@@ -1,12 +1,12 @@
 class ComputersController < ApplicationController
-  layout 'default'
+  layout 'museum'
   
   def index
-    @computers = Hardware.computer.ordered
+    flash[:error] = 'You must choose a letter' unless params[:letter]
+    @computers = Hardware.computer.by_manufacturer.find_by_initial(params[:letter])
   end
 
   def show
     @computer = Hardware.find(params[:id])
   end
-
 end

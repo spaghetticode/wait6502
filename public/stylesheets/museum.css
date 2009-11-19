@@ -1,0 +1,230 @@
+body {
+	width:900px;
+	margin:20px auto;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-size:13px;
+	background:;
+}
+
+#topnav {
+	height:30px;
+	background:black;
+	-moz-border-radius-topleft:15px;
+	-moz-border-radius-topright:15px;
+	
+}
+
+#topnav ul {
+	margin:0;
+	margin-right:20px;
+	padding:10px;
+	list-style:none;
+	text-align:right;
+}
+
+#topnav li {
+	display:inline;
+}
+
+#topnav a {
+	color:white;
+	text-decoration:none;
+	font-size:10px;
+}
+
+#header {
+	height:125px;
+	border:1px solid black;
+	background:#ddd;
+}
+
+#header h1 {
+	background:url(/images/wait.png) no-repeat left bottom;
+	margin:0;
+	padding:0;
+	height:90px;
+	font-weight:normal;
+	text-indent:-9999px;
+}
+
+#header h1 a {
+	text-indent: -9999px;
+}
+
+#header p {
+	margin:0;
+	margin-top:-22px;
+	margin-right:20px;
+	text-align:right;
+	font-size:20px;
+}
+
+#flash p {
+	line-height:40px;
+	text-align:center;
+	margin:0px;
+}
+
+#flash p.notice {
+	background: #afa;
+	color:green;
+	border:2px solid green;
+}
+
+#flash p.error {
+	background: #faa;
+	color:red;
+	border:2px solid red;
+}
+
+#navigation {
+	
+}
+
+#container {
+	overflow:auto;
+	background:white;
+	border:1px solid black;
+	border-top:none;
+}
+
+#left-column {
+	float:left;
+	width:170px;
+}
+
+#left-column ul {
+	margin:20px;
+	padding:0px;
+	list-style:none;
+}
+
+#left-column li {
+}
+
+#left-column li a {
+	text-decoration:none;
+	color:#222;
+	display:block;
+	padding:5px;
+}
+
+#left-column li a:hover {
+	color: black;
+	text-decoration:underline;
+}
+
+#right-column {
+	margin-left:170px;
+	border-left:1px solid black;
+	background:white;
+	min-height:600px;
+	padding:20px;
+}
+
+#footer {
+	color:white;
+	background:black;
+	height:40px;
+	-moz-border-radius-bottomleft:15px;
+	-moz-border-radius-bottomright:15px;
+}
+
+#footer p {
+	margin:0px;
+	text-align:center;
+	line-height:40px;
+	font-size:10px;
+}
+
+h2, h3, h4 {
+	margin:0;
+}
+
+table.specifications {
+	background:gray;
+	margin:auto;
+}
+
+.specifications caption {
+	text-align:center;
+	color:#555;
+	line-height:30px;
+}
+
+.specifications th {
+	text-transform:uppercase;
+	font-weight:normal;
+	text-align:right;
+	padding:5px 15px;
+	background:#ddd;
+}
+
+.specifications td {
+	background:white;
+	padding:5px 15px;
+}
+
+.specifications a {
+	text-decoration:none;
+}
+
+.wide {
+	min-width:400px;
+}
+
+div#images {
+	text-align:right;
+}
+
+#images, #specs, #retail-prices, #values {
+	margin:20px 0px;
+}
+
+#images img {
+	border:1px solid silver;
+}
+
+.right {
+	text-align:right;
+}
+
+.center {
+	text-align:center;
+}
+
+#left-column ul.subnav {
+	margin:0;
+	padding:0;
+}
+
+ul.subnav img{
+ 	position:absolute;
+ 	display:none;
+	margin-left:100px;
+	margin-top:-26px;
+	border:none;
+}
+
+#left-column li.leftnav {
+	height:26px;
+}
+
+#left-column li.computers>a {
+	height:16px;
+}
+
+#left-column li.computers:hover {
+	background:url(/images/computersli.png) no-repeat white;
+}
+
+#left-column li.computers:hover img{
+	display:block;
+}
+
+table.hardware_list {
+	margin:10px;
+}
+table.hardware_list td {
+	padding:10px;
+}

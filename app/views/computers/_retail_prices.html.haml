@@ -1,0 +1,16 @@
+%table.specifications{:cellpadding => 0, :cellspacing => 1}
+  %caption Retail Sales Prices
+  %tr
+    %th Country
+    %th Year
+    %th Retail Price
+  - if hardware.original_prices.empty?
+    %tr
+      %td.center{:colspan => 3} no data available
+  - else
+    - hardware.original_prices.ordered.each do |price|
+      %tr
+        %td= price.country_id
+        %td= price.date.year
+        %td.right= "#{price.currency_id} %.2f" % price.amount
+  

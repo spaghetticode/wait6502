@@ -1,5 +1,5 @@
 class CpusController < ApplicationController
-  layout 'default'
+  layout 'museum'
   
   def index
     @cpus = Cpu.ordered.all(:group => 'manufacturer_id, cpu_name_id')

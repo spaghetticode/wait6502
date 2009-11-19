@@ -1,0 +1,4 @@
+%h2= @manufacturer.name
+%table.hardware_list
+  = render :partial => 'computers/hardware', :collection => @manufacturer.hardware
+  
