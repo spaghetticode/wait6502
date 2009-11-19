@@ -1,6 +1,9 @@
 %h2= @co_cpu.name
 - if @co_cpu.hardware.empty?
-  %p Co CPU #{@co_cpu.name} is not present inside any computer or peripheral in the database.
+  %p
+    The co-CPU
+    %strong= @co_cpu.name
+    is not currently used by any computer or peripheral in the database.
 - else
   %table.hardware_list
     = render :partial => 'computers/hardware', :collection => @co_cpu.hardware
