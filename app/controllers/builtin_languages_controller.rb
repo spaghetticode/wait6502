@@ -6,7 +6,7 @@ class BuiltinLanguagesController < ApplicationController
   end
 
   def show
-    @builtin_language = BuiltinLanguage.find(params[:id])
+    @builtin_language = BuiltinLanguage.find_by_permalink(params[:id])
   end
 
 end

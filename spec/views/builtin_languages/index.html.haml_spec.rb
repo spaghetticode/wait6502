@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "/builtin_languages/index" do
   before(:each) do
-    language = stub_model(BuiltinLanguage, :name => 'basic 1.1')
+    language = stub_model(BuiltinLanguage, :name => 'basic 1.1', :permalink => 'basic1_DOT_1')
     assigns[:builtin_languages] = [language]
     render 'builtin_languages/index'
   end

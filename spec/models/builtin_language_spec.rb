@@ -22,6 +22,15 @@ describe BuiltinLanguage do
       builtin_language = Factory(:builtin_language)
       builtin_language.id.should == builtin_language.name
     end
+    
+    it 'should have a permalink' do
+      Factory(:builtin_language).permalink.should_not be_nil
+    end
+    
+    it 'should set permalink correctly when saving' do
+      language = BuiltinLanguage.create!(:name => 'BASIC 2.0')
+      language.permalink.should == 'BASIC+2_DOT_0'
+    end
   end
   
   describe 'named scope ORDERED' do

@@ -8,21 +8,20 @@ class Admin::BuiltinLanguagesController < ApplicationController
 
   def new
     @builtin_language = BuiltinLanguage.new
-
   end
-
+  
   def create
     @builtin_language = BuiltinLanguage.new(params[:builtin_language])
-      if @builtin_language.save
-        flash[:notice] = 'Builtin language was successfully created.'
-        redirect_to admin_builtin_languages_path
-      else
-        render :action => "new"
-      end
+    if @builtin_language.save
+      flash[:notice] = 'Builtin language was successfully created.'
+      redirect_to admin_builtin_languages_path
+    else
+      render :action => "new"
+    end
   end
-
-  def delete
-    @builtin_language = BuiltinLanguage.find(params[:id])
+  
+  def destroy
+    @builtin_language = BuiltinLanguage.find_by_permalink(params[:id])
     if @builtin_language.hardware.empty?
       @builtin_language.destroy
       flash[:notice] = 'Builtin language was successfully destroyed.'

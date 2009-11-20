@@ -46,7 +46,7 @@ Feature: Manage Builtin Languages
 		Given a builtin language named "BASIC" exists
 		And   I am on the builtin languages page
 		And   I should see "BASIC"
-		When  I press "destroy"
+		When  I follow "destroy"
 		Then  I should see "Builtin language was successfully destroyed"
 		And   I should be on the builtin languages page
 		And   I should not see "BASIC"
@@ -54,7 +54,7 @@ Feature: Manage Builtin Languages
 	Scenario: Failed Builtin Language Destroy
 		Given a builtin language named "BASIC" is associated to a hardware
 		And   I am on the builtin languages page
-		When  I press "destroy"
+		When  I follow "destroy"
 		Then  I should see "Can't destroy: language still has some hardware associated"
 		And   I should be on the builtin languages page
 		And   I should see "BASIC"

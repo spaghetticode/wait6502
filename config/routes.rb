@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
       m.resources :currencies
       m.resources :hardware_types
       m.resources :storage_names
+      m.resources :builtin_languages
     end
     
     admin.with_options(
@@ -33,7 +34,6 @@ ActionController::Routing::Routes.draw do |map|
       m.resources :cpu_families
       m.resources :cpu_names
       m.resources :co_cpu_names
-      m.resources :builtin_languages
     end    
   end
     

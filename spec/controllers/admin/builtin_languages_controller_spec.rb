@@ -4,9 +4,13 @@ module BuiltinLanguagesControllerHelper
   def post_create
     post :create, :builtin_language => {}
   end
-
-  def delete_delete
-    delete :delete, :id => 'BASIC'
+  
+  def put_update
+    put :update, :builtin_language => {}, :id => '1'
+  end
+  
+  def delete_destroy
+    delete :destroy, :id => 'BASIC'
   end
   
   def mock_builtin_language(options={})
@@ -22,7 +26,7 @@ describe Admin::BuiltinLanguagesController do
       :new => :get,
       :index => :get,
       :create => :post,
-      :delete => :delete
+      :destroy => :delete
     )
   end
   
@@ -71,7 +75,7 @@ describe Admin::BuiltinLanguagesController do
         assigns[:builtin_language].should be_new_record
       end
     end
-
+    
     describe 'POST CREATE' do
       describe 'with valid attributes' do
         before do
@@ -107,19 +111,13 @@ describe Admin::BuiltinLanguagesController do
       end
     end
 
-    # il classico metodo destroy è stato sostituito da questo delete che opera
-    # attraverso un form che posta gli id. Tutto sto casino è per non avere negli url
-    # l'id con il punto, visto che rails lo interpreta come separatore per format'
-    describe 'DELETE DELETE' do
+    describe 'DELETE DESTROY' do
       describe 'when builtin language has no hardware associated' do
         before do
-          BuiltinLanguage.should_receive(:find).with('BASIC').
+          BuiltinLanguage.should_receive(:find_by_permalink).
             and_return(mock_builtin_language(:destroy => nil, :hardware => []))
-          # the following expectation should not be in a before block, as it tests
-          # the real guts of the method but this makes specs code more readable
-          # and in my opinion doesn't hurt that much
           mock_builtin_language.should_receive(:destroy)
-          delete_delete
+          delete_destroy
         end
 
         it 'should flash a success message' do
@@ -133,10 +131,10 @@ describe Admin::BuiltinLanguagesController do
       
       describe 'when builtin language has hardware associated' do
         before do
-          BuiltinLanguage.should_receive(:find).with('BASIC').
+          BuiltinLanguage.should_receive(:find_by_permalink).
             and_return(mock_builtin_language(:hardware => [mock_model(Hardware)]))
           mock_builtin_language.should_not_receive(:destroy)
-          delete_delete
+          delete_destroy
         end
         
         it 'should redirect to admin_builtin_languages_path' do

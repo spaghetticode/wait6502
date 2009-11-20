@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091115175455) do
+ActiveRecord::Schema.define(:version => 20091120100243) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20091115175455) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
 
   create_table "builtin_storages", :force => true do |t|

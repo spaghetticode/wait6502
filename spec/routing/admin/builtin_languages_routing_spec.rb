@@ -13,9 +13,9 @@ describe Admin::BuiltinLanguagesController do
     it "recognizes and generates #create" do
       { :post => "/admin/builtin_languages" }.should route_to(:controller => "admin/builtin_languages", :action => "create") 
     end
-
-    it "recognizes and generates #delete" do
-      { :delete => "/admin/builtin_languages/delete" }.should route_to(:controller => "admin/builtin_languages", :action => "delete") 
+    
+    it "recognizes and generates #destroy" do
+      { :delete => "/admin/builtin_languages/1" }.should route_to(:controller => "admin/builtin_languages", :action => "destroy", :id => '1') 
     end
   end
 end

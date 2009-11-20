@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "/operative_systems/index" do
   before(:each) do
+    assigns[:operative_systems] = []
     render 'operative_systems/index'
   end
 
