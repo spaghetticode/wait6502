@@ -7,14 +7,9 @@
       %th= f.label :name
       %td= f.text_field :name
     %tr
-      %th= f.label :flag_filename
+      %th= f.label :flag_file
       %td
-        = f.text_field :flag_filename, :size => 3
-        %span.light  (2 letters code: it, fr...)
-    %tr
-      %th= f.label :flag_image
-      %td
-        = f.file_field :flag_image
+        = f.file_field :flag_file
         %br
         %span.light Image must be 60x40 pixels .png format
     %tr

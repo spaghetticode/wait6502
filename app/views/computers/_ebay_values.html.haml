@@ -12,7 +12,7 @@
       - unless data.empty?
         - currency = site.currency_id
         - average = data.sum / data.size
-      %td= image_tag(site.country.flag_image_filename, :title => site.name, :height => 20)
+      %td.center= flag_thumbnail(site, 20)
       %td= average && sprintf("#{currency} %.2f", average) || '-'
       %td= data.min && sprintf("#{currency} %.2f", data.min) || '-'
       %td= data.max && sprintf("#{currency} %.2f", data.max) || '-'

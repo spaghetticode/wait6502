@@ -17,7 +17,6 @@ Feature: Manage Countries
 		And   I am on the countries page
 		And   I follow "new country"
 		When  I fill in "name" with "Italy"
-		And   I fill in "flag filename" with "it"
 		And   I attach a valid flag image
 		And   I press "Create"
 		Then  I should see "Country was successfully created"

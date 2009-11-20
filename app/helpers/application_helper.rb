@@ -39,7 +39,7 @@ module ApplicationHelper
     f.select :hardware_id, Hardware.ordered.map{|h| [h.name, h.id]}, :include_blank => true
   end
   
-  def flag_thumbnail(model)
-    model.country && image_tag(h(model.country.flag_image_filename), :height => 10) 
+  def flag_thumbnail(model, height=10)
+    model.country && image_tag(h(model.country.flag), :height => height, :alt => '') 
   end
 end
