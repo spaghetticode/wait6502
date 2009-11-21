@@ -1,6 +1,13 @@
 %tr
-  %td= f.label :name
+  %th= f.label :name
   %td= f.text_field :name
 %tr
-  %td= f.label :country_id
+  %th= f.label :country_id
   %td= country_selector(f)
+%tr
+  %th= f.label :logo_file
+  %td
+    = f.file_field :logo_file
+    %br
+    %span.light Image should be png 40px heigth
+    

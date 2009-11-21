@@ -1,3 +1,6 @@
 %h2 CPUs
-- @cpus.each do |cpu|
-  %p= link_to cpu.name, cpu_path(cpu)
+%table.list
+  - @cpus.each do |cpu|
+    %tr
+      %td.center= logo_image cpu.manufacturer, :height => 30
+      %td= link_to cpu.name, cpu_path(cpu)

@@ -1,6 +1,6 @@
 body {
 	width:900px;
-	margin:20px auto;
+	margin:0 auto;
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	font-size:13px;
 	background:;
@@ -9,21 +9,19 @@ body {
 #topnav {
 	height:30px;
 	background:black;
-	-moz-border-radius-topleft:15px;
-	-moz-border-radius-topright:15px;
-	
 }
 
 #topnav ul {
 	margin:0;
 	margin-right:20px;
-	padding:10px;
 	list-style:none;
 	text-align:right;
 }
 
 #topnav li {
 	display:inline;
+	padding:0 10px;
+	line-height:25px;
 }
 
 #topnav a {
@@ -125,8 +123,6 @@ body {
 	color:white;
 	background:black;
 	height:40px;
-	-moz-border-radius-bottomleft:15px;
-	-moz-border-radius-bottomright:15px;
 }
 
 #footer p {
@@ -221,9 +217,19 @@ ul.subnav img{
 	display:block;
 }
 
-table.hardware_list {
-	margin:10px;
+table.list {
+	margin:7px;
 }
-table.hardware_list td {
-	padding:10px;
+table.list td {
+	padding:7px;
+}
+
+h2.with_logo {
+	overflow:auto;
+	line-height:40px;
+}
+
+img.manufacturer_logo {
+	float:left;
+	margin-right:25px;
 }

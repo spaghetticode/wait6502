@@ -1,3 +1,6 @@
 %h2 Manufacturers
-- @manufacturers.each do |manufacturer|
-  %p= link_to manufacturer.name, manufacturer_path(manufacturer)
+%table.list
+  - @manufacturers.each do |manufacturer|
+    %tr
+      %td.center= logo_image manufacturer, :height => '30'
+      %td= link_to manufacturer.name, manufacturer_path(manufacturer)

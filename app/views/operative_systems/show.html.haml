@@ -5,5 +5,5 @@
     %strong= @operative_system.name
     is not used by any computer in the database.
 - else
-  %table.hardware_list
+  %table.list
     = render :partial => 'computers/hardware', :collection => @operative_system.hardware

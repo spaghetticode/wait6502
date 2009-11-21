@@ -1,6 +1,6 @@
 %h1 Editing Manufacturer
 
-- form_for @manufacturer, :url => admin_manufacturer_path(@manufacturer) do |f|
+- form_for @manufacturer, :url => admin_manufacturer_path(@manufacturer), :html => {:multipart => true} do |f|
   = f.error_messages
   %table.record
     = render :partial => 'form_fields', :locals => {:f => f}

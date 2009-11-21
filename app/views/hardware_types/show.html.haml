@@ -5,6 +5,6 @@
     %strong= @hardware_type.name
     currently doesn't include any computer or peripheral.
 - else
-  %table.hardware_list
+  %table.list
     = render :partial => 'computers/hardware', :collection => @hardware_type.hardware
 

@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "/co_cpus/show" do
   before(:each) do
-    assigns[:co_cpu] = stub_model(CoCpu, :name => 'Paula', :hardware => [])
+    manufacturer = stub_model(Manufacturer, :name => 'CSG')
+    assigns[:co_cpu] = stub_model(CoCpu, :name => 'Paula', :hardware => [], :manufacturer => manufacturer)
     render 'co_cpus/show'
   end
 

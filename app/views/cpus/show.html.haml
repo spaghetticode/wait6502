@@ -1,9 +1,9 @@
-%h2= @cpu.name
+= title_for(@cpu)
 -if @cpu.hardware.empty?
   %p
     The CPU
     %strong= @cpu.name
     currently is not used by any computer or peripheral in the database.
 - else
-  %table.hardware_list
+  %table.list
     = render :partial => 'computers/hardware', :collection => @cpu.hardware.ordered

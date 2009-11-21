@@ -42,4 +42,18 @@ module ApplicationHelper
   def flag_thumbnail(model, height=10)
     model.country && image_tag(h(model.country.flag), :height => height, :alt => '') 
   end
+  
+  def logo_image(manufacturer, options={})
+    options = {:size => 40, :alt => manufacturer.name}.merge(options)
+    image_tag h(manufacturer.logo), options
+    'cacca'
+  end
+  
+  def title_for(model)
+    manufacturer = model.is_a?(Manufacturer) ? model : model.manufacturer
+    content_tag :h2, :class => 'with_logo' do
+      concat logo_image(manufacturer, :class => 'manufacturer_logo')
+      concat model.name
+    end
+  end
 end

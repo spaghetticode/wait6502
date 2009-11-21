@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "/cpus/show" do
   before(:each) do
-    assigns[:cpu] = mock_model(Cpu).as_null_object
+    assigns[:cpu] = mock_model(Cpu, :name => 'Z80').as_null_object
     render 'cpus/show'
   end
 

@@ -7,8 +7,17 @@ class Manufacturer < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
   
+  attr_accessor :logo_file
+  
+  validate_on_create :validate_logo, :unless => lambda{|m| m.logo_file.blank?}
+  
   named_scope :ordered, :order => 'name'
   
+  before_save :save_logo
+  after_destroy :delete_logo
+  
+  URL_PATH = '/images/manufacturers'
+  FS_PATH = File.join(RAILS_ROOT, 'public')
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}
   
   def self.concat_query
@@ -16,5 +25,45 @@ class Manufacturer < ActiveRecord::Base
       fields << "IFNULL(#{field}, '')"
     end
     "concat(#{string.join(', ')}) like ?"
+  end
+  
+  def logo
+    has_logo? ? logo_url : nil
+  end
+  
+  def logo_filename
+    name && "#{name.downcase.gsub(' ', '_')}.png"
+  end
+  
+  private
+  
+  def has_logo?
+    name && File.file?(logo_path)
+  end
+  
+  def logo_url
+    File.join(URL_PATH, logo_filename)
+  end
+  
+  def logo_path
+    File.join(FS_PATH, logo_url)
+  end
+  
+  def validate_logo
+    unless logo_file && logo_file.content_type =~ /^image\/png$/
+      errors.add(:logo_file, 'must be a png image')
+      false
+    end
+  end
+  
+  def save_logo
+    return if logo_file.blank?
+    File.open(logo_path, 'wb') do |f|
+      f.write logo_file.read
+    end
+  end
+  
+  def delete_logo
+    File.delete(logo_path) if has_logo?
   end
 end

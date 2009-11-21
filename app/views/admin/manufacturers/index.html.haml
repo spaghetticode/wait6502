@@ -5,11 +5,13 @@
 %table.list{:cellpadding => 0, :cellspacing => 1}
   %tr
     %th Name
+    %th Logo
     %th Country
     %th{:colspan => '2'} Actions
   - @manufacturers.each do |manufacturer|
     %tr
       %td= h manufacturer.name
+      %td= image_tag h(manufacturer.logo), :height => '20', :alt => ''
       %td
         = flag_thumbnail(manufacturer)
         = h manufacturer.country_id

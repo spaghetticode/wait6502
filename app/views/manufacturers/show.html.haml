@@ -1,10 +1,10 @@
-%h2= @manufacturer.name
+= title_for(@manufacturer)
 - if @manufacturer.hardware.empty?
   %p 
     Currently there is no computer or peripheral made by
     %strong= @manufacturer.name
     in the database.
 -else
-  %table.hardware_list
+  %table.list
     = render :partial => 'computers/hardware', :collection => @manufacturer.hardware
   

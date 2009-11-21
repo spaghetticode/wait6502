@@ -1,5 +1,5 @@
 %h2 Peripherals
-%table.hardware_list
+%table.list
   - @peripherals.each do |p|
     %tr
       %td= image_tag(p.images.first.filename(:thumb)) unless p.images.empty?
