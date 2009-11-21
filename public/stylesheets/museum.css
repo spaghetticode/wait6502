@@ -119,8 +119,8 @@ a {
 	margin-left:170px;
 	border-left:1px solid black;
 	background:white;
-	min-height:600px;
-	padding:20px 30px;
+	min-height:700px;
+	padding:20px 50px;
 }
 
 #footer {
@@ -173,7 +173,7 @@ table.specifications {
 }
 
 .wide {
-	min-width:485px;
+	min-width:435px;
 }
 
 div#images {

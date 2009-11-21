@@ -12,5 +12,5 @@
       %tr
         %td= price.country_id
         %td= price.date.year
-        %td.right= "#{price.currency_id} %.2f" % price.amount
+        %td.right= price_for(price)
   
