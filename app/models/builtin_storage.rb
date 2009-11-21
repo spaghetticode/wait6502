@@ -23,6 +23,6 @@ class BuiltinStorage < ActiveRecord::Base
   end
     
   def full_name
-    "#{storage_name_id} #{storage_format_id} #{storage_size_id}"
+    "#{storage_size_id} #{storage_format_id} #{storage_name_id}"
   end
 end

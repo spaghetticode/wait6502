@@ -46,7 +46,6 @@ module ApplicationHelper
   def logo_image(manufacturer, options={})
     options = {:size => 40, :alt => manufacturer.name}.merge(options)
     image_tag h(manufacturer.logo), options
-    'cacca'
   end
   
   def title_for(model)

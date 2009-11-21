@@ -1,9 +1,9 @@
+
 = title_for(@computer)
 #info
   %p= @computer.description
 #images
-  - @computer.images.each do |image|
-    = link_to image_tag(image.filename(:thumb), :alt => @computer.name), image.filename(:normal), :onclick => "window.open('#{image.filename(:normal)}','','width=600, height=400, menubar=no, resizable=no, toolbar=no, status=no, scrollbar=no');return false"
+  = render :partial => 'images', :locals => {:images => @computer.images}
 #specs
   = render :partial => 'specs', :locals => {:hardware => @computer}
 #retail-prices
