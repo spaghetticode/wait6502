@@ -1,3 +1,11 @@
+- if session[:return_to]
+  %p.breadcrumbs
+    =link_to 'home', root_path
+    »
+    =link_to session[:return_to][:name], session[:return_to][:url]
+    »
+    = @peripheral.name
+
 = title_for(@peripheral)
 #info
   %p= @peripheral.description

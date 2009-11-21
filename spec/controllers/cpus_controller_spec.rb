@@ -17,7 +17,8 @@ describe CpusController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      Cpu.should_receive(:find)
+      mock_cpu = mock_model(Cpu, :name => 'Motorola 68000')
+      Cpu.should_receive(:find).and_return(mock_cpu)
       get 'show', :id => '1'
       response.should be_success
     end

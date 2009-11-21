@@ -17,7 +17,8 @@ describe HardwareTypesController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      HardwareType.should_receive(:find)
+      mock_type = mock_model(HardwareType, :name => 'personal computer')
+      HardwareType.should_receive(:find).and_return(mock_type)
       get 'show', :id => '1'
       response.should be_success
     end

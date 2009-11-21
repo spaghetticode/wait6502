@@ -7,6 +7,9 @@ class BuiltinLanguagesController < ApplicationController
 
   def show
     @builtin_language = BuiltinLanguage.find_by_permalink(params[:id])
+    session[:return_to] = {
+      :name => "#{@builtin_language.name.downcase} language",
+      :url => request.request_uri
+    }
   end
-
 end

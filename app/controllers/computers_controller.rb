@@ -2,8 +2,13 @@ class ComputersController < ApplicationController
   layout 'museum'
   
   def index
-    flash.now[:error] = 'You must choose a letter' unless params[:letter]
-    @computers = Hardware.computer.by_manufacturer.find_by_initial(params[:letter])
+    letter = params[:letter]
+    flash.now[:error] = 'You must choose a letter' unless letter
+    @computers = Hardware.computer.by_manufacturer.find_by_initial(letter)
+    session[:return_to] = {
+      :name => "#{letter}-computers",
+      :url => request.request_uri
+    } 
   end
 
   def show

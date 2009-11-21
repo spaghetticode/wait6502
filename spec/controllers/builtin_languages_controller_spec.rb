@@ -17,7 +17,8 @@ describe BuiltinLanguagesController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      BuiltinLanguage.should_receive(:find)
+      mock_language = mock_model(BuiltinLanguage, :name => 'language')
+      BuiltinLanguage.should_receive(:find).and_return(mock_language)
       get 'show', :id => '1'
       response.should be_success
     end

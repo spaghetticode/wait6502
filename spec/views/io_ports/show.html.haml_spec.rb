@@ -8,7 +8,7 @@ describe "/io_ports/show" do
   end
 
   it "should tell you where to find the file" do
-    response.should have_tag('h2', assigns[:io_port].name.capitalize)
+    response.should have_tag('h2', /#{assigns[:io_port].name.capitalize}/)
     response.should have_tag('a', @hardware.name)
   end
 end

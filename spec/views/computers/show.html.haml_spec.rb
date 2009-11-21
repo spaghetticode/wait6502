@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "/computers/show" do
   before(:each) do
-    assigns[:computer] = mock_model(Hardware, :name => 'Apple IIc').as_null_object
+    manufacturer = mock_model(Manufacturer, :name => 'Apple').as_null_object
+    assigns[:computer] = mock_model(Hardware, :name => 'Apple IIc', :images => [], :manufacturer => manufacturer).as_null_object
     render 'computers/show'
   end
 

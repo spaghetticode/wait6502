@@ -17,7 +17,8 @@ describe BuiltinStoragesController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      BuiltinStorage.should_receive(:find)
+      mock_storage = mock_model(BuiltinStorage, :full_name => 'storage name')
+      BuiltinStorage.should_receive(:find).and_return(mock_storage)
       get 'show', :id => 1
       response.should be_success
     end

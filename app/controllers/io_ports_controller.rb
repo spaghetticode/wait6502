@@ -7,5 +7,9 @@ class IoPortsController < ApplicationController
 
   def show
     @io_port = IoPort.find(params[:id])
+    session[:return_to] = {
+      :name => "#{@io_port.name} port",
+      :url => request.request_uri
+    }
   end
 end

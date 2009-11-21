@@ -17,7 +17,8 @@ describe ManufacturersController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      Manufacturer.should_receive(:find)
+      mock_manufacturer = mock_model(Manufacturer, :name => 'Apple')
+      Manufacturer.should_receive(:find).and_return(mock_manufacturer)
       get 'show', :id => '1'
       response.should be_success
     end

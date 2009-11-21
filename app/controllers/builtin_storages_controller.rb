@@ -7,5 +7,9 @@ class BuiltinStoragesController < ApplicationController
 
   def show
     @storage = BuiltinStorage.find(params[:id])
+    session[:return_to] = {
+      :name => @storage.full_name,
+      :url => request.request_uri
+    }
   end
 end

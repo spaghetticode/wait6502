@@ -17,7 +17,8 @@ describe OperativeSystemsController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      OperativeSystem.should_receive(:find)
+      mock_os = mock_model(OperativeSystem, :name => 'MSDOS')
+      OperativeSystem.should_receive(:find).and_return(mock_os)
       get 'show', :id => '1'
       response.should be_success
     end

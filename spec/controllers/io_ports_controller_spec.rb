@@ -17,7 +17,8 @@ describe IoPortsController do
 
   describe "GET 'show'" do
     it "should be successful" do
-      IoPort.should_receive(:find)
+      mock_port = mock_model(IoPort, :name => 'serial')
+      IoPort.should_receive(:find).and_return(mock_port)
       get 'show', :id => '1'
       response.should be_success
     end

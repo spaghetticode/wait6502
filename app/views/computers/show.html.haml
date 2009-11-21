@@ -1,4 +1,11 @@
-
+- if session[:return_to]
+  %p.breadcrumbs
+    =link_to 'home', root_path
+    »
+    =link_to session[:return_to][:name], session[:return_to][:url]
+    »
+    = @computer.name
+  
 = title_for(@computer)
 #info
   %p= @computer.description
