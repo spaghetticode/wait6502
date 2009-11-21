@@ -59,7 +59,7 @@ class Image < ActiveRecord::Base
   
   def save_resized_images
     FORMATS.each do |format, size|
-      system "convert -resize #{size} '#{@original_file}' '#{filename(format, :fs)}'"
+      system "#{::CONVERT_PATH}convert -resize #{size} '#{@original_file}' '#{filename(format, :fs)}'"
     end
   end
 end
