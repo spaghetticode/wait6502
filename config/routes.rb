@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
     m.resources :co_cpus, :as => 'co-cpu'
     m.resources :operative_systems, :as => 'operative-systems'
     m.resources :builtin_languages, :as => 'builtin-languages'
-    m.resources :builtin_storages
+    m.resources :builtin_storages, :as => 'mass-storages'
   end
   
   map.resources :user_sessions  

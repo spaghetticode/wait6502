@@ -1,0 +1,3 @@
+%h2= @storage.full_name.capitalize
+%table.list
+  = render :partial => 'computers/hardware', :collection => @storage.hardware

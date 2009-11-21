@@ -70,7 +70,7 @@ Feature: Manage Hardware
 		And   I have entered some data for storage names, formats and sizes
 		And   a builtin storage "floppy disk - 5.25 inches - 360Kb" has been created
 		And   I am on the "IBM PC" hardware editor page
-		When  I select "floppy disk 5.25 inches 360Kb" from "builtin_storage_id"
+		When  I select "360Kb 5.25 inches floppy disk" from "builtin_storage_id"
 		And   I press "Add BUILTIN STORAGE"
 		Then  I should see "Builtin storage was successfully added"
 	
