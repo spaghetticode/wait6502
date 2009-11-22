@@ -1,5 +1,6 @@
 class Admin::OriginalPricesController < ApplicationController
-  before_filter :require_logged_in, :find_purchaseable
+  before_filter :require_logged_in
+  before_filter :find_purchaseable, :except => [:tainted]
   
   def create
     @original_price = @purchaseable.original_prices.build(params[:original_price])
@@ -16,7 +17,7 @@ class Admin::OriginalPricesController < ApplicationController
     flash[:notice] = 'Original price was successfully destroyed.'
     redirect_to purchaseable_edit_path
   end
-
+  
   private
   
   def find_purchaseable

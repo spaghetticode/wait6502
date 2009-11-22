@@ -1,0 +1,19 @@
+%h1 Tainted Original Prices
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Hardware
+    %th Country
+    %th Currency
+    %th Amount
+    %th Year
+    %th{:colspan => 3} Actions
+  - @tainted_prices.each do |price|
+    %tr
+      %td= price.purchaseable.name
+      %td= price.country_id
+      %td= price.currency_id
+      %td= price.amount
+      %td= price.date.year
+      %td= button_to 'Approve', approve_admin_tainted_original_price_path(price), :method => :put
+      %td= link_to 'Edit', edit_admin_tainted_original_price_path(price)
+      %td= link_to 'Destroy', admin_tainted_original_price_path(price), :method => :delete, :confirm => 'are you sure?'

@@ -16,7 +16,9 @@ ActionController::Routing::Routes.draw do |map|
       :member => associations,
       :has_many => [:original_prices, :images, :ebay_keywords]
     )
-        
+    
+    admin.resources :tainted_original_prices, :except => [:new, :create], :member => {:approve => :put}
+    
     admin.with_options  :except => [:show, :update, :edit] do |m|
       m.resources :countries
       m.resources :currencies
@@ -50,6 +52,7 @@ ActionController::Routing::Routes.draw do |map|
     m.resources :builtin_storages, :as => 'mass-storages'
   end
   
+  map.resources :original_prices, :only => [], :collection => {:create_tainted => :post}
   map.resources :user_sessions  
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

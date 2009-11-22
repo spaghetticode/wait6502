@@ -1,0 +1,20 @@
+%h2 Edit Tainted Original Price
+-form_for :tainted_price, :url => admin_tainted_original_price_path(@tainted_price), :html => {:method => :put} do |f|
+  = error_messages_for :tainted_price
+  %table.record
+    %tr
+      %th= f.label :country_id
+      %td= country_selector(f)
+    %tr
+      %th= f.label :currency_id
+      %td= currency_selector(f)
+    %tr
+      %th= f.label :amount
+      %td= f.text_field :amount, :size => 17
+    %tr
+      %th= f.label :date, 'Year'
+      %td= f.date_select :date, :start_year => 1975, :discard_day => true
+    %tr
+      %td.center{:colspan => 2}= f.submit 'Edit'
+
+%p= link_to 'back', admin_tainted_original_prices_path

@@ -91,6 +91,6 @@ describe Admin::OriginalPricesController do
       it 'should flash[:notice]' do
         flash[:notice].should_not be_nil
       end
-    end
+    end 
   end
 end

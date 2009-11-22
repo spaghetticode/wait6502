@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091120202306) do
+ActiveRecord::Schema.define(:version => 20091122141527) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20091120202306) do
     t.string   "purchaseable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "tainted"
   end
 
   create_table "storage_formats", :id => false, :force => true do |t|

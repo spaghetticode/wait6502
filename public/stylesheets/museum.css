@@ -37,7 +37,7 @@ a {
 #header {
 	height:125px;
 	border:1px solid black;
-	background:#ddd;
+	background:url(/images/header.jpg);
 }
 
 #header h1 {
@@ -46,33 +46,29 @@ a {
 	padding:0;
 	height:90px;
 	font-weight:normal;
-	text-indent:-9999px;
-}
-
-#header h1 a {
 	text-indent: -9999px;
+	width:450px;
 }
 
-#header p {
-	margin:0;
-	margin-top:-16px;
-	margin-left:450px;
-	font-size:16px;
+#header img {
+	position:absolute;
+	top:-10px;
+	left:620px;
 }
 
-#flash p {
+.flash p {
 	line-height:40px;
 	text-align:center;
 	margin:0px;
 }
 
-#flash p.notice {
+p.notice {
 	background: #afa;
 	color:green;
 	border:2px solid green;
 }
 
-#flash p.error {
+p.error {
 	background: #faa;
 	color:red;
 	border:2px solid red;
@@ -180,7 +176,7 @@ div#images {
 	text-align:right;
 }
 
-#images, #specs, #retail-prices, #values {
+#images, #specs, #retail-prices, #values, #price_form {
 	margin:20px 0px;
 }
 
@@ -205,16 +201,16 @@ ul.subnav img{
  	position:absolute;
  	display:none;
 	margin-left:100px;
-	margin-top:-26px;
+	margin-top:-30px;
 	border:none;
 }
 
 #left-column li.leftnav {
-	height:26px;
+	height:30px;
 }
 
 #left-column li.computers>a {
-	height:16px;
+	height:20px;
 }
 
 #left-column li.computers:hover {
@@ -258,4 +254,34 @@ img.manufacturer_logo {
 
 .breadcrumbs a:hover {
 	text-decoration:underline;
+}
+
+.specifications caption a img {
+	position:relative;
+	top:17px;
+	border:none;
+}
+
+#price_form th, #price_form td {
+	text-align:center;
+	padding:7px;
+}
+
+#message {
+	margin-top:20px;
+}
+
+#new_user_session table {
+	width:500px;
+	margin:40px auto;
+	border:1px solid gray;
+	padding:25px;
+	background:#ddd;
+}
+
+#new_user_session th {
+	text-transform:uppercase;
+	font-weight:normal;
+	text-align:right;
+	padding:10px;
 }

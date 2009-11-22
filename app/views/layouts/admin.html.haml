@@ -35,7 +35,11 @@
             %ul 
               %li= link_to 'operative systems', admin_operative_systems_path
               %li= link_to 'builtin languages', admin_builtin_languages_path
-          %li= link_to 'auctions', admin_auctions_path
+          %li
+            Prices
+            %ul
+              %li= link_to 'auctions', admin_auctions_path
+              %li= link_to 'tainted prices', admin_tainted_original_prices_path
           %li
             Support
             %ul

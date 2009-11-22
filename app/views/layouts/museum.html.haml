@@ -14,11 +14,11 @@
         - else
           %li= link_to 'login', login_path     
     
-    #header
+    #header{:style => 'position:relative'}
       %h1= link_to 'Wait 6502 old computers and retrocomputing', root_path
-      %p old computers and retrocomputing
+      %img{:src => '/images/pet-2001.png', :alt => 'PET-2001'}
         
-    #flash
+    .flash
       - flash.each_pair do |type, message|
         %p{:class => type}= message
     #container

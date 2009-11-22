@@ -2,7 +2,7 @@
 
 %h2 Original Sale Prices
 %table
-  - purchaseable.original_prices.sort_by(&:date).each do |price|
+  - purchaseable.original_prices.untainted.sort_by(&:date).each do |price|
     %tr
       %td= price.country_id
       %td= sprintf("#{price.currency_id} %.2f", price.amount)

@@ -1,0 +1,9 @@
+var form = $('#add_price_form');
+var message = $('#message');
+
+<% if @valid %>
+	form[0].reset();
+	message.html('<div class="flash"><p class="notice">Thanks for your help. Price will be pubblished after review.</p></div>').fadeIn();
+<% else %>
+	message.html('<div class="flash"><p class="error">Price is not valid. All fields are required and amount must be a number.</p></div>').fadeIn();
+<% end %>

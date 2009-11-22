@@ -1,4 +1,3 @@
-@focus
 Feature: Manage Hardware
 	In order to show hardware information
 	As a logged user
