@@ -8,6 +8,11 @@ body {
 
 a {
 	color:blue;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
 }
 
 #topnav {
@@ -30,24 +35,27 @@ a {
 
 #topnav a {
 	color:white;
-	text-decoration:none;
 	font-size:10px;
 }
 
 #header {
 	height:125px;
 	border:1px solid black;
-	background:url(/images/header1.jpg);
+	background:url(/images/header1tag.jpg);
 }
 
 #header h1 {
 	background:url(/images/wait.png) no-repeat left bottom;
 	margin:0;
 	padding:0;
-	height:90px;
-	font-weight:normal;
 	text-indent: -9999px;
+	height:90px;
+}
+
+#header h1 a {
 	width:450px;
+	display:block;
+	height:120px;
 }
 
 #header img {
@@ -100,7 +108,6 @@ p.error {
 }
 
 #left-column li a {
-	text-decoration:none;
 	color:#222;
 	display:block;
 	padding:5px;
@@ -108,7 +115,6 @@ p.error {
 
 #left-column li a:hover {
 	color: black;
-	text-decoration:underline;
 }
 
 #right-column {
@@ -134,6 +140,7 @@ p.error {
 
 h2, h3, h4 {
 	margin:0;
+	color:#333;
 }
 
 table.specifications {
@@ -158,14 +165,6 @@ table.specifications {
 .specifications td {
 	background:white;
 	padding:5px 15px;
-}
-
-.specifications a {
-	text-decoration:none;
-}
-
-.specifications a:hover {
-	text-decoration: underline;
 }
 
 .wide {
@@ -271,14 +270,6 @@ img.manufacturer_logo {
 	font-size:10px;
 	margin-top:8px;
 	margin-bottom:30px;
-}
-
-.breadcrumbs a {
-	text-decoration:none;
-}
-
-.breadcrumbs a:hover {
-	text-decoration:underline;
 }
 
 .specifications caption a img {
