@@ -37,7 +37,7 @@ a {
 #header {
 	height:125px;
 	border:1px solid black;
-	background:url(/images/header.jpg);
+	background:url(/images/header1.jpg);
 }
 
 #header h1 {
@@ -174,8 +174,14 @@ table.specifications {
 
 div#images {
 	text-align:right;
+	overflow:auto;
 }
 
+#images a {
+	display:block;
+	float:right;
+	margin:1px;
+}
 #images, #specs, #retail-prices, #values, #price_form {
 	margin:20px 0px;
 }
@@ -244,7 +250,7 @@ img.manufacturer_logo {
 	text-transform:uppercase;
 	color:#555;
 	font-size:10px;
-	margin-top:0;
+	margin-top:8px;
 	margin-bottom:30px;
 }
 

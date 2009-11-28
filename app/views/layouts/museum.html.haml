@@ -29,9 +29,9 @@
             %ul.subnav
               %li
                 = image_tag('/images/kb.png', :usemap => '#keyboard')
-                %map{:name => 'keyboard'}
+                %map{:name => 'keyboard', :id => 'keyboard'}
                   - Keys.letters.each do |letter|
-                    %area{:shape => 'rect', :coords => letter[1], :href=>"#{computers_path}?letter=#{letter[0]}"}
+                    %area{:shape => 'rect', :coords => letter[1], :href=>"#{computers_path}?letter=#{letter[0]}", :alt => letter[0]}
           %li.leftnav= link_to 'peripherals', peripherals_path
           %li.leftnav= link_to 'manufacturers', manufacturers_path
           %li.leftnav= link_to 'categories', hardware_types_path
