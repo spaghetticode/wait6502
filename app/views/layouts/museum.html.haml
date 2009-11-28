@@ -2,7 +2,7 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "it", :lang => "it"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
-    %title= @title || 'WAIT 6502 retrocomputing'
+    %title= "WAIT 6502 retrocomputing - #{@title}"
     = stylesheet_link_tag 'museum'
     = yield :head
   %body
@@ -27,11 +27,9 @@
           %li.computers
             %a computers »
             %ul.subnav
-              %li
-                = image_tag('/images/kb.png', :usemap => '#keyboard')
-                %map{:name => 'keyboard', :id => 'keyboard'}
-                  - Keys.letters.each do |letter|
-                    %area{:shape => 'rect', :coords => letter[1], :href=>"#{computers_path}?letter=#{letter[0]}", :alt => letter[0]}
+              %li.keyboard
+                - Keys.keys.each do |k|
+                  = link_to k[:letter], "#{computers_path}?letter=#{k[:letter]}", :class => 'key', :style => k[:position]              
           %li.leftnav= link_to 'peripherals', peripherals_path
           %li.leftnav= link_to 'manufacturers', manufacturers_path
           %li.leftnav= link_to 'categories', hardware_types_path

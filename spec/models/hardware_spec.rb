@@ -63,7 +63,7 @@ describe Hardware do
   
   describe 'an instance with valid attributes' do
     def valid_hardware(options = {})
-      @valid = Factory(:hardware, options)
+      @valid ||= Factory(:hardware, options)
     end
 
     it 'should be valid' do
@@ -81,6 +81,16 @@ describe Hardware do
     it 'should have a builtin_language association' do
       hardware = Factory(:hardware, :builtin_language => Factory(:builtin_language))
       hardware.builtin_language.should_not be_nil
+    end
+    
+    it 'full name should include manufacturer name' do
+      valid_hardware.full_name.should include(valid_hardware.manufacturer.name)
+    end
+    
+    it 'full name should not include the manufacturer name twice' do
+      manufacturer = mock_model(Manufacturer, :name => 'Atari')
+      hardware = Hardware.new(:name => 'Atari 800', :manufacturer => manufacturer)
+      hardware.full_name.should == 'Atari 800'
     end
   end
 

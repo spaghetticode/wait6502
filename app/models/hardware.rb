@@ -73,6 +73,10 @@ class Hardware < ActiveRecord::Base
     builtin_storages.map(&:full_name).join(', ')
   end
   
+  def full_name
+    name.include?(manufacturer.name) ? name : "#{manufacturer.name} #{name}"
+  end
+  
   private
   
   def self.search_field_string

@@ -1,31 +1,30 @@
 class Keys
-  def self.letters
-    letters = []
-    %w{q w e r t y u i o p }.inject(0) do |i,letter|
-      letters << [letter, "#{21+i},21, #{48+i},48"]
-      i += 27
+  def self.keys
+    keys = []
+    %w[q w e r t y u i o p].inject(26) do |pos, key|
+      keys << {:letter => key, :position => "top:21px;left:#{pos}px;"}
+      pos += 27
     end
-    %w{a s d f g h j k l}.inject(0) do |i, letter|
-      letters << [letter, "#{21+i},49, #{48+i},75"]
-      i += 27
+    %w[a s d f g h j k l].inject(26) do |pos, key|
+      keys << {:letter => key, :position => "top:48px;left:#{pos}px"}
+      pos += 27
     end
-    %w{z x c v b n m}.inject(0) do |i, letter|
-      letters << [letter, "#{21+i},76, #{48+i},102"]
-      i += 27
+    %w[z x c v b n m].inject(26) do |pos, key|
+      keys << {:letter => key, :position => "top:75px;left:#{pos}px"}
+      pos += 27
     end
-    %w{7 8 9}.inject(0) do |i, letter|
-      letters << [letter, "#{299+i},21, #{326+i},48"]
-      i += 27
+    %w[7 4 1 0].inject(21) do |pos,key|
+      keys << {:letter => key, :position => "top:#{pos}px;left:303px"}
+      pos += 27
     end
-    %w{4 5 6}.inject(0) do |i, letter|
-      letters << [letter, "#{299+i},49, #{326+i},75"]
-      i += 27
+    %w[8 5 2].inject(21) do |pos,key|
+      keys << {:letter => key, :position => "top:#{pos}px;left:330px"}
+      pos += 27
     end
-    %w{1 2 3}.inject(0) do |i, letter|
-      letters << [letter, "#{299+i},76, #{326+i},102"]
-      i += 27
+    %w[9 6 3].inject(21) do |pos,key|
+      keys << {:letter => key, :position => "top:#{pos}px;left:358px"}
+      pos += 27
     end
-    letters << ['0', "299,102, 326,129"]
-    letters    
+    keys
   end
 end
