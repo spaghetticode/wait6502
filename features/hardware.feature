@@ -95,7 +95,7 @@ Feature: Manage Hardware
 		And    I am on the "Amiga 2000" hardware editor page
 		When   I select "Italy" from "original_price_country_id"
 		And    I select "EUR" from "original_price_currency_id"
-		And    I fill in "original_price_amount" with "2'500'000"
+		And    I fill in "original_price_amount" with "2500000"
 		And    I press "Add Price"
 		Then   I should see "Original Price was successfully created"
 

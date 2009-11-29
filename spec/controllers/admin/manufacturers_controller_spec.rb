@@ -141,7 +141,7 @@ describe Admin::ManufacturersController do
         end
         
         it 'should redirect to manufacturers page' do
-          response.should redirect_to admin_manufacturers_path
+          response.should redirect_to(admin_manufacturers_path)
         end
         
         it 'should flash' do

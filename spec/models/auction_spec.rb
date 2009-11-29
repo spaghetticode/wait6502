@@ -233,14 +233,13 @@ describe Auction do
       end
     end
     
-    describe 'sold_in' do
+    describe 'SOLD_IN' do
       before do
         italy = mock_model(EbaySite, :name => 'IT', :currency_id => 'EUR')
-        usa  = mock_model(EbaySite, :name => 'US', :currency_id => 'USD')
-        3.times {Factory(:auction, :ebay_site => italy, :final_price => '33')}
+        3.times {Factory(:auction)}
         Auction.last.update_attributes(
-          :ebay_site_id => 'US',
-          :final_price => nil
+          :ebay_site_id => 'IT',
+          :final_price => 33.0
         )
       end
       
