@@ -67,7 +67,29 @@ describe Admin::IoPortsController do
         assigns[:io_port].should_not be_nil
       end
     end
-
+    
+    describe 'GET NEW' do
+      before do
+        get :new
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render new template' do
+        response.should render_template(:new)
+      end
+      
+      it 'should assign @io_port' do
+        assigns[:io_port].should_not be_nil
+      end
+      
+      it '@io_port should be a new record' do
+        assigns[:io_port].should be_new_record
+      end
+    end
+    
     describe "POST create" do
       describe 'with valid parameters' do
           before do

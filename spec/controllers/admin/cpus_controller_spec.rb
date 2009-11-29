@@ -49,7 +49,26 @@ describe Admin::CpusController do
         assigns[:cpus].should_not be_nil
       end
     end
-  
+    
+    describe 'GET EDIT' do
+      before do
+        Cpu.should_receive(:find).and_return(mock_cpu)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should assign @cpu' do
+        assigns[:cpu].should_not be_nil
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+    end  
+           
     describe 'GET NEW' do
       before do
         get :new

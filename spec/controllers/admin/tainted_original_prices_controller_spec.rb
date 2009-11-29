@@ -6,6 +6,10 @@ describe Admin::TaintedOriginalPricesController do
     @price ||= mock_model(OriginalPrice, options).as_null_object
   end
   
+  def put_update
+    put :update, :id => '1', :tainted_price => {}
+  end
+  
   describe 'when not logged in' do
     should_flash_and_redirect_for(
       :index => :get,
@@ -64,7 +68,7 @@ describe Admin::TaintedOriginalPricesController do
       end
       
       it 'should redirect' do
-        response.should redirect_to admin_tainted_original_prices_path
+        response.should redirect_to(admin_tainted_original_prices_path)
       end
       
       it 'should assign @tainted_price' do
@@ -73,6 +77,46 @@ describe Admin::TaintedOriginalPricesController do
       
       it 'should flash[:notice]' do
         flash[:notice].should_not be_nil
+      end
+    end
+    
+    describe 'PUT UPDATE' do
+      describe 'with valid attributes' do
+        before do
+          OriginalPrice.should_receive(:find).and_return(mock_price(:update_attributes => true))
+          put_update
+        end
+        
+        it 'should redirect to tainted original prices page' do
+          response.should redirect_to(admin_tainted_original_prices_path)
+        end
+        
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should assign @tainted_price' do
+          assigns[:tainted_price].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid attributes' do
+        before do
+          OriginalPrice.should_receive(:find).and_return(mock_price(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
       end
     end
     

@@ -9,6 +9,10 @@ module BuiltinStoragesControllerHelper
     delete :destroy, :id => '1'
   end
   
+  def put_update
+    put :update, :id => '1', :builtin_storage => {}
+  end
+  
   def mock_builtin_storage(options={})
     @mock ||= mock_model(BuiltinStorage, options)
   end
@@ -127,7 +131,51 @@ describe Admin::BuiltinStoragesController do
         end
       end
     end
-  
+    
+    describe 'PUT UPDATE' do
+      describe 'with valid parameters' do
+        before do
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:update_attributes => true))
+          put_update
+        end
+      
+        it 'should redirect to builtin storages page' do
+          response.should redirect_to(admin_builtin_storages_path)
+        end
+      
+        it 'should assign @builtin_storage' do
+          assigns[:builtin_storage].should_not be_nil
+        end
+      
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid parameters' do
+        before do
+          BuiltinStorage.should_receive(:find).and_return(mock_builtin_storage(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should assign @builtin_storage' do
+          assigns[:builtin_storage].should_not be_nil
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+      end
+    end
+    
     describe 'DELETE DESTROY' do
       describe 'when builtin storage has no hardware associated' do
         before do

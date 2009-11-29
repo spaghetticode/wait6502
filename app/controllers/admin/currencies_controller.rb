@@ -6,16 +6,8 @@ class Admin::CurrenciesController < ApplicationController
     @currencies = Currency.ordered.paginate(:page => params[:page])
   end
 
-  def show
-    @currency = Currency.find(params[:id])
-  end
-
   def new
     @currency = Currency.new
-  end
-
-  def edit
-    @currency = Currency.find(params[:id])
   end
 
   def create
@@ -28,19 +20,14 @@ class Admin::CurrenciesController < ApplicationController
     end
   end
 
-  def update
-    @currency = Currency.find(params[:id])
-    if @currency.update_attributes(params[:currency])
-      flash[:notice] = 'Currency was successfully updated.'
-      redirect_to admin_currencies_path
-    else
-      render :action => "edit"
-    end
-  end
-
   def destroy
-    Currency.find(params[:id]).destroy
-    flash[:notice] = 'Currency was successfully destroyed.'
+    @currency = Currency.find(params[:id])
+    if @currency.unused?
+      @currency.destroy
+      flash[:notice] = 'Currency was successfully destroyed.'
+    else
+      flash[:error] = 'Currency is still used by some auction, price or ebay site.'
+    end
     redirect_to admin_currencies_path
   end
 end

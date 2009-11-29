@@ -4,6 +4,14 @@ module ManufacturersControllerHelper
   def mock_manufacturer(options={})
     @mock ||= mock_model(Manufacturer, options)
   end
+  
+  def post_create
+    post :create, :manufacturer => {}
+  end
+  
+  def put_update
+    put :update, :id => '1', :manufacturer => {}
+  end
 end
 
 describe Admin::ManufacturersController do
@@ -89,7 +97,7 @@ describe Admin::ManufacturersController do
       describe 'with valid parameters' do        
         before do
           Manufacturer.should_receive(:new).and_return(mock_manufacturer(:save => true))
-          post :create, :manufacturer => {}
+          post_create
         end
       
         it 'should flash' do
@@ -108,7 +116,7 @@ describe Admin::ManufacturersController do
       describe 'with invalid parameters' do
         before do
           Manufacturer.should_receive(:new).and_return(mock_manufacturer(:save => false))
-          post :create, :manufacturer => {}
+          post_create
         end
         
         it 'should not flash' do
@@ -121,6 +129,46 @@ describe Admin::ManufacturersController do
         
         it 'should assign @Manufacturer' do
           assigns[:manufacturer].should_not be_nil
+        end
+      end
+    end
+    
+    describe 'PUT UPDATE' do
+      describe 'with valid parameters' do
+        before do
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:update_attributes => true))
+          put_update
+        end
+        
+        it 'should redirect to manufacturers page' do
+          response.should redirect_to admin_manufacturers_path
+        end
+        
+        it 'should flash' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should assign @manufacturer' do
+          assigns[:manufacturer].should_not be_nil
+        end 
+      end
+      
+      describe 'with invalid parameters' do
+        before do
+          Manufacturer.should_receive(:find).and_return(mock_manufacturer(:update_attributes => false))
+          put_update
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render edit template' do
+          response.should render_template(:edit)
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
         end
       end
     end

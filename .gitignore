@@ -7,3 +7,4 @@ public/images/**/*
 !public/images/flags/*.png
 spec/fixtures/images/**/*
 !spec/fixtures/images/**/.gitignore
+coverage/*

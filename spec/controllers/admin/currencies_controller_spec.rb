@@ -109,17 +109,44 @@ describe Admin::CurrenciesController do
     end
 
     describe 'DELETE DESTROY' do
-      before do
-        Currency.should_receive(:find).and_return(mock_currency(:destroy => nil))
-        delete :destroy, :id => '1'
+      describe 'when currency has no associated ebay site, auction or price' do
+        before do
+          Currency.should_receive(:find).and_return(mock_currency(:unused? => true))
+          mock_currency.should_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+      
+        it 'should flash[:notice]' do
+          flash[:notice].should == 'Currency was successfully destroyed.'
+        end
+        
+        it 'should assign @currency' do
+          assigns[:currency].should_not be_nil
+        end
+        
+        it 'should redirect to currencies page' do
+          response.should redirect_to(admin_currencies_path)
+        end
       end
       
-      it 'should flash' do
-        flash[:notice].should == 'Currency was successfully destroyed.'
-      end
-      
-      it 'should redirect to admin_currencies_path' do
-        response.should redirect_to(admin_currencies_path)
+      describe 'when currency is associated to any ebay site, auction or price' do
+        before do
+          Currency.should_receive(:find).and_return(mock_currency(:unused? => false))
+          mock_currency.should_not_receive(:destroy)
+          delete :destroy, :id => '1'
+        end
+        
+        it 'should redirec to currencies page' do
+          response.should redirect_to(admin_currencies_path)
+        end
+        
+        it 'should flash[:error]' do
+          flash[:error].should_not be_nil
+        end
+        
+        it 'should assign @currency' do
+          assigns[:currency].should_not be_nil
+        end
       end
     end
   end  

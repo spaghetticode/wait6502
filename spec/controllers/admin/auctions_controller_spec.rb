@@ -60,6 +60,72 @@ describe Admin::AuctionsController do
       end
     end
     
+    describe 'GET NEW' do
+      before do
+        get :new
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render new template' do
+        response.should render_template(:new)
+      end
+      
+      it 'should assign @auction' do
+        assigns[:auction].should_not be_nil
+      end
+      
+      it '@auction should be a new record' do
+        assigns[:auction].should be_new_record
+      end
+    end
+    
+    describe 'POST CREATE' do
+      describe 'with valid parameters' do
+        before do
+          Auction.should_receive(:new).and_return(mock_auction(:save => true))
+          post :create, :auction => {}
+        end
+        
+        it 'should redirect to auctions page' do
+          response.should redirect_to(admin_auctions_path)
+        end
+        
+        it 'should flash[:notice]' do
+          flash[:notice].should_not be_nil
+        end
+        
+        it 'should assign @auction' do
+          assigns[:auction].should_not be_nil
+        end
+      end
+      
+      describe 'with invalid parameters' do
+        before do
+          Auction.should_receive(:new).and_return(mock_auction(:save => false))
+          post :create, :auction => {}
+        end
+        
+        it 'should be success' do
+          response.should be_success
+        end
+        
+        it 'should render new template' do
+          response.should render_template(:new)
+        end
+        
+        it 'should assign @auction' do
+          assigns[:auction].should_not be_nil
+        end
+        
+        it 'should not flash' do
+          flash[:notice].should be_nil
+        end
+      end
+    end
+    
     describe 'PUT UPDATE' do
       describe 'with valid parameters' do
         before do

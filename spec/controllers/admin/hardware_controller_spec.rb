@@ -12,6 +12,10 @@ module HardwareControllerHelper
   def put_update
     put :update, :id => '1', :hardware => {}
   end
+  
+  def put_add_cpu
+    put :add_cpu, :cpu_id => '1', :id => '1'
+  end
 end
 describe Admin::HardwareController do
   include HardwareControllerHelper
@@ -198,7 +202,7 @@ describe Admin::HardwareController do
       end
     end
     
-    describe 'POST ADD_CPU' do
+    describe 'PUT ADD_CPU' do
       before do
         @cpus = []
         Hardware.should_receive(:find).and_return(mock_hardware(:cpus => @cpus))
@@ -208,7 +212,7 @@ describe Admin::HardwareController do
         before do
           @cpus.should_receive(:find_by_id).and_return(nil)
           Cpu.should_receive(:find).and_return(mock_model(Cpu))
-          post :add_cpu, :cpu_id => '1', :id => '1'
+          put_add_cpu
         end
       
         it 'should redirect to edit page' do
@@ -223,7 +227,7 @@ describe Admin::HardwareController do
       describe 'when CPU is already associated to hardware' do
         before do
           @cpus.should_receive(:find_by_id).and_return(true)
-          post :add_cpu, :id => '1', :cpu_id => '1'
+          put_add_cpu
         end
         
         it 'should redirect to edit page' do
@@ -233,6 +237,31 @@ describe Admin::HardwareController do
         it 'should flash' do
           flash[:notice].should =~ /already associated/
         end
+      end
+    end
+    
+    describe 'POST REMOVE_CPU' do
+      before do
+        cpu = mock_model(Cpu)
+        Cpu.should_receive(:find).and_return(cpu)
+        Hardware.should_receive(:find).and_return(mock_hardware(:cpus => [cpu]))
+        delete :remove_cpu, :cpu_id => '1', :id => '1'
+      end
+      
+      it 'should flash[:notice]' do
+        flash[:notice].should == 'Cpu was successfully removed.'
+      end
+      
+      it 'should redirect to hardware page' do
+        response.should redirect_to(edit_admin_hardware_path(mock_hardware))
+      end
+      
+      it 'should assign @model' do
+        assigns[:model].should_not be_nil
+      end
+      
+      it 'should assign @hardware' do
+        assigns[:hardware].should_not be_nil
       end
     end
   end

@@ -77,7 +77,26 @@ describe Admin::OperativeSystemsController do
         assigns[:operative_system].should be_new_record
       end
     end
-
+    
+    describe 'GET EDIT' do
+      before do
+        OperativeSystem.should_receive(:find).and_return(mock_operative_system)
+        get :edit, :id => '1'
+      end
+      
+      it 'should be success' do
+        response.should be_success
+      end
+      
+      it 'should render edit template' do
+        response.should render_template(:edit)
+      end
+      
+      it 'should assign @operative_system' do
+        assigns[:operative_system].should_not be_nil
+      end
+    end
+    
     describe 'POST CREATE' do
       describe 'with valid attributes' do
         before do
