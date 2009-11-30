@@ -104,9 +104,10 @@ describe Admin::CountriesController do
     end
   
     describe 'DELETE DESTROY' do
-      describe 'when country has no manufacturer associated' do
+      describe 'when country has empty associations' do
         before do
           Country.should_receive(:find).and_return(mock_country)
+          mock_country.stub!(:unused? => true)
           mock_country.should_receive(:destroy)
           delete :destroy, :id => '1'
         end
@@ -120,10 +121,11 @@ describe Admin::CountriesController do
         end
       end
       
-      describe 'when country has at least one manufacturer associated' do
+      describe 'when country associations are not empty' do
         before do
-          Manufacturer.should_receive(:find_by_country_id).and_return(mock_model(Manufacturer))
-          Country.should_not_receive(:find)
+          manufacturer = mock_model(Manufacturer)
+          Country.should_receive(:find).and_return(mock_country(:manufacturers => [manufacturer], :unused? => false))
+          Country.should_not_receive(:destroy)
           delete :destroy, :id => '1'
         end
         

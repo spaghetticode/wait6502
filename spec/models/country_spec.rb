@@ -41,6 +41,10 @@ describe Country do
       it 'flag_filename should be nil' do
         @country.flag_filename.should be_nil
       end
+      
+      it 'should be unused' do
+        @country.should be_unused
+      end
     end
     
     describe 'when uploading an image' do
@@ -79,6 +83,16 @@ describe Country do
     
     it 'flag_filename should not be nil' do
      @country.flag_filename.should_not be_nil
+    end
+  
+    describe 'when associations are not empty' do
+      it 'should not be unused' do
+        %w[manufacturers original_prices ebay_sites].each do |association|
+          klass = association.singularize.camelize.constantize
+          @country.stub!(association => [mock_model(klass)])
+          @country.should_not be_unused
+        end
+      end
     end
   end
   

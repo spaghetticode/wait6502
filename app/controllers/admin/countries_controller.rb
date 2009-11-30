@@ -21,11 +21,12 @@ class Admin::CountriesController < ApplicationController
   end
 
   def destroy
-    if Manufacturer.find_by_country_id(params[:id]).nil?
-      Country.find(params[:id]).destroy
+    @country = Country.find(params[:id], :include => :manufacturers)
+    if @country.unused?
+      @country.destroy
       flash[:notice] = 'Country was successfully destroyed.'
     else
-      flash[:error] = 'Can\'t destroy: country still has associated manufacturers'
+      flash[:error] = 'Can\'t destroy: country still has associated manufacturers, ebay sites or prices.'
     end
     redirect_to admin_countries_path
   end

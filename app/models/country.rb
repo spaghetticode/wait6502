@@ -3,7 +3,9 @@ class Country < ActiveRecord::Base
   acts_as_natural_key :name
 
   has_many :manufacturers
-
+  has_many :ebay_sites
+  has_many :original_prices
+  
   attr_accessor :flag_file
 
   validate_on_create :validate_flag, :unless => lambda{|c| c.flag_file.blank?}
@@ -13,7 +15,11 @@ class Country < ActiveRecord::Base
 
   before_create :save_flag
   after_destroy :delete_flag
-
+  
+  def unused?
+    manufacturers.empty? && ebay_sites.empty? && original_prices.empty?
+  end
+  
   def flag
     has_flag? && flag_url
   end
