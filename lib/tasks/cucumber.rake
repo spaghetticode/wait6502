@@ -9,7 +9,13 @@ begin
       t.fork = true # You may get faster startup if you set this to false
       t.cucumber_opts = "--color --tags ~@wip --strict --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'}"
     end
-
+    
+    Cucumber::Rake::Task.new({:rcov => 'db:test:prepare'}, 'adds Rcov') do |t|
+      t.rcov = true
+      t.fork = true
+      t.cucumber_opts = "--color --tags ~@wip --strict --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'}"
+    end
+    
     Cucumber::Rake::Task.new({:wip => 'db:test:prepare'}, 'Run features that are being worked on') do |t|
       t.fork = true # You may get faster startup if you set this to false
       t.cucumber_opts = "--color --tags @wip:2 --wip --format #{ENV['CUCUMBER_FORMAT'] || 'pretty'}"
