@@ -20,10 +20,14 @@ class Hardware < ActiveRecord::Base
   
   CATEGORIES = %w{computer peripheral}
   SEARCH_FIELDS = {
-    :name => 'hardware.name', :type => 'hardware_types.name',
-    :manufacturer => 'manufacturers.name', 'co CPU name' => 'co_cpus.co_cpu_name_id',
-    'builtin_language' => 'hardware.builtin_language_id', 'CPU name' => 'cpus.cpu_name_id',
-    'I/O port connector' => 'io_ports.connector', 'I/O port name' => 'io_ports.name',
+    :name => 'hardware.name',
+    :type => 'hardware_types.name',
+    :manufacturer => 'manufacturers.name',
+    'co CPU name' => 'co_cpus.co_cpu_name_id',
+    'builtin_language' => 'hardware.builtin_language_id',
+    'CPU name' => 'cpus.cpu_name_id',
+    'I/O port connector' => 'io_ports.connector',
+    'I/O port name' => 'io_ports.name',
     'storage name' => 'builtin_storages.storage_name_id',
     'storage format' => 'builtin_storages.storage_format_id',
     'storage size' => 'builtin_storages.storage_size_id',
@@ -33,8 +37,19 @@ class Hardware < ActiveRecord::Base
   CATEGORIES.each do |category|
     named_scope category, :conditions => {:hardware_category => category}
   end
+  
   named_scope :ordered, :order => 'hardware.name'
   named_scope :by_manufacturer, :order => 'manufacturers.name', :include => :manufacturer
+  named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name like ?', "%#{letter}%"]}}
+  
+  def self.filter(params)
+    all(
+      :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",
+      :conditions => Hardware.conditions(params),
+      :include => [:hardware_type, :cpus, :co_cpus, :builtin_storages, :operative_systems, :io_ports, :manufacturer]
+    )
+  end
+  
   def self.conditions(params)
     strings = []
     values = []
@@ -47,10 +62,6 @@ class Hardware < ActiveRecord::Base
       values << "%#{params[:keywords]}%"
     end
     conditions = [ strings.join(' AND '), values ].flatten
-  end
-  
-  def self.find_by_initial(letter)
-    self.all(:conditions => ['hardware.name like ?', "#{letter}%"])
   end
   
   def co_cpu_names

@@ -3,12 +3,7 @@ class Admin::HardwareController < ApplicationController
   layout 'admin'
   
   def index
-    @hardware = Hardware.paginate(
-      :page => params[:page],
-      :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",
-      :conditions => Hardware.conditions(params),
-      :include => [:hardware_type, :cpus, :co_cpus, :builtin_storages, :operative_systems, :io_ports, :manufacturer]
-    )
+    @hardware = Hardware.filter(params).paginate(:page => params[:page])
   end
 
   def new
