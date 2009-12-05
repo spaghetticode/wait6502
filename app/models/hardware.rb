@@ -45,7 +45,7 @@ class Hardware < ActiveRecord::Base
   def self.filter(params)
     all(
       :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",
-      :conditions => Hardware.conditions(params),
+      :conditions => self.conditions(params),
       :include => [:hardware_type, :cpus, :co_cpus, :builtin_storages, :operative_systems, :io_ports, :manufacturer]
     )
   end

@@ -30,20 +30,32 @@ class Auction < ActiveRecord::Base
   named_scope :active, lambda {{:conditions => ['end_time > ?', Time.now]}}
   named_scope :closed, lambda {{:conditions => ['end_time < ?', Time.now]}}
   named_scope :sold_in, lambda {|site| {:conditions => ['final_price is not null and ebay_site_id = ?', site]}}
+  
   COSMETIC_CONDITIONS.each do |condition|
     named_scope condition, :conditions => {:cosmetic_conditions => condition}
   end
+  
   COMPLETENESSES.each do |completeness|
     method_name = completeness.gsub(' ', '_')
     named_scope method_name, :conditions => {:completeness => completeness}
   end
   
   # class methods:
+  
+  def self.filter(params)
+    conditions = [self.concat_string, "%#{params[:keywords]}%"] if params[:keywords]
+    all(
+      :conditions => conditions,
+      :order => "#{params[:order] || 'end_time'} #{params[:desc]}",
+      :include => :hardware
+    )
+  end
+  
   def self.item_ids
     @item_ids = Auction.all(:select => :item_id).map(&:item_id)
   end
   
-  def self.concat_query
+  def self.concat_string
     fields = SEARCH_FIELDS.values.inject([]) do |fields, field|
       fields << "IFNULL(CAST(#{field} AS CHAR), '')"
     end.join(', ')

@@ -19,7 +19,7 @@ class Cpu < ActiveRecord::Base
   }
   
   def self.filter(params)
-    conditions = [Cpu.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    conditions = [self.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'manufacturers.name, cpu_name_id'} #{params[:desc]}",
@@ -39,7 +39,7 @@ class Cpu < ActiveRecord::Base
     when :short
       "#{manufacturer.name} #{cpu_name_id}"
     when :long
-      clock = "@#{self.clock}" unless clock.blank?
+      clock = "@#{self.clock}" unless self.clock.blank?
       "#{name(:short)} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
     when :info
       "#{name(:short)}, #{cpu_bit_id} #{cpu_family_id} family"

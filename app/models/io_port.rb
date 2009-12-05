@@ -8,7 +8,15 @@ class IoPort < ActiveRecord::Base
   
   SEARCH_FIELDS = {:name => 'name', :connector => 'connector'}
   
-  def self.concat_query
+  def self.filter(params)
+    conditions = [self.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    all(
+      :conditions => conditions,
+      :order => "#{params[:order] || 'name'} #{params[:desc]}"
+    )
+  end
+  
+  def self.concat_string
     string = SEARCH_FIELDS.values.inject([]) do |group, field|
       group << "IFNULL(#{field}, '')"
     end.join(', ')

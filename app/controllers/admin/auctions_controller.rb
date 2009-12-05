@@ -12,13 +12,7 @@ class Admin::AuctionsController < ApplicationController
     else
       :ordered
     end
-    conditions = [Auction.concat_query, "%#{params[:keywords]}%"] if params[:keywords]
-    @auctions = Auction.send(scope).paginate(
-      :page => params[:page],
-      :conditions => conditions,
-      :order => "#{params[:order] || 'end_time'} #{params[:desc]}",
-      :include => :hardware      
-    )
+    @auctions = Auction.send(scope).filter(params).paginate(:page => params[:page])
   end
   
   def new

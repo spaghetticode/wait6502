@@ -9,6 +9,12 @@ require File.dirname(__FILE__) + '/factories'
 require File.dirname(__FILE__) + '/controller_macros'
 require File.dirname(__FILE__) + '/model_macros'
 
+# removing constants to be redefined:
+Image.send(:remove_const, :FS_PREFIX)
+Auction.send(:remove_const, :GALLERY_IMAGES_PATH)
+Country.send(:remove_const, :FS_PATH)
+Manufacturer.send(:remove_const, :FS_PATH)
+
 # changing the location for saved auction gallery image files:
 Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
 # changing location where image files will be saved
