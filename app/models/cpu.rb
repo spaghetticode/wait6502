@@ -11,25 +11,20 @@ class Cpu < ActiveRecord::Base
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
   
   SEARCH_FIELDS = {
-    :name => 'cpu_name_id', :family => 'cpu_family_id',
-    :bit => 'cpu_bit_id', :manufacturer => 'manufacturers.name',
+    :name => 'cpu_name_id',
+    :family => 'cpu_family_id',
+    :bit => 'cpu_bit_id',
+    :manufacturer => 'manufacturers.name',
     :clock => 'clock'
   }
   
-  def name(format=:short)
-    case format
-    when :long
-      clock = self.clock.blank? ? '' : "@#{self.clock}"
-      "#{manufacturer.name} #{cpu_name_id} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
-    when :short
-      "#{manufacturer.name} #{cpu_name_id}"
-    when :info
-      "#{name(:short)}, #{cpu_bit_id} #{cpu_family_id} family"
-    end
-  end
-
-  def full_name
-    name(:long)
+  def self.filter(params)
+    conditions = [Cpu.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    all(
+      :conditions => conditions,
+      :order => "#{params[:order] || 'manufacturers.name, cpu_name_id'} #{params[:desc]}",
+      :include => :manufacturer
+    )
   end
   
   def self.concat_query
@@ -37,5 +32,21 @@ class Cpu < ActiveRecord::Base
       fields << "IFNULL(#{field}, '')"
     end
     "concat(#{string.join(', ')}) like ?"
+  end
+  
+  def name(format=:short)
+    case format
+    when :short
+      "#{manufacturer.name} #{cpu_name_id}"
+    when :long
+      clock = "@#{self.clock}" unless clock.blank?
+      "#{name(:short)} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+    when :info
+      "#{name(:short)}, #{cpu_bit_id} #{cpu_family_id} family"
+    end
+  end
+
+  def full_name
+    name(:long)
   end
 end
