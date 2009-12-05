@@ -11,9 +11,20 @@ class CoCpu < ActiveRecord::Base
   named_scope :ordered, :order => 'co_cpu_name_id'
   
   SEARCH_FIELDS = {
-    :name => 'co_cpu_name_id', :family => 'cpu_family_id',
-    :manufacturer => 'manufacturers.name', :type => 'co_cpu_type_id'
+    :name => 'co_cpu_name_id',
+    :family => 'cpu_family_id',
+    :manufacturer => 'manufacturers.name',
+    :type => 'co_cpu_type_id'
   }
+  
+  def self.filter(params)
+    conditions = [CoCpu.concat_query, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    all(
+      :conditions => conditions,
+      :order => "#{params[:order] || 'co_cpu_name_id'} #{params[:desc]}",
+      :include => :manufacturer
+    )
+  end
   
   def self.concat_query
     string = SEARCH_FIELDS.values.inject([]) do |group, field|
@@ -31,7 +42,7 @@ class CoCpu < ActiveRecord::Base
     when :short
       "#{manufacturer.name} #{co_cpu_name_id}"
     when :long
-      "#{manufacturer.name} #{co_cpu_name_id} #{co_cpu_type_id} co-processor"
+      "#{name(:short)} #{co_cpu_type_id} co-processor"
     end
   end
 end
