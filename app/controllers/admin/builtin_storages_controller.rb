@@ -3,12 +3,7 @@ class Admin::BuiltinStoragesController < ApplicationController
   layout 'admin'
   
   def index
-    conditions = [BuiltinStorage.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
-    @builtin_storages = BuiltinStorage.paginate(
-      :page => params[:page],
-      :conditions => conditions,
-      :order => "#{params[:order] || 'storage_name_id'} #{params[:desc]}"
-    )
+    @builtin_storages = BuiltinStorage.filter(params).paginate(:page => params[:page])
   end
 
   def new

@@ -15,6 +15,14 @@ class BuiltinStorage < ActiveRecord::Base
     :size => 'storage_size_id'
   }
   
+  def self.filter(params)
+    conditions = [BuiltinStorage.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    all(
+      :conditions => conditions,
+      :order => "#{params[:order] || 'storage_name_id'} #{params[:desc]}"
+    )
+  end
+  
   def self.concat_string
     string = SEARCH_FIELDS.values.inject([]) do |group, field|
       group << "IFNULL(#{field}, '')"
