@@ -23,6 +23,9 @@
         %p{:class => type}= message
     #container
       #left-column
+        #search
+          - form_tag '', :method => :get do
+            = text_field_tag :query
         %ul.leftnav
           %li.computers
             %a computers »

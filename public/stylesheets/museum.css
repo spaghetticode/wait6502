@@ -95,7 +95,7 @@ p.error {
 
 #left-column {
 	float:left;
-	width:170px;
+	width:180px;
 }
 
 #left-column ul {
@@ -118,7 +118,7 @@ p.error {
 }
 
 #right-column {
-	margin-left:170px;
+	margin-left:180px;
 	border-left:1px solid black;
 	background:white;
 	min-height:700px;
@@ -300,4 +300,19 @@ img.manufacturer_logo {
 	font-weight:normal;
 	text-align:right;
 	padding:10px;
+}
+
+#search {
+	margin:20px auto;
+	width:153px;
+	height:24px;
+	background:url(/images/search.jpg) no-repeat #fff;
+}
+
+#search input {
+	border:none;
+	background:none;
+	margin-left:20px;
+	margin-top:4px;
+	width:120px;
 }
