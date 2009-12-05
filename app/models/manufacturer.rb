@@ -20,6 +20,15 @@ class Manufacturer < ActiveRecord::Base
   FS_PATH = File.join(RAILS_ROOT, 'public')
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}
   
+  def self.filter(params)
+    conditions = [Manufacturer.concat_query, "%#{params[:keywords]}%"] if params[:keywords]
+    all(
+      :conditions => conditions, 
+      :order => "#{params[:order] || 'manufacturers.name'} #{params[:desc]}",
+      :include => :country
+    )
+  end
+  
   def self.concat_query
     string  = SEARCH_FIELDS.values.inject([]) do |fields, field|
       fields << "IFNULL(#{field}, '')"
