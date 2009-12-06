@@ -53,7 +53,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :original_prices, :only => [], :collection => {:create_tainted => :post}
-  map.resources :user_sessions  
+  map.resources :user_sessions
+  map.search 'search', :controller => 'searches', :action => 'create'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.root :controller => 'manufacturers', :action => 'index'

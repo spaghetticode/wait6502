@@ -1,4 +1,3 @@
-@focus
 In order to manage original prices added by visitors
 As a logged user
 I want to approve or destroy tainted original prices
