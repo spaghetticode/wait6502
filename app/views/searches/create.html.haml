@@ -1,12 +1,21 @@
 - @title = %(results for "#{params[:query]}")
 
-%h2 Hardware
+- computers, peripherals = @search.results[:hardware].partition{|h| h.hardware_category == 'computer'}
+
+%h2 Computers
 %table.list
-  - if @search.results[:hardware].empty?
-    %p= 'No computer or peripheral matched your keywords.'
+  - if computers.empty?
+    %p= 'No computer matched your keywords.'
   - else
-    = render :partial => '/computers/hardware', :collection =>  @search.results[:hardware]
-    
+    = render :partial => '/computers/hardware', :collection =>  computers
+
+%h2.spaced Peripherals
+%table.list
+  - if peripherals.empty?
+    %p= 'No peripheral matched your keywords.'
+  - else
+    = render :partial => '/computers/hardware', :collection =>  peripherals
+
 %h2.spaced Manufacturers
 %table.list
   - if @search.results[:manufacturer].empty?

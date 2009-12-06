@@ -19,7 +19,6 @@ Feature: Website-wide search
 		Given I am on the homepage
 		When  I fill in "query" with "Amiga"
 		And   I press "search"
-		Then  I should see "Hardware"
 		And   I should see "Amiga 1000"
 		And   I should see "Amiga Drive"
 		But   I should not see "DuoDisk"
@@ -28,7 +27,6 @@ Feature: Website-wide search
 		Given I am on the homepage
 		When  I fill in "query" with "DuoDisk"
 		And   I press "search"
-		Then  I should see "Hardware"
 		And   I should see "DuoDisk"
 		And   I should not see "Amiga"
 	
