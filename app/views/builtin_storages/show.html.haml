@@ -1,3 +1,5 @@
-%h2= @storage.full_name.capitalize
+- @title = @storage.full_name
+
+%h2= @title.capitalize
 %table.list
   = render :partial => 'computers/hardware', :collection => @storage.hardware

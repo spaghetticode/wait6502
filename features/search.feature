@@ -19,9 +19,8 @@ Feature: Website-wide search
 		Given I am on the homepage
 		When  I fill in "query" with "Amiga"
 		And   I press "search"
-		Then  I should see "Computers"
+		Then  I should see "Hardware"
 		And   I should see "Amiga 1000"
-		And   I should see "Peripherals"
 		And   I should see "Amiga Drive"
 		But   I should not see "DuoDisk"
 	
@@ -29,9 +28,8 @@ Feature: Website-wide search
 		Given I am on the homepage
 		When  I fill in "query" with "DuoDisk"
 		And   I press "search"
-		Then  I should see "Peripherals"
-		And   I should see "Duodisk"
-		But   I should not see "Computers"
+		Then  I should see "Hardware"
+		And   I should see "DuoDisk"
 		And   I should not see "Amiga"
 	
 	Scenario: Query is blank
@@ -44,5 +42,5 @@ Feature: Website-wide search
 		Given I am on the homepage
 		When  I fill in "query" with "A"
 		And   I press "search"
-		Then  I should see "Please refine your serach keywords."
+		Then  I should see "Please refine your search keywords."
 		

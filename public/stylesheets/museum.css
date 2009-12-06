@@ -68,18 +68,18 @@ a:hover {
 	line-height:40px;
 	text-align:center;
 	margin:0px;
+	border-left:1px solid black;
+	border-right:1px solid black;
 }
 
 p.notice {
 	background: #afa;
 	color:green;
-	border:2px solid green;
 }
 
 p.error {
 	background: #faa;
 	color:red;
-	border:2px solid red;
 }
 
 #navigation {
@@ -315,4 +315,8 @@ img.manufacturer_logo {
 	margin-left:20px;
 	margin-top:4px;
 	width:120px;
+}
+
+.spaced {
+	margin-top:30px;
 }

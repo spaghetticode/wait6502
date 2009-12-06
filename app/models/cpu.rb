@@ -40,9 +40,11 @@ class Cpu < ActiveRecord::Base
       "#{manufacturer.name} #{cpu_name_id}"
     when :long
       clock = "@#{self.clock}" unless self.clock.blank?
-      "#{name(:short)} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+      "#{name} #{clock}, #{cpu_bit_id} #{cpu_family_id} family"
+    when :clock
+      self.clock.blank? ? "#{name}" : "#{name} @#{self.clock}"
     when :info
-      "#{name(:short)}, #{cpu_bit_id} #{cpu_family_id} family"
+      "#{name}, #{cpu_bit_id} "
     end
   end
 

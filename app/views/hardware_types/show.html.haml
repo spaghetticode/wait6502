@@ -1,4 +1,5 @@
-%h2= @hardware_type.name
+- @title = @hardware_type.name.pluralize
+%h2= @title
 - if @hardware_type.hardware.empty?
   %p
     The category

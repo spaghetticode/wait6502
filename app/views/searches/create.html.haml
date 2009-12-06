@@ -1,0 +1,29 @@
+- @title = %(results for "#{params[:query]}")
+
+%h2 Hardware
+%table.list
+  - if @search.results[:hardware].empty?
+    %p= 'No computer or peripheral matched your keywords.'
+  - else
+    = render :partial => '/computers/hardware', :collection =>  @search.results[:hardware]
+    
+%h2.spaced Manufacturers
+%table.list
+  - if @search.results[:manufacturer].empty?
+    %p= 'No manufacturer matched your keywords.'
+  - else
+    = render :partial => '/manufacturers/manufacturer', :collection => @search.results[:manufacturer]
+
+%h2.spaced CPUs
+%table.list
+  - if @search.results[:cpu].empty?
+    %p= 'No CPU matched your keywords.'
+  - else
+    = render :partial => '/cpus/cpu', :collection => @search.results[:cpu]
+  
+%h2.spaced Co CPUs
+%table.list
+  - if @search.results[:co_cpu].empty?
+    %p= 'No co CPU matched your keywords.'
+  - else
+    = render :partial => '/co_cpus/co_cpu', :collection => @search.results[:co_cpu]

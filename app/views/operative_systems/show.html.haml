@@ -1,4 +1,6 @@
-%h2= @operative_system.name
+- @title = @operative_system.name
+
+%h2= @title
 - if @operative_system.hardware.empty?
   %p
     The operative system

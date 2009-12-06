@@ -9,7 +9,7 @@ describe "/hardware_types/show" do
   end
 
   it "should tell you where to find the file" do
-    response.should have_tag('h2', @hardware_type.name)
+    response.should have_tag('h2', @hardware_type.name.pluralize)
     response.should have_tag('a', @hardware.name)
   end
 end

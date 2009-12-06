@@ -2,7 +2,7 @@ class CpusController < ApplicationController
   layout 'museum'
   
   def index
-    @cpus = Cpu.ordered.all(:group => 'manufacturer_id, cpu_name_id')
+    @cpus = Cpu.ordered
   end
 
   def show

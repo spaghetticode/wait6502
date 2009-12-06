@@ -1,4 +1,6 @@
-%h2= @builtin_language.name
+- @title = @builtin_language.name
+
+%h2= @title
 - if @builtin_language.hardware.empty?
   %p
     The language

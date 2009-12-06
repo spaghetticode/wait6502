@@ -1,4 +1,6 @@
-%h2 #{@io_port.name.capitalize} Port
+- @title = @io_port.name.capitalize
+
+%h2= @title
 - if @io_port.hardware.empty?
   %p
     The port

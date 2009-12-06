@@ -1,8 +1,10 @@
+- @title = @cpu.name(:long)
+
 = title_for(@cpu)
 -if @cpu.hardware.empty?
   %p
     The CPU
-    %strong= @cpu.name
+    %strong= @cpu.name(:clock)
     currently is not used by any computer or peripheral in the database.
 - else
   %table.list
