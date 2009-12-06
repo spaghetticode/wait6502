@@ -9,6 +9,7 @@
     %th Bit
     %th Family
     %th Clock
+    %th Description
     %th{:colspan => 2} Actions
     
   - @cpus.each do |cpu|
@@ -18,6 +19,7 @@
       %td= h cpu.cpu_bit_id
       %td= h cpu.cpu_family_id
       %td= h cpu.clock
+      %td= h truncate(cpu.description)
       %td= link_to 'Edit', edit_admin_cpu_path(cpu)
       %td= link_to 'Destroy', admin_cpu_path(cpu), :confirm => 'Are you sure?', :method => :delete
 

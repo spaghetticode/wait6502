@@ -1,6 +1,7 @@
 - @title = @co_cpu.name(:long)
 
 = title_for(@co_cpu)
+%p= @co_cpu.description
 - if @co_cpu.hardware.empty?
   %p
     The co-CPU

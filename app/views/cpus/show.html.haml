@@ -1,6 +1,7 @@
 - @title = @cpu.name(:long)
 
 = title_for(@cpu)
+%p= @cpu.description
 -if @cpu.hardware.empty?
   %p
     The CPU

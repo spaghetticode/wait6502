@@ -8,6 +8,7 @@
     %th Name
     %th Family
     %th Type
+    %th Description
     %th{:colspan => 2} Actions
   - @co_cpus.each do |co_cpu|
     %tr
@@ -15,6 +16,7 @@
       %td= h co_cpu.co_cpu_name_id
       %td= h co_cpu.cpu_family_id
       %td= h co_cpu.co_cpu_type_id
+      %td= h truncate(co_cpu.description)
       %td= link_to 'Edit', edit_admin_co_cpu_path(co_cpu)
       %td= link_to 'Destroy', admin_co_cpu_path(co_cpu), :confirm => 'Are you sure?', :method => :delete
 
