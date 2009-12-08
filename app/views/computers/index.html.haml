@@ -1,5 +1,11 @@
+- @meta_description = "List of computers starting with the #{params[:letter]} letter avaliable in our database."
+- @meta_keywords = 'computers, old computers, retrocomputing'
 - @title = "computers"
 
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » #{params[:letter]}-computers
+  
 %h2 Computers
 - if params[:letter]
   - if @computers.empty?

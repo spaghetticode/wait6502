@@ -1,4 +1,10 @@
+- @meta_description = "List of operative systems avaliable in our database"
+- @meta_keywords = "operative systems, old computers"
 - @title = 'operative systems'
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » operative systems
 
 %h2 Operative Systems
 - @operative_systems.each do |os|

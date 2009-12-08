@@ -1,4 +1,13 @@
+- @meta_keywords = "#{@hardware_type.name}, hardware, old computers"
+- @meta_description = "Computers or peripheral available in the #{@hardware_type.name} category."
 - @title = @hardware_type.name.pluralize
+
+%p.breadcrumbs
+  = link_to 'home', root_path
+  »
+  = link_to 'hardware categories', hardware_types_path
+  » #{@title}
+
 %h2= @title
 - if @hardware_type.hardware.empty?
   %p

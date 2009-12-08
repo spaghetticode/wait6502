@@ -1,4 +1,12 @@
+- @meta_keywords = "#{@operative_system.name}, operative system"
+- @meta_description = "Information about the #{@operative_system.name} operative system."
 - @title = @operative_system.name
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » 
+  = link_to 'operative systems', operative_systems_path
+  » #{@title}
 
 %h2= @title
 - if @operative_system.hardware.empty?

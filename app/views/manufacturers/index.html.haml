@@ -1,4 +1,11 @@
+- @meta_description = "Listing old computer manufacturers available in our database."
+- @meta_keywords = "old computers manufacturers"
 - @title = 'manufacturers list'
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » manufacturers
+
 %h2 Manufacturers
 %table.list
   = render :partial => @manufacturers

@@ -1,4 +1,12 @@
+- @meta_description = "List of computers and peripherals produced by #{@manufacturer.name}."
+- @meta_keywords = "#{@manufacturer.name}, computer manufacturer, computers by #{@manufacturer.name}"
 - @title = @manufacturer.name
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » 
+  = link_to 'manufacturers', manufacturers_path
+  » #{@title}
 
 = title_for(@manufacturer)
 %p= @manufacturer.description

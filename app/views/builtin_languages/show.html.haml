@@ -1,5 +1,13 @@
 - @title = @builtin_language.name
+- @meta_description = "Information and computers sporting a built-in version of the #{@title} language."
+- @meta_keywords = "#{@title}, language, old computers, retrocomputing, programming language"
 
+%p.breadcrumbs
+  = link_to 'home', root_path
+  »
+  = link_to 'builtin languages', builtin_languages_path
+  » #{@title}
+  
 %h2= @title
 - if @builtin_language.hardware.empty?
   %p

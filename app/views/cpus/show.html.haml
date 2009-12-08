@@ -1,4 +1,12 @@
 - @title = @cpu.name(:long)
+- @meta_description = "Old computers sporting #{@title} CPU available in our database."
+- @meta_keywords = "@title, CPU, old computers"
+
+%p.breadcrumbs
+  = link_to 'home', root_path
+  » 
+  = link_to 'CPUs', cpus_path
+  » #{@cpu.name(:clock)}
 
 = title_for(@cpu)
 %p= @cpu.description

@@ -1,4 +1,11 @@
+- @meta_content = "Listing computers I/O ports available in our database."
+- @meta_keywords = "IO ports, I/O ports, old computers"
 - @title = 'I/O ports'
+
+%p.breadcrumbs
+  = link_to 'home', root_path
+  » I/O ports
+  
 %h2 I/O Ports
 - @io_ports.each do |port|
   %p= link_to port.name, io_port_path(port)

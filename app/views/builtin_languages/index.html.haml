@@ -1,5 +1,11 @@
+- @meta_description = 'List of built-in languages used by the computers in our database.'
+- @meta_keywords = 'languages, programming languages, old computers, retrocomputing'
 - @title = 'built-in languages'
 
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » builtin languages
+  
 %h2 Builtin Languages
 - @builtin_languages.each do |language|
   %p= link_to language.name, builtin_language_path(language.permalink)

@@ -1,5 +1,11 @@
+- @meta_keywords = 'mass storage units, old computers, retrocomputing'
+- @meta_description = 'List of mass storage units available in our database.'
 - @title = 'mass storage units'
 
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » mass storage units
+  
 %h2 Mass Storage Units
 - @storages.each do |storage|
   %p= link_to storage.full_name, builtin_storage_path(storage)

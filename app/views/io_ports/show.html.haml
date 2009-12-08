@@ -1,5 +1,11 @@
 - @title = @io_port.name.capitalize
 
+%p.breadcrumbs
+  = link_to 'home', root_path
+  »
+  = link_to 'I/O ports', io_ports_path
+  » #{@title}
+
 %h2= @title
 - if @io_port.hardware.empty?
   %p

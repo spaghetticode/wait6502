@@ -1,5 +1,13 @@
 - @title = @storage.full_name
+- @meta_keywords = "#{@title}, mass storage units, old computers, retrocomputing"
+- @meta_description = "Computers and peripherals sporting the #{@title} mass storage unit."
 
+%p.breadcrumbs
+  = link_to 'home', root_path
+  »
+  = link_to 'mass storage units', builtin_storages_path
+  » #{@title}
+  
 %h2= @title.capitalize
 %table.list
   = render :partial => 'computers/hardware', :collection => @storage.hardware

@@ -320,3 +320,7 @@ img.manufacturer_logo {
 .spaced {
 	margin-top:30px;
 }
+
+.no-border p {
+	border:none;
+}

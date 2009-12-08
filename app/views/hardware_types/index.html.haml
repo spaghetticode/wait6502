@@ -1,4 +1,11 @@
+- @meta_keywords = @hardware_types.map(&:name).join(', ')
+- @meta_description = 'Listing old computers hardware categories available in our database.'
 - @title = 'hardware categories'
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » hardware categories
+
 %h2 Categories
 - @hardware_types.each do |category|
   %p= link_to category.name, hardware_type_path(category)

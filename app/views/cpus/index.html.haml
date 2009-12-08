@@ -1,4 +1,11 @@
+- @meta_description = 'List of all CPUs available in our database.'
+- @meta_keywords = 'cpu, old computers, retrocomputing'
 - @title = 'CPUs list'
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » CPUs
+
 %h2 CPUs
 %table.list
   = render :partial => @cpus
