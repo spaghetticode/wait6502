@@ -287,21 +287,6 @@ img.manufacturer_logo {
 	margin-top:20px;
 }
 
-#new_user_session table {
-	width:500px;
-	margin:40px auto;
-	border:1px solid gray;
-	padding:25px;
-	background:#ddd;
-}
-
-#new_user_session th {
-	text-transform:uppercase;
-	font-weight:normal;
-	text-align:right;
-	padding:10px;
-}
-
 #search {
 	margin:20px auto;
 	width:153px;
@@ -323,4 +308,20 @@ img.manufacturer_logo {
 
 .no-border p {
 	border:none;
+}
+
+#new_user_session table {
+	width:400px;
+	-moz-border-radius:10px;
+	margin:40px auto;
+	border:1px solid gray;
+	padding:25px;
+	background:#c1cfe3;
+}
+
+#new_user_session th {
+	text-transform:uppercase;
+	font-weight:normal;
+	text-align:right;
+	padding:10px;
 }

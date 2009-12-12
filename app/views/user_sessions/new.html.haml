@@ -1,7 +1,7 @@
 %h2 User Login
 - form_for @user_session, :url => user_sessions_path do |f|
   = f.error_messages
-  %table
+  %table.login
     %tr
       %th= f.label :email
       %td= f.text_field :email

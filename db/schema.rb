@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091206192620) do
+ActiveRecord::Schema.define(:version => 20091212162903) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -234,6 +234,7 @@ ActiveRecord::Schema.define(:version => 20091206192620) do
     t.string   "persistence_token", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_request_at"
   end
 
 end
