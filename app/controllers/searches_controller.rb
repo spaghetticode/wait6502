@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
       @search.create
     end
     session[:return_to] = {
-      :name => "search",
+      :name => 'search',
       :url => request.request_uri
     }
   end

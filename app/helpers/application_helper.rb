@@ -40,7 +40,7 @@ module ApplicationHelper
   end
   
   def flag_thumbnail(model, height=10)
-    model.country && image_tag(h(model.country.flag), :height => height, :alt => '') 
+    model.country && image_tag(h(model.country.flag), :height => height, :alt => model.country_id) 
   end
   
   def logo_image(manufacturer, options={})
