@@ -115,7 +115,7 @@ module EbayFinder
       items.size
     end
   end
-  
+
   class FindItemsAdvancedResponse < Response
     def items
       return [] if total_items.zero?
@@ -134,7 +134,7 @@ module EbayFinder
       @page_number ||= xml_response['PageNumber'] && xml_response['PageNumber'].to_i
     end
   end
-  
+
   class Item
     attr_reader :params, :title, :view_item_url_for_natural_search, :gallery_url, :item_id, :listing_status
     
