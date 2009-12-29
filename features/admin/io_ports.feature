@@ -1,3 +1,4 @@
+@focus
 Feature: Manage I/O Ports
 	In order to add hardware io ports information
 	As a logged in user
@@ -13,7 +14,7 @@ Feature: Manage I/O Ports
 	
 	Scenario: Listing IO Ports
 		When  I go to the io ports page
-		Then  I should see "Listing IO Ports"
+		Then  I should see "Listing I/O Ports"
 		And   I should see "Name"
 		And   I should see "Connector"
 

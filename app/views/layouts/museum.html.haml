@@ -29,7 +29,7 @@
         #search
           - form_tag search_path, :method => :get do
             = text_field_tag :query
-            = submit_tag :search
+            = submit_tag :search, :name => nil
         %ul.leftnav
           %li.computers
             %a computers »
