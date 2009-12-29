@@ -2,7 +2,7 @@
 
 %h1= @hardware.name
 
-= render :partial => 'tabs_navigation'
+= render 'tabs_navigation'
 
 #main.section
   - form_for(@hardware, :url => admin_hardware_path(@hardware)) do |f|

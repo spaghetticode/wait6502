@@ -85,7 +85,7 @@ class Hardware < ActiveRecord::Base
   end
   
   def full_name
-    name.include?(manufacturer.name) ? name : "#{manufacturer.name} #{name}"
+    name.include?(manufacturer.name) ? name : [manufacturer.name, name].join(' ')
   end
   
   private
