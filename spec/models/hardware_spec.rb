@@ -207,4 +207,18 @@ describe Hardware do
         end
       end  
   end
+  
+  describe 'filter_initial named scope' do
+    it 'should return hardware with names starting with given letter' do
+      expected_results = (1..2).map{|n| Factory(:hardware, :name => "Apple #{n}")}
+      Hardware.filter_initial('a').should == expected_results
+    end
+    
+    it 'should reject hardware with names not starting with given letter' do
+      expected_rejected = (1..2).map{|n| Factory(:hardware, :name => "Orange #{n}")}
+      expected_rejected.each do |rejected|
+        Hardware.filter_initial('a').should_not include(rejected)
+      end
+    end      
+  end
 end

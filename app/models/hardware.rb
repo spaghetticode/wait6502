@@ -42,7 +42,7 @@ class Hardware < ActiveRecord::Base
   
   named_scope :ordered, :order => 'hardware.name'
   named_scope :by_manufacturer, :order => 'manufacturers.name', :include => :manufacturer
-  named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name like ?', "%#{letter}%"]}}
+  named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name like ?', "#{letter}%"]}}
   
   def self.filter(params)
     all(
