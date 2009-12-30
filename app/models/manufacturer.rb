@@ -16,6 +16,8 @@ class Manufacturer < ActiveRecord::Base
   before_save :save_logo
   after_destroy :delete_logo
   
+  acts_as_permalink :name
+  
   URL_PATH = '/images/manufacturers'
   FS_PATH = File.join(RAILS_ROOT, 'public')
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}

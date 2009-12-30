@@ -11,5 +11,6 @@ class PeripheralsController < ApplicationController
 
   def show
     @peripheral = Hardware.find(params[:id])
+    validate_permalink(@peripheral, :peripheral_path)
   end
 end

@@ -5,9 +5,10 @@ describe "/admin/co_cpus/edit.html.haml" do
   before(:each) do
     assigns[:co_cpu] = @co_cpu = stub_model(CoCpu,
       :new_record? => false,
-      :co_cpu_name_id => "value for co_cpu_name_id",
-      :co_cpu_type_id => "value for co_cpu_type_id",
-      :manufacturer_id => 1
+      :co_cpu_name_id => "8087",
+      :co_cpu_type_id => "math cpu",
+      :manufacturer_id => 1,
+      :name => '8087 math cpu'
     )
   end
 

@@ -46,4 +46,12 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
   end
+  
+  def validate_permalink(record, method)
+    expected_path = send(method, record)
+    unless request.request_uri == expected_path
+      headers['Status'] = '302 Moved Permanently'
+      redirect_to expected_path
+    end
+  end
 end

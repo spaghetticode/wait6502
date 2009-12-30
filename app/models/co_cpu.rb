@@ -10,6 +10,8 @@ class CoCpu < ActiveRecord::Base
   
   named_scope :ordered, :order => 'co_cpu_name_id'
   
+  acts_as_permalink :full_name
+  
   SEARCH_FIELDS = {
     :name => 'co_cpu_name_id',
     :family => 'cpu_family_id',
@@ -39,10 +41,10 @@ class CoCpu < ActiveRecord::Base
   
   def name(format=:short)
     case format
-    when :short
-      "#{manufacturer.name} #{co_cpu_name_id}"
     when :long
       "#{name(:short)} #{co_cpu_type_id} co-processor"
+    else :short
+      "#{manufacturer.name} #{co_cpu_name_id}"
     end
   end
 end

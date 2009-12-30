@@ -6,6 +6,8 @@ class OperativeSystem < ActiveRecord::Base
 
   named_scope :ordered, :order => 'name'
   
+  acts_as_permalink :full_name
+  
   def full_name
     name
   end

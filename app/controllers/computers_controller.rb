@@ -13,5 +13,6 @@ class ComputersController < ApplicationController
 
   def show
     @computer = Hardware.find(params[:id])
+    validate_permalink(@computer, :computer_path)
   end
 end

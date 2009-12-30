@@ -9,6 +9,8 @@ class BuiltinStorage < ActiveRecord::Base
   
   named_scope :ordered, :order => 'storage_name_id'
   
+  acts_as_permalink :full_name
+  
   SEARCH_FIELDS = {
     :name => 'storage_name_id',
     :format => 'storage_format_id',

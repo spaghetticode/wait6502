@@ -5,11 +5,12 @@ describe "/admin/cpus/edit.html.haml" do
   before(:each) do
     assigns[:cpu] = @cpu = stub_model(Cpu,
       :new_record? => false,
-      :cpu_bit_id => "value for cpu_bit_id",
-      :cpu_family_id => "value for cpu_family_id",
+      :cpu_bit_id => "24bit",
+      :cpu_family_id => "68K",
       :manufacturer_id => 1,
-      :cpu_name_id => "value for cpu_name_id",
-      :clock => "value for clock"
+      :cpu_name_id => "Motorola 68000",
+      :clock => "7.16Mhz",
+      :full_name => "Motorola 68K @7.16Mhz"
     )
   end
 

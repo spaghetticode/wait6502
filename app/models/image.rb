@@ -50,9 +50,9 @@ class Image < ActiveRecord::Base
   end
   
   def save_original_image
-    File.open(@original_file, 'wb') do |f|
+    File.open(@original_file, 'wb') do |file|
       until uploaded_file.eof
-        f.write uploaded_file.read(4096)
+        file.write uploaded_file.read(4096)
       end
     end
   end
