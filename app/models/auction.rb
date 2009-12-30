@@ -14,6 +14,7 @@ class Auction < ActiveRecord::Base
     'ebay website' => 'ebay_site_id', 'cosmetic conditions' => 'cosmetic_conditions',
     'completeness' => 'completeness', 'price' => 'final_price', 'end time' => 'end_time'
   }
+  
   # validations:
   validates_uniqueness_of :url, :item_id
   validates_presence_of :hardware, :ebay_site, :currency, :url, :item_id
@@ -41,7 +42,6 @@ class Auction < ActiveRecord::Base
   end
   
   # class methods:
-  
   def self.filter(params)
     conditions = [self.concat_string, "%#{params[:keywords]}%"] if params[:keywords]
     all(

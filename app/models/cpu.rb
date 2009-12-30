@@ -46,6 +46,8 @@ class Cpu < ActiveRecord::Base
       self.clock.blank? ? "#{name}" : "#{name} @#{self.clock}"
     when :info
       "#{name}, #{cpu_bit_id} "
+    else
+      name(:short)
     end
   end
 
