@@ -18,6 +18,8 @@ class Hardware < ActiveRecord::Base
   validates_presence_of :name, :manufacturer, :hardware_type, :hardware_category
   validates_uniqueness_of :name, :scope => [:manufacturer_id, :code], :case_sensitive => false
   
+  acts_as_permalink :name
+  
   CATEGORIES = %w{computer peripheral}
   SEARCH_FIELDS = {
     :name => 'hardware.name',

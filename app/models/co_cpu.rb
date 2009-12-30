@@ -10,6 +10,8 @@ class CoCpu < ActiveRecord::Base
   
   named_scope :ordered, :order => 'co_cpu_name_id'
   
+  acts_as_permalink :full_name
+  
   SEARCH_FIELDS = {
     :name => 'co_cpu_name_id',
     :family => 'cpu_family_id',

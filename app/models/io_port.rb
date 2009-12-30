@@ -8,6 +8,8 @@ class IoPort < ActiveRecord::Base
   
   SEARCH_FIELDS = {:name => 'name', :connector => 'connector'}
   
+  acts_as_permalink :full_name
+  
   def self.filter(params)
     conditions = [self.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     all(

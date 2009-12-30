@@ -10,6 +10,7 @@ class Cpu < ActiveRecord::Base
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
   
+  acts_as_permalink :full_name
   SEARCH_FIELDS = {
     :name => 'cpu_name_id',
     :family => 'cpu_family_id',

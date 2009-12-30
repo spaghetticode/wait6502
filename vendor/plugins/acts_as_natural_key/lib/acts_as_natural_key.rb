@@ -1,4 +1,6 @@
 module ActsAsNaturalKey
+  # TODO check why I didn't included directly in ActiveRecord::Base
+  # guess there's a good reason, only I can't remember it
   def self.included(base)
     base.extend ClassMethods
   end

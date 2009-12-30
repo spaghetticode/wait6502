@@ -1,8 +1,8 @@
 module ComputersHelper
   def specs_tr_for(title, collection, method=:name)
     content_tag :tr do
-      concat content_tag :th, title
-      concat content_tag :td, links_from_collection(collection, method)
+      concat content_tag(:th, title)
+      concat content_tag(:td, links_from_collection(collection, method))
     end
   end
   
