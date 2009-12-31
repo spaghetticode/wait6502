@@ -7,10 +7,11 @@ User.create!(
 )
 
 puts 'Creating countries'
-{ 'Italy', 'USA', 'France', 'Germany', 'Spain', 
+[
+  'Italy', 'USA', 'France', 'Germany', 'Spain', 
   'Japan', 'Great Britain', 'Holland','Canada',
   'Australia', 'Austria', 'Portugal'
-}.each do |name|
+].each do |name|
   Country.create!(
     :name => name
   )
@@ -113,14 +114,14 @@ puts 'Creating Hardware Types'
 end
   
 puts 'Creating ebay sites'
-{
-  :DE => :EUR, :IT => :EUR, :US => :USD, :FR => :EUR,
-  :ES => :EUR, :UK => :GBP, :NL => :EUR, :AU => :AUD,
-  :CA => :CAD
-}.each do |name, currency|
+[['Germany', :DE, :EUR, 77], ['Italy', :IT, :EUR, 101], ['USA', :US, :USD, 1], ['France', :FR, :EUR, 71],
+['Spain', :ES, :EUR, 186], ['Great Britain', :UK, :GBP, 3], ['Holland', :NL, :EUR, 146],
+['Australia', :AU, :AUD, 15], ['Canada', :CA, :CAD, 2]].each do |country|
+  name, code, currency, site_id = *country
   EbaySite.create!(
-    :name => name.to_s,
+    :name => code.to_s,
+    :site_id => site_id,
     :currency => Currency.find(currency.to_s),
-    :country => Country.find_by_flag_filename(name.to_s.downcase)
+    :country => Country.find_by_name(name)
   )
 end

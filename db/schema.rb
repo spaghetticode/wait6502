@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
     t.string   "ebay_site_id",                                       :null => false
-    t.string   "currency_id"
+    t.string   "currency_id",                                        :null => false
     t.string   "title",                                              :null => false
     t.string   "url",                                                :null => false
     t.string   "image_url"
@@ -111,9 +111,9 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   end
 
   create_table "currencies", :id => false, :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   create_table "ebay_keywords", :force => true do |t|
@@ -125,7 +125,8 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   end
 
   create_table "ebay_sites", :id => false, :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :null => false
+    t.string   "site_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency_id"
