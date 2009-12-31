@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: oc_development
+  pool: 5
+  username: postgres
+  password: ciao
+
+test: &TEST
+  adapter: postgresql
+  encoding: unicode
+  database: oc_test
+  pool: 5
+  username: postgres
+  password: ciao
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: oc_production
+  pool: 5
+  username: postgres
+  password: ciao
+
+cucumber:
+  <<: *TEST
