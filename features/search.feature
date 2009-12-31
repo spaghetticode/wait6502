@@ -1,4 +1,3 @@
-@focus
 Feature: Website-wide search
 	In order to easily find what I am looking for
 	As a website user

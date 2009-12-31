@@ -23,7 +23,7 @@ class Manufacturer < ActiveRecord::Base
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}
   
   def self.filter(params)
-    conditions = [Manufacturer.concat_query, "%#{params[:keywords]}%"] if params[:keywords]
+    conditions = [Manufacturer.ilike_string, "%#{params[:keywords]}%"] if params[:keywords]
     all(
       :conditions => conditions, 
       :order => "#{params[:order] || 'manufacturers.name'} #{params[:desc]}",
@@ -31,11 +31,11 @@ class Manufacturer < ActiveRecord::Base
     )
   end
   
-  def self.concat_query
+  def self.ilike_string
     string  = SEARCH_FIELDS.values.inject([]) do |fields, field|
-      fields << "IFNULL(#{field}, '')"
+      fields << "COALESCE(#{field}, '')"
     end
-    "concat(#{string.join(', ')}) like ?"
+    "#{string.join(' || ')} ILIKE ?"
   end
   
   def logo

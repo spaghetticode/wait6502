@@ -42,7 +42,7 @@ class Hardware < ActiveRecord::Base
   
   named_scope :ordered, :order => 'hardware.name'
   named_scope :by_manufacturer, :order => 'manufacturers.name', :include => :manufacturer
-  named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name like ?', "#{letter}%"]}}
+  named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name ILIKE ?', "#{letter}%"]}}
   
   def self.filter(params)
     all(
@@ -52,7 +52,7 @@ class Hardware < ActiveRecord::Base
     )
   end
   
-  def self.conditions(params)
+  def self.conditions(params={})
     strings = []
     values = []
     unless params[:category].blank?
@@ -60,7 +60,7 @@ class Hardware < ActiveRecord::Base
       values << "#{params[:category]}"
     end
     unless params[:keywords].blank?
-      strings << "concat(#{search_field_string}) like ?"
+      strings << "#{search_field_string} ILIKE ?"
       values << "%#{params[:keywords]}%"
     end
     conditions = [ strings.join(' AND '), values ].flatten
@@ -94,7 +94,7 @@ class Hardware < ActiveRecord::Base
   
   def self.search_field_string
     SEARCH_FIELDS.values.inject([]) do |collection, field|
-      collection << "IFNULL(#{field}, '')"
-    end.join(', ')
+      collection << "COALESCE(#{field}, '')"
+    end.join(' || ')
   end
 end

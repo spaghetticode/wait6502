@@ -37,4 +37,20 @@ describe IoPort do
       IoPort.ordered.should == IoPort.all.sort_by(&:name)
     end
   end
+  
+  describe 'ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      IoPort.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      IoPort::SEARCH_FIELDS.values.each do |field|
+        IoPort.ilike_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      IoPort.ilike_string.should include(' || ')
+    end
+  end
 end

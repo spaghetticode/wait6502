@@ -40,4 +40,20 @@ describe Manufacturer do
       Manufacturer.ordered.should == Manufacturer.all.sort_by(&:name)
     end
   end
+  
+  describe 'ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      Manufacturer.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      Manufacturer::SEARCH_FIELDS.values.each do |field|
+        Manufacturer.ilike_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      Manufacturer.ilike_string.should include(' || ')
+    end
+  end
 end

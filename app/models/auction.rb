@@ -43,7 +43,7 @@ class Auction < ActiveRecord::Base
   
   # class methods:
   def self.filter(params)
-    conditions = [self.concat_string, "%#{params[:keywords]}%"] if params[:keywords]
+    conditions = [ilike_string, "%#{params[:keywords]}%"] if params[:keywords]
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'end_time'} #{params[:desc]}",
@@ -55,11 +55,11 @@ class Auction < ActiveRecord::Base
     @item_ids = Auction.all(:select => :item_id).map(&:item_id)
   end
   
-  def self.concat_string
-    fields = SEARCH_FIELDS.values.inject([]) do |fields, field|
-      fields << "IFNULL(CAST(#{field} AS CHAR), '')"
-    end.join(', ')
-    "concat(#{fields}) like ?"
+  def self.ilike_string
+    "COALESCE(hardware.name, '') || COALESCE(auctions.title, '') || 
+     COALESCE(ebay_site_id, '') || COALESCE(cosmetic_conditions, '') ||
+     COALESCE(completeness, '') || COALESCE(TO_CHAR(final_price, ''), '') || 
+     COALESCE(TO_CHAR(end_time, ''),'') ILIKE ?"
   end
   
   # instance methods:

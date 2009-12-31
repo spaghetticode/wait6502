@@ -320,4 +320,20 @@ describe Auction do
       end
     end
   end
+  
+  describe 'self.ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      Auction.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      Auction::SEARCH_FIELDS.values.each do |field|
+        Auction.ilike_string.should  =~ /COALESCE(.*#{field})/
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      Auction.ilike_string.should include(' || ')
+    end
+  end
 end

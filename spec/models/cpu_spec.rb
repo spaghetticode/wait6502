@@ -56,4 +56,20 @@ describe Cpu do
       Cpu.ordered.should == Cpu.all(:include => :manufacturer).sort_by{|cpu| cpu.manufacturer.name}
     end
   end
+  
+  describe 'ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      Cpu.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      Cpu::SEARCH_FIELDS.values.each do |field|
+        Cpu.ilike_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      Cpu.ilike_string.should include(' || ')
+    end
+  end
 end
