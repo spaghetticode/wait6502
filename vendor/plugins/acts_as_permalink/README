@@ -1,0 +1,46 @@
+Acts As Permalink Plugin
+========================
+
+This is a very basic Rails plugin that makes permalink-like URLs easily definible in Rails.
+Just download the plugin and in your models set
+
++acts_as_permalink :attribute+
+
+where attribute is a regular model attribute or any other method defined for the model.
+Rails will keep looking for records based on the numeric id of the permalink, so don't worry
+about providing unique data for attribute.
+The plugin uses ActiveSupport parametrize method, so Iconv library must be installed on the
+server.
+A simple spec suite is provided.
+
+
+Example
+=======
+
+script/generate scaffold friend name:string surname:string
+
+class Friend < ActiveRecord::Base
+	acts_as_permalink :full_name
+	
+	def full_name
+		[name, surname].join(' ')
+	end
+end
+
+And you're ready to go.
+
+In your controllers you should provide something to avoid search engines to index the same
+page twice after you update your record data, something like this:
+
+class FriendsController < ApplicationController
+
+	def show
+	@friend = Friend.find(params[:id])
+	unless params[:id] == @friend.to_param
+		headers['Status'] = '301 Moved Permanently'
+		redirect to @friend
+	end
+end
+
+
+Copyright (c) 2009 Longhi Andrea, released under the MIT license
