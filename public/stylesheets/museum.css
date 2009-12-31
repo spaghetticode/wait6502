@@ -5,8 +5,6 @@ body {
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	font-size:13px;
 	background:url(/images/bg.png);
-	word-spacing:0.2em;
-	line-height:1.4em;
 }
 
 a {
@@ -44,7 +42,7 @@ a:hover {
 #header {
 	height:125px;
 	border:1px solid black;
-	background:url(/images/header1tag1.jpg);
+	background:url(/images/header.jpg);
 }
 
 #header h1 {
@@ -126,6 +124,8 @@ p.error {
 	background:white;
 	min-height:700px;
 	padding:20px 50px;
+	line-height:20px;
+	word-spacing:2px;
 }
 
 #footer {
@@ -144,6 +144,7 @@ p.error {
 h2, h3, h4 {
 	margin:0;
 	color:#333;
+	font-weight:normal;
 }
 
 table.specifications {
@@ -219,7 +220,7 @@ li.computers {
 }
 
 li.keyboard {
-	background:url(/images/kb.png) no-repeat;
+	background:url(/images/combo.png) no-repeat scroll -107px -24px;
 	width:410px;
 	height:155px;
 	position:absolute;
@@ -245,7 +246,7 @@ li.keyboard {
 }
 
 #left-column li.computers:hover {
-	background:url(/images/computersli.png) no-repeat white;
+	background:url(/images/combo.png) no-repeat white scroll -1px -24px;
 }
 
 table.list {
@@ -294,7 +295,7 @@ img.manufacturer_logo {
 	margin:20px auto;
 	width:153px;
 	height:24px;
-	background:url(/images/search.jpg) no-repeat #fff;
+	background:url(/images/combo.png) no-repeat #fff;
 }
 
 #search input {
