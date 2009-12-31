@@ -7,13 +7,12 @@ User.create!(
 )
 
 puts 'Creating countries'
-{ :it => 'Italy', :us => 'USA', :fr => 'France', :de => 'Germany', 
-  :es => 'Spain', :jp => 'Japan', :uk => 'Great Britain', :nl => 'Holland',
-  :ca => 'Canada', :au => 'Australia', :at => 'Austria', :po =>  'Portugal'
-}.each_pair do |code, name|
+{ 'Italy', 'USA', 'France', 'Germany', 'Spain', 
+  'Japan', 'Great Britain', 'Holland','Canada',
+  'Australia', 'Austria', 'Portugal'
+}.each do |name|
   Country.create!(
-    :name => name,
-    :flag_filename => code.to_s
+    :name => name
   )
 end
 
