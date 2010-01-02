@@ -43,7 +43,7 @@ class Auction < ActiveRecord::Base
   
   # class methods:
   def self.filter(params)
-    conditions = [self.concat_string, "%#{params[:keywords]}%"] if params[:keywords]
+    conditions = [concat_string, "%#{params[:keywords]}%"] if params[:keywords]
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'end_time'} #{params[:desc]}",

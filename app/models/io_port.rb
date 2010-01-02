@@ -11,7 +11,7 @@ class IoPort < ActiveRecord::Base
   acts_as_permalink :full_name
   
   def self.filter(params)
-    conditions = [self.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    conditions = [concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'name'} #{params[:desc]}"

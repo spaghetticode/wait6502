@@ -20,7 +20,7 @@ class CoCpu < ActiveRecord::Base
   }
   
   def self.filter(params)
-    conditions = [self.concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    conditions = [concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'co_cpu_name_id'} #{params[:desc]}",
