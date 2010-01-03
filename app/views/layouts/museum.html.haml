@@ -7,6 +7,9 @@
     %title= "WAIT 6502 retrocomputing - #{@title}"
     = stylesheet_link_tag 'museum'
     = javascript_include_tag 'jquery-1.3.2.min', 'museum'
+    <!--[if lt IE 7]>
+    = javascript_include_tag 'jquery.pngFix.pack'
+    <![endif]-->
     = yield :head
   %body
     #topnav
