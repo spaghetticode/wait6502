@@ -43,7 +43,7 @@ class Manufacturer < ActiveRecord::Base
   end
   
   def logo_filename
-    name && "#{name.downcase.gsub(' ', '_')}.png"
+    name && "#{name.downcase.gsub(' ', '-')}.png"
   end
   
   private

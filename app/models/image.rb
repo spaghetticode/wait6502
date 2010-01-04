@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   
   attr_accessor :uploaded_file
   
-  validates_presence_of :imageable_id, :imageable_type
+  validates_presence_of :imageable_id, :imageable_type, :uploaded_file
   validate_on_create    :validate_file_format
   
   before_create  :save_files
