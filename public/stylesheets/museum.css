@@ -141,6 +141,15 @@ p.error {
 	font-size:11px;
 }
 
+#footer p a {
+	color:white;
+	text-decoration:underline;
+}
+
+#footer p a:hover {
+	text-decoration:none;
+}
+
 h2, h3, h4 {
 	margin:0;
 	color:#333;
