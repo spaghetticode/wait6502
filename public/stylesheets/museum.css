@@ -326,6 +326,7 @@ img.manufacturer_logo {
 #new_user_session table {
 	width:400px;
 	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
 	margin:40px auto;
 	border:1px solid gray;
 	padding:25px;
@@ -337,4 +338,11 @@ img.manufacturer_logo {
 	font-weight:normal;
 	text-align:right;
 	padding:10px;
+}
+
+.errorExplanation {
+	padding:20px;
+	border:2px solid red;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
 }

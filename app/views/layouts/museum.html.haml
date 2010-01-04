@@ -19,8 +19,8 @@
           %li= link_to 'logout', logout_path
           %li= link_to 'admin area', admin_hardware_index_path
         - else
-          %li= link_to 'login', login_path     
-        
+          %li= link_to 'login', login_path
+          
     #header{:style => 'position:relative'}
       %h1= link_to 'Wait 6502 old computers and retrocomputing', root_path
       %img{:src => '/images/pet.png', :alt => 'PET-2001'}
@@ -56,4 +56,4 @@
     #footer
       %p
         © 2009 <a href="http://www.spaghetticode.it" title="SpaghettiCode web development">Spaghetti Code productions</a>
-        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :style => 'margin-left:20px'
+        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :style => 'margin-left:20px' 

@@ -6,7 +6,6 @@
 %h2 User Login
 
 - form_for @user_session, :url => user_sessions_path do |f|
-  = f.error_messages
   %table.login
     %tr
       %th= f.label :email
@@ -16,3 +15,5 @@
       %td= f.password_field :password
     %tr
       %td.center{:colspan => 2}= f.submit 'log in'
+  
+  = f.error_messages
