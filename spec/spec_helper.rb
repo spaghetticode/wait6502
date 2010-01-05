@@ -10,13 +10,10 @@ require File.dirname(__FILE__) + '/controller_macros'
 require File.dirname(__FILE__) + '/model_macros'
 
 # removing constants to be redefined:
-Image.class_eval{remove_const :FS_PREFIX}
 Auction.class_eval{remove_const :GALLERY_IMAGES_PATH}
 
 # changing the location for saved auction gallery image files:
 Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
-# changing location where image files will be saved
-Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures', Image::DB_PREFIX)
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -27,4 +24,5 @@ Spec::Runner.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+  include ActionController::TestProcess
 end

@@ -3,7 +3,7 @@ class Admin::CountriesController < ApplicationController
   layout 'admin'
   
   def index
-    @countries = Country.ordered.paginate(:page => params[:page], :per_page => 10)
+    @countries = Country.ordered.paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

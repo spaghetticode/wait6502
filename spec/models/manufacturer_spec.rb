@@ -2,30 +2,56 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Manufacturer do
   describe 'a new blank instance' do
-    include NameUniqueRequired
-    
-    before :all do
-      @class = Manufacturer
+    describe 'should require a unique name' do
+      before do
+        @class = Manufacturer
+      end
+      
+      include NameUniqueRequired
+    end
+
+    before do
+      @manufacturer = Manufacturer.new
     end
         
     it 'should have hardware association' do
-      @class.new.hardware.should_not be_nil
+      @manufacturer.hardware.should_not be_nil
     end
     
     it 'should have cpus association' do
-      @class.new.cpus.should_not be_nil
+      @manufacturer.cpus.should_not be_nil
     end
     
     it 'should have co_cpus association' do
-      @class.new.co_cpus.should_not be_nil
+      @manufacturer.co_cpus.should_not be_nil
     end
     
     it 'should use paperclip to store logo picture' do
-      @class.new.logo.should be_a(Paperclip::Attachment)
+      @manufacturer.logo.should be_a(Paperclip::Attachment)
     end
     
     it 'should have a default image' do
-      @class.new.logo.to_s.should include('missing.png')
+      @manufacturer.logo.to_s.should include('missing.png')
+    end
+    
+    context 'when uploading an image' do
+      before do
+        @logo = fixture_file_upload('rails.png', 'image/png')
+        @manufacturer = Manufacturer.new(
+          Factory.attributes_for(:manufacturer).merge(:logo => @logo)
+        )
+      end
+      
+      it 'should allow png logos' do
+        @manufacturer.stub!(:save_attached_files)
+        @manufacturer.save.should be_true
+      end
+      
+      it 'should have expected logo filename' do
+        @manufacturer.stub!(:id => 10) 
+        expected = "manufacturers/#{@manufacturer.id}/logo.png"
+        @manufacturer.logo.to_s.should include(expected)
+      end
     end
   end
   
