@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105180917) do
+ActiveRecord::Schema.define(:version => 20100105193457) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -73,9 +73,13 @@ ActiveRecord::Schema.define(:version => 20100105180917) do
   end
 
   create_table "countries", :id => false, :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "flag_file_name"
+    t.string   "flag_content_type"
+    t.integer  "flag_file_size"
+    t.datetime "flag_updated_at"
   end
 
   create_table "cpu_bits", :id => false, :force => true do |t|

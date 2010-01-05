@@ -7,11 +7,9 @@
       %th= f.label :name
       %td= f.text_field :name
     %tr
-      %th= f.label :flag_file
+      %th= f.label :flag
       %td
-        = f.file_field :flag_file
-        %br
-        %span.light Image must be 60x40 pixels .png format
+        = f.file_field :flag
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'
 

@@ -1,18 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Country do
-  
-  def mock_image_file(options)
-    file = File.read("#{RAILS_ROOT}/public/images/rails.png")
-    returning ActionController::UploadedStringIO.new(file) do |file|
-      content_type = options[:valid] ? 'image/jpg' : 'text/txt'
-      file.stub!(
-        :content_type => content_type,
-        :original_filename => 'image file.png'
-      )
-    end
-  end
-    
   describe 'a new blank instance' do
     before :all do
       @class = Country
@@ -21,7 +9,7 @@ describe Country do
     include NaturalKeyTable
     
     it 'should have manufacturers association' do
-      Country.new.manufacturers.should == []
+      @class.new.manufacturers.should == []
     end
     
     describe 'when no image is uploaded' do
@@ -29,41 +17,16 @@ describe Country do
         @country = Country.new
       end
       
-      it 'should not validate image content type' do
-        @country.should_not_receive(:validate_flag_format)
-        @country.save
-      end
-      
-      it 'flag should be nil' do
-        @country.flag.should be_nil
-      end
-      
-      it 'flag_filename should be nil' do
-        @country.flag_filename.should be_nil
-      end
-      
       it 'should be unused' do
         @country.should be_unused
       end
-    end
-    
-    describe 'when uploading an image' do
-      it 'should check image file contet type' do
-        country = @class.new(:name => 'China', :flag_file => mock_image_file(:valid => true))
-        country.should_receive(:validate_flag)
-        country.save
+      
+      it 'should have a paperclip flag image' do
+        @country.flag.should be_a(Paperclip::Attachment)
       end
       
-      it 'validates_flag should return false when image is not a png file' do
-        country = @class.new(:name => 'China', :flag_file => mock_image_file(:valid => false))
-        country.should_receive(:validate_flag).and_return(false)
-        country.save
-      end
-      
-      it 'should save image' do
-        country = @class.new(:name => 'China', :flag_file => mock_image_file(:valid => true))
-        country.save
-        country.should have_flag
+      it 'should have a default flag image' do
+        @country.flag.to_s.should include('missing.png')
       end
     end
   end
@@ -79,10 +42,6 @@ describe Country do
     
     it 'should have id same as name (name is primary key)' do
       @country.id.should == @country.name
-    end
-    
-    it 'flag_filename should not be nil' do
-     @country.flag_filename.should_not be_nil
     end
   
     describe 'when associations are not empty' do

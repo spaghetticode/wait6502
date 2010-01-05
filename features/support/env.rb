@@ -29,14 +29,11 @@ require 'spec/stubs/cucumber'
 # removing constants to be redefined:
 Image.send(:remove_const, :FS_PREFIX)
 Auction.send(:remove_const, :GALLERY_IMAGES_PATH)
-Country.send(:remove_const, :FS_PATH)
 
 # changing location where image files will be saved:
 Image::FS_PREFIX = File.join(RAILS_ROOT, 'spec/fixtures/images')
 # changing the location where auction gallery image files will be saved:
 Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
-# changing location where countries flag images will be saved
-Country::FS_PATH = File.join(RAILS_ROOT, 'spec/fixtures')
 
 require 'pickle/world'
 # Example of configuring pickle:

@@ -11,19 +11,6 @@ Feature: Manage Countries
 		When  I go to the countries page
 		Then  I should see "Listing Countries"
 		And   I should see "Italy"
-		
-	Scenario: Successfull Country Creation (with flag)
-		Given I cache the countries count
-		And   I am on the countries page
-		And   I follow "new country"
-		When  I fill in "name" with "Italy"
-		And   I attach a valid flag image
-		And   I press "Create"
-		Then  I should see "Country was successfully created"
-		And   a new country has been created
-		And   I should be on the countries page
-		And   I should see "Italy"
-		And   the "Italy" country flag file should exist
 
 	Scenario: Successfull Country Creation (no flag)
 		Given I cache the countries count
