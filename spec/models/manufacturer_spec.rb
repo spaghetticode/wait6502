@@ -19,6 +19,14 @@ describe Manufacturer do
     it 'should have co_cpus association' do
       @class.new.co_cpus.should_not be_nil
     end
+    
+    it 'should use paperclip to store logo picture' do
+      @class.new.logo.should be_a(Paperclip::Attachment)
+    end
+    
+    it 'should have a default image' do
+      @class.new.logo.to_s.should include('missing.png')
+    end
   end
   
   describe 'an instance with valid attributes' do
@@ -29,6 +37,7 @@ describe Manufacturer do
     it 'should have an associated country' do
       Factory(:manufacturer).country.should be_a(Country)
     end
+    
   end
   
   describe 'named scope ORDERED' do

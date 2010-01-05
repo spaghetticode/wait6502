@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091212162903) do
+ActiveRecord::Schema.define(:version => 20100105180917) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                        :null => false
@@ -185,11 +185,15 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   end
 
   create_table "manufacturers", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",              :null => false
     t.string   "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_update_at"
   end
 
   create_table "operative_systems", :force => true do |t|
