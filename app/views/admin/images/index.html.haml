@@ -11,7 +11,7 @@
 
   - @images.each do |image|
     %tr
-      %td= image_tag(image.filename(:thumb))
+      %td= image_tag(image.picture(:thumb))
       %td= h image.title
       %td= h truncate(image.caption)
       %td= link_to 'Edit', edit_admin_imageable_image_path(@imageable, image)

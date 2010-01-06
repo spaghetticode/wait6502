@@ -6,8 +6,8 @@
   = f.error_messages
   %table.record
     %tr
-      %th= f.label :uploaded_file, 'Image File'
-      %td= f.file_field :uploaded_file
+      %th= f.label :picture
+      %td= f.file_field :picture
     =render :partial => 'form_fields', :locals => {:f => f}
     %tr
       %td.center{:colspan => 2}= f.submit 'Create'

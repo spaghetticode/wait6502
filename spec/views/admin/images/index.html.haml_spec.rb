@@ -6,11 +6,9 @@ describe "/admin/images/index.html.haml" do
   before(:each) do
     assigns[:images] = [
       mock_model(Image,
-        :uploaded_file => 'file',
-        :original_filename => 'filename',
         :title => 'title',
         :caption => 'caption',
-        :filename => 'image.png'
+        :picture => 'image.png'
       )
     ]
     assigns[:imageable] = mock_model(Hardware, :name => 'Computer name')

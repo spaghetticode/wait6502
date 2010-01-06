@@ -12,7 +12,7 @@
       - unless data.empty?
         - currency = site.currency_id
         - average = data.sum / data.size
-      %td= flag_thumbnail(site, 40)
+      %td= flag_thumbnail(site, :height => 40)
       %td= average && sprintf("#{currency} %.2f", average) || '-'
       %td= data.min && sprintf("#{currency} %.2f", data.min) || '-'
       %td= data.max && sprintf("#{currency} %.2f", data.max) || '-'
