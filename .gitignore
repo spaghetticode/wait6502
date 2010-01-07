@@ -4,9 +4,5 @@ tmp/**/*
 tmp/*.txt
 config/database.yml
 config/amazon_s3.yml
-public/images/**/*
-!public/images/**/.gitignore
-!public/images/flags/*.png
-spec/fixtures/images/**/*
-!spec/fixtures/images/**/.gitignore
 coverage/*
+public/images/sandbox/*
