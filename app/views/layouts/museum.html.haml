@@ -11,6 +11,7 @@
   %body
     #topnav
       %ul
+        %li= link_to 'contact us', 'mailto:info@wait6502.net'
         - if current_user
           %li= link_to 'logout', logout_path
           %li= link_to 'admin area', admin_hardware_index_path
@@ -50,4 +51,8 @@
         = yield
     
     #footer
-      %p © 2009 Spaghetti Code productions
+      %p
+        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :id => 'email'
+        %br
+        © 2009 
+        = link_to 'Spaghetti Code productions', 'http://www.spaghetticode.it', :title => 'SpaghettiCode web development'
