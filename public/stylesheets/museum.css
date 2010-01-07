@@ -16,6 +16,11 @@ a:hover {
 	text-decoration:underline;
 }
 
+table img {
+	font-size:10px;
+	color:silver;
+}
+
 #topnav {
 	height:30px;
 	background:black;
@@ -283,8 +288,6 @@ h2.with_logo {
 img.manufacturer_logo {
 	float:left;
 	margin-right:25px;
-	font-size:10px;
-	color:silver;
 }
 
 .breadcrumbs {
