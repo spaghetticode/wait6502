@@ -1,8 +1,8 @@
 :development:
-  :app_id: none3d924-0bd7-400e-957b-90b8a7fee5a
-
+  :app_id: <%= ENV['EBAY_KEY'] %>
+  
 :test:
-  :app_id: test_ebay_app_id
+  :app_id: <%= ENV['EBAY_KEY'] %>
 
 :production:
-  :app_id: none3d924-0bd7-400e-957b-90b8a7fee5a
+  :app_id: <%= ENV['EBAY_KEY'] %>
