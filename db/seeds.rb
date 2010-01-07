@@ -2,7 +2,6 @@ puts "Destroying existing data..."
 %w[users countries currencies manufacturers cpu_families cpu_names cpu_bits cpus
   builtin_languages co_cpu_types co_cpus co_cpu_names operative_systems storage_names
   storage_formats storage_sizes builtin_storages io_ports hardware_types ebay_sites
-  hardware images
 ].each do |table|
   ActiveRecord::Migration.execute("delete from #{table}")
 end
