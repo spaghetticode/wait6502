@@ -38,6 +38,8 @@ Rails::Initializer.run do |config|
   config.gem 'haml', :version => '2.2.16'
   config.gem 'authlogic', :version => '>=2.1.2' 
   config.gem 'will_paginate', :lib => 'will_paginate', :version => '>= 2.3.11'
+  config.gem 'aws-s3', :lib => 'aws/s3'
+  config.gem 'xml-simple', :lib => 'xmlsimple'
   
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]

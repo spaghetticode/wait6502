@@ -2,4 +2,4 @@ haml --version '2.2.16'
 authlogic --version '>=2.1.2' 
 will_paginate --version '>= 2.3.8'
 aws-s3
-xmlsimple
+xml-simple
