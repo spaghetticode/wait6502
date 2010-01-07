@@ -10,7 +10,8 @@ class Country < ActiveRecord::Base
     :styles => {:original => '60x40'},
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
-    :path => ':class/:id/flag.:extension'
+    :path => ':class/:id/flag.:extension',
+    :default_url => '/images/blank_flag.jpg'
 
   def unused?
     manufacturers.empty? && ebay_sites.empty? && original_prices.empty?

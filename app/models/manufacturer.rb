@@ -13,8 +13,9 @@ class Manufacturer < ActiveRecord::Base
     :styles => {:original => 'x40'},
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
-    :path => ':class/:id/logo.:extension'
-
+    :path => ':class/:id/logo.:extension',
+    :default_url => '/images/blank_manufacturer.jpg'
+    
   named_scope :ordered, :order => 'name'
   
   SEARCH_FIELDS = { :name => 'manufacturers.name', :country => 'countries.name'}
