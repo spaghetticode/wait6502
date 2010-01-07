@@ -1,0 +1,7 @@
+%ul
+  %li= link_to 'contact us', APP_CONFIG['email']
+  - if current_user
+    %li= link_to 'logout', logout_path
+    %li= link_to 'admin area', admin_hardware_index_path
+  - else
+    %li= link_to 'login', login_path

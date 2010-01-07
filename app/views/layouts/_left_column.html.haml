@@ -1,0 +1,21 @@
+#search
+  - form_tag search_path, :method => :get do
+    = text_field_tag :query
+    = submit_tag :search, :name => nil
+%ul.leftnav
+  %li.computers
+    %a computers »
+    %ul.subnav
+      %li.keyboard
+        - Keys.keys.each do |k|
+          = link_to k[:letter], "#{computers_path}?letter=#{k[:letter]}", :class => 'key', :style => k[:position]              
+  %li.leftnav= link_to 'peripherals', peripherals_path
+  %li.leftnav= link_to 'manufacturers', manufacturers_path
+  %li.leftnav= link_to 'categories', hardware_types_path
+  %li.leftnav= link_to 'CPUs', cpus_path
+  %li.leftnav= link_to 'co-CPUs', co_cpus_path
+  %li.leftnav= link_to 'I/O ports', io_ports_path
+  %li.leftnav= link_to 'operative systems', operative_systems_path
+  %li.leftnav= link_to 'builtin languages', builtin_languages_path
+  %li.leftnav= link_to 'mass storage units', builtin_storages_path
+= yield :sidebar

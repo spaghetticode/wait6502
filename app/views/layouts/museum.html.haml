@@ -13,14 +13,7 @@
     = yield :head
   %body
     #topnav
-      %ul
-        %li= link_to 'contact us', 'mailto:info@wait6502.net'
-        - if current_user
-          %li= link_to 'logout', logout_path
-          %li= link_to 'admin area', admin_hardware_index_path
-        - else
-          %li= link_to 'login', login_path
-          
+      = render 'layouts/top_nav'
     #header{:style => 'position:relative'}
       %h1= link_to 'Wait 6502 old computers and retrocomputing', root_path
       %img{:src => '/images/pet.png', :alt => 'PET-2001'}
@@ -30,33 +23,13 @@
         %p{:class => type}= message
     #container
       #left-column
-        #search
-          - form_tag search_path, :method => :get do
-            = text_field_tag :query
-            = submit_tag :search, :name => nil
-        %ul.leftnav
-          %li.computers
-            %a computers »
-            %ul.subnav
-              %li.keyboard
-                - Keys.keys.each do |k|
-                  = link_to k[:letter], "#{computers_path}?letter=#{k[:letter]}", :class => 'key', :style => k[:position]              
-          %li.leftnav= link_to 'peripherals', peripherals_path
-          %li.leftnav= link_to 'manufacturers', manufacturers_path
-          %li.leftnav= link_to 'categories', hardware_types_path
-          %li.leftnav= link_to 'CPUs', cpus_path
-          %li.leftnav= link_to 'co-CPUs', co_cpus_path
-          %li.leftnav= link_to 'I/O ports', io_ports_path
-          %li.leftnav= link_to 'operative systems', operative_systems_path
-          %li.leftnav= link_to 'builtin languages', builtin_languages_path
-          %li.leftnav= link_to 'mass storage units', builtin_storages_path
-        = yield :sidebar
+        = render 'layouts/left_column'
       #right-column
         = yield
     
     #footer
       %p
-        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :id => 'email'
+        = link_to APP_CONFIG['email'], "mailto:#{APP_CONFIG['email']}", :id => 'email'
         %br
-        © 2009 
-        = link_to 'Spaghetti Code productions', 'http://www.spaghetticode.it', :title => 'SpaghettiCode web development'
+          © 2009
+          = APP_CONFIG['credits']
