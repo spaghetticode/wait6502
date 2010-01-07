@@ -4,29 +4,33 @@ class Auction < ActiveRecord::Base
   belongs_to :ebay_site
   belongs_to :hardware
   belongs_to :currency
+  
+  Auction::BLANK_IMAGE_URL = '/images/blank_auction.png'
 
+  has_attached_file :picture,
+    :styles => {:original => '60x60'},
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+    :path => ':class/:id/picture.:extension',
+    :default_url => BLANK_IMAGE_URL
+    
+  before_create :attach_picture
+    
   COMPLETENESSES = ['bare', 'complete', 'complete with extras', 'boxed', 'boxed with extras']
   COSMETIC_CONDITIONS = %w{poor average good mint}
-  GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/public/images/auctions"
-  BLANK_IMAGE_URL = "/images/auctions/blank.png"
-  SEARCH_FIELDS = {
-    'hardware name' => 'hardware.name', 'title' => 'auctions.title',
-    'ebay website' => 'ebay_site_id', 'cosmetic conditions' => 'cosmetic_conditions',
-    'completeness' => 'completeness', 'price' => 'final_price', 'end time' => 'end_time'
-  }
   
-  # validations:
   validates_uniqueness_of :url, :item_id
   validates_presence_of :hardware, :ebay_site, :currency, :url, :item_id
   validates_presence_of :completeness, :cosmetic_conditions, :end_time, :item_id
   validates_inclusion_of :completeness, :in => COMPLETENESSES
   validates_inclusion_of :cosmetic_conditions, :in => COSMETIC_CONDITIONS
   
-  # callbacks:
-  before_create :save_gallery_image
-  before_destroy :delete_gallery_image
-  
-  # named scopes:
+  SEARCH_FIELDS = {
+    'hardware name' => 'hardware.name', 'title' => 'auctions.title',
+    'ebay website' => 'ebay_site_id', 'cosmetic conditions' => 'cosmetic_conditions',
+    'completeness' => 'completeness', 'price' => 'final_price', 'end time' => 'end_time'
+  }
+
   named_scope :ordered, :order => 'created_at'
   named_scope :active, lambda {{:conditions => ['end_time > ?', Time.now]}}
   named_scope :closed, lambda {{:conditions => ['end_time < ?', Time.now]}}
@@ -74,15 +78,25 @@ class Auction < ActiveRecord::Base
     end
   end
   
-  def gallery_image_url
-    if image_url
-      "/images/auctions/#{item_id}.jpg" 
-    else
-      BLANK_IMAGE_URL
-    end
+  def attach_picture
+    self.picture = fake_uploaded_file if image_url
   end
   
   private
+  
+  def fake_uploaded_file
+    returning ActionController::UploadedStringIO.new(download_image_data) do |file|
+      file.content_type = "image/jpg"
+      file.original_path = image_url
+    end
+  end
+  
+  def download_image_data
+    uri = URI.parse(image_url)
+    request = Net::HTTP.new(uri.host, uri.port)
+    request.read_timeout = 3
+    request.get(uri.request_uri).body
+  end
   
   def find_ebay_item
     EbayFinder::Request.new(
@@ -90,32 +104,5 @@ class Auction < ActiveRecord::Base
       :callname => 'GetItemStatus',
       :website  => ebay_site_id
     ).response.items.first
-  end
-  
-  def save_gallery_image
-    return if image_url.blank?
-    download_image
-    save_image
-  end
-  
-  def download_image
-    uri = URI.parse(image_url)
-    request = Net::HTTP.new(uri.host, uri.port)
-    request.read_timeout = 3
-    self.image_file = request.get(uri.request_uri).body
-  end
-  
-  def save_image
-    # I expect ebay auction numbers to be truly unique
-    filename = "#{item_id}.jpg"
-    path = "#{GALLERY_IMAGES_PATH}/#{filename}"
-    File.open(path, 'wb') {|f| f.write image_file}
-  end
-  
-  def delete_gallery_image
-    if image_url
-      path = "#{GALLERY_IMAGES_PATH}/#{item_id}.jpg"
-      File.delete(path) if File.file?(path)
-    end
   end
 end

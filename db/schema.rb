@@ -9,22 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105195527) do
+ActiveRecord::Schema.define(:version => 20100106020823) do
 
   create_table "auctions", :force => true do |t|
-    t.integer  "hardware_id",                                        :null => false
-    t.string   "ebay_site_id",                                       :null => false
-    t.string   "currency_id",                                        :null => false
-    t.string   "title",                                              :null => false
-    t.string   "url",                                                :null => false
+    t.integer  "hardware_id",                                         :null => false
+    t.string   "ebay_site_id",                                        :null => false
+    t.string   "currency_id",                                         :null => false
+    t.string   "title",                                               :null => false
+    t.string   "url",                                                 :null => false
     t.string   "image_url"
-    t.string   "item_id",                                            :null => false
-    t.string   "cosmetic_conditions",                                :null => false
-    t.string   "completeness",                                       :null => false
-    t.decimal  "final_price",         :precision => 11, :scale => 2
-    t.datetime "end_time",                                           :null => false
+    t.string   "item_id",                                             :null => false
+    t.string   "cosmetic_conditions",                                 :null => false
+    t.string   "completeness",                                        :null => false
+    t.decimal  "final_price",          :precision => 11, :scale => 2
+    t.datetime "end_time",                                            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "builtin_languages", :id => false, :force => true do |t|

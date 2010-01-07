@@ -1,4 +1,3 @@
-@focus
 Feature: Sort Auctions
 	In order to view auctions data in the correct order
 	As a logged user

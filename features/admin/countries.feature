@@ -22,7 +22,19 @@ Feature: Manage Countries
 		And   a new country has been created
 		And   I should be on the countries page
 		And   I should see "Italy"
-				
+		
+	Scenario: Successfull Country Creation (with flag)
+		Given I cache the countries count
+		And   I am on the countries page
+		And   I follow "new country"
+		When  I fill in "name" with "Italy"
+		And   I attach the file at "public/images/rails.png" to "flag" 
+		And   I press "Create"
+		Then  I should see "Country was successfully created"
+		And   a new country has been created
+		And   I should be on the countries page
+		And   I should see "Italy"
+			
 	Scenario: Failing Country Creation (no name)
 		Given I cache the countries count
 		And   I am on the new country page

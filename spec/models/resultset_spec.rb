@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 module ResultsetHelper
-  def ebay_response_from(filename)
-    xml_mock = "#{RAILS_ROOT}/vendor/plugins/ebay_finder/spec/stubs/#{filename}"
-    EbayFinder::FindItemsAdvancedResponse.new(xml_mock)
+  def ebay_response(filename)
+    xml = File.read("#{RAILS_ROOT}/vendor/plugins/ebay_finder/spec/stubs/#{filename}")
+    EbayFinder::FindItemsAdvancedResponse.new(xml)
   end
 
-  def stub_ebay_response(filename)
-    response = ebay_response_from(filename)
-    mock = mock_model(EbayFinder::Request, :response => response)
-    EbayFinder::Request.stub!(:new => mock)
+  def stub_ebay_request(filename)
+    response = ebay_response(filename)
+    request = mock(EbayFinder::Request, :response => response)
+    EbayFinder::Request.stub!(:new => request)
   end
 end
 
@@ -46,9 +46,9 @@ describe Resultset do
     end
   end
   
-  describe 'a resultset with no results' do    
+  context 'a resultset with no results' do    
     before do
-      stub_ebay_response('FindItemsAdvancedResponse0Items.xml')
+      stub_ebay_request('FindItemsAdvancedResponse0Items.xml')
       @resultset = Resultset.new
       @resultset.set_results
     end
@@ -58,15 +58,37 @@ describe Resultset do
     end
   end
   
-  describe 'a resultset with results' do
+  context 'a resultset with 10 results' do
     before do
-      stub_ebay_response('FindItemsAdvancedResponse1Item.xml')
+      stub_ebay_request('FindItemsAdvancedResponse10Items.xml')
       @resultset = Resultset.new
       @resultset.set_results
     end
     
     it 'should have items' do
       @resultset.items.should have_at_least(1).item
+    end
+  end
+  
+  context 'a resultset with 1 item' do
+    before do
+      stub_ebay_request('FindItemsAdvancedResponse1Item.xml')
+      @resultset = Resultset.new
+      @resultset.set_results
+    end
+    
+    it 'should have 1 item' do
+      @resultset.items.should have_exactly(1).item
+    end
+    
+    context 'the item' do
+      before do
+        @item = @resultset.items.first
+      end
+      
+      it 'should have expected price string' do
+        @item.current_price.to_s.should == 'EUR 499.00'
+      end
     end
   end
 end

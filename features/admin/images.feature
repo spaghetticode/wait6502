@@ -11,7 +11,7 @@ Feature: Manage Images
 		Given I am logged out
 		When  I go to the "Amiga 1000" hardware images page
 		Then I should see "You must be logged in to access this page"
-	
+
 	Scenario: Listing Images
 		Given I uploaded an image titled "Inner view" for "Amiga 1000" hardware
 		And   I am on the "Amiga 1000" hardware editor page
@@ -26,7 +26,7 @@ Feature: Manage Images
 		And   I follow "New image"
 		When  I fill in "Title" with "Amiga 1000 image"
 		And   I fill in "Caption" with "Something about the Amiga 1000"
-		And   I attach a valid image
+		And   I attach a valid image 
 		And   I press "Create"
 		Then  I should see "Image was successfully created"
 		And   I should see "Amiga 1000 image"

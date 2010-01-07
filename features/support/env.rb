@@ -26,12 +26,6 @@ require 'webrat/core/matchers'
 require 'spec/factories'
 require 'spec/stubs/cucumber'
 
-# removing constants to be redefined:
-Auction.send(:remove_const, :GALLERY_IMAGES_PATH)
-
-# changing the location where auction gallery image files will be saved:
-Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
-
 require 'pickle/world'
 # Example of configuring pickle:
 #

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Auction do
+  def image_file
+    @file ||= fixture_file_upload('rails.png', 'image/png')    
+  end
+  
   context 'a new blank instance' do
     it 'should not be valid' do
       Auction.new.should_not be_valid
@@ -51,8 +55,13 @@ describe Auction do
         Auction.new.should respond_to(association)
       end
     end
-
+    
+    it 'should have a default blank picture' do
+      Auction.new.picture.to_s.should == Auction::BLANK_IMAGE_URL
+    end
+    
     it 'should have a unique url' do
+      Auction.stub!(:before_create)
       auction = Factory(:auction)
       invalid = Auction.new(:url => auction.url)
       invalid.should have(1).error_on(:url)
@@ -63,30 +72,17 @@ describe Auction do
       invalid = Auction.new(:item_id => auction.item_id)
       invalid.should have(1).error_on(:item_id)
     end
-    
-    it 'should have a default image' do
-      Auction.new.gallery_image_url.should == Auction::BLANK_IMAGE_URL
-    end
   end
 
   context 'an auction with valid attributes' do
     it 'should be valid' do
       Factory(:auction).should be_valid
     end
-    
-    context 'with a gallery image' do
-      before do
-        @auction = Factory(:auction)
-        @auction.should_receive(:image_url).and_return('someurl')
-      end
-      
-      it 'gallery_image_url should not be nil' do
-        @auction.gallery_image_url.should_not be_nil
-      end
-    
-      it 'gallery_image_url should return expected string' do
-        @auction.gallery_image_url.should == "/images/auctions/#{@auction.item_id}.jpg"
-      end
+  end
+
+  describe 'a valid auction' do
+    before do
+      @auction = Factory(:auction)
     end
     
     context 'when it has not ended yet' do
@@ -105,7 +101,7 @@ describe Auction do
     
     context 'when it has already ended' do
       before do
-        @auction = Factory(:auction, :end_time => Time.now.yesterday)
+        @auction.end_time = Time.now.yesterday
       end
       
       it 'should be closed' do
@@ -142,70 +138,14 @@ describe Auction do
         end
       end
     end
-  end
-  
-  describe 'creating a new auction' do
-    describe 'when ebay auction has a gallery image' do
-      before do
-        mock_response = mock(:body => 'mock file content')
-        mock_request = mock(:read_timeout= => nil, :get => mock_response)
-        Net::HTTP.should_receive(:new).and_return(mock_request)
-        File.should_receive(:open).and_return(true)
-      end
-      
-      it 'gallery_image_url should include auction item_id' do
-        pending do
-          auction = Factory(:auction, :image_url => 'http://ebay.it/someimage.jpg')
-          auction.gallery_image_url.should include(auction.item_id)
-        end
-      end
-    end
-    
-    describe 'when ebay auction has no gallery image' do
-      before do
-        Net::HTTP.should_not_receive(:new)
+  end 
+
+  describe 'creating a new auction' do    
+    context 'when ebay auction has no gallery image' do
+      it 'picture.to_s should return default image path' do
         File.should_not_receive(:open)
-      end
-      
-      it 'gallery_image_url should return default image path' do
-        pending do
-          auction = Factory(:auction)
-          auction.gallery_image_url.should == Auction::BLANK_IMAGE_URL
-        end
-      end
-    end
-  end
-  
-  describe 'destroying an existing auction' do
-    before do
-      @auction = Factory(:auction)
-    end
-    
-    it 'destroy should always trigger expected callback' do
-      @auction.should_receive(:delete_gallery_image)
-      @auction.destroy
-    end
-      
-    describe 'when it has a gallery image' do
-      before do
-        @auction.stub!(:image_url => 'http://some-ebay-path.com')
-      end
-        
-      it 'should look for image file to be deleted' do
-        File.should_receive(:file?)
-        @auction.destroy
-      end
-      
-      it 'should delete image file when present' do
-        File.should_receive(:file?).and_return(true)
-        File.should_receive(:delete)
-        @auction.destroy
-      end
-    end
-    
-    describe 'when it has no gallery image' do
-      it 'should not look for the image file' do
-        File.should_not_receive(:file?)
+        auction = Factory(:auction)
+        auction.picture.to_s.should == Auction::BLANK_IMAGE_URL
       end
     end
   end

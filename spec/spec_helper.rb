@@ -9,12 +9,6 @@ require File.dirname(__FILE__) + '/factories'
 require File.dirname(__FILE__) + '/controller_macros'
 require File.dirname(__FILE__) + '/model_macros'
 
-# removing constants to be redefined:
-Auction.class_eval{remove_const :GALLERY_IMAGES_PATH}
-
-# changing the location for saved auction gallery image files:
-Auction::GALLERY_IMAGES_PATH = "#{RAILS_ROOT}/spec/fixtures/images/auctions"
-
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
