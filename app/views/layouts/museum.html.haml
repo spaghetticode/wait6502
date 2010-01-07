@@ -1,9 +1,9 @@
 !!!
-%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "it", :lang => "it"}
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
-    %meta{:name => 'keywords', :content => @meta_keywords || ''}/
-    %meta{:name => 'description', :content => @meta_description || ''}/
+    %meta{:name => 'keywords', :content => @meta_keywords || 'retrocomputing, old computers, vintage hardware, wait 6502'}/
+    %meta{:name => 'description', :content => @meta_description || 'Welcome to WAIT6502, a new resource for retrocomputing enthusiasts.'}/
     %title= "WAIT 6502 retrocomputing - #{@title}"
     = stylesheet_link_tag 'museum'
     = javascript_include_tag 'jquery-1.3.2.min', 'museum'

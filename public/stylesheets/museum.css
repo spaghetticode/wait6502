@@ -323,9 +323,10 @@ img.manufacturer_logo {
 #search input {
 	border:none;
 	background:none;
-	margin-left:20px;
+	margin-left:25px;
 	margin-top:4px;
-	width:120px;
+	width:115px;
+	color: gray;
 }
 
 .spaced {
