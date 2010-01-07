@@ -31,7 +31,7 @@ describe Manufacturer do
     end
     
     it 'should have a default image' do
-      @manufacturer.logo.to_s.should include('missing.png')
+      @manufacturer.logo.to_s.should include('blank_manufacturer.jpg')
     end
     
     context 'when uploading an image' do

@@ -28,7 +28,7 @@ describe Country do
     
     describe 'when no flag is uploaded' do      
       it 'should have a default flag image' do
-        @country.flag.to_s.should include('missing.png')
+        @country.flag.to_s.should include('blank_flag.jpg')
       end
     end
 
