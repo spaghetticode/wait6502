@@ -1,3 +1,12 @@
+puts "Destroying existing data..."
+%w[users countries currencies manufacturers cpu_families cpu_names cpu_bits cpus
+  builtin_languages co_cpu_types co_cpus co_cpu_names operative_systems storage_names
+  storage_formats storage_sizes builtin_storages io_ports hardware_types ebay_sites
+  hardware images
+].each do |table|
+  ActiveRecord::Migration.execute("delete from #{table}")
+end
+
 puts 'Creating user admin@test.com'
 password = 'secret'
 User.create!(
@@ -19,7 +28,7 @@ puts 'Creating countries'
   'Italy', 'USA', 'France', 'Germany', 'Spain', 
   'Japan', 'Great Britain', 'Holland','Canada',
   'Australia', 'Austria', 'Portugal'
-].each do |name|
+].each do |name|  
   Country.create!(
     :name => name,
     :flag => attach(name, 'flags')
