@@ -132,10 +132,7 @@ p.error {
 	color:white;
 	background:black;
 	height:50px;
-<<<<<<< HEAD:public/stylesheets/museum.css
-=======
 	padding-top:15px;
->>>>>>> 2-paperclip:public/stylesheets/museum.css
 }
 
 #footer p {
@@ -358,9 +355,6 @@ img.manufacturer_logo {
 	border:2px solid red;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
-<<<<<<< HEAD:public/stylesheets/museum.css
-}
-=======
 }
 
 a#email {
@@ -388,4 +382,3 @@ div.about {
 	margin:5px 15px;
 	float:left;
 }
->>>>>>> 2-paperclip:public/stylesheets/museum.css
