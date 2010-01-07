@@ -3,14 +3,6 @@ log/*.log
 tmp/**/*
 tmp/*.txt
 config/database.yml
-public/images/auctions/*
-public/images/original/*
-public/images/small/*
-public/images/thumb/*
-public/images/normal/*
-public/images/sandbox/*
-!public/images/**/.gitignore
-!public/images/flags/*.png
-spec/fixtures/images/**/*
-!spec/fixtures/images/**/.gitignore
+config/amazon_s3.yml
 coverage/*
+public/images/sandbox/*

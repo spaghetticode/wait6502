@@ -1,3 +1,4 @@
+require 'spec/mocks'
 Factory.define :country do |c|
   c.sequence(:name) {|n| "country#{n}"}
 end
@@ -86,7 +87,6 @@ Factory.define :hardware do |h|
   h.sequence(:name) {|n| "hardware #{n}"}
   h.association :hardware_type
   h.association :manufacturer
-  h.association :hardware_type
   h.hardware_category Hardware::CATEGORIES.first
 end
 
@@ -102,7 +102,7 @@ Factory.define :image do |i|
   i.association :imageable, :factory => :hardware
   i.title 'Image Title'
   i.caption 'Image Caption'
-  # missing uploaded_file attribute which must be stubbed
+  i.stub!(:save_attached_files => true) 
 end
 
 Factory.define :hardware_type do |ht|

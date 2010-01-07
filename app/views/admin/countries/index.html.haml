@@ -8,7 +8,7 @@
   - @countries.each do |country|
     %tr
       %td= h country.name
-      %td= image_tag h(country.flag), :alt => ''
+      %td= flag_thumbnail(country)
       %td= link_to 'Destroy', admin_country_path(country), :confirm => 'Are you sure?', :method => :delete
 %p= will_paginate @countries
 

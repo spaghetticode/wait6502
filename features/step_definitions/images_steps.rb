@@ -3,12 +3,11 @@ Given /^I uploaded an image titled "([^\"]*)" for "([^\"]*)" (hardware)$/ do |ti
   visit send("admin_#{model}_images_path", imageable)
   click_link "New image"
   fill_in "Title", :with => title
-  Given "I attach a valid image"
+  attach_file(:picture, "#{RAILS_ROOT}/spec/fixtures/rails.png", 'image/png')  
   click_button "Create"
   imageable.images.first.title.should == title
 end
 
 Given /^I attach a valid image$/ do
-  attach_file('Image File', File.join(RAILS_ROOT, 'public/images/rails.png'), 'image/png')
+  attach_file(:picture, File.join(RAILS_ROOT, 'spec/fixtures/rails.png'), 'image/png')  
 end
-  

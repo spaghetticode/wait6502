@@ -1,0 +1,10 @@
+development: &DEVELOPMENT
+  access_key_id: 123123
+  secret_access_key: 1232312
+  bucket: wait6502
+test:
+  access_key_id: 123132
+  secret_access_key: 123123
+  bucket: wait-6502-test
+production:
+  <<: *DEVELOPMENT

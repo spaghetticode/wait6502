@@ -17,7 +17,7 @@ Feature: Manage Manufacturers
 		Then  I should see "Listing Manufacturers"
 		And   I should see "Apple"
 		
-	Scenario: Creating New Manufacturer
+	Scenario: Creating New Manufacturer (no logo)
 		Given I am on the manufacturers page
 		And   a country named "USA" exists
 		And   I cache the manufacturers count
@@ -29,6 +29,20 @@ Feature: Manage Manufacturers
 		And   I should be on the manufacturers page
 		And   I should see "Apple"
 		And   a new manufacturer has been created
+		
+	Scenario: Creating New Manufacturer (with logo)
+		Given I am on the manufacturers page
+		And   a country named "USA" exists
+		And   I cache the manufacturers count
+		And   I follow "new manufacturer"
+		When  I fill in "name" with "Apple"
+		And   I select "USA" from "country"
+		And   I attach the file at "public/images/rails.png" to "logo" 
+		And   I press "create"
+		Then  I should see "Manufacturer was successfully created"
+		And   I should be on the manufacturers page
+		And   I should see "Apple"
+		And   a new manufacturer has been created	
 		
 	Scenario: Failed New Manufacturer Creation
 		Given a manufacturer named "Commodore" exists

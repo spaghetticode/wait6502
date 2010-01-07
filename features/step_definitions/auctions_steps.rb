@@ -28,8 +28,8 @@ end
 
 Given /^I stub image downloads from ebay$/ do
   filename = "#{RAILS_ROOT}/public/images/rails.png"
-  mock_response = mock(:class => Net::HTTPOK, :body => File.read(filename))
-  mock_request = mock(:class => Net::HTTP, :get => mock_response, :read_timeout= => nil)
+  mock_response = mock(Net::HTTPOK, :body => File.read(filename))
+  mock_request = mock(Net::HTTP, :get => mock_response, :read_timeout= => nil).as_null_object
   Net::HTTP.stub!(:new => mock_request)
 end
 
@@ -41,6 +41,6 @@ private
 
 def mock_response(filename, klass)
   mock_xml = File.read("#{RAILS_ROOT}/vendor/plugins/ebay_finder/spec/stubs/#{filename}")
-  mock_response = mock(:class => EbayFinder::Request, :response => klass.new(mock_xml))
+  mock_response = mock(EbayFinder::Request, :response => klass.new(mock_xml))
   EbayFinder::Request.should_receive(:new).and_return(mock_response)
 end

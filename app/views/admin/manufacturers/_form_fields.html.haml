@@ -5,11 +5,11 @@
   %th= f.label :country_id
   %td= country_selector(f)
 %tr
-  %th= f.label :logo_file
+  %th= f.label :logo
   %td
-    = f.file_field :logo_file
+    = f.file_field :logo
     %br
-    %span.light Image should be png 40px heigth
+    %span.light Image should be png 40px height
 %tr
   %th= f.label :description
   %td= f.text_area :description, :cols => 40, :rows => 4

@@ -3,4 +3,4 @@
     = stylesheet_link_tag 'fancybox-1.2.6'
     = javascript_include_tag 'fancybox/jquery.fancybox-1.2.6.pack', 'images_popup'
 - images.each  do |image|
-  = link_to image_tag(image.filename(:thumb), :alt => image.imageable.name), image.filename(:normal), :title => image.imageable.name
+  = link_to image_tag(image.picture(:thumb), :alt => image.imageable.name), image.picture(:normal), :title => image.imageable.name

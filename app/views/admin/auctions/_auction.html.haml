@@ -1,6 +1,6 @@
 %tr{:id => auction.item_id}
-  %td= image_tag auction.gallery_image_url || 'no image', :class => 'ebay_gallery'
-  %td= auction.hardware.name
+  %td= image_tag h(auction.picture), :class => 'ebay_gallery'
+  %td= link_to auction.hardware.name, edit_admin_hardware_path(auction.hardware)
   %td= link_to truncate(auction.title), auction.url, :onclick => "window.open('#{auction.url}');return false"
   %td.center= auction.ebay_site_id
   %td

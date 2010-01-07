@@ -20,7 +20,7 @@ class CoCpu < ActiveRecord::Base
   }
   
   def self.filter(params)
-    conditions = [concat_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
+    conditions = [ilike_string, "%#{params[:keywords]}%"] unless params[:keywords].blank?
     all(
       :conditions => conditions,
       :order => "#{params[:order] || 'co_cpu_name_id'} #{params[:desc]}",
@@ -28,11 +28,11 @@ class CoCpu < ActiveRecord::Base
     )
   end
   
-  def self.concat_string
+  def self.ilike_string
     string = SEARCH_FIELDS.values.inject([]) do |group, field|
-      group << "IFNULL(#{field}, '')"
-    end.join(', ')
-    "concat(#{string}) like ?"
+      group << "COALESCE(#{field}, '')"
+    end.join(' || ')
+    "#{string} ILIKE ?"
   end
   
   def full_name

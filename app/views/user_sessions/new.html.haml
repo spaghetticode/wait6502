@@ -1,9 +1,8 @@
 %p.breadcrumbs
   =link_to 'home', root_path
   » login
-    
-%h2 User Login
 
+%h2 User Login
 - form_for @user_session, :url => user_sessions_path do |f|
   %table.login
     %tr
@@ -14,5 +13,5 @@
       %td= f.password_field :password
     %tr
       %td.center{:colspan => 2}= f.submit 'log in'
-  
+
   = f.error_messages

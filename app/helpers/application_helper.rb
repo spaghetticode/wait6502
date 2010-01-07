@@ -39,8 +39,9 @@ module ApplicationHelper
     f.select :hardware_id, Hardware.ordered.map{|h| [h.name, h.id]}, :include_blank => true
   end
   
-  def flag_thumbnail(model, height=10)
-    model.country && image_tag(h(model.country.flag), :height => height, :alt => model.country_id) 
+  def flag_thumbnail(model, options={})
+    country = model.is_a?(Country) ? model : model.country
+    country && image_tag(h(country.flag), {:alt => country.name}.merge(options)) 
   end
   
   def logo_image(manufacturer, options={})

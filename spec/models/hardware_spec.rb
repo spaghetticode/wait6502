@@ -221,4 +221,22 @@ describe Hardware do
       end
     end      
   end
+  
+  describe 'self.CONDITIONS' do
+    it 'should include ILIKE ? string when params[:keywords] is passed' do
+      Hardware.conditions(:keywords => 'amiga').first.should include('ILIKE ?')
+    end
+  end
+  
+  describe 'self.SEARCH_FIELD_STRING' do
+    it 'should include a COALESCE function for each search field' do
+      Hardware::SEARCH_FIELDS.values.each do |field|
+        Hardware.search_field_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      Hardware.search_field_string.should include(' || ')
+    end
+  end
 end

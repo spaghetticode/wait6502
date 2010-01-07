@@ -78,7 +78,8 @@ module EbayFinder
     attr_reader :xml_response, :request
     
     def initialize(response_body, request=nil)
-      @xml_response = XmlSimple.xml_in(response_body, 'ForceArray' => false)
+      @xml_response = XmlSimple.xml_in(response_body, 'ForceArray' => false, 'KeepRoot' => false)
+      fix_xml_response if defined? AWS::S3
       @request = request
       check_for_errors
     end
@@ -92,6 +93,13 @@ module EbayFinder
     end
     
     private
+    
+    def fix_xml_response
+      # as aws-s3 gem (0.6.2) monkeypatches xmlsimple, we have to fix the 
+      # xml response if the gem is loaded:
+      root_tag = self.class.name.split('::').last
+      @xml_response = @xml_response[root_tag] if @xml_response[root_tag]
+    end
     
     def check_for_errors
       if self.xml_response['Ack'] == 'Failure'
@@ -169,7 +177,8 @@ module EbayFinder
 
     def initialize(currency_hash)
       @currency_id = currency_hash['currencyID']
-      @amount = currency_hash['content'].to_f
+      # aws-s3 keeps biting my hand
+      @amount = (defined?(AWS::S3) ? currency_hash['__content__'] : currency_hash['content']).to_f
     end
     
     def to_s

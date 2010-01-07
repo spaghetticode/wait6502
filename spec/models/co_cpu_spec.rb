@@ -50,4 +50,20 @@ describe CoCpu do
       CoCpu.ordered.should == CoCpu.all.sort_by(&:co_cpu_name_id)
     end
   end
+  
+  describe 'ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      CoCpu.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      CoCpu::SEARCH_FIELDS.values.each do |field|
+        CoCpu.ilike_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      CoCpu.ilike_string.should include(' || ')
+    end
+  end
 end

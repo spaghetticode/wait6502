@@ -9,22 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091212162903) do
+ActiveRecord::Schema.define(:version => 20100106020823) do
 
   create_table "auctions", :force => true do |t|
-    t.integer  "hardware_id",                                        :null => false
-    t.string   "ebay_site_id",                                       :null => false
-    t.string   "currency_id",                                        :null => false
-    t.string   "title",                                              :null => false
-    t.string   "url",                                                :null => false
+    t.integer  "hardware_id",                                         :null => false
+    t.string   "ebay_site_id",                                        :null => false
+    t.string   "currency_id",                                         :null => false
+    t.string   "title",                                               :null => false
+    t.string   "url",                                                 :null => false
     t.string   "image_url"
-    t.string   "item_id",                                            :null => false
-    t.string   "cosmetic_conditions",                                :null => false
-    t.string   "completeness",                                       :null => false
-    t.decimal  "final_price",         :precision => 11, :scale => 2
-    t.datetime "end_time",                                           :null => false
+    t.string   "item_id",                                             :null => false
+    t.string   "cosmetic_conditions",                                 :null => false
+    t.string   "completeness",                                        :null => false
+    t.decimal  "final_price",          :precision => 11, :scale => 2
+    t.datetime "end_time",                                            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "builtin_languages", :id => false, :force => true do |t|
@@ -73,9 +77,13 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   end
 
   create_table "countries", :id => false, :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name",              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "flag_file_name"
+    t.string   "flag_content_type"
+    t.integer  "flag_file_size"
+    t.datetime "flag_updated_at"
   end
 
   create_table "cpu_bits", :id => false, :force => true do |t|
@@ -173,8 +181,12 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
     t.text     "caption"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "imageable_id",      :null => false
+    t.integer  "imageable_id",         :null => false
     t.string   "imageable_type"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "io_ports", :force => true do |t|
@@ -185,11 +197,15 @@ ActiveRecord::Schema.define(:version => 20091212162903) do
   end
 
   create_table "manufacturers", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",              :null => false
     t.string   "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_update_at"
   end
 
   create_table "operative_systems", :force => true do |t|

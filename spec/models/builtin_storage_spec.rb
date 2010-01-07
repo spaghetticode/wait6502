@@ -64,4 +64,20 @@ describe BuiltinStorage do
       BuiltinStorage.ordered.should == BuiltinStorage.all.sort_by(&:storage_name_id)
     end
   end
+  
+  describe 'self.ILIKE_STRING' do
+    it 'should include ILIKE ? string' do
+      BuiltinStorage.ilike_string.should include('ILIKE ?')
+    end
+    
+    it 'should include a COALESCE function for each search field' do
+      BuiltinStorage::SEARCH_FIELDS.values.each do |field|
+        BuiltinStorage.ilike_string.should include("COALESCE(#{field}, '')")
+      end
+    end
+    
+    it 'should join COALESCE functions with || ' do
+      BuiltinStorage.ilike_string.should include(' || ')
+    end
+  end
 end

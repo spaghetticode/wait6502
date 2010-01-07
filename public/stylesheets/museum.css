@@ -132,13 +132,26 @@ p.error {
 	color:white;
 	background:black;
 	height:50px;
+<<<<<<< HEAD:public/stylesheets/museum.css
+=======
+	padding-top:15px;
+>>>>>>> 2-paperclip:public/stylesheets/museum.css
 }
 
 #footer p {
 	margin:0px;
 	text-align:center;
-	line-height:40px;
 	font-size:11px;
+	line-height:17px;
+}
+
+#footer p a {
+	color:white;
+	text-decoration:underline;
+}
+
+#footer p a:hover {
+	text-decoration:none;
 }
 
 #footer p a {
@@ -229,7 +242,7 @@ li.computers {
 }
 
 li.keyboard {
-	background:url(/images/combo.png) no-repeat scroll -107px -24px;
+	background:url(/images/sprites.png) no-repeat scroll -107px -24px;
 	width:410px;
 	height:155px;
 	position:absolute;
@@ -255,7 +268,7 @@ li.keyboard {
 }
 
 #left-column li.computers:hover {
-	background:url(/images/combo.png) no-repeat white scroll -1px -24px;
+	background:url(/images/sprites.png) no-repeat white scroll -1px -24px;
 }
 
 table.list {
@@ -301,10 +314,10 @@ img.manufacturer_logo {
 }
 
 #search {
-	margin:20px auto;
+	margin:25px auto;
 	width:153px;
 	height:24px;
-	background:url(/images/combo.png) no-repeat #fff;
+	background:url(/images/sprites.png) no-repeat #fff;
 }
 
 #search input {
@@ -345,4 +358,34 @@ img.manufacturer_logo {
 	border:2px solid red;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
+<<<<<<< HEAD:public/stylesheets/museum.css
 }
+=======
+}
+
+a#email {
+	background: url(/images/envelope.png) no-repeat center left;
+	padding-left:25px;
+}
+
+code {
+	font-weight:bold;
+}
+
+div.section {
+	margin: 45px 0px;
+}
+
+div.about {
+	margin-bottom:120px;
+}
+
+.right {
+	float:right;
+}
+
+.lower_image {
+	margin:5px 15px;
+	float:left;
+}
+>>>>>>> 2-paperclip:public/stylesheets/museum.css

@@ -55,5 +55,7 @@
     
     #footer
       %p
-        © 2009 <a href="http://www.spaghetticode.it" title="SpaghettiCode web development">Spaghetti Code productions</a>
-        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :style => 'margin-left:20px' 
+        = link_to 'info@wait6502.net', 'mailto:info@wait6502.net', :id => 'email'
+        %br
+        © 2009 
+        = link_to 'Spaghetti Code productions', 'http://www.spaghetticode.it', :title => 'SpaghettiCode web development'

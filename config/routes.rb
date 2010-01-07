@@ -57,5 +57,5 @@ ActionController::Routing::Routes.draw do |map|
   map.search 'search', :controller => 'searches', :action => 'create'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.root :controller => 'manufacturers', :action => 'index'
+  map.root :controller => 'info', :action => 'index'
 end
