@@ -12,9 +12,9 @@
   - @manufacturers.each do |manufacturer|
     %tr
       %td= h manufacturer.name
-      %td= image_tag h(manufacturer.logo), :height => '20', :alt => ''
+      %td.center= image_tag h(manufacturer.logo), :height => '20'
       %td
-        = flag_thumbnail(manufacturer)
+        = flag_thumbnail(manufacturer, :height => '20')
         = h manufacturer.country_id
       %td= h truncate(manufacturer.description)
       %td= link_to 'Edit', edit_admin_manufacturer_path(manufacturer)

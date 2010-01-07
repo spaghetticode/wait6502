@@ -50,6 +50,7 @@
           %li.leftnav= link_to 'operative systems', operative_systems_path
           %li.leftnav= link_to 'builtin languages', builtin_languages_path
           %li.leftnav= link_to 'mass storage units', builtin_storages_path
+        = yield :sidebar
       #right-column
         = yield
     

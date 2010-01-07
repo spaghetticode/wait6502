@@ -385,3 +385,40 @@ div.about {
 	margin:5px 15px;
 	float:left;
 }
+
+div#random_hardware {
+	margin:0 auto;
+	width:130px;
+	margin-top:100px;
+	text-align:center;
+	font-size:12px;
+}
+
+#random_hardware h2 {
+	margin:10px 0px;
+	font-size:12px;
+}
+
+#random_hardware img {
+	width:130px;
+	border:none;
+}
+
+div#stats {
+	font-size:12px;
+	margin-top:30px;
+}
+
+#stats table {
+	margin:auto;
+	border:1px solid silver;
+	padding:5px 15px;
+	background:#e9eef7;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	text-transform:capitalize;
+}
+
+#stats caption {
+	margin:10px 0;
+}
