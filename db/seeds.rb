@@ -6,6 +6,14 @@ User.create!(
   :password_confirmation => password
 )
 
+def attach(name, directory)
+  filename = "#{RAILS_ROOT}/public/images/#{directory}/#{name.parameterize}.png"
+  attachment = ActionController::UploadedStringIO.new(File.read(filename))
+  attachment.content_type = 'image/png'
+  attachment.original_path = filename
+  attachment
+end
+
 puts 'Creating countries'
 [
   'Italy', 'USA', 'France', 'Germany', 'Spain', 
@@ -13,7 +21,8 @@ puts 'Creating countries'
   'Australia', 'Austria', 'Portugal'
 ].each do |name|
   Country.create!(
-    :name => name
+    :name => name,
+    :flag => attach(name, 'flags')
   )
 end
 
@@ -24,9 +33,14 @@ end
 
 puts 'Creating manufacturers'
 [['Intel', 'USA'], ['Motorola', 'USA'],['Atari', 'USA'], ['Apple Computers', 'USA'],
-['Commodore', 'USA'], ['Sinclair', 'Great Britain'], ['Zilog', 'USA']].each do |brand|
-  country = Country.find_by_name(brand[1])
-  Manufacturer.create!(:name => brand[0], :country => country)
+['Commodore', 'USA'], ['Sinclair', 'Great Britain'], ['Zilog', 'USA']].each do |arr|
+  name, country = arr
+  country = Country.find_by_name(country)
+  Manufacturer.create!(
+    :name => name,
+    :country => country,
+    :logo => attach(name, 'manufacturers')
+    )
 end
 
 puts 'Creating CPU families'
