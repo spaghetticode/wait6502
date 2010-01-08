@@ -13,6 +13,7 @@ class Manufacturer < ActiveRecord::Base
     :styles => {:original => 'x40'},
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+    :s3_headers => {'Cache-Control' => 'max-age=31436000'},
     :path => ':class/:id/logo.:extension',
     :default_url => '/images/blank_manufacturer.jpg'
     
