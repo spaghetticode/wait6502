@@ -239,4 +239,16 @@ describe Hardware do
       Hardware.search_field_string.should include(' || ')
     end
   end
+  
+  describe 'self.to_select' do
+    it 'should return an array' do
+      Hardware.to_select.should be_an(Array)
+    end
+    
+    it 'should map name and id' do
+      hardware = Factory(:hardware)
+      name, id = hardware.name, hardware.id
+      Hardware.to_select.should include([name, id])
+    end
+  end
 end

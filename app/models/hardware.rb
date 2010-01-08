@@ -44,6 +44,12 @@ class Hardware < ActiveRecord::Base
   named_scope :by_manufacturer, :order => 'manufacturers.name', :include => :manufacturer
   named_scope :filter_initial, lambda{|letter| {:conditions => ['hardware.name ILIKE ?', "#{letter}%"]}}
   
+  def self.to_select
+    ordered.map do |hardware|
+      [hardware.name, hardware.id]
+    end
+  end
+  
   def self.filter(params)
     all(
       :order => "#{params[:order] || 'hardware.name'} #{params[:desc]}",

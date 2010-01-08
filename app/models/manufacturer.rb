@@ -35,4 +35,10 @@ class Manufacturer < ActiveRecord::Base
     end
     "#{string.join(' || ')} ILIKE ?"
   end
+  
+  def self.to_select
+    ordered.map do |manufacturer|
+      [manufacturer.name,  manufacturer.id]
+    end
+  end
 end

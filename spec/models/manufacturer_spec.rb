@@ -91,4 +91,16 @@ describe Manufacturer do
       Manufacturer.ilike_string.should include(' || ')
     end
   end
+  
+  describe 'self.to_select' do
+    it 'should return an array' do
+      Manufacturer.to_select.should be_an(Array)
+    end
+    
+    it 'should map names and ids' do
+      manufacturer = Factory(:manufacturer)
+      array = [manufacturer.name, manufacturer.id]
+      Manufacturer.to_select.should include(array)
+    end
+  end
 end

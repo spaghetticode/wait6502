@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def manufacturer_selector(f)
-    f.select :manufacturer_id, Manufacturer.ordered.map{|m| [m.name,  m.id]}, :include_blank => true
+    f.select :manufacturer_id, Manufacturer.to_select, :include_blank => true
   end
   
   def currency_selector(f)
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
   
   def hardware_selector(f)
-    f.select :hardware_id, Hardware.ordered.map{|h| [h.name, h.id]}, :include_blank => true
+    f.select :hardware_id, Hardware.to_select, :include_blank => true
   end
   
   def flag_thumbnail(model, options={})
