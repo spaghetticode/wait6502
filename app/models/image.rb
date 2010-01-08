@@ -6,8 +6,8 @@ class Image < ActiveRecord::Base
     :styles => { :thumb => 'x50', :small => 'x150', :normal => '600x' },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
-    :s3_headers => {'Cache-Control' => 'max-age=31436000'},
-    :path => ':class/:id/:style.:extension'
+    :s3_headers => {'Cache-Control' => 'max-age=315360000', 'Expires' => 'Never expire'},
+    :path => ':class/:id/:style/:timestamp.:extension'
     
   validates_presence_of :imageable_id, :imageable_type
   validates_attachment_presence :picture

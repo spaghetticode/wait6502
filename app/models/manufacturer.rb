@@ -13,8 +13,8 @@ class Manufacturer < ActiveRecord::Base
     :styles => {:original => 'x40'},
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
-    :s3_headers => {'Cache-Control' => 'max-age=31436000'},
-    :path => ':class/:id/logo.:extension',
+    :s3_headers => {'Cache-Control' => 'max-age=315360000', 'Expires' => 'Never expire'},
+    :path => ':class/:id/:timestamp.:extension',
     :default_url => '/images/blank_manufacturer.jpg'
     
   named_scope :ordered, :order => 'name'
@@ -41,5 +41,9 @@ class Manufacturer < ActiveRecord::Base
     ordered.map do |manufacturer|
       [manufacturer.name,  manufacturer.id]
     end
+  end
+  
+  def stamp
+    Time.now.to_s(:db).gsub(/\D/, '')
   end
 end
