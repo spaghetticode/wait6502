@@ -9,6 +9,7 @@
     = javascript_include_tag 'jquery-1.3.2.min', 'museum'
     <!--[if lt IE 7]>
     = javascript_include_tag 'jquery.pngFix.pack'
+    = stylesheet_link_tag 'ie6'
     <![endif]-->
     = yield :head
   %body
@@ -16,7 +17,7 @@
       = render 'layouts/top_nav'
     #header{:style => 'position:relative'}
       %h1= link_to 'Wait 6502 old computers and retrocomputing', root_path
-      %img{:src => '/images/pet.png', :alt => 'PET-2001'}
+      #pet
         
     .flash
       - flash.each_pair do |type, message|
