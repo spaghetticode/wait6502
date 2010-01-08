@@ -65,10 +65,13 @@ table img {
 	height:60px;
 }
 
-#header img {
+#header #pet {
 	position:absolute;
 	top:-10px;
 	left:620px;
+	background: url('/images/pet.png') no-repeat;
+	width:184px;
+	height:151px;
 }
 
 .flash p {
