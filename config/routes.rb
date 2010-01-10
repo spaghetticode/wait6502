@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   associations = {}
   %w{cpu builtin_storage operative_system co_cpu io_port}.each do |model|
     associations["add_#{model}"] = :put
@@ -36,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
       m.resources :cpu_families
       m.resources :cpu_names
       m.resources :co_cpu_names
+      m.resources :co_cpu_types
     end    
   end
     

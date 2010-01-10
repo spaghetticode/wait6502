@@ -1,2 +1,0 @@
-module Admin::TaintedOriginalPricesHelper
-end

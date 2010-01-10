@@ -1,0 +1,16 @@
+%h1 Listing Co-CPU Types
+
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Name
+    %th Actions
+  - @co_cpu_types.each do |type|
+    %tr
+      %td= h type.name
+      -# TODO sistemare sta schifezza, se possibile
+      %td
+        -form_tag delete_admin_co_cpu_types_path, :method => :delete do
+          = hidden_field_tag 'id', type.name
+          = submit_tag 'destroy'
+
+%p= link_to 'New co cpu type', new_admin_co_cpu_type_path
