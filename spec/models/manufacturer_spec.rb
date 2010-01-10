@@ -48,8 +48,10 @@ describe Manufacturer do
       end
       
       it 'should have expected logo filename' do
-        @manufacturer.stub!(:id => 10) 
-        expected = "manufacturers/#{@manufacturer.id}/logo.png"
+        updated_at = Time.now
+        filename = updated_at.to_s(:number)
+        @manufacturer.stub!(:id => 10, :updated_at => updated_at) 
+        expected = "manufacturers/#{@manufacturer.id}/#{filename}.png"
         @manufacturer.logo.to_s.should include(expected)
       end
     end
