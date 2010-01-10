@@ -390,6 +390,11 @@ div.about {
 	float:left;
 }
 
+#pet_screenshot {
+	float:left;
+	margin:10px 15px;
+}
+
 div#random_hardware {
 	margin:0 auto;
 	width:130px;
