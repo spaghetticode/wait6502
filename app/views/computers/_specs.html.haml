@@ -46,9 +46,6 @@
     %tr
       %th Sound
       %td= hardware.sound
-
-    
-  %tr
   - unless hardware.co_cpus.empty?
     = specs_tr_for 'co-CPU', hardware.co_cpus, :table_name
   = specs_tr_for 'I/O Ports', hardware.io_ports, :full_name
