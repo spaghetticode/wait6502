@@ -35,9 +35,18 @@ describe IoPort do
       port.full_name.should include('connector')
     end
     
-    it 'should not include the string "connector" when a connector is not available' do
-      port = Factory(:io_port, :connector => nil)
-      port.full_name.should_not include('connector')
+    context 'when the connector attribute is blank' do
+      before do
+        @port = Factory(:io_port, :connector => '')
+      end
+        
+      it 'full_name should not include the string "connector"' do
+        @port.full_name.should_not include('connector')
+      end
+    
+      it 'should not include a white space ' do
+        @port.full_name[-1].chr.should_not == ' '
+      end
     end
   end
   
