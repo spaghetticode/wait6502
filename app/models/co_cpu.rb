@@ -39,10 +39,16 @@ class CoCpu < ActiveRecord::Base
     name(:long)
   end
   
+  def table_name
+    name(:table)
+  end
+  
   def name(format=:short)
     case format
     when :long
       "#{name(:short)} #{co_cpu_type_id} co-processor"
+    when :table
+      "#{name(:short)} (#{co_cpu_type_id})"
     else :short
       "#{manufacturer.name} #{co_cpu_name_id}"
     end
