@@ -26,7 +26,7 @@ class IoPort < ActiveRecord::Base
   end
   
   def full_name
-    connector_name = "(#{connector} connector)" unless connector.blank?
+    connector_name = connector.blank? ? nil : "(#{connector} connector)"
     [name, connector_name].join(' ')
   end
 end
