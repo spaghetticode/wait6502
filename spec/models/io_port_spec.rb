@@ -29,6 +29,16 @@ describe IoPort do
     it 'should have a full_name' do
       Factory(:io_port).full_name.should_not be_nil
     end
+    
+    it 'should include the string "connector" when a connector is available' do
+      port = Factory(:io_port, :connector => 'DB25')
+      port.full_name.should include('connector')
+    end
+    
+    it 'should not include the string "connector" when a connector is not available' do
+      port = Factory(:io_port, :connector => nil)
+      port.full_name.should_not include('connector')
+    end
   end
   
   describe 'ORDERED named scope' do
