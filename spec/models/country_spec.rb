@@ -44,10 +44,7 @@ describe Country do
       end
       
       it 'should have expected flag filename' do
-        updated_at = Time.now
-        expected = Time.now.to_s(:number)
-        @country.stub!(:updated_at => updated_at)
-        @country.flag.to_s.should =~ /#{@country.name}\/#{expected}.png/
+        @country.flag.to_s.should =~ /#{@country.name}\/flag.png/
       end
     end
   end

@@ -11,7 +11,7 @@ class Country < ActiveRecord::Base
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
     :s3_headers => {'Cache-Control' => 'max-age=315360000', 'Expires' => 'Never expire'},
-    :path => ':class/:id/:timestamp.:extension',
+    :path => ':class/:id/flag.:extension',
     :default_url => '/images/blank_flag.jpg'
 
   def unused?

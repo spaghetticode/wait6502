@@ -14,7 +14,7 @@ class Manufacturer < ActiveRecord::Base
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
     :s3_headers => {'Cache-Control' => 'max-age=315360000', 'Expires' => 'Never expire'},
-    :path => ':class/:id/:timestamp.:extension',
+    :path => ':class/:id/logo.:extension',
     :default_url => '/images/blank_manufacturer.jpg'
     
   named_scope :ordered, :order => 'name'
