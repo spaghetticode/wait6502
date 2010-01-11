@@ -22,6 +22,33 @@
     %td #{hardware.production_start} - #{hardware.production_stop}
   - unless hardware.cpus.empty?
     = specs_tr_for 'CPU', hardware.cpus
+  - unless hardware.ram.blank?
+    %tr  
+      %th Ram
+      %td= hardware.ram
+  - unless hardware.rom.blank?
+    %tr
+      %th Rom
+      %td= hardware.rom
+  - unless hardware.vram.blank?
+    %tr
+      %th Video Ram
+      %td= hardware.vram
+  - unless hardware.text_modes.blank?
+    %tr
+      %th Graphic modes
+      %td= hardware.graphic_modes
+  - unless hardware.text_modes.blank?
+    %tr
+      %th Text modes
+      %td= hardware.text_modes
+  - unless hardware.sound.blank?
+    %tr
+      %th Sound
+      %td= hardware.sound
+
+    
+  %tr
   - unless hardware.co_cpus.empty?
     = specs_tr_for 'co-CPU', hardware.co_cpus, :table_name
   = specs_tr_for 'I/O Ports', hardware.io_ports, :full_name
