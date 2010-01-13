@@ -29,7 +29,7 @@ describe BuiltinLanguage do
     
     it 'should set permalink correctly when saving' do
       language = BuiltinLanguage.create!(:name => 'BASIC 2.0')
-      language.permalink.should == 'BASIC+2_DOT_0'
+      language.permalink.should == 'basic-2-0'
     end
   end
   

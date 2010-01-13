@@ -15,6 +15,6 @@ class BuiltinLanguage < ActiveRecord::Base
     # as name is unique, there are good chances that also
     # permalink will be unique, as we won't probably see a 
     # language which includes the _DOT_ string in its name
-    self.permalink = CGI.escape(name).gsub('.', '_DOT_')
+    self.permalink = name.parameterize.to_s
   end
 end
