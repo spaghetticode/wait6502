@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user
-
+  
+  rescue_from ActionController::RedirectBackError do
+    redirect_to root_path
+  end
+  
   private
   
   def current_user_session
