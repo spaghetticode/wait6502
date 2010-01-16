@@ -1,7 +1,7 @@
 development:
   access_key_id: <%= ENV['S3_KEY'] %>
   secret_access_key: <%= ENV['S3_SECRET'] %>
-  bucket: wait6502
+  bucket: wait6502-dev
 
 test:
   access_key_id: <%= ENV['S3_KEY'] %>

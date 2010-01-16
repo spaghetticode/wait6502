@@ -1,3 +1,4 @@
+=begin
 puts "Destroying existing data..."
 %w[users countries currencies manufacturers cpu_families cpu_names cpu_bits cpus
   builtin_languages co_cpu_types co_cpus co_cpu_names operative_systems storage_names
@@ -5,6 +6,7 @@ puts "Destroying existing data..."
 ].each do |table|
   ActiveRecord::Migration.execute("delete from #{table}")
 end
+=end
 
 puts 'Creating user admin@test.com'
 password = 'secret'
