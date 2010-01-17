@@ -36,7 +36,8 @@ module ApplicationHelper
   end
   
   def hardware_selector(f)
-    f.select :hardware_id, Hardware.to_select, :include_blank => true
+    @hardware_selector ||= 
+      f.select :hardware_id, Hardware.to_select, :include_blank => true
   end
   
   def flag_thumbnail(model, options={})
