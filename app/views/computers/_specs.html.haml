@@ -21,7 +21,7 @@
     %th Production Years
     %td #{hardware.production_start} - #{hardware.production_stop}
   - unless hardware.cpus.empty?
-    = specs_tr_for 'CPU', hardware.cpus
+    = specs_tr_for 'CPU', hardware.cpus, :full_name
   - unless hardware.ram.blank?
     %tr  
       %th Ram
@@ -47,7 +47,7 @@
       %th Sound
       %td= hardware.sound
   - unless hardware.co_cpus.empty?
-    = specs_tr_for 'co-CPU', hardware.co_cpus, :table_name
+    = specs_tr_for 'co-CPU', hardware.co_cpus, :full_name
   = specs_tr_for 'I/O Ports', hardware.io_ports, :full_name
   - unless hardware.builtin_storages.empty?
     = specs_tr_for 'Mass Storage', hardware.builtin_storages, :full_name

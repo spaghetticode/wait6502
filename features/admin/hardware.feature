@@ -85,7 +85,7 @@ Feature: Manage Hardware
 		Given  I have a hardware named "Amiga 1000"
 		And    a io port named "Disk Drive" exists
 		And    I am on the "Amiga 1000" hardware editor page
-		When   I select "Disk Drive ( connector)" from "io_port_id"
+		When   I select "Disk Drive" from "io_port_id"
 		And    I press "Add IO PORT"
 		Then   I should see "Io port was successfully added"
 		

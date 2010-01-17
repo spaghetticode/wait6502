@@ -31,7 +31,7 @@ Feature: User Login/Logout
 		When  I fill in "Email" with "andrea@test.it"
 		And   I fill in "Password" with "password"
 		And   I press "log in"
-		Then  I should see "Password is not valid"
+		Then  I should see "password and login combination is invalid"
 
 		Scenario: Logout Link is present when logged in
 			Given I am logged in as user
