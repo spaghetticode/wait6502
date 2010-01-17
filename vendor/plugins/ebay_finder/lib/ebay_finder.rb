@@ -14,7 +14,7 @@ module EbayFinder
   
   # custom error classes
   class EbayError < StandardError; end
-  class TimeoutErorr < EbayError; end
+  class TimeoutError < EbayError; end
   class RequestError < EbayError; end
   class SystemError < EbayError; end
   
