@@ -8,4 +8,4 @@
   
 %h2 I/O Ports
 - @io_ports.each do |port|
-  %p= link_to port.name, io_port_path(port)
+  %p= link_to port.full_name, io_port_path(port)
