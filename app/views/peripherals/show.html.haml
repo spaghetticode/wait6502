@@ -2,9 +2,9 @@
 - @meta_description = "informations about the peripheral #{@peripheral.full_name}"
 - @title = @peripheral.full_name
 
-- if session[:return_to]
-  %p.breadcrumbs
-    =link_to 'home', root_path
+%p.breadcrumbs
+  =link_to 'home', root_path  
+  - if session[:return_to]
     »
     =link_to session[:return_to][:name], session[:return_to][:url]
     »
