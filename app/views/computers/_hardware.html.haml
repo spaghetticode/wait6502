@@ -4,4 +4,4 @@
       = image_tag(hardware.images.first.picture(:thumb))
     - else
       = image_tag('/images/blank_image.jpg')
-  %td= link_to hardware.name, computer_path(hardware)
+  %td= link_to hardware.full_name, computer_path(hardware)
