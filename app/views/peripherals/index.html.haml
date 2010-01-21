@@ -11,4 +11,4 @@
   - @peripherals.each do |p|
     %tr
       %td.center= image_tag(p.images.first.picture(:thumb)) unless p.images.empty?
-      %td= link_to p.name, peripheral_path(p)
+      %td= link_to p.full_name, peripheral_path(p)
