@@ -10,5 +10,5 @@
 %table.list
   - @peripherals.each do |p|
     %tr
-      %td= image_tag(p.images.first.filename(:thumb)) unless p.images.empty?
+      %td= image_tag(p.images.first.picture(:thumb)) unless p.images.empty?
       %td= link_to p.name, peripheral_path(p)
