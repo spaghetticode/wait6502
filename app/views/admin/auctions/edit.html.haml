@@ -1,6 +1,6 @@
 %h1 Editing auction
 
-- form_for(@auction, :url => admin_auction_path(@auction)) do |f| 
+- form_for [:admin, @auction] do |f| 
   = f.error_messages 
   %table.record
     %tr

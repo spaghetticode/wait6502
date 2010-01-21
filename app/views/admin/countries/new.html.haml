@@ -1,6 +1,6 @@
 %h1 New Country
 
-- form_for @country, :url => admin_countries_path, :html => {:multipart => true} do |f|
+- form_for [:admin, @country], :html => {:multipart => true} do |f|
   = f.error_messages
   %table.record
     %tr

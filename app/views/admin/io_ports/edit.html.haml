@@ -1,5 +1,5 @@
 %h1 Editing IO Port
-- form_for(@io_port, :url => admin_io_port_path(@io_port)) do |f|
+- form_for [:admin, @io_port] do |f|
   = f.error_messages
   %table.record
     = render :partial => 'form_fields', :locals => {:f => f}

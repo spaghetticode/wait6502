@@ -1,6 +1,6 @@
 %h1 Edit Operative System
 
-- form_for(@operative_system, :url => admin_operative_system_path(@operative_system)) do |f|
+- form_for [:admin, @operative_system] do |f|
   = f.error_messages
   %table.record
     %tr

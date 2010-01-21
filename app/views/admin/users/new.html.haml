@@ -1,6 +1,6 @@
 %h1 New User
 
-- form_for @user, :url => admin_users_path do |f|
+- form_for [:admin, @user] do |f|
   = f.error_messages
   %table.record
     %tr
@@ -14,3 +14,5 @@
       %td= f.text_field :password_confirmation
     %tr
       %td.center{:colspan => 2}= f.submit 'create'
+
+%p= link_to 'users list', admin_users_path

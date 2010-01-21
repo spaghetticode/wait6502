@@ -1,6 +1,6 @@
 %h1 New Builtin Storage
 
-- form_for(@builtin_storage, :url => admin_builtin_storages_path) do |f|
+- form_for [:admin, @builtin_storage] do |f|
   = f.error_messages
   %table.record
     = render :partial => 'form_fields', :locals => {:f => f}

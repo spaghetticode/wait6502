@@ -1,0 +1,10 @@
+%h2 Users
+
+%table.list{:cellpadding => 0, :cellspacing => 1}
+  %tr
+    %th Email
+  - @users.each do |user|
+    %tr
+      %td= user.email
+
+%p= link_to 'new user', new_admin_user_path

@@ -1,6 +1,6 @@
 %h1 Editing Builtin Storage
 
-- form_for(@builtin_storage, :url => admin_builtin_storage_path(@builtin_storage)) do |f|
+- form_for [:admin, @builtin_storage] do |f|
   = f.error_messages
   
   %table.record

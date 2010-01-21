@@ -1,7 +1,11 @@
 class Admin::UsersController < ApplicationController
   before_filter :require_logged_in
   layout 'admin'
-
+  
+  def index
+    @users = User.ordered
+  end
+  
   def new
     @user = User.new
   end

@@ -1,6 +1,6 @@
 %h1 New Hardware Type
 
-- form_for(@hardware_type, :url => admin_hardware_types_path) do |f|
+- form_for [:admin, @hardware_type] do |f|
   = f.error_messages
   %table.record
     %tr

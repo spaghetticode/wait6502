@@ -45,5 +45,6 @@ describe "/admin/auctions/index.html.haml" do
     response.should have_tag("tr>td", "value for completeness".to_s, 2)
     response.should have_tag("tr>td", 9.99.to_s, 2)
 =end
+    response.should have_tag("form[action=?][method=post]", admin_resultset_path)
   end
 end

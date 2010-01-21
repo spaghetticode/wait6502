@@ -1,6 +1,6 @@
 %h1 Editing co-CPU
 
-- form_for(@co_cpu, :url => admin_co_cpu_path(@co_cpu)) do |f|
+- form_for [:admin, @co_cpu] do |f|
   = f.error_messages
   %table.record
     %tr

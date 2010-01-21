@@ -5,7 +5,7 @@
 = render 'tabs_navigation'
 
 #main.section
-  - form_for(@hardware, :url => admin_hardware_path(@hardware)) do |f|
+  - form_for [:admin, @hardware] do |f|
     = f.error_messages
     %table.record
       = render :partial => 'form_fields', :locals => {:f => f}

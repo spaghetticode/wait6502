@@ -1,6 +1,6 @@
 %h1 New Builtin Language
 
-- form_for(@builtin_language, :url => admin_builtin_languages_path) do |f|
+- form_for [:admin, @builtin_language] do |f|
   = f.error_messages
   %table.record
     %tr

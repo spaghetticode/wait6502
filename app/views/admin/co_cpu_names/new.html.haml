@@ -1,6 +1,6 @@
 %h1 New co-CPU Name
 
-- form_for(@co_cpu_name, :url => admin_co_cpu_names_path) do |f|
+- form_for [:admin, @co_cpu_name] do |f|
   = f.error_messages
   %table.record
     %tr

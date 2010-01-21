@@ -30,4 +30,14 @@ describe User do
       user.should have_at_least(1).error_on(:password)
     end
   end
+  
+  context 'ordered named scope' do
+    before do
+      (1..3).map { Factory(:user)}
+    end
+    
+    it 'should sort users by email' do
+      User.ordered.should == User.all.sort_by(&:email)
+    end
+  end
 end
