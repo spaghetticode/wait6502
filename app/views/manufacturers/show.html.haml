@@ -9,7 +9,7 @@
   » #{@title}
 
 = title_for(@manufacturer)
-%p= @manufacturer.description
+%p= sanitize @manufacturer.description
 
 - if @manufacturer.hardware.empty?
   %p 

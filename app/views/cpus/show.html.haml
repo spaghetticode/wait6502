@@ -9,7 +9,7 @@
   » #{@cpu.name(:clock)}
 
 = title_for(@cpu, :clock_name)
-%p= @cpu.description
+%p= sanitize @cpu.description
 -if @cpu.hardware.empty?
   %p
     The CPU

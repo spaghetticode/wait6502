@@ -12,7 +12,7 @@
 
 = title_for(@peripheral, :full_name)
 #info
-  %p= @peripheral.description
+  %p= sanitize @peripheral.description
 #images
   = render :partial => 'computers/images', :locals => {:images => @peripheral.images}
 #specs
