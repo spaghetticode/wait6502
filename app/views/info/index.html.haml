@@ -2,7 +2,7 @@
 - content_for :sidebar do
   - if @image
     #random_hardware
-      %h2= @image.imageable.name
+      %h2= @image.imageable.full_name
       = link_to image_tag(@image.picture(:small)), send("#{@image.imageable.hardware_category.downcase}_path", @image.imageable)
     
   #stats
