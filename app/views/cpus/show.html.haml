@@ -23,6 +23,6 @@
       %h3
         = image_tag(cpu.manufacturer.logo(:thumb))
         = cpu.clock_name
-      %p= cpu.description
+      %p= sanitize cpu.description
       %table.list
         = render :partial => 'computers/hardware', :collection => cpu.all_hardware
