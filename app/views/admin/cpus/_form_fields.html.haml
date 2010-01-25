@@ -1,6 +1,6 @@
 %tr
   %th= f.label :parent_cpu_id, 'Parent CPU'
-  %td= f.select :parent_cpu_id, Cpu.main.ordered.map{|c| [c.name, c.id]}, :include_blank => true
+  %td= f.select :parent_cpu_id, Cpu.main.ordered.map{|c| [c.full_name, c.id]}, :include_blank => true
 %tr
   %th= f.label :manufacturer_id, 'Manufacturer'
   %td= manufacturer_selector(f)
