@@ -7,8 +7,8 @@ describe "/admin/users/index" do
   end
 
   it "should have expected text" do
-    response.should have_tag 'h2', 'Users'
-    response.should have_tag 'table' do
+    response.should have_tag('h2', 'Users')
+    response.should have_tag('table') do
       with_tag 'td', 'andrea@test.com'
     end
   end

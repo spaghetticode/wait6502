@@ -11,7 +11,7 @@ class Cpu < ActiveRecord::Base
   validates_uniqueness_of :cpu_name_id, :scope => [:manufacturer_id, :clock]
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
-  named_scope :main, :conditions => {:clock => '', :parent_cpu_id => nil} # parent and parents are already used 
+  named_scope :main, :conditions => {:parent_cpu_id => nil} # parent and parents are already used 
   
   acts_as_permalink :full_name
   

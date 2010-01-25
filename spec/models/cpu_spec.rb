@@ -81,8 +81,8 @@ describe Cpu do
   end
   
   describe 'MAIN named scope' do
-    it 'should select CPUs without clock' do
-      expected = Factory(:cpu, :clock => '')
+    it 'should select CPUs without associated parent_cpu' do
+      expected = Factory(:cpu, :parent_cpu => nil)
       Cpu.main.should include(expected)
     end
     
