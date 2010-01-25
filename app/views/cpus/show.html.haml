@@ -16,5 +16,11 @@
     %strong= @cpu.name(:clock)
     currently is not used by any computer or peripheral in the database.
 - else
-  %table.list
-    = render :partial => 'computers/hardware', :collection => @cpu.all_hardware
+  - @cpu.children_cpus.each do |cpu|
+    .cpu_info
+      %h3
+        = image_tag(cpu.manufacturer.logo(:thumb))
+        = cpu.clock_name
+      %p= cpu.description
+      %table.list
+        = render :partial => 'computers/hardware', :collection => cpu.all_hardware

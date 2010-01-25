@@ -431,3 +431,13 @@ div#stats {
 #stats caption {
 	margin:10px 0;
 }
+
+div.cpu_info {
+	line-height: 30px;
+}
+
+.cpu_info img {
+	height: 25px;
+	float: left;
+	margin-right: 20px;
+}
