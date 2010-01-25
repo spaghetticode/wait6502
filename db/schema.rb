@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100106020823) do
+ActiveRecord::Schema.define(:version => 20100125183536) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                         :null => false
@@ -107,10 +107,11 @@ ActiveRecord::Schema.define(:version => 20100106020823) do
     t.string   "cpu_family_id"
     t.integer  "manufacturer_id", :null => false
     t.string   "cpu_name_id",     :null => false
-    t.string   "clock"
+    t.string   "clock",           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.integer  "parent_cpu_id"
   end
 
   create_table "cpus_hardware", :id => false, :force => true do |t|

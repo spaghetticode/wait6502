@@ -4,13 +4,21 @@ class Cpu < ActiveRecord::Base
   belongs_to :cpu_bit
   belongs_to :manufacturer
   has_and_belongs_to_many :hardware, :join_table => :cpus_hardware
+  belongs_to :parent_cpu, :class_name => 'Cpu', :foreign_key => 'parent_cpu_id'
+  has_many :children_cpus, :class_name => 'Cpu', :foreign_key => 'parent_cpu_id'
   
   validates_presence_of :cpu_name, :cpu_bit, :manufacturer
   validates_uniqueness_of :cpu_name_id, :scope => [:manufacturer_id, :clock]
   
   named_scope :ordered, :include => :manufacturer, :order => 'manufacturers.name, cpu_name_id'
+  named_scope :main, :conditions => {:clock => '', :parent_cpu_id => nil} # parent and parents are already used 
   
   acts_as_permalink :full_name
+  
+  def all_hardware
+    children_hardware = children_cpus.map{|c| c.hardware}.flatten.uniq
+    hardware + children_hardware
+  end
   
   SEARCH_FIELDS = {
     :name => 'cpu_name_id',

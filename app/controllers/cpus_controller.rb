@@ -2,7 +2,7 @@ class CpusController < ApplicationController
   layout 'museum'
   
   def index
-    @cpus = Cpu.ordered
+    @cpus = Cpu.main.ordered
   end
 
   def show

@@ -15,6 +15,7 @@ describe "/admin/cpus/new.html.haml" do
       with_tag("select#cpu_manufacturer_id[name=?]", "cpu[manufacturer_id]")
       with_tag("select#cpu_cpu_name_id[name=?]", "cpu[cpu_name_id]")
       with_tag("input#cpu_clock[name=?]", "cpu[clock]")
+      with_tag("select#cpu_parent_cpu_id[name=?]", "cpu[parent_cpu_id]")
     end
   end
 end

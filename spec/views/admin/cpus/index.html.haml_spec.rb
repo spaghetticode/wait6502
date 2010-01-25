@@ -10,14 +10,17 @@ describe "/admin/cpus/index.html.haml" do
         :cpu_family_id => "value for cpu_family_id",
         :manufacturer => manufacturer,
         :cpu_name_id => "value for cpu_name_id",
-        :clock => "value for clock"
+        :clock => "value for clock",
+        :hardware => []
       ),
       stub_model(Cpu,
         :cpu_bit_id => "value for cpu_bit_id",
         :cpu_family_id => "value for cpu_family_id",
         :manufacturer => manufacturer,
         :cpu_name_id => "value for cpu_name_id",
-        :clock => "value for clock"
+        :clock => "value for clock",
+        :hardware => []
+        
       ), 
     ]
     assigns[:cpus].stub!(:total_pages).and_return(0)

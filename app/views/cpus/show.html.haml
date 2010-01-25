@@ -10,11 +10,11 @@
 
 = title_for(@cpu, :clock_name)
 %p= sanitize @cpu.description
--if @cpu.hardware.empty?
+-if @cpu.all_hardware.empty?
   %p
     The CPU
     %strong= @cpu.name(:clock)
     currently is not used by any computer or peripheral in the database.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @cpu.hardware.ordered
+    = render :partial => 'computers/hardware', :collection => @cpu.all_hardware

@@ -9,6 +9,8 @@
     %th Bit
     %th Family
     %th Clock
+    %th Parent CPU
+    %th Hardware
     %th Description
     %th{:colspan => 2} Actions
     
@@ -19,6 +21,8 @@
       %td= h cpu.cpu_bit_id
       %td= h cpu.cpu_family_id
       %td= h cpu.clock
+      %td= h cpu.parent_cpu.try(:name)
+      %td.center= cpu.hardware.size
       %td= h truncate(cpu.description)
       %td= link_to 'Edit', edit_admin_cpu_path(cpu)
       %td= link_to 'Destroy', admin_cpu_path(cpu), :confirm => 'Are you sure?', :method => :delete
