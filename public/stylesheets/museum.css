@@ -284,8 +284,19 @@ table.list td {
 }
 
 h2.with_logo {
-	overflow:auto;
-	line-height:40px;
+	overflow: auto;
+	line-height: 40px;
+}
+
+h3.with_logo {
+	overflow: auto;
+	line-height: 30px;
+}
+
+h3.with_logo img {
+	height: 25px;
+	float: left;
+	margin-right: 20px;
 }
 
 img.manufacturer_logo {
@@ -430,14 +441,4 @@ div#stats {
 
 #stats caption {
 	margin:10px 0;
-}
-
-div.cpu_info {
-	line-height: 30px;
-}
-
-.cpu_info img {
-	height: 25px;
-	float: left;
-	margin-right: 20px;
 }

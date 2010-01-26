@@ -50,9 +50,9 @@ module ApplicationHelper
     image_tag h(manufacturer.logo), options
   end
   
-  def title_for(model, method=:name)
+  def title_for(model, method=:name, tag=:h2)
     manufacturer = model.is_a?(Manufacturer) ? model : model.manufacturer
-    content_tag :h2, :class => 'with_logo' do
+    content_tag tag, :class => 'with_logo' do
       concat logo_image(manufacturer, :class => 'manufacturer_logo')
       concat model.send(method)
     end

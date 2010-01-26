@@ -19,10 +19,7 @@
   %table.list
     = render :partial => 'computers/hardware', :collection => @cpu.hardware
   - @cpu.children_cpus.each do |cpu|
-    .cpu_info
-      %h3
-        = image_tag(cpu.manufacturer.logo(:thumb))
-        = cpu.clock_name
-      %p= sanitize cpu.description
-      %table.list
-        = render :partial => 'computers/hardware', :collection => cpu.all_hardware
+    = title_for(cpu, :clock_name, :h3)
+    %p= sanitize cpu.description
+    %table.list
+      = render :partial => 'computers/hardware', :collection => cpu.all_hardware

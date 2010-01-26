@@ -8,6 +8,7 @@ class SearchesController < ApplicationController
     else
       @search = Search.new(params[:query])
       @search.create
+      @computers, @peripherals = @search.results[:hardware].partition{|h| h.hardware_category == 'computer'}
     end
     session[:return_to] = {
       :name => 'search',
