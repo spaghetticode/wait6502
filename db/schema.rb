@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100125183536) do
+ActiveRecord::Schema.define(:version => 20100131230945) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                         :null => false
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20100125183536) do
     t.string  "hardware_category"
     t.string  "hardware_type_id",    :null => false
     t.text    "description"
+    t.text    "trivia"
   end
 
   create_table "hardware_io_ports", :id => false, :force => true do |t|
