@@ -1,6 +1,7 @@
 class Hardware < ActiveRecord::Base
   set_table_name :hardware
 
+  belongs_to :letter
   belongs_to :manufacturer  
   belongs_to :hardware_type
   belongs_to :builtin_language

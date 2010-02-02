@@ -127,3 +127,7 @@ Factory.define :auction do |a|
   a.end_time Time.now.tomorrow
   a.sequence(:item_id) {|n| "12345#{n}"}
 end
+
+Factory.define :letter do |l|
+  l.sequence(:name) {|n| "n"}
+end

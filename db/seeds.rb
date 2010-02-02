@@ -149,3 +149,11 @@ puts 'Creating ebay sites'
     :country => Country.find_by_name(name)
   )
 end
+
+puts 'Creating letters'
+('a'..'z').each do |letter|
+  Letter.create!(:name => letter)
+end
+(0..9).each do |number|
+  Letter.create!(:name => number)
+end

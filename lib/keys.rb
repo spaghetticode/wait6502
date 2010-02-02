@@ -13,7 +13,7 @@ class Keys
   
   def self.row(letters, start, fixed)
     letters.inject(start) do |pos, key|
-      @keys << {:letter => key, :position => "top:#{fixed}px;left:#{pos}px;"}
+      @keys << {:letter => key, :style => "top:#{fixed}px;left:#{pos}px;"}
       pos + 27
     end
   end
