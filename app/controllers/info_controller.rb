@@ -4,7 +4,7 @@ class InfoController < ApplicationController
   def index
     @upper_image = upper_images[rand(upper_images.size)]
     @lower_image = lower_images[rand(lower_images.size)]
-    @stats = [Hardware.computer, Hardware.peripheral, Auction].map do |category|
+    @computers, @peripherals, @auctions = [Hardware.computer, Hardware.peripheral, Auction].map do |category|
       category.send :count
     end
     @image = Image.all(:order => 'random()', :limit => '1', :include => :imageable).first

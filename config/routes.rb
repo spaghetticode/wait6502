@@ -42,8 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   end
     
   map.with_options :only => [:index, :show] do |m|
-    m.resources :computers, :as => 'old-computers'
-    m.resources :peripherals
+    m.resources :hardware, :as => 'old-computers'
     m.resources :manufacturers
     m.resources :cpus, :as => 'cpu'
     m.resources :hardware_types, :as => 'categories'

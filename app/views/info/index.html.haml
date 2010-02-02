@@ -3,20 +3,20 @@
   - if @image
     #random_hardware
       %h2= @image.imageable.full_name
-      = link_to image_tag(@image.picture(:small)), send("#{@image.imageable.hardware_category.downcase}_path", @image.imageable)
+      = link_to image_tag(@image.picture(:small)), hardware_path(@image.imageable)
     
   #stats
     %table{:cellspacing => '7'}
       %caption Database Statistics
       %tr
         %td computers:
-        %td= @stats[0]
+        %td= @computers
       %tr
         %td peripherals:
-        %td= @stats[1]
+        %td= @peripherals
       %tr
         %td auctions:
-        %td= @stats[2]
+        %td= @auctions
         
 %p.breadcrumbs
   =link_to 'home', root_path

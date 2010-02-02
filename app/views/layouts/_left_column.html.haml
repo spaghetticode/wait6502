@@ -4,12 +4,11 @@
     = submit_tag :search, :name => nil
 %ul.leftnav
   %li.computers
-    %a computers »
+    %a hardware »
     %ul.subnav
       %li.keyboard
         - Keys.keys.each do |k|
-          = link_to k[:letter], "#{computers_path}?letter=#{k[:letter]}", :class => 'key', :style => k[:style]            
-  %li.leftnav= link_to 'peripherals', peripherals_path
+          = link_to k[:letter], "#{hardware_index_path}?letter=#{k[:letter]}", :class => 'key', :style => k[:style]            
   %li.leftnav= link_to 'manufacturers', manufacturers_path
   %li.leftnav= link_to 'categories', hardware_types_path
   %li.leftnav= link_to 'CPUs', cpus_path
