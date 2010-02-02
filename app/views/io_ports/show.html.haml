@@ -14,4 +14,4 @@
     currently is not present in any computer or peripheral.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @io_port.hardware
+    = render :partial => 'hardware/hardware', :collection => @io_port.hardware.by_manufacturer

@@ -3,7 +3,9 @@ require 'spec_helper'
 describe "/io_ports/show" do
   before(:each) do
     @hardware = stub_model(Hardware, :full_name => 'Commodore Amiga 2000', :name => 'Amiga 1000')
-    assigns[:io_port] = stub_model(IoPort, :name => 'RS232', :hardware => [@hardware])
+    hardware = [@hardware]
+    hardware.stub!(:by_manufacturer => hardware)
+    assigns[:io_port] = stub_model(IoPort, :name => 'RS232', :hardware => hardware)
     render 'io_ports/show'
   end
 

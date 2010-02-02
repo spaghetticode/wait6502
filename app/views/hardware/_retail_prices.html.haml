@@ -6,11 +6,11 @@
     %th Country
     %th Year
     %th Retail Price
-  - if hardware.original_prices.untainted.empty?
+  - if @hardware.original_prices.untainted.empty?
     %tr
       %td.center{:colspan => 3} no data available
   - else
-    - hardware.original_prices.untainted.ordered.each do |price|
+    - @hardware.original_prices.untainted.ordered.each do |price|
       %tr
         %td= price.country_id
         %td= price.date.year
@@ -22,11 +22,11 @@
 %div#price_form
   %p
     Please help us collect reliable data about the 
-    %strong= hardware.name
+    %strong= @hardware.name
     prices during the good old days when it was avaliable in stores.
     Just fill in the form and let us add your price to the database data.
   - form_for OriginalPrice.new, :url => create_tainted_original_prices_path, :html => {:id => 'add_price_form'} do |f|
-    = hidden_field_tag :hardware_id, hardware.id
+    = hidden_field_tag :hardware_id, @hardware.id
     %table.specifications{:cellpadding => 0, :cellspacing => 1}
       %tr
         %th Country

@@ -16,5 +16,5 @@
     currently doesn't include any computer or peripheral.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @hardware_type.hardware
+    = render :partial => 'hardware/hardware', :collection => @hardware_type.hardware.by_manufacturer
 

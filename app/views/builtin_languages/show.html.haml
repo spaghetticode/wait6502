@@ -16,5 +16,5 @@
     is not used by any computer in the database.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @builtin_language.hardware
+    = render :partial => 'hardware/hardware', :collection => @builtin_language.hardware.by_manufacturer
     

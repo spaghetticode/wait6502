@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe "/operative_systems/show" do
   before(:each) do
-    assigns[:operative_system] = stub_model(OperativeSystem, :name => 'MS DOS', :hardware => [])
+    hardware = []
+    hardware.stub!(:by_manufacturer => [])
+    assigns[:operative_system] = stub_model(OperativeSystem, :name => 'MS DOS', :hardware => hardware)
     render 'operative_systems/show'
   end
 

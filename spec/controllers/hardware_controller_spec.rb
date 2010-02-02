@@ -1,12 +1,25 @@
 require 'spec_helper'
 
-describe ComputersController do
+describe HardwareController do
   def mock_computer(options={})
-    @mock ||= mock_model(Hardware)
+    @mock ||= mock_model(Hardware, options)
+  end
+  
+  def mock_letter(options={})
+    hardware = [mock_computer]
+    peripherals = []
+    peripherals.stub!(:by_manufacturer => [])
+    hardware.stub!(
+      :computer => hardware,
+      :peripheral => peripherals,
+      :by_manufacturer => hardware
+    )
+    @letter ||= mock_model(Letter, {:hardware => hardware, :name => name}.merge!(options))
   end
   
   describe 'get index' do
     before do
+      Letter.should_receive(:find_by_name).and_return(mock_letter)
       get :index
     end
     
@@ -39,7 +52,7 @@ describe ComputersController do
     end
     
     it 'should redirect to same computer path' do
-      response.should redirect_to(computer_path(mock_computer))
+      response.should redirect_to(hardware_path(mock_computer))
     end
   end
 end

@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe "/builtin_storages/show" do
   before(:each) do
-    assigns[:storage] = mock_model(BuiltinStorage, :full_name => 'tape recorder', :hardware => [])
+    hardware = []
+    hardware.stub!(:by_manufacturer => [])
+    assigns[:storage] = mock_model(BuiltinStorage, :full_name => 'tape recorder', :hardware => hardware)
     render 'builtin_storages/show'
   end
 

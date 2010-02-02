@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ComputersHelper do
+describe HardwareHelper do
    def mock_collection
      @collection ||= %w(Apple Atari).map do |name|
        mock_model(Manufacturer, :name => name)

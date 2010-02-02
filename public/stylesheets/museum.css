@@ -302,6 +302,8 @@ h3.with_logo img {
 img.manufacturer_logo {
 	float:left;
 	margin-right:25px;
+	font-size:10px;
+	color:silver;
 }
 
 .breadcrumbs {
@@ -441,4 +443,9 @@ div#stats {
 
 #stats caption {
 	margin:10px 0;
+}
+
+.light {
+	background: white;
+	opacity: 0.30;
 }

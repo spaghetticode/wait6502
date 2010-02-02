@@ -1,4 +1,4 @@
-module ComputersHelper
+module HardwareHelper
   def specs_tr_for(title, collection, method=:name)
     content_tag :tr do
       concat content_tag(:th, title)

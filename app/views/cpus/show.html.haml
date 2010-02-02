@@ -17,9 +17,9 @@
     currently is not used by any computer or peripheral in the database.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @cpu.hardware
+    = render :partial => 'hardware/hardware', :collection => @cpu.hardware.by_manufacturer
   - @cpu.children_cpus.each do |cpu|
     = title_for(cpu, :clock_name, :h3)
     %p= sanitize cpu.description
     %table.list
-      = render :partial => 'computers/hardware', :collection => cpu.all_hardware
+      = render :partial => 'hardware/hardware', :collection => cpu.all_hardware.sort_by(&:full_name)

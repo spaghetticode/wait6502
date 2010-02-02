@@ -13,8 +13,11 @@ class Keys
   
   def self.row(letters, start, fixed)
     letters.inject(start) do |pos, key|
-      opacity = 'background:maroon;opacity:0.1' if Letter.find_by_name(key).hardware.size.zero?
-      @keys << {:letter => key, :style => "top:#{fixed}px;left:#{pos}px;#{opacity}"}
+      css_class = 'key'
+      if letter = Letter.find_by_name(key)
+        css_class += ' light'  if letter.hardware.size.zero?
+      end
+      @keys << {:letter => key, :style => "top:#{fixed}px;left:#{pos}px", :class => css_class}
       pos + 27
     end
   end

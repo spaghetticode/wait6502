@@ -10,4 +10,4 @@
   
 %h2= @title.capitalize
 %table.list
-  = render :partial => 'computers/hardware', :collection => @storage.hardware
+  = render :partial => 'hardware/hardware', :collection => @storage.hardware.by_manufacturer

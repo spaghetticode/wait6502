@@ -17,4 +17,4 @@
     is not currently used by any computer or peripheral in the database.
 - else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @co_cpu.hardware
+    = render :partial => 'hardware/hardware', :collection => @co_cpu.hardware.by_manufacturer

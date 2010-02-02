@@ -1,0 +1,27 @@
+- @title = @hardware.full_name
+- @meta_description = "Information about the #{@title} #{@hardware.hardware_category}."
+- @meta_keywords = "#{@title}, old computers, old peripherals"
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  - if session[:return_to]
+    »
+    =link_to session[:return_to][:name], session[:return_to][:url]
+    »
+    = @hardware.name
+  
+= title_for(@hardware, :full_name)
+#info
+  %p= sanitize @hardware.description
+- unless @hardware.trivia.blank?
+  #trivia
+    %h3 Trivia
+    %p= @hardware.trivia
+#images
+  = render 'images'
+#specs
+  = render 'specs'
+#retail-prices
+  = render 'retail_prices'
+#values
+  = render 'ebay_values'

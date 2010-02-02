@@ -18,5 +18,5 @@
     in the database.
 -else
   %table.list
-    = render :partial => 'computers/hardware', :collection => @manufacturer.hardware
+    = render :partial => 'hardware/hardware', :collection => @manufacturer.hardware.ordered
   

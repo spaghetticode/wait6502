@@ -17,7 +17,7 @@
     %p= "No #{name} matched your keywords"
   - else
     %table.list
-      = render :partial => "/computers/hardware", :collection => collection
+      = render :partial => "/hardware/hardware", :collection => collection
 
 - [[:manufacturer, 'Manufacturer'], [:cpu, 'CPU'], [:co_cpu, 'co CPU']].each do |data|
   - model = data[0]

@@ -1,0 +1,37 @@
+- @meta_description = "List of computers and peripherals starting with the #{params[:letter]} letter avaliable in our database."
+- @meta_keywords = 'computers, peripherals, old computers, retrocomputing'
+- @title = "Hardware"
+
+%p.breadcrumbs
+  =link_to 'home', root_path
+  » #{params[:letter]} hardware
+  
+%h2 Computers
+- if params[:letter]
+  - if @computers.empty?
+    %p
+      No computer was found starting with the
+      %strong= params[:letter].upcase
+      letter.
+  - else
+    %p
+      Computers starting with 
+      %strong= params[:letter].upcase
+      letter:
+    %table.list
+      = render :partial => 'hardware', :collection => @computers
+
+%h2 Peripherals
+- if params[:letter]
+  - if @peripherals.empty?
+    %p
+      No peripheral was found starting with the
+      %strong= params[:letter].upcase
+      letter.
+  - else
+    %p
+      Peripherals starting with 
+      %strong= params[:letter].upcase
+      letter:
+    %table.list
+      = render :partial => 'hardware', :collection => @peripherals

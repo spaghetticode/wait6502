@@ -3,7 +3,9 @@ require 'spec_helper'
 describe "/hardware_types/show" do
   before(:each) do
     @hardware = stub_model(Hardware, :full_name => 'Commodore Amiga 1000', :name => 'Amiga 1000')
-    @hardware_type = stub_model(HardwareType, :hardware => [@hardware], :name => 'computer')
+    hardware = [@hardware]
+    hardware.stub!(:by_manufacturer => hardware)
+    @hardware_type = stub_model(HardwareType, :hardware => hardware, :name => 'computer')
     assigns[:hardware_type] = @hardware_type
     render 'hardware_types/show'
   end

@@ -8,7 +8,7 @@
     %th Auctions
   - EbaySite.ordered.each do |site|
     %tr
-      - data = hardware.auctions.closed.sold_in(site).map(&:final_price).compact
+      - data = @hardware.auctions.closed.sold_in(site).map(&:final_price).compact
       - unless data.empty?
         - currency = site.currency_id
         - average = data.sum / data.size
