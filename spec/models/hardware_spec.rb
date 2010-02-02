@@ -2,52 +2,56 @@ require 'spec_helper'
 
 describe Hardware do
   describe 'a new blank instance' do
+    before do
+      @hardware = Hardware.new
+    end
+    
     it 'should require a name' do
-      Hardware.new.should have(1).error_on(:name)
+      @hardware.should have_at_least(1).errors_on(:name)
     end
   
     it 'should require a manufacturer' do
-      Hardware.new.should have(1).error_on(:manufacturer)
+      @hardware.should have(1).error_on(:manufacturer)
     end
   
     it 'should require a hardware type' do
-      Hardware.new.should have(1).error_on(:hardware_type)
+      @hardware.should have(1).error_on(:hardware_type)
     end
   
     it 'should require a hardware_category' do
-      Hardware.new.should have(1).error_on(:hardware_category)
+      @hardware.should have(1).error_on(:hardware_category)
     end
    
     it 'should have cpus association' do
-      Hardware.new.cpus.should_not be_nil
+      @hardware.cpus.should_not be_nil
     end
   
     it 'should have builtin_storages association' do
-      Hardware.new.builtin_storages.should_not be_nil
+      @hardware.builtin_storages.should_not be_nil
     end
   
     it 'should have operative_systems association' do
-      Hardware.new.operative_systems.should_not be_nil
+      @hardware.operative_systems.should_not be_nil
     end
   
     it 'should have co_cpus association' do
-      Hardware.new.co_cpus.should_not be_nil
+      @hardware.co_cpus.should_not be_nil
     end
   
     it 'should have io_ports association' do
-      Hardware.new.io_ports.should_not be_nil
+      @hardware.io_ports.should_not be_nil
     end
   
     it 'should have an original_prices association' do
-      Hardware.new.original_prices.should_not be_nil
+      @hardware.original_prices.should_not be_nil
     end
   
     it 'should have an images association' do
-      Hardware.new.images.should_not be_nil
+      @hardware.images.should_not be_nil
     end
     
     it 'should have an auctions association' do
-      Hardware.new.auctions.should_not be_nil
+      @hardware.auctions.should_not be_nil
     end
   
     it 'should require a unique name for given manufacturer and code' do
@@ -59,6 +63,13 @@ describe Hardware do
         :manufacturer => valid.manufacturer
       ).should_not be_valid
     end
+    
+    it 'name first first char should be alpha-numerical' do
+      %[ &amiga :lisa àmiga ].each do |name|
+        @hardware.name = name
+        @hardware.should have(1).error_on(:name)
+      end
+    end
   end
   
   describe 'an instance with valid attributes' do
@@ -69,7 +80,16 @@ describe Hardware do
     it 'should be valid' do
       valid_hardware.should be_valid
     end
-
+    
+    it 'should have no letter' do
+      valid_hardware.letter.should be_nil
+    end
+    
+    it 'should have a letter matching name initial, if present' do
+      letter = Factory(:letter, :name => 'a')
+      valid_hardware(:name => 'Amiga').letter.should == letter
+    end
+    
     it 'should have a manufacturer association' do
       valid_hardware.manufacturer.should_not be_nil
     end
@@ -191,21 +211,21 @@ describe Hardware do
     end
     
     describe 'an instance with associated OPERATIVE_SYSTEMS' do
-        before do
-          @hardware = Factory(:hardware)
-          @hardware.operative_systems << Factory(:operative_system)
+      before do
+        @hardware = Factory(:hardware)
+        @hardware.operative_systems << Factory(:operative_system)
+      end
+    
+      it 'should respond to :os_names' do
+        @hardware.should respond_to(:os_names)
+      end
+    
+      it 'co_cpu_names should return a string with operative systems names' do
+        @hardware.operative_systems.each do |os|
+          @hardware.os_names.should =~ /#{os.name}/
         end
-
-        it 'should respond to :os_names' do
-          @hardware.should respond_to(:os_names)
-        end
-
-        it 'co_cpu_names should return a string with operative systems names' do
-          @hardware.operative_systems.each do |os|
-            @hardware.os_names.should =~ /#{os.name}/
-          end
-        end
-      end  
+      end
+    end  
   end
   
   describe 'filter_initial named scope' do

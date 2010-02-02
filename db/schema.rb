@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100202121545) do
+ActiveRecord::Schema.define(:version => 20100202143426) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "hardware_id",                                         :null => false
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20100202121545) do
     t.string  "hardware_type_id",    :null => false
     t.text    "description"
     t.text    "trivia"
+    t.integer "letter_id"
   end
 
   create_table "hardware_io_ports", :id => false, :force => true do |t|

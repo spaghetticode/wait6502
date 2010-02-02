@@ -18,6 +18,7 @@ class Hardware < ActiveRecord::Base
   
   validates_presence_of :name, :manufacturer, :hardware_type, :hardware_category
   validates_uniqueness_of :name, :scope => [:manufacturer_id, :code], :case_sensitive => false
+  validates_format_of :name, :with => /^[a-z0-9]/i
   
   acts_as_permalink :name
   
