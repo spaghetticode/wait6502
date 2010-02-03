@@ -7,9 +7,8 @@
     %meta{:name => 'google-site-verification', :content => 'Mdt5JjGTpQRoDQHYclwXmj_cE2OeFUiBPuJXnKL4_hw'}/
     %title= "WAIT 6502 retrocomputing - #{@title}"
     = stylesheet_link_tag 'museum'
-    = javascript_include_tag 'jquery-1.3.2.min', 'museum'
+    = javascript_include_tag 'jquery-1.3.2.min', 'museum', :cache => 'main'
     <!--[if lt IE 7]>
-    = javascript_include_tag 'jquery.pngFix.pack'
     = stylesheet_link_tag 'ie6'
     <![endif]-->
     = yield :head
