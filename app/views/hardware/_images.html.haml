@@ -1,6 +1,6 @@
 -unless @hardware.images.empty?
   - content_for :head do
     = stylesheet_link_tag 'fancybox-1.2.6'
-    = javascript_include_tag 'fancybox/jquery.fancybox-1.2.6.pack', 'images_popup', :cache => 'fancybox'
+    = javascript_include_tag 'fancybox/jquery.fancybox-1.2.6.pack', 'images_popup'
 - @hardware.images.each  do |image|
   = link_to image_tag(image.picture(:thumb), :alt => image.title), image.picture(:normal), :title => image.title
