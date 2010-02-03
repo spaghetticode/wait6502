@@ -23,7 +23,7 @@
       %td= ebay_site_selector(f) 
     %tr
       %th= f.label :currency_id 
-      %td= @auction.currency_id
+      %td= currency_selector(f)
       
     %tr
       %th= f.label :end_time
