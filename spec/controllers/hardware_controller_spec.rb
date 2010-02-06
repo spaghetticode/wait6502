@@ -28,6 +28,24 @@ describe HardwareController do
     end
   end
   
+  describe 'get index without a letter parameter' do
+    before do
+      get :index, :params => {}
+    end
+    
+    it 'should redirect to the homepage' do
+      response.should redirect_to(root_path)
+    end
+    
+    it 'should return an error message' do
+      flash[:error].should_not be_nil
+    end
+    
+    it 'should not assign @letter' do
+      assigns[:letter].should be_nil
+    end
+  end
+  
   describe 'get show' do
     describe 'when param matches computer permalink field value' do
       before do
