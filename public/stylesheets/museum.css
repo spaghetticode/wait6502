@@ -445,7 +445,12 @@ div#stats {
 	margin:10px 0;
 }
 
-.light {
+a.key:hover {
+	background: black;
+	opacity: 0.15;
+}
+
+a.light, a.light:hover {
 	background: white;
 	opacity: 0.30;
 }

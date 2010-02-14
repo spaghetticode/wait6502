@@ -5,3 +5,4 @@ tmp/*.txt
 config/database.yml
 coverage/*
 public/images/sandbox/*
+*.gz
