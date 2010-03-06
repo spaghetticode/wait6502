@@ -19,7 +19,7 @@
         = hidden_field_tag 'auction[currency_id]',  item.current_price.currency_id
         = hidden_field_tag 'auction[url]',          item.view_item_url_for_natural_search
         = hidden_field_tag 'auction[image_url]',    item.gallery_url
-        = select_tag 'auction[ebay_site_id]', options_from_collection_for_select(EbaySite.all, 'name', 'name', @resultset.ebay_site)
+        = select_tag 'auction[ebay_site_id]', options_from_collection_for_select(EbaySite.ordered, 'name', 'name', @resultset.ebay_site)
         = f.select :cosmetic_conditions,  Auction::COSMETIC_CONDITIONS
         = f.select :completeness,         Auction::COMPLETENESSES
         = hardware_selector(f)
