@@ -35,7 +35,6 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
   config.active_record.observers = :hardware_observer
-  config.middleware.use 'Redirector'
   
   config.gem 'haml', :version => '2.2.16'
   config.gem 'authlogic', :version => '>=2.1.2' 
