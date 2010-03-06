@@ -54,7 +54,7 @@ Feature: Manage Co-CPU Names
 	Scenario: Failied Co-CPU Name Destroy
 		Given some co cpu names and types and families and manufacturers exist
 		And   a co cpu "Intel 8087 Math" has been created
-		And	  I am on the co cpu names page
+		And   I am on the co cpu names page
 		And   I should see "8087"
 		When  I press "destroy"
 		Then  I should see "Can't destroy: co-CPU name is part of a co-CPU"
