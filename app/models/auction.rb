@@ -86,6 +86,22 @@ class Auction < ActiveRecord::Base
     end_time + 90.days > Date.today
   end
   
+  def to_pdf
+    PDFKit.new(url).to_pdf
+  end
+  
+  def pdf_filename
+    "#{hardware_parameterized_name}-#{ebay_site_name}-#{item_id}" rescue nil
+  end
+  
+  def hardware_parameterized_name
+    hardware.parameterized_name
+  end
+  
+  def ebay_site_name
+    ebay_site.name
+  end
+  
   private
   
   def fake_uploaded_file

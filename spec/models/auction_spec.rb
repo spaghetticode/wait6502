@@ -50,6 +50,10 @@ describe Auction do
       Auction.new(:cosmetic_conditions => 'invalid value').should have(1).error_on(:cosmetic_conditions)
     end
     
+    it 'pdf_filename should be nil' do
+      Auction.new.pdf_filename.should be_nil
+    end
+      
     it 'should have expected associations' do
       %w{hardware ebay_site currency}.each do |association|
         Auction.new.should respond_to(association)
@@ -85,6 +89,17 @@ describe Auction do
       @auction = Factory(:auction)
     end
     
+    it 'should have expected pdf_filename' do
+      @auction.stub!(:ebay_site_name => 'DE', :hardware_parameterized_name => 'apple-lisa')
+      expected = "apple-lisa-DE-#{@auction.item_id}"
+      @auction.pdf_filename.should == expected
+    end
+    
+    it 'to_pdf should return a pdf document' do
+      @auction.stub!(:url => '<h1>Hello world</h1>')
+      @auction.to_pdf[0..3].should == '%PDF'
+    end
+      
     context 'when it has not ended yet' do
       before do
         @auction = Factory(:auction)
