@@ -82,6 +82,15 @@ describe Admin::AuctionsController do
       end
     end
     
+    describe 'GET SHOW' do
+      before { Auction.should_receive(:find).and_return(mock_auction(:to_pdf => 'content', :pdf_filename => 'name')) }
+      
+      it 'should be success' do
+        get 'show', :id => '1'
+        response.should be_success
+      end
+    end
+    
     describe 'POST CREATE' do
       describe 'with valid parameters' do
         before do

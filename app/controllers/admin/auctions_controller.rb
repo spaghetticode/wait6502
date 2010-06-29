@@ -23,6 +23,13 @@ class Admin::AuctionsController < ApplicationController
     @auction = Auction.find(params[:id])
   end
 
+  def show
+    @auction = Auction.find(params[:id])
+    respond_to do |format|
+      format.pdf { send_auction_as_pdf }
+    end
+  end
+  
   def create
     @auction = Auction.new(params[:auction])
     respond_to do |f|
@@ -78,5 +85,16 @@ class Admin::AuctionsController < ApplicationController
         f.js
       end
     end
+  end
+  
+  private
+  
+  def send_auction_as_pdf
+    send_data(
+      @auction.to_pdf,
+      :filename => @auction.pdf_filename,
+      :type => 'application/pdf',
+      :disposition => 'inline'
+    )
   end
 end
