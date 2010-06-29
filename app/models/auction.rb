@@ -82,6 +82,10 @@ class Auction < ActiveRecord::Base
     self.picture = fake_uploaded_file if image_url
   end
   
+  def recent?
+    end_time + 90.days > Date.today
+  end
+  
   private
   
   def fake_uploaded_file

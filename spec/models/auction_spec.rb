@@ -107,6 +107,15 @@ describe Auction do
       it 'should be closed' do
         @auction.should be_closed
       end
+      
+      it 'should be recent if auction ended less than 90 days ago' do
+        @auction.should be_recent
+      end
+       
+      it 'should not be recent if auction ended more than 90 days ago' do
+        @auction.end_time = 91.days.ago
+        @auction.should_not be_recent
+      end
 
       describe 'calling SET_FINAL_PRICE' do
         describe 'when auction went without bids' do
