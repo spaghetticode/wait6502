@@ -98,6 +98,10 @@ class Hardware < ActiveRecord::Base
     name.include?(manufacturer.name) ? name : [manufacturer.name, name].join(' ')
   end
   
+  def parameterized_name
+    name.parameterize.to_s
+  end
+  
   private
   
   def self.search_field_string
