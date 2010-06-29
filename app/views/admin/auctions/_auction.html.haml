@@ -9,4 +9,5 @@
     conditions
   %td.price.right= render :partial => 'final_price', :locals => {:auction => auction}
   %td= link_to 'Edit', edit_admin_auction_path(auction)
+  %td= link_to 'pdf' if auction.recent?
   %td.destroy= button_to 'Destroy', admin_auction_path(auction), :method => :delete
