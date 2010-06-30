@@ -89,10 +89,14 @@ describe Auction do
       @auction = Factory(:auction)
     end
     
-    it 'should have expected pdf_filename' do
+    it 'pdf_filename should include expected string' do
       @auction.stub!(:ebay_site_name => 'DE', :hardware_parameterized_name => 'apple-lisa')
       expected = "apple-lisa-DE-#{@auction.item_id}"
-      @auction.pdf_filename.should == expected
+      @auction.pdf_filename.should include(expected)
+    end
+    
+    it 'pdf_filename should have expected file extension' do
+      File.extname(@auction.pdf_filename).should == '.pdf'
     end
     
     it 'to_pdf should return a pdf document' do

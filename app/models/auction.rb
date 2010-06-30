@@ -91,7 +91,7 @@ class Auction < ActiveRecord::Base
   end
   
   def pdf_filename
-    "#{hardware_parameterized_name}-#{ebay_site_name}-#{item_id}" rescue nil
+    "#{hardware_parameterized_name}-#{ebay_site_name}-#{item_id}.pdf" rescue nil
   end
   
   def hardware_parameterized_name
