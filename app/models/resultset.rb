@@ -26,13 +26,23 @@ class Resultset
   end
   
   def get_ebay_response
-    EbayFinder::Request.new(
+    params = {
       :query_keywords => keywords,
       :website        => ebay_site,
       :page_number    => page_number,
       :max_entries    => max_entries,
-      :category_id    => category_id
-    ).response
+      :category_id    => category_id,
+    }    
+    params.merge!(:items_located_in => items_location) if restricted?
+    EbayFinder::Request.new(params).response
+  end
+  
+  def restricted?
+    ebay_site != 'US' || ebay_site != 'IT' || ebay_site != 'DE' || ebay_site != 'FR'
+  end
+  
+  def items_location
+    ebay_site == 'UK' ? 'GB' : ebay_site
   end
   
   def computer_category_for(site)

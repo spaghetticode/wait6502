@@ -18,31 +18,31 @@ describe Resultset do
   
   describe 'a blank resultset' do
     before do
-      @resulset = Resultset.new
+      @resultset = Resultset.new
     end
     
     it 'ebay_site should not be nil' do
-      @resulset.ebay_site.should_not be_nil
+      @resultset.ebay_site.should_not be_nil
     end
     
     it 'ebay_site should be US' do
-      @resulset.ebay_site.should == 'US'
+      @resultset.ebay_site.should == 'US'
     end
     
     it 'max_entries should be 100' do
-      @resulset.max_entries.should == 100
+      @resultset.max_entries.should == 100
     end
     
     it 'pagen_number should be 1' do
-      @resulset.page_number.should  == 1
+      @resultset.page_number.should  == 1
     end
     
     it 'category_id should be nil' do
-      @resulset.category_id.should be_nil
+      @resultset.category_id.should be_nil
     end
     
     it 'keywords should be nil' do
-      @resulset.keywords.should be_nil
+      @resultset.keywords.should be_nil
     end
   end
   
@@ -67,6 +67,25 @@ describe Resultset do
     
     it 'should have items' do
       @resultset.items.should have_at_least(1).item
+    end
+    
+    it 'items_location should be same as ebay_site' do
+      @resultset.send(:items_location).should == @resultset.ebay_site
+    end
+    
+    context 'when ebay_site is UK' do
+      before { @resultset.ebay_site = 'UK' }
+      
+      it 'items_location should be "GB"' do
+        @resultset.send(:items_location).should == 'GB'
+      end
+    end
+    
+    it 'should be restricted when necessary' do
+      %w[UK CA AU ES NL].each do |country|
+        @resultset.ebay_site = country
+        @resultset.should be_restricted
+      end
     end
   end
   
