@@ -1,5 +1,5 @@
 class Resultset
-  attr_accessor :keywords, :ebay_site, :items, :total_pages, :max_entries, :page_number, :category_id
+  attr_accessor :keywords, :ebay_site, :items, :total_pages, :max_entries, :page_number, :category_id, :total_items
   
   def initialize(params={})
     set_request_params(params)
@@ -9,6 +9,7 @@ class Resultset
     response     = get_ebay_response
     @items       = response.items
     @total_pages = response.total_pages
+    @total_items = response.total_items
   end
   
   private
