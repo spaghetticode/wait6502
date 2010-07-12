@@ -39,7 +39,7 @@ class Resultset
   end
   
   def restricted?
-    ebay_site != 'US' || ebay_site != 'IT' || ebay_site != 'DE' || ebay_site != 'FR'
+    !%w[US IT DE FR].include?(ebay_site)
   end
   
   def items_location
