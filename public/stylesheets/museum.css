@@ -454,3 +454,8 @@ a.light, a.light:hover {
 	background: white;
 	opacity: 0.20;
 }
+
+p.add_this {
+	text-align: center;
+	margin: 40px auto;
+}
